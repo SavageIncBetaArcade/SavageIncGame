@@ -5,7 +5,6 @@ using UnityEngine;
 public class RaycastAbilitiy : BaseAbility
 {
     public float Range = 25.0f;
-    public float HitDelay = 0.0f;
     public Transform RayOrigin;
 
     public override void Attack()

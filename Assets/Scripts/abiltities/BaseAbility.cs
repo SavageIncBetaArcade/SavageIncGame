@@ -32,6 +32,7 @@ public class BaseAbility : MonoBehaviour
 
     protected virtual void Update()
     {
+        //TODO check if the current CharacterBase is the player, only attack on left click if player
         if (!OnCooldown() && Input.GetButtonDown("Fire1"))
         {
             Attack();
