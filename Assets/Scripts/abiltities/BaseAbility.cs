@@ -49,7 +49,11 @@ public class BaseAbility : MonoBehaviour
     public virtual void Attack()
     {
         OnAttack?.Invoke();
-        AttackAnimator.SetTrigger(AnimationAttackParam);
+
+        if (AttackAnimator != null)
+        {
+            AttackAnimator.SetTrigger(AnimationAttackParam);
+        }
     }
 
     protected virtual void Hit()
