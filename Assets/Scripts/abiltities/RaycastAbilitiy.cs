@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class RaycastAbilitiy : BaseAbility
 {
+    public float Damage;
     public float Range = 25.0f;
     public Transform RayOrigin;
 
@@ -23,7 +24,7 @@ public class RaycastAbilitiy : BaseAbility
         Debug.Log("Attacking");
     }
 
-    public override void Hit()
+    protected override void Hit()
     {
         base.Hit();
 

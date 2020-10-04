@@ -5,6 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(BoxCollider))]
 public class MeleeAbility : BaseAbility
 {
+    public float Damage;
     private BoxCollider _hitCollider;
     private bool _hasHit;
 
@@ -50,7 +51,7 @@ public class MeleeAbility : BaseAbility
         Debug.Log("Attacking");
     }
 
-    public override void Hit()
+    protected override void Hit()
     {
         base.Hit();
 

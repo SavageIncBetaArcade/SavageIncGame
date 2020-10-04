@@ -5,6 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class Projectile : MonoBehaviour
 {
+    public float Damage;
     public float InitialForce;
     public bool GravityAffected = true;
     public float LifeSpan = 2.5f;
@@ -36,8 +37,8 @@ public class Projectile : MonoBehaviour
 
     void Impact()
     {
-        if (_castersProjectileAbility != null)
-            _castersProjectileAbility.Hit();
+        //First check if it has a health component
+        Debug.Log("Projectile Hit");
 
         Destroy(gameObject);
     }

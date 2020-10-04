@@ -6,7 +6,6 @@ using UnityEngine;
 public class BaseAbility : MonoBehaviour
 {
     public string AbilityName;
-    public float Damage;
     public float Cooldown;
     public bool UseAnimationCooldown;
     public string AnimationAttackBoolName;
@@ -60,7 +59,7 @@ public class BaseAbility : MonoBehaviour
         }
     }
 
-    public virtual void Hit()
+    protected virtual void Hit()
     {
         OnHit?.Invoke();
     }

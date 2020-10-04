@@ -21,13 +21,6 @@ public class ProjectileAbility : BaseAbility
         Debug.Log("Attacking");
     }
 
-    public override void Hit()
-    {
-        base.Hit();
-
-        Debug.Log("Hit");
-    }
-
     private void ShootProjectile()
     {
         if(ProjectileObject == null)
