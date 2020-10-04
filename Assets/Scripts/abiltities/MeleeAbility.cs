@@ -28,10 +28,25 @@ public class MeleeAbility : BaseAbility
 
     }
 
+    private void OnTriggerEnter(Collider collider)
+    {
+        //First check if it has a health component
+        //TODO add health component
+        Hit();
+
+    }
+
     public override void Attack()
     {
         base.Attack();
 
         Debug.Log("Attacking");
+    }
+
+    protected override void Hit()
+    {
+        base.Hit();
+
+        Debug.Log("Hit");
     }
 }

@@ -47,4 +47,11 @@ public class BaseAbility : MonoBehaviour
     {
         OnAttack?.Invoke();
     }
+
+    protected virtual void Hit()
+    {
+        OnHit?.Invoke();
+    }
+
+
 }
