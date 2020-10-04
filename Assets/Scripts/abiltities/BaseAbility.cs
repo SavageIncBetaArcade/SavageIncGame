@@ -59,7 +59,7 @@ public class BaseAbility : MonoBehaviour
         }
     }
 
-    protected virtual void Hit()
+    public virtual void Hit()
     {
         OnHit?.Invoke();
     }

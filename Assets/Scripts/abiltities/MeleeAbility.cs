@@ -27,6 +27,7 @@ public class MeleeAbility : BaseAbility
 
     }
 
+    //Melees attack is done via the animation, if anything enters the trigger
     private void OnTriggerEnter(Collider collider)
     {
         //First check if it has a health component
@@ -42,7 +43,7 @@ public class MeleeAbility : BaseAbility
         Debug.Log("Attacking");
     }
 
-    protected override void Hit()
+    public override void Hit()
     {
         base.Hit();
 
