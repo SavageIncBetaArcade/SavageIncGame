@@ -9,7 +9,7 @@ public class BaseAbility : MonoBehaviour
     public float Damage;
     public float Cooldown;
     public bool UseAnimationCooldown;
-    public string AnimationAttackParam;
+    public string AnimationAttackBoolName;
     public Animator AttackAnimator;
 
     //TODO pass in the attackers character base
@@ -26,8 +26,6 @@ public class BaseAbility : MonoBehaviour
 
     protected virtual void Awake()
     {
-        Cooldown = 0.0f;
-
         //if(CharacterBase == null)
         //    Debug.LogWarning($"{AbilityName} doesn't have a character base, please make sure to set it");
     }
@@ -43,6 +41,11 @@ public class BaseAbility : MonoBehaviour
 
     protected bool OnCooldown()
     {
+        if (UseAnimationCooldown && AttackAnimator != null && !string.IsNullOrWhiteSpace(AnimationAttackBoolName))
+        {
+            return AttackAnimator.GetBool(AnimationAttackBoolName);
+        }
+
         return !(Time.time >= _lastAttackTime + Cooldown);
     }
 
@@ -52,7 +55,7 @@ public class BaseAbility : MonoBehaviour
 
         if (AttackAnimator != null)
         {
-            AttackAnimator.SetTrigger(AnimationAttackParam);
+            AttackAnimator.SetBool(AnimationAttackBoolName, true);
         }
     }
 

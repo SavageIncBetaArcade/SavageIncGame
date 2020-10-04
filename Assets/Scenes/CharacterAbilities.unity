@@ -564,7 +564,8 @@ MonoBehaviour:
   AbilityName: Sword
   Damage: 0
   Cooldown: 1
-  AnimationAttackParam: AttackTrigger
+  UseAnimationCooldown: 0
+  AnimationAttackBoolName: IsAttacking
   AttackAnimator: {fileID: 833056536}
 --- !u!65 &1584106329
 BoxCollider:
