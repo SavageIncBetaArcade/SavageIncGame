@@ -6,6 +6,7 @@ using UnityEngine;
 public class MeleeAbility : BaseAbility
 {
     private BoxCollider _hitCollider;
+    private bool _hasHit;
 
     protected override void Awake()
     {
@@ -32,13 +33,19 @@ public class MeleeAbility : BaseAbility
     {
         //First check if it has a health component
         //TODO add health component
-        Hit();
+        if (!_hasHit && OnCooldown())
+        {
+            Hit();
+            _hasHit = true;
+        }
 
     }
 
     public override void Attack()
     {
         base.Attack();
+
+        _hasHit = false;
 
         Debug.Log("Attacking");
     }
