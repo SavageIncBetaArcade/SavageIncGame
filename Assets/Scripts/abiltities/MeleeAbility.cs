@@ -5,7 +5,6 @@ using UnityEngine;
 [RequireComponent(typeof(BoxCollider))]
 public class MeleeAbility : BaseAbility
 {
-    public Animation AttackAnimation;
     private BoxCollider _hitCollider;
 
     protected override void Awake()

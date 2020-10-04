@@ -8,6 +8,9 @@ public class BaseAbility : MonoBehaviour
     public string AbilityName;
     public float Damage;
     public float Cooldown;
+    public bool UseAnimationCooldown;
+    public string AnimationAttackParam;
+    public Animator AttackAnimator;
 
     //TODO pass in the attackers character base
     public delegate void AttackAction();
@@ -46,6 +49,7 @@ public class BaseAbility : MonoBehaviour
     public virtual void Attack()
     {
         OnAttack?.Invoke();
+        AttackAnimator.SetTrigger(AnimationAttackParam);
     }
 
     protected virtual void Hit()
