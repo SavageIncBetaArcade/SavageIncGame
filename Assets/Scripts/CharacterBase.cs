@@ -5,69 +5,35 @@ using UnityEngine;
 public class CharacterBase : MonoBehaviour
 {
     [SerializeField]
-    private int attackModifier, defenseModifier, health, energy, mana;
+    private int attackModifier, defenseModifier, healthModifier, energyModifier, mana;
 
-    // Start is called before the first frame update
-    void Start()
+    public int AttackModifier
     {
-        
+        get => attackModifier;
+        set => attackModifier = value;
     }
 
-    // Update is called once per frame
-    void Update()
+    public int DefenseModifier
     {
-        
+        get => defenseModifier;
+        set => defenseModifier = value;
     }
 
-    //Getters
-    public int GetAttackModifier()
+    public int HealthModifier
     {
-        return attackModifier;
+        get => healthModifier;
+        set => healthModifier = value;
     }
 
-    public int GetDefenseModifier()
+    public int EnergyModifier
     {
-        return defenseModifier;
+        get => energyModifier;
+        set => energyModifier = value;
     }
 
-    public int GetHealth()
+    public int Mana
     {
-        return health;
-    }
-
-    public int GetEnergy()
-    {
-        return energy;
-    }
-
-    public int GetMana()
-    {
-        return mana;
-    }
-
-    //Setters
-    public void SetAttackModifier(int attackMod)
-    {
-        attackModifier = attackMod;
-    }
-
-    public void SetDefenseModifier(int defenseMod)
-    {
-        defenseModifier = defenseMod;
-    }
-
-    public void SetHealth(int healthAmt)
-    {
-        health = healthAmt;
-    }
-
-    public void SetEnergy(int energyAmt)
-    {
-        energy = energyAmt;
-    }
-
-    public void SetMana(int manaAmt)
-    {
-        mana = manaAmt;
+        get => mana;
+        set => mana = value;
     }
 }
