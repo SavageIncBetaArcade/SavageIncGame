@@ -1,8 +1,7 @@
 ﻿using UnityEngine;
 
-[CreateAssetMenu]
-public class Item : ScriptableObject
+public abstract class Item : ScriptableObject
 {
     public Sprite sprite;
-    public GameObject gameObject;
+    public abstract void Click();
 }

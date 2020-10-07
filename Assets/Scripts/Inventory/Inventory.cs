@@ -1,19 +1,10 @@
-﻿using System;
-using UnityEngine;
-using UnityEngine.UI;
-
-[Serializable]
-public struct InventoryItem
-{
-    public Image Image;
-    public Item Item;
-}
+﻿using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
     public const int ItemSlotsAmount = 16;
     [SerializeField]
-    private InventoryItem[] items = new InventoryItem[ItemSlotsAmount];
+    public InventoryItem[] items = new InventoryItem[ItemSlotsAmount];
 
     public void AddItem(Item itemToAdd)
     {
@@ -32,10 +23,15 @@ public class Inventory : MonoBehaviour
         for (var i = ItemSlotsAmount - 1; i >= 0; i--)
         {
             if (items[i].Item != itemToRemove) continue;
-            items[i].Item = null;
-            items[i].Image.sprite = null;
-            items[i].Image.enabled = false;
+            RemoveItemAt(i);
             return;
         }
+    }
+
+    public void RemoveItemAt(int position)
+    {
+        items[position].Item = null;
+        items[position].Image.sprite = null;
+        items[position].Image.enabled = false;
     }
 }

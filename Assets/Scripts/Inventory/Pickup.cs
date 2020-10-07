@@ -12,9 +12,5 @@ public class Pickup : MonoBehaviour
         {
             inventory.AddItem(item);
         }
-        else if (Input.GetKeyDown(KeyCode.Q))
-        {
-            inventory.RemoveItem(item);
-        }
     }
 }
