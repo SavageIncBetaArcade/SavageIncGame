@@ -15,14 +15,14 @@ public abstract class BaseAbility : MonoBehaviour
     public event AttackAction OnUse;
 
     //TODO get character base on awake
-    //public CharacterBase CharacterBase;
+    public CharacterBase CharacterBase;
 
     private float _lastUseTime;
 
     protected virtual void Awake()
     {
-        //if(CharacterBase == null)
-        //    Debug.LogWarning($"{AbilityName} doesn't have a character base, please make sure to set it");
+        if (CharacterBase == null)
+            Debug.LogWarning($"{AbilityName} doesn't have a character base, please make sure to set it");
     }
 
     protected virtual void Update()
