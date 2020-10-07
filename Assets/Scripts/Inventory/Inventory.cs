@@ -1,32 +1,40 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.UI;
+
+[Serializable]
+public struct InventoryItem
+{
+    public Image Image;
+    public Item Item;
+}
 
 public class Inventory : MonoBehaviour
 {
-    public const int ItemSlotsAmount = 4;
-    public Image[] itemImages = new Image[ItemSlotsAmount];
-    public Item[] items = new Item[ItemSlotsAmount];
+    public const int ItemSlotsAmount = 16;
+    [SerializeField]
+    private InventoryItem[] items = new InventoryItem[ItemSlotsAmount];
 
     public void AddItem(Item itemToAdd)
     {
-        for (var i = 0; i < items.Length; i++)
+        for (var i = 0; i < ItemSlotsAmount; i++)
         {
-            if (items[i] != null) continue;
-            items[i] = itemToAdd;
-            itemImages[i].sprite = itemToAdd.sprite;
-            itemImages[i].enabled = true;
+            if (items[i].Item != null) continue;
+            items[i].Item = itemToAdd;
+            items[i].Image.sprite = itemToAdd.sprite;
+            items[i].Image.enabled = true;
             return;
         }
     }
 
     public void RemoveItem(Item itemToRemove)
     {
-        for (var i = 0; i < items.Length; i++)
+        for (var i = ItemSlotsAmount - 1; i >= 0; i--)
         {
-            if (items[i] != itemToRemove) continue;
-            items[i] = null;
-            itemImages[i].sprite = null;
-            itemImages[i].enabled = false;
+            if (items[i].Item != itemToRemove) continue;
+            items[i].Item = null;
+            items[i].Image.sprite = null;
+            items[i].Image.enabled = false;
             return;
         }
     }
