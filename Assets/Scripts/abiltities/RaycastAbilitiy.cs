@@ -13,16 +13,19 @@ public class RaycastAbilitiy : AttackAbility
         RaycastHit hitInfo;
         if (Physics.Raycast(RayOrigin.position, RayOrigin.forward, out hitInfo, Range))
         {
-            //First check if it has a health component
-            Hit();
-            
+            CharacterBase characterBase = hitInfo.transform.GetComponent<CharacterBase>();
+            if (characterBase != null && characterBase != CharacterBase)
+            {
+                Hit(characterBase);
+            }
+
         }
 
 
         Debug.Log("Attacking");
     }
 
-    protected override void Hit()
+    protected override void Hit(CharacterBase hitCharacter)
     {
 
         Debug.Log("Hit");

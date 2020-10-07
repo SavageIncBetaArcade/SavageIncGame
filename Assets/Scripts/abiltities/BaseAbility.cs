@@ -4,17 +4,17 @@ using UnityEngine;
 
 public abstract class BaseAbility : MonoBehaviour
 {
-    public ScriptableAbility Ability;
+    //Abilities that use mono behavior are all useable I.E (Weapons, Buffs) - Passive abilities work in a different way
+    public ScriptableUseableAbility Ability;
     public string AnimationUseBoolName;
     public Animator UseAnimator;
 
     //TODO pass in the attackers character base
-    public delegate void AttackAction();
-    public event AttackAction OnUse;
+    public delegate void UseAction();
+    public event UseAction OnUse;
 
     //TODO get character base on awake
     public CharacterBase CharacterBase;
-
     private float _lastUseTime;
 
     protected virtual void Awake()

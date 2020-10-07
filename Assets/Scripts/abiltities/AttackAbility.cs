@@ -5,12 +5,12 @@ using UnityEngine;
 
 public abstract class AttackAbility : BaseAbility
 {
-    public delegate void HitAction();
+    public delegate void HitAction(CharacterBase attackingCharacter, CharacterBase targetCharacter);
     public event HitAction OnHit;
 
-    protected virtual void Hit()
+    protected virtual void Hit(CharacterBase targetCharacter)
     {
-        OnHit?.Invoke();
+        OnHit?.Invoke(CharacterBase,targetCharacter);
 
     }
 }

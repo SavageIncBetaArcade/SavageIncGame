@@ -40,8 +40,12 @@ public class MeleeAbility : AttackAbility
         //TODO add health component
         if (!_hasHit && OnCooldown())
         {
-            Hit();
-            _hasHit = true;
+            CharacterBase characterBase = collider.GetComponent<CharacterBase>();
+            if (characterBase != null && characterBase != CharacterBase)
+            {
+                Hit(characterBase);
+                _hasHit = true;
+            }
         }
     }
 
@@ -52,7 +56,7 @@ public class MeleeAbility : AttackAbility
         Debug.Log("Attacking");
     }
 
-    protected override void Hit()
+    protected override void Hit(CharacterBase hitCharacter)
     {
         Debug.Log("Hit");
     }
