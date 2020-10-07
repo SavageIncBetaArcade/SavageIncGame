@@ -2,24 +2,29 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(BoxCollider))]
 public class MeleeAbility : AttackAbility
 {
-    public float Damage;
-    private BoxCollider _hitCollider;
     private bool _hasHit;
+
+    private ScriptableMeleeAbility meleeAbility;
 
     protected override void Awake()
     {
         base.Awake();
 
-        _hitCollider = GetComponent<BoxCollider>();
-    }
+        if (Ability != null && Ability is ScriptableMeleeAbility ability)
+        {
+            meleeAbility = ability;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+            //Forward the melees OnTriggerEnter to the TriggerEnter method by searching all the children for ForwardTriggerCollision
+            ForwardTriggerCollision forwardTrigger = GetComponentInChildren<ForwardTriggerCollision>();
+            if(forwardTrigger != null)
+                forwardTrigger.Initialize(TriggerEnter);
+        }
+        else
+        {
+            Debug.LogAssertion("Melee Ability doesn't have an ability");
+        }
     }
 
     // Update is called once per frame
@@ -29,8 +34,7 @@ public class MeleeAbility : AttackAbility
 
     }
 
-    //Melees attack is done via the animation, if anything enters the trigger
-    private void OnTriggerEnter(Collider collider)
+    public void TriggerEnter(Collider collider)
     {
         //First check if it has a health component
         //TODO add health component
@@ -39,7 +43,6 @@ public class MeleeAbility : AttackAbility
             Hit();
             _hasHit = true;
         }
-
     }
 
     public override void Use()

@@ -4,9 +4,7 @@ using UnityEngine;
 
 public abstract class BaseAbility : MonoBehaviour
 {
-    public string AbilityName;
-    public float Cooldown;
-    public bool UseAnimationCooldown;
+    public ScriptableAbility Ability;
     public string AnimationUseBoolName;
     public Animator UseAnimator;
 
@@ -21,8 +19,18 @@ public abstract class BaseAbility : MonoBehaviour
 
     protected virtual void Awake()
     {
+        if (Ability != null && Ability.AbilityPrefab != null)
+        {
+            Instantiate(Ability.AbilityPrefab, transform);
+        }
+        else
+        {
+            Debug.LogWarning("Base ability have a ability or an ability prefab");
+        }
+
         if (CharacterBase == null)
-            Debug.LogWarning($"{AbilityName} doesn't have a character base, please make sure to set it");
+            Debug.LogWarning("Base ability doesn't have a character base, please make sure to set it");
+
     }
 
     protected virtual void Update()
@@ -37,12 +45,12 @@ public abstract class BaseAbility : MonoBehaviour
 
     protected bool OnCooldown()
     {
-        if (UseAnimationCooldown && UseAnimator != null && !string.IsNullOrWhiteSpace(AnimationUseBoolName))
+        if (Ability.UseAnimationCooldown && UseAnimator != null && !string.IsNullOrWhiteSpace(AnimationUseBoolName))
         {
             return UseAnimator.GetBool(AnimationUseBoolName);
         }
 
-        return !(Time.time >= _lastUseTime + Cooldown);
+        return !(Time.time >= _lastUseTime + Ability.Cooldown);
     }
 
     public abstract void Use();
