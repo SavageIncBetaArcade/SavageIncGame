@@ -2,6 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum StatType
+{
+    ATTACK,
+    DEFENSE,
+    HEALTH,
+    ENERGY
+}
+
 public class CharacterBase : MonoBehaviour
 {
     [SerializeField]
