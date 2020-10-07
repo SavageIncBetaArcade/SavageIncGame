@@ -2,26 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
-public class BaseAbility : MonoBehaviour
+public abstract class BaseAbility : MonoBehaviour
 {
     public string AbilityName;
     public float Cooldown;
     public bool UseAnimationCooldown;
-    public string AnimationAttackBoolName;
-    public Animator AttackAnimator;
+    public string AnimationUseBoolName;
+    public Animator UseAnimator;
 
     //TODO pass in the attackers character base
     public delegate void AttackAction();
-    public event AttackAction OnAttack;
-
-    public delegate void HitAction();
-    public event HitAction OnHit;
+    public event AttackAction OnUse;
 
     //TODO get character base on awake
     //public CharacterBase CharacterBase;
 
-    private float _lastAttackTime;
+    private float _lastUseTime;
 
     protected virtual void Awake()
     {
@@ -34,35 +30,33 @@ public class BaseAbility : MonoBehaviour
         //TODO check if the current CharacterBase is the player, only attack on left click if player
         if (!OnCooldown() && Input.GetButtonDown("Fire1"))
         {
-            Attack();
-            _lastAttackTime = Time.time;
+            ExecuteUse();
+            _lastUseTime = Time.time;
         }
     }
 
     protected bool OnCooldown()
     {
-        if (UseAnimationCooldown && AttackAnimator != null && !string.IsNullOrWhiteSpace(AnimationAttackBoolName))
+        if (UseAnimationCooldown && UseAnimator != null && !string.IsNullOrWhiteSpace(AnimationUseBoolName))
         {
-            return AttackAnimator.GetBool(AnimationAttackBoolName);
+            return UseAnimator.GetBool(AnimationUseBoolName);
         }
 
-        return !(Time.time >= _lastAttackTime + Cooldown);
+        return !(Time.time >= _lastUseTime + Cooldown);
     }
 
-    public virtual void Attack()
-    {
-        OnAttack?.Invoke();
+    public abstract void Use();
 
-        if (AttackAnimator != null)
+    private void ExecuteUse()
+    {
+        OnUse?.Invoke();
+
+        if (UseAnimator != null)
         {
-            AttackAnimator.SetBool(AnimationAttackBoolName, true);
+            UseAnimator.SetBool(AnimationUseBoolName, true);
         }
-    }
 
-    protected virtual void Hit()
-    {
-        OnHit?.Invoke();
+        Use();
     }
-
 
 }

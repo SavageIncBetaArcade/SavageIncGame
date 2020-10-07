@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(BoxCollider))]
-public class MeleeAbility : BaseAbility
+public class MeleeAbility : AttackAbility
 {
     public float Damage;
     private BoxCollider _hitCollider;
@@ -42,10 +42,8 @@ public class MeleeAbility : BaseAbility
 
     }
 
-    public override void Attack()
+    public override void Use()
     {
-        base.Attack();
-
         _hasHit = false;
 
         Debug.Log("Attacking");
@@ -53,8 +51,6 @@ public class MeleeAbility : BaseAbility
 
     protected override void Hit()
     {
-        base.Hit();
-
         Debug.Log("Hit");
     }
 }

@@ -2,16 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RaycastAbilitiy : BaseAbility
+public class RaycastAbilitiy : AttackAbility
 {
     public float Damage;
     public float Range = 25.0f;
     public Transform RayOrigin;
 
-    public override void Attack()
+    public override void Use()
     {
-        base.Attack();
-
         RaycastHit hitInfo;
         if (Physics.Raycast(RayOrigin.position, RayOrigin.forward, out hitInfo, Range))
         {
@@ -26,7 +24,6 @@ public class RaycastAbilitiy : BaseAbility
 
     protected override void Hit()
     {
-        base.Hit();
 
         Debug.Log("Hit");
     }

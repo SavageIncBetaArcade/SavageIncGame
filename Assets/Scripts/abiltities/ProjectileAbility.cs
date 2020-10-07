@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ProjectileAbility : BaseAbility
+public class ProjectileAbility : AttackAbility
 {
     public GameObject ProjectileObject;
     public Transform ProjectileSpawnPoint;
@@ -12,10 +12,8 @@ public class ProjectileAbility : BaseAbility
         base.Update();
     }
 
-    public override void Attack()
+    public override void Use()
     {
-        base.Attack();
-
         ShootProjectile();
 
         Debug.Log("Attacking");
