@@ -8,9 +8,15 @@ public abstract class AttackAbility : BaseAbility
     public delegate void HitAction(CharacterBase attackingCharacter, CharacterBase targetCharacter);
     public event HitAction OnHit;
 
-    protected virtual void Hit(CharacterBase targetCharacter)
+    protected AttackAbility(UseableAbility useableAbility) : base(useableAbility)
     {
-        OnHit?.Invoke(CharacterBase,targetCharacter);
 
     }
+
+    protected virtual void Hit(CharacterBase targetCharacter)
+    {
+        //OnHit?.Invoke(CharacterBase,targetCharacter);
+
+    }
+
 }
