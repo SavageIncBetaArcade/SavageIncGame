@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class MeleeAbility : AttackAbility
 {
+    //TODO keep track of the character bases hit so you can hit multiple enemies in one swing
     private bool _hasHit;
-
+    //ForwardTriggerCollision from the weapons collider, so when the OnTriggerEnter get called the TriggerEnter also gets called
     private ForwardTriggerCollision forwardTrigger;
 
     public MeleeAbility(UseableAbility useableAbility, ForwardTriggerCollision forwardTrigger) 
@@ -15,6 +16,10 @@ public class MeleeAbility : AttackAbility
         this.forwardTrigger.Initialize(TriggerEnter);
     }
 
+    /// <summary>
+    /// This method gets called from the first collier in the children of this gameobjects OnTriggerEnter method.
+    /// </summary>
+    /// <param name="collider"></param>
     public void TriggerEnter(Collider collider)
     {
         //First check if it has a health component

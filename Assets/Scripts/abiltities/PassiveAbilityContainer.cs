@@ -5,9 +5,12 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
+/// <summary>
+/// This script manages the passive abilities of the characterbase that is on the SAME gameobject
+/// </summary>
 public class PassiveAbilityContainer : MonoBehaviour
 {
-    public ScriptablePassiveAbility[] PassiveAbilities;
+    public List<ScriptablePassiveAbility> PassiveAbilities;
     private CharacterBase characterBase;
 
     public void Awake()
@@ -20,6 +23,15 @@ public class PassiveAbilityContainer : MonoBehaviour
         foreach (var ability in PassiveAbilities)
         {
             ability.Apply(characterBase);
+        }
+    }
+
+    public void AddPassive(ScriptablePassiveAbility passiveAbility)
+    {
+        if (!PassiveAbilities.Contains(passiveAbility))
+        {
+            passiveAbility.Apply(characterBase);
+            PassiveAbilities.Add(passiveAbility);
         }
     }
 }

@@ -17,21 +17,21 @@ public class Projectile : MonoBehaviour
     private float RangeCutoff = 100.0f;
 
     private Vector3 startPosition;
-    private Rigidbody _rigidbody;
+    private Rigidbody projectileRigidbody;
 
     //The ProjectileAbility that was used to cast this project (null of none)
     private ProjectileAbility _castersProjectileAbility;
 
     void Awake()
     {
-        _rigidbody = GetComponent<Rigidbody>();
-        _rigidbody.useGravity = gravityAffected;
+        projectileRigidbody = GetComponent<Rigidbody>();
+        projectileRigidbody.useGravity = gravityAffected;
     }
 
     void Start()
     {
         startPosition = transform.position;
-        _rigidbody.AddForce(initialForce * transform.forward, ForceMode.Impulse);
+        projectileRigidbody.AddForce(initialForce * transform.forward, ForceMode.Impulse);
         Destroy(gameObject, lifeSpan);
     }
 
@@ -67,7 +67,7 @@ public class Projectile : MonoBehaviour
         damage = scriptableProjectile.Damage;
         initialForce = scriptableProjectile.InitialForce;
         gravityAffected = scriptableProjectile.GravityAffected;
-        _rigidbody.useGravity = gravityAffected;
+        projectileRigidbody.useGravity = gravityAffected;
         RangeCutoff = scriptableProjectile.Range;
     }
 }

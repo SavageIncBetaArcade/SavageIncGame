@@ -5,6 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
+/// <summary>
+/// This is the script that allows the character to use abilities
+/// The ScriptableUseableAbility that is attached to the ScriptableAbility is the ability that would get called
+/// </summary>
 public class UseableAbility : MonoBehaviour
 {
     //Abilities that use mono behavior are all useable I.E (Weapons, Buffs) - Passive abilities work in a different way
