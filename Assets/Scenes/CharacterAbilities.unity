@@ -403,7 +403,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5f465d04b0cf7c488f572067a598ad8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ScriptableAbility: {fileID: 11400000, guid: 79af1956af198bd4eb7772925e323b17, type: 2}
+  ScriptableAbility: {fileID: 11400000, guid: 3b60353eb9dbe494f8293cd01353568b, type: 2}
   AnimationUseBoolName: IsAttacking
   UseAnimator: {fileID: 833056536}
   CharacterBase: {fileID: 2033671301}

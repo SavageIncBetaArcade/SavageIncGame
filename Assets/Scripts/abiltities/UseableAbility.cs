@@ -40,6 +40,10 @@ public class UseableAbility : MonoBehaviour
         {
             ability = new ProjectileAbility(this);
         }
+        else if (ScriptableAbility is ScriptableStatAbility scriptableStat)
+        {
+            ability = new StatAbility(this);
+        }
     }
 
     protected virtual void Awake()
