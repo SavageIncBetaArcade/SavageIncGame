@@ -14,16 +14,16 @@ public abstract class DurationAbility : BaseAbility
     public override void Use()
     {
         //Call the method that would grant the character the passive ability
-        Grant();
+        Apply();
 
         //After the Active perios has ended call diminish to cancel the passive effect
         //If the active period is zero the passive ability would never diminish
         int miliseconds = Mathf.CeilToInt(ActivePeriod * 1000.0f);
-        Task.Delay(miliseconds).ContinueWith(x => Diminish());
+        Task.Delay(miliseconds).ContinueWith(x => Remove());
     }
 
 
-    public abstract void Grant();
-    public abstract void Diminish();
+    public abstract void Apply();
+    public abstract void Remove();
 
 }

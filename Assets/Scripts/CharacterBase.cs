@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,36 +13,53 @@ public enum StatType
 
 public class CharacterBase : MonoBehaviour
 {
-    [SerializeField]
-    private int attackModifier, defenseModifier, healthModifier, energyModifier, mana;
+    [SerializeField] 
+    private float attackModifier, defenseModifier, maxHealth, maxEnergy;
 
-    public int AttackModifier
+    #region Properties
+    public float AttackModifier
     {
         get => attackModifier;
         set => attackModifier = value;
     }
 
-    public int DefenseModifier
+    public float DefenseModifier
     {
         get => defenseModifier;
         set => defenseModifier = value;
     }
 
-    public int HealthModifier
+    public float MaxHealth
     {
-        get => healthModifier;
-        set => healthModifier = value;
+        get => maxHealth;
+        set => maxHealth = value;
     }
 
-    public int EnergyModifier
+    public float MaxEnergy
     {
-        get => energyModifier;
-        set => energyModifier = value;
+        get => maxEnergy;
+        set => maxEnergy = value;
     }
+    #endregion
 
-    public int Mana
+    public void ApplyStatModifier(StatType type, float amount)
     {
-        get => mana;
-        set => mana = value;
+        switch (type)
+        {
+            case StatType.ATTACK:
+                AttackModifier += amount;
+                break;
+            case StatType.DEFENSE:
+                DefenseModifier += amount;
+                break;
+            case StatType.HEALTH:
+                MaxHealth += amount;
+                break;
+            case StatType.ENERGY:
+                MaxEnergy += amount;
+                break;
+            default:
+                throw new ArgumentOutOfRangeException();
+        }
     }
 }

@@ -15,51 +15,19 @@ public class StatAbility : DurationAbility
 
     }
 
-    public override void Grant()
+    public override void Apply()
     {
         Debug.Log($"Granting stat boost {ability.AbilityName} to character");
         ScriptableStatAbility statAbility = (ScriptableStatAbility) ability;
 
-        switch (statAbility.StatType)
-        {
-            case StatType.ATTACK:
-                useableAbility.CharacterBase.AttackModifier += statAbility.Modifier;
-                break;
-            case StatType.DEFENSE:
-                useableAbility.CharacterBase.DefenseModifier += statAbility.Modifier;
-                break;
-            case StatType.HEALTH:
-                useableAbility.CharacterBase.HealthModifier += statAbility.Modifier;
-                break;
-            case StatType.ENERGY:
-                useableAbility.CharacterBase.EnergyModifier += statAbility.Modifier;
-                break;
-            default:
-                throw new ArgumentOutOfRangeException();
-        }
+        useableAbility.CharacterBase.ApplyStatModifier(statAbility.StatType, statAbility.Modifier);
     }
 
-    public override void Diminish()
+    public override void Remove()
     {
-        Debug.Log($"Diminish stat boost {ability.AbilityName} to character");
+        Debug.Log($"Remove stat boost {ability.AbilityName} to character");
         ScriptableStatAbility statAbility = (ScriptableStatAbility)ability;
 
-        switch (statAbility.StatType)
-        {
-            case StatType.ATTACK:
-                useableAbility.CharacterBase.AttackModifier -= statAbility.Modifier;
-                break;
-            case StatType.DEFENSE:
-                useableAbility.CharacterBase.DefenseModifier -= statAbility.Modifier;
-                break;
-            case StatType.HEALTH:
-                useableAbility.CharacterBase.HealthModifier -= statAbility.Modifier;
-                break;
-            case StatType.ENERGY:
-                useableAbility.CharacterBase.EnergyModifier -= statAbility.Modifier;
-                break;
-            default:
-                throw new ArgumentOutOfRangeException();
-        }
+        useableAbility.CharacterBase.ApplyStatModifier(statAbility.StatType, -statAbility.Modifier);
     }
 }
