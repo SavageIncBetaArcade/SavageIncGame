@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4183c7e54c6a54348891534aa1a83bd0, type: 3}
   m_Name: PassiveDefenceAbility
   m_EditorClassIdentifier: 
-  AbilityName: 
+  AbilityName: Defence Passive
   AbilitySprite: {fileID: 0}
-  StatType: 0
-  Modifier: 0
+  StatType: 1
+  Modifier: 20

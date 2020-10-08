@@ -21,7 +21,7 @@ public class ProjectileAbility : AttackAbility
 
     private void ShootProjectile()
     {
-        ScriptableProjectileAbility projectileAbility = (ScriptableProjectileAbility) ability;
+        ScriptableProjectileAbility projectileAbility = (ScriptableProjectileAbility) Ability;
         if (projectileAbility.ProjectileGameObject == null)
             return;
 
@@ -30,6 +30,8 @@ public class ProjectileAbility : AttackAbility
 
         //Set the projectiles caster ability to this
         if (projectile != null)
+        {
             projectile.SetCastersProjectileAbilty(this);
+        }
     }
 }

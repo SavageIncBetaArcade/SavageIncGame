@@ -17,16 +17,16 @@ public class StatAbility : DurationAbility
 
     public override void Apply()
     {
-        Debug.Log($"Granting stat boost {ability.AbilityName} to character");
-        ScriptableStatAbility statAbility = (ScriptableStatAbility) ability;
+        Debug.Log($"Granting stat boost {Ability.AbilityName} to character");
+        ScriptableStatAbility statAbility = (ScriptableStatAbility) Ability;
 
         useableAbility.CharacterBase.ApplyStatModifier(statAbility.StatType, statAbility.Modifier);
     }
 
     public override void Remove()
     {
-        Debug.Log($"Remove stat boost {ability.AbilityName} to character");
-        ScriptableStatAbility statAbility = (ScriptableStatAbility)ability;
+        Debug.Log($"Remove stat boost {Ability.AbilityName} to character");
+        ScriptableStatAbility statAbility = (ScriptableStatAbility)Ability;
 
         useableAbility.CharacterBase.ApplyStatModifier(statAbility.StatType, -statAbility.Modifier);
     }

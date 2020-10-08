@@ -21,6 +21,6 @@ MonoBehaviour:
   ProjectileGameObject: {fileID: 6167524000098639644, guid: 9c2e1c1ac5f187d4789ac656af43d0b4,
     type: 3}
   GravityAffected: 0
-  InitialForce: 5
+  InitialForce: 20
   Damage: 5
   Range: 25

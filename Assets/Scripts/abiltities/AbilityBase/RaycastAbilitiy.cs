@@ -17,7 +17,7 @@ public class RaycastAbilitiy : AttackAbility
     public override void Use()
     {
         RaycastHit hitInfo;
-        if (Physics.Raycast(useableAbility.Origin.position, useableAbility.Origin.forward, out hitInfo, ((ScriptableRaycastAbility)ability).Range))
+        if (Physics.Raycast(useableAbility.Origin.position, useableAbility.Origin.forward, out hitInfo, ((ScriptableRaycastAbility)Ability).Range))
         {
             CharacterBase hitCharacter = hitInfo.transform.GetComponent<CharacterBase>();
             if (hitCharacter != null && hitCharacter != useableAbility.CharacterBase)

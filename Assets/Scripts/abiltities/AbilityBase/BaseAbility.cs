@@ -14,6 +14,8 @@ public abstract class BaseAbility
         this.useableAbility = useableAbility;
     }
 
+    public ScriptableUseableAbility Ability => ability;
+
     public abstract void Initilise();
     public abstract void Use();
 
