@@ -13,7 +13,7 @@ public enum StatType
 
 public class CharacterBase : MonoBehaviour
 {
-    [SerializeField] 
+    [SerializeField]
     private float attackModifier, defenseModifier, maxHealth, maxEnergy;
 
     #region Properties
