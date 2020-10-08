@@ -9,8 +9,8 @@ public class InventoryItemClickHandler : MonoBehaviour, IPointerDownHandler
     {
         var inventory = FindObjectOfType<Inventory>();
         var itemClicked = inventory.items[inventorySlot];
-        if (itemClicked.Item == null) return;
+        if (itemClicked.InventoryItem == null) return;
         inventory.RemoveItemAt(inventorySlot);
-        itemClicked.Item.Click();
+        itemClicked.InventoryItem.Click(inventory);
     }
 }

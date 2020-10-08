@@ -1,9 +1,7 @@
-﻿using System;
-using UnityEngine.UI;
-
-[Serializable]
-public struct InventoryItem
+﻿public abstract class InventoryItem
 {
-    public Image Image;
     public Item Item;
+    public int Quanity;
+
+    public abstract void Click(Inventory inventory);
 }

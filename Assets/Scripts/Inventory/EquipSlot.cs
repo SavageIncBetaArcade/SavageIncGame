@@ -2,16 +2,21 @@
 
 public class EquipSlot : MonoBehaviour
 {
-    private InventoryItem equippedItem;
+    private InventorySlot equippedSlot;
 
-    public void EquipItem(InventoryItem itemToEquip)
+    public void EquipItem(InventorySlot slotToEquip)
     {
-        equippedItem = itemToEquip;
+        equippedSlot = slotToEquip;
     }
 
     public void RemoveItem()
     {
-        equippedItem.Image = null;
-        equippedItem.Item = null;
+        equippedSlot.Image = null;
+        equippedSlot.InventoryItem = null;
+    }
+
+    public void Click()
+    {
+        
     }
 }
