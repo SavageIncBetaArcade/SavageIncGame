@@ -17,6 +17,8 @@ public class EquipSlot : MonoBehaviour
 
     public void Click()
     {
-        
+        var inventory = GetComponent<Inventory>();
+        inventory.AddItem(equippedSlot.InventoryItem.Item);
+        RemoveItem();
     }
 }

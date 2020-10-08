@@ -14,12 +14,15 @@ public class Inventory : MonoBehaviour
     {
         for (var i = 0; i < ItemSlotsAmount; i++)
         {
-            if (items[i].InventoryItem.Item == itemToAdd)
+            if (items[i].InventoryItem != null)
             {
-                items[i].InventoryItem.Quanity++;
-                return;
+                if (items[i].InventoryItem.Item == itemToAdd)
+                {
+                    items[i].InventoryItem.Quanity++;
+                    return;
+                }
+                continue;
             }
-            if (items[i].InventoryItem != null) continue;
             items[i].InventoryItem = InventoryItemFactory.CreateInventoryItem(itemToAdd);
             items[i].InventoryItem.Item = itemToAdd;
             items[i].Image.sprite = itemToAdd.sprite;
@@ -47,6 +50,7 @@ public class Inventory : MonoBehaviour
 
     public void ClickItem(int position)
     {
+        items[position].InventoryItem.Click(this);
         RemoveItemAt(position);
     }
 }
