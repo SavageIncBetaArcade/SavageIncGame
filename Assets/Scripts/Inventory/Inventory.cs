@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
@@ -77,5 +76,16 @@ public class Inventory : MonoBehaviour
     public void ClickItem(int position)
     {
         items[position].InventoryItem.Click(this);
+    }
+
+    public void EquipWeapon(WeaponInventoryItem weaponToEquip)
+    {
+        foreach (var weaponSlot in leftHand)
+        {
+            if (weaponSlot.equippedSlot.InventoryItem != null) continue;
+            RemoveItem(weaponToEquip.Item);
+            weaponSlot.EquipItem(weaponToEquip);
+            return;
+        }
     }
 }

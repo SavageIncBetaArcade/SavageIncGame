@@ -4,10 +4,10 @@ public class EquipSlot : MonoBehaviour
 {
     public InventorySlot equippedSlot;
 
-    public void EquipItem(Sprite sprite, InventoryItem inventoryItem)
+    public void EquipItem(InventoryItem inventoryItem)
     {
         if (equippedSlot.InventoryItem != null) UnequipItem();
-        equippedSlot.Image.sprite = sprite;
+        equippedSlot.Image.sprite = inventoryItem.Item.sprite;
         equippedSlot.Image.enabled = true;
         equippedSlot.InventoryItem = inventoryItem;
     }
