@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Linq;
+using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
@@ -73,19 +74,25 @@ public class Inventory : MonoBehaviour
         items[position].Quantity.enabled = false;
     }
 
-    public void ClickItem(int position)
+    public void LeftClickItem(int position) { items[position].InventoryItem.LeftClick(this); }
+
+    public void RightClickItem(int position) { items[position].InventoryItem.RightClick(this); }
+    
+    public void EquipWeaponInLeftHand(WeaponInventoryItem weaponToEquip)
     {
-        items[position].InventoryItem.Click(this);
+        if (leftHand.Any(weaponSlot => EquipWeapon(weaponToEquip, weaponSlot)));
+    }
+    
+    public void EquipWeaponInRightHand(WeaponInventoryItem weaponToEquip)
+    {
+        if (rightHand.Any(weaponSlot => EquipWeapon(weaponToEquip, weaponSlot)));
     }
 
-    public void EquipWeapon(WeaponInventoryItem weaponToEquip)
+    private bool EquipWeapon(WeaponInventoryItem weaponToEquip, EquipSlot weaponSlot)
     {
-        foreach (var weaponSlot in leftHand)
-        {
-            if (weaponSlot.equippedSlot.InventoryItem != null) continue;
-            RemoveItem(weaponToEquip.Item);
-            weaponSlot.EquipItem(weaponToEquip);
-            return;
-        }
+        if (weaponSlot.equippedSlot.InventoryItem != null) return false;
+        RemoveItem(weaponToEquip.Item);
+        weaponSlot.EquipItem(weaponToEquip);
+        return true;
     }
 }

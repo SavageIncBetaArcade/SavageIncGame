@@ -1,7 +1,12 @@
 ﻿public class WeaponInventoryItem : InventoryItem
 {
-    public override void Click(Inventory inventory)
+    public override void LeftClick(Inventory inventory)
     {
-        inventory.EquipWeapon(this);
+        inventory.EquipWeaponInLeftHand(this);
+    }
+
+    public override void RightClick(Inventory inventory)
+    {
+        inventory.EquipWeaponInRightHand(this);
     }
 }

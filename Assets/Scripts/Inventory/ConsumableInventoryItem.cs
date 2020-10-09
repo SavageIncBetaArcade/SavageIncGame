@@ -2,7 +2,12 @@
 
 public class ConsumableInventoryItem : InventoryItem
 {
-    public override void Click(Inventory inventory)
+    public override void LeftClick(Inventory inventory)
+    {
+        throw new NotImplementedException();
+    }
+
+    public override void RightClick(Inventory inventory)
     {
         throw new NotImplementedException();
     }
