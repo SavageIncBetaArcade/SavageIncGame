@@ -33,15 +33,23 @@ public class Inventory : MonoBehaviour
     private bool InventorySlotIsEmpty(int position) { return items[position].InventoryItem == null; }
     
     private bool InventorySlotIs(int position, Item item) { return items[position].InventoryItem.Item == item; }
-    
-    private void IncreaseItemQuantity(int position) { items[position].InventoryItem.Quanity++; }
-    
+
+    private void IncreaseItemQuantity(int position)
+    {
+        items[position].InventoryItem.Quantity++;
+        UpdateQuantityUI(position);
+    }
+
+    private void UpdateQuantityUI(int position) { items[position].Quantity.text = items[position].InventoryItem.Quantity.ToString(); }
+
     private void AssignItemSlot(int position, Item itemToAdd)
     {
         items[position].InventoryItem = InventoryItemFactory.CreateInventoryItem(itemToAdd);
         items[position].InventoryItem.Item = itemToAdd;
         items[position].Image.sprite = itemToAdd.sprite;
         items[position].Image.enabled = true;
+        UpdateQuantityUI(position);
+        items[position].Quantity.enabled = true;
     }
 
     public void RemoveItem(Item itemToRemove)
@@ -57,8 +65,8 @@ public class Inventory : MonoBehaviour
 
     private bool ReduceItemQuantity(int i)
     {
-        if (items[i].InventoryItem.Quanity <= 1) return false;
-        items[i].InventoryItem.Quanity--;
+        if (items[i].InventoryItem.Quantity <= 1) return false;
+        items[i].InventoryItem.Quantity--;
         return true;
 
     }

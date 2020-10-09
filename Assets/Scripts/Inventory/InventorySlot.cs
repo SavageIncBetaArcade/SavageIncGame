@@ -6,4 +6,5 @@ public struct InventorySlot
 {
     public Image Image;
     public InventoryItem InventoryItem;
+    public Text Quantity;
 }
