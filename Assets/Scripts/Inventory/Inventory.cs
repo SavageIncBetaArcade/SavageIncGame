@@ -1,5 +1,8 @@
-﻿using System.Linq;
+﻿using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Inventory : MonoBehaviour
 {
@@ -9,6 +12,7 @@ public class Inventory : MonoBehaviour
     public EquipSlot[] rightHand = new EquipSlot[4];
     public EquipSlot armourSlot;
     public const int ItemSlotsAmount = 16;
+    public Text warningText;
     
     public void AddItem(Item itemToAdd)
     {
@@ -80,19 +84,28 @@ public class Inventory : MonoBehaviour
     
     public void EquipWeaponInLeftHand(WeaponInventoryItem weaponToEquip)
     {
-        if (leftHand.Any(weaponSlot => EquipWeapon(weaponToEquip, weaponSlot)));
+        if (!leftHand.Any(weaponSlot => EquipWeapon(weaponToEquip, weaponSlot)))
+            StartCoroutine(ShowWarningText());
     }
     
     public void EquipWeaponInRightHand(WeaponInventoryItem weaponToEquip)
     {
-        if (rightHand.Any(weaponSlot => EquipWeapon(weaponToEquip, weaponSlot)));
+        if (!rightHand.Any(weaponSlot => EquipWeapon(weaponToEquip, weaponSlot)))
+            StartCoroutine(ShowWarningText());
     }
-
+    
     private bool EquipWeapon(WeaponInventoryItem weaponToEquip, EquipSlot weaponSlot)
     {
         if (weaponSlot.equippedSlot.InventoryItem != null) return false;
         RemoveItem(weaponToEquip.Item);
         weaponSlot.EquipItem(weaponToEquip);
         return true;
+    }
+
+    private IEnumerator ShowWarningText()
+    {
+        warningText.enabled = true;
+        yield return new WaitForSeconds(3);
+        warningText.enabled = false;
     }
 }
