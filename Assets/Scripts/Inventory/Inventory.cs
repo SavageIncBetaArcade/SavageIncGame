@@ -27,7 +27,6 @@ public class Inventory : MonoBehaviour
         if (!InventorySlotIsEmpty(position)) return false;
         AssignItemSlot(position, itemToAdd);
         return true;
-
     }
 
     private bool InventorySlotIsEmpty(int position) { return items[position].InventoryItem == null; }
@@ -37,10 +36,10 @@ public class Inventory : MonoBehaviour
     private void IncreaseItemQuantity(int position)
     {
         items[position].InventoryItem.Quantity++;
-        UpdateQuantityUI(position);
+        UpdateQuantityUiAt(position);
     }
 
-    private void UpdateQuantityUI(int position) { items[position].Quantity.text = items[position].InventoryItem.Quantity.ToString(); }
+    private void UpdateQuantityUiAt(int position) { items[position].Quantity.text = items[position].InventoryItem.Quantity.ToString(); }
 
     private void AssignItemSlot(int position, Item itemToAdd)
     {
@@ -48,7 +47,7 @@ public class Inventory : MonoBehaviour
         items[position].InventoryItem.Item = itemToAdd;
         items[position].Image.sprite = itemToAdd.sprite;
         items[position].Image.enabled = true;
-        UpdateQuantityUI(position);
+        UpdateQuantityUiAt(position);
         items[position].Quantity.enabled = true;
     }
 
@@ -56,20 +55,22 @@ public class Inventory : MonoBehaviour
     {
         for (var i = 0; i < ItemSlotsAmount; i++)
         {
-            if (items[i].InventoryItem.Item != itemToRemove) continue;
+            if (!InventorySlotIs(i, itemToRemove)) continue;
             if (ReduceItemQuantity(i)) return;
             RemoveItemAt(i);
             return;
         }
     }
 
-    private bool ReduceItemQuantity(int i)
+    private bool ReduceItemQuantity(int position)
     {
-        if (items[i].InventoryItem.Quantity <= 1) return false;
-        items[i].InventoryItem.Quantity--;
+        if (!ItemQuantityCanBeReducedAt(position)) return false;
+        items[position].InventoryItem.Quantity--;
+        UpdateQuantityUiAt(position);
         return true;
-
     }
+
+    private bool ItemQuantityCanBeReducedAt(int position) { return items[position].InventoryItem.Quantity > 1; }
 
     private void RemoveItemAt(int position)
     {
@@ -81,6 +82,5 @@ public class Inventory : MonoBehaviour
     public void ClickItem(int position)
     {
         items[position].InventoryItem.Click(this);
-        RemoveItemAt(position);
     }
 }
