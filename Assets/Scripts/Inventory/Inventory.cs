@@ -12,26 +12,20 @@ public class Inventory : MonoBehaviour
     
     public void AddItem(Item itemToAdd)
     {
-        for (var i = 0; i < ItemSlotsAmount; i++)
+        var emptySlotPosition = -1;
+        for (var i = ItemSlotsAmount - 1; i >= 0; i--)
         {
-            if (ItemCanBeAssignedToEmptySlot(i, itemToAdd)) return;
+            if (InventorySlotIsEmpty(i)) emptySlotPosition = i;
             if (!InventorySlotIs(i, itemToAdd)) continue;
             IncreaseItemQuantity(i);
             return;
         }
-        throw new Exception("Couldn't add item");
+        AssignItemSlot(emptySlotPosition, itemToAdd);
     }
-
-    private bool ItemCanBeAssignedToEmptySlot(int position, Item itemToAdd)
-    {
-        if (!InventorySlotIsEmpty(position)) return false;
-        AssignItemSlot(position, itemToAdd);
-        return true;
-    }
-
+    
     private bool InventorySlotIsEmpty(int position) { return items[position].InventoryItem == null; }
     
-    private bool InventorySlotIs(int position, Item item) { return items[position].InventoryItem.Item == item; }
+    private bool InventorySlotIs(int position, Item item) { return !InventorySlotIsEmpty(position) && items[position].InventoryItem.Item == item; }
 
     private void IncreaseItemQuantity(int position)
     {
@@ -77,6 +71,7 @@ public class Inventory : MonoBehaviour
         items[position].InventoryItem = null;
         items[position].Image.sprite = null;
         items[position].Image.enabled = false;
+        items[position].Quantity.enabled = false;
     }
 
     public void ClickItem(int position)

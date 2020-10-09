@@ -1,6 +1,4 @@
-﻿using UnityEngine.UI;
-
-public class ArmourInventoryItem : InventoryItem
+﻿public class ArmourInventoryItem : InventoryItem
 {
     public override void Click(Inventory inventory)
     {
