@@ -35,13 +35,21 @@ public class Inventory : MonoBehaviour
     {
         for (var i = ItemSlotsAmount - 1; i >= 0; i--)
         {
-            if (items[i].InventoryItem.Item != itemToRemove) continue;
+            if (items[i].InventoryItem.Item != itemToRemove)
+            {
+                if (items[i].InventoryItem.Quanity > 1)
+                {
+                    items[i].InventoryItem.Quanity--;
+                    return;
+                }
+                continue;
+            }
             RemoveItemAt(i);
             return;
         }
     }
 
-    public void RemoveItemAt(int position)
+    private void RemoveItemAt(int position)
     {
         items[position].InventoryItem = null;
         items[position].Image.sprite = null;
