@@ -29,13 +29,16 @@ public class Modifier
     {
         if (scriptableModifier.ActivePeriod <= 0.0f)
         {
+            scriptableModifier.OnApply(characterBase);
             scriptableModifier.OnTick(characterBase);
+            Remove(characterBase);
             return;
         }
 
         //Check if the modifier is not already applied, if so renew it
         if (!characterBase.AppliedAbilities.Contains(scriptableModifier))
         {
+            scriptableModifier.OnApply(characterBase);
             coroutine = characterBase.StartCoroutine(tickCoroutine(characterBase));
             characterBase.AppliedAbilities.Add(scriptableModifier);
         }
@@ -43,13 +46,12 @@ public class Modifier
         {
             Renew(characterBase);
         }
-
-        scriptableModifier.OnApply(characterBase);
     }
 
 
     public void Remove(CharacterBase characterBase)
     {
+        scriptableModifier.OnRemove(characterBase);
         characterBase.AppliedAbilities.Remove(scriptableModifier);
     }
 
@@ -63,14 +65,23 @@ public class Modifier
     private IEnumerator tickCoroutine(CharacterBase characterBase)
     {
         float currentActiveTime = 0.0f;
-        while (currentActiveTime <= scriptableModifier.ActivePeriod)
+
+        if (ApplyFrequency > 0.0f)
         {
-            UnityEngine.Debug.Log(currentActiveTime);
+            while (currentActiveTime <= scriptableModifier.ActivePeriod)
+            {
+                UnityEngine.Debug.Log(currentActiveTime);
+                scriptableModifier.OnTick(characterBase);
+                currentActiveTime += scriptableModifier.ApplyFrequency;
+                yield return new WaitForSeconds(scriptableModifier.ApplyFrequency);
+            }
+        }
+        else
+        {
             scriptableModifier.OnTick(characterBase);
-            currentActiveTime += scriptableModifier.ApplyFrequency;
-            yield return new WaitForSeconds(scriptableModifier.ApplyFrequency);
+            yield return new WaitForSeconds(scriptableModifier.ActivePeriod);
         }
 
-        scriptableModifier.OnRemove(characterBase);
+        Remove(characterBase);
     }
 }

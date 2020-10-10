@@ -63,26 +63,26 @@ public class ModifierHandler
         }
     }
 
-    public void RemoveEffects(CharacterBase characterBase, CharacterBase targetCharacterBase)
-    {
-        foreach (var abilityModifier in allModifiers)
-        {
-            if (abilityModifier.Modifier.ActivePeriod <= 0.0f)
-            {
-                switch (abilityModifier.Target)
-                {
-                    case ModifierTarget.CASTER:
-                        abilityModifier.Modifier.Remove(characterBase);
-                        break;
-                    case ModifierTarget.TARGET:
-                        abilityModifier.Modifier.Remove(targetCharacterBase);
-                        break;
-                    default:
-                        throw new ArgumentOutOfRangeException();
-                }
-            }
-        }
-    }
+    //public void RemoveEffects(CharacterBase characterBase, CharacterBase targetCharacterBase)
+    //{
+    //    foreach (var abilityModifier in allModifiers)
+    //    {
+    //        if (abilityModifier.Modifier.ActivePeriod <= 0.0f)
+    //        {
+    //            switch (abilityModifier.Target)
+    //            {
+    //                case ModifierTarget.CASTER:
+    //                    abilityModifier.Modifier.Remove(characterBase);
+    //                    break;
+    //                case ModifierTarget.TARGET:
+    //                    abilityModifier.Modifier.Remove(targetCharacterBase);
+    //                    break;
+    //                default:
+    //                    throw new ArgumentOutOfRangeException();
+    //            }
+    //        }
+    //    }
+    //}
 
     private void applyModifier(AbilityModifier abilityModifier, CharacterBase characterBase,
         CharacterBase targetCharacterBase)
