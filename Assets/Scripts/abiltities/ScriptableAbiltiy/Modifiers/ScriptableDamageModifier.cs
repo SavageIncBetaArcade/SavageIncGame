@@ -13,7 +13,7 @@ public class ScriptableDamageModifier : ScriptableModifier
 
     public override void OnApply(CharacterBase characterBase)
     {
-        base.OnApply(characterBase);
+
     }
 
     public override void OnRemove(CharacterBase characterBase)
@@ -21,7 +21,7 @@ public class ScriptableDamageModifier : ScriptableModifier
 
     }
 
-    protected override void OnTick(CharacterBase characterBase)
+    public override void OnTick(CharacterBase characterBase)
     {
         //TODO add damage on tick
         Debug.Log($"ScriptableDamageModifier: {ModifierName} applied {Damage} damage");

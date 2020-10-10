@@ -45,38 +45,15 @@ public abstract class ScriptableModifier : ScriptableObject
     public float ApplyFrequency => applyFrequency;
     #endregion
 
-    public virtual void OnApply(CharacterBase characterBase)
-    {
-        if (ActivePeriod <= 0.0f)
-        {
-            OnTick(characterBase);
-            return;
-        }
-
-        characterBase.StartCoroutine(tickCoroutine(characterBase));
-    }
-
+    public abstract void OnApply(CharacterBase characterBase);
     public abstract void OnRemove(CharacterBase characterBase);
-    protected abstract void OnTick(CharacterBase characterBase);
-
-    private IEnumerator tickCoroutine(CharacterBase characterBase)
-    {
-        float currentActiveTime = 0.0f;
-        while (currentActiveTime <= ActivePeriod)
-        {
-            OnTick(characterBase);
-            currentActiveTime += ApplyFrequency;
-            yield return new WaitForSeconds(ApplyFrequency);
-        }
-
-        currentActiveTime = 0.0f;
-    }
+    public abstract void OnTick(CharacterBase characterBase);
 }
 
 [Serializable]
 public struct AbilityModifier
 {
-    public ScriptableModifier Modifier;
+    public Modifier Modifier;
     public ModifierStage Stage;
     public ModifierTarget Target;
 }

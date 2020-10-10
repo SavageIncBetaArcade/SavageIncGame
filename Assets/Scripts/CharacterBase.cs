@@ -16,6 +16,8 @@ public class CharacterBase : MonoBehaviour
     [SerializeField]
     private float attackModifier, defenseModifier, maxHealth, maxEnergy;
 
+    private readonly HashSet<ScriptableModifier> appliedAbilities;
+
     #region Properties
     public float AttackModifier
     {
@@ -40,7 +42,15 @@ public class CharacterBase : MonoBehaviour
         get => maxEnergy;
         set => maxEnergy = value;
     }
+
+    public HashSet<ScriptableModifier> AppliedAbilities => appliedAbilities;
+
     #endregion
+
+    public CharacterBase()
+    {
+        appliedAbilities = new HashSet<ScriptableModifier>();
+    }
 
     public void ApplyStatModifier(StatType type, float amount)
     {
