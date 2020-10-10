@@ -37,6 +37,8 @@ public abstract class BaseModifier : ScriptableObject
     [SerializeField]
     protected float applyFrequency = 0.0f;
 
+    protected float currentActiveTime = 0.0f;
+
     #region properties
     public string ModifierName => modifierName;
     public string ModifierDescription => modifierDescription;
@@ -44,7 +46,7 @@ public abstract class BaseModifier : ScriptableObject
     public float ApplyFrequency => applyFrequency;
     #endregion
 
-    public abstract void OnApply(CharacterBase characterBase);
+    public abstract void OnApply(CharacterBase characterBase, MonoBehaviour mono);
     public abstract void OnRemove(CharacterBase characterBase);
 
     protected abstract void OnTick(CharacterBase characterBase);

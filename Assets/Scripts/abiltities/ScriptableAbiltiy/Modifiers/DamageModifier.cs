@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,9 +11,15 @@ public class DamageModifier : BaseModifier
 {
     public float Damage;
 
-    public override void OnApply(CharacterBase characterBase)
+    public override void OnApply(CharacterBase characterBase, MonoBehaviour mono)
     {
+        if (ActivePeriod <= 0.0f)
+        {
+            OnTick(characterBase);
+            return;
+        }
 
+        mono.StartCoroutine(tickCoroutine(characterBase));
     }
 
     public override void OnRemove(CharacterBase characterBase)
@@ -24,5 +31,15 @@ public class DamageModifier : BaseModifier
     {
         //TODO add damage on tick
         Debug.Log($"DamageModifier: {ModifierName} applied {Damage} damage");
+    }
+
+    IEnumerator tickCoroutine(CharacterBase characterBase)
+    {
+        while (currentActiveTime <= ActivePeriod)
+        {
+            OnTick(characterBase);
+            currentActiveTime += ApplyFrequency;
+            yield return new WaitForSeconds(ApplyFrequency);
+        }
     }
 }

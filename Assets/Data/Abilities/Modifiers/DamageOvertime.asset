@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4902bd0987ba29a4e8c4b65f834cbc7a, type: 3}
   m_Name: DamageOvertime
   m_EditorClassIdentifier: 
-  ModifierName: Dot
-  ModifierDescription: Damage Ovet Time Test
-  ActivePeriod: 5
-  ApplyFrequency: 1
+  modifierName: DoT
+  modifierDescription: 
+  activePeriod: 5
+  applyFrequency: 1
   Damage: 2

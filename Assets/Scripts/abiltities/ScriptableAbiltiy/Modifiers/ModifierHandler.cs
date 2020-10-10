@@ -90,10 +90,10 @@ public class ModifierHandler
         switch (abilityModifier.Target)
         {
             case ModifierTarget.CASTER:
-                abilityModifier.Modifier.OnApply(characterBase);
+                abilityModifier.Modifier.OnApply(characterBase, characterBase);
                 break;
             case ModifierTarget.TARGET:
-                abilityModifier.Modifier.OnApply(targetCharacterBase);
+                abilityModifier.Modifier.OnApply(targetCharacterBase, targetCharacterBase);
                 break;
             default:
                 throw new ArgumentOutOfRangeException();
