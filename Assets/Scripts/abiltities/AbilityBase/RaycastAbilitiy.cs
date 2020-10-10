@@ -33,7 +33,8 @@ public class RaycastAbilitiy : AttackAbility
 
     protected override void Hit(CharacterBase hitCharacter)
     {
-
         Debug.Log("Hit");
+
+        base.Hit(hitCharacter);
     }
 }

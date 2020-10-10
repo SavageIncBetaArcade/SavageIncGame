@@ -31,9 +31,12 @@ public class UseableAbility : MonoBehaviour
     private BaseAbility ability;
     private GameObject worldGameObject;
 
+    private ModifierHandler modifierHandler;
+
     void Initilise()
     {
-        ability = AbilityFactory.Create(this, ScriptableAbility, worldGameObject);
+        ability = AbilityFactory.Create(this, ScriptableAbility, worldGameObject, HitAction);
+        modifierHandler = new ModifierHandler(Modifiers);
     }
 
     protected virtual void Awake()
@@ -45,7 +48,7 @@ public class UseableAbility : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("Base ability have a ability or an ability prefab");
+            Debug.LogWarning("Base ability doesn't have a ability or an ability prefab");
         }
 
         if (CharacterBase == null)
@@ -75,6 +78,8 @@ public class UseableAbility : MonoBehaviour
 
     private void ExecuteUse()
     {
+        modifierHandler.ApplyPreActionModifiers(CharacterBase,null);
+
         OnUse?.Invoke();
 
         if (UseAnimator != null)
@@ -83,6 +88,8 @@ public class UseableAbility : MonoBehaviour
         }
 
         ability.Use();
+
+        modifierHandler.ApplyPostActionModifiers(CharacterBase, null);
     }
 
     public GameObject InstantiateObject(GameObject gameObject, Transform transform)
@@ -90,4 +97,8 @@ public class UseableAbility : MonoBehaviour
         return Instantiate(gameObject, transform.position, transform.rotation);
     }
 
+    private void HitAction(CharacterBase attackingcharacter, CharacterBase targetcharacter)
+    {
+        modifierHandler.ApplyActionModifiers(attackingcharacter, targetcharacter);
+    }
 }

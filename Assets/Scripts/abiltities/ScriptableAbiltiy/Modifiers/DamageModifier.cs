@@ -3,16 +3,26 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEngine;
 
+[CreateAssetMenu(menuName = "AbilityModifiers/DamageModifier")]
 public class DamageModifier : BaseModifier
 {
-    public override void Apply()
+    public float Damage;
+
+    public override void OnApply(CharacterBase characterBase)
     {
-        throw new NotImplementedException();
+
     }
 
-    public override void Remove()
+    public override void OnRemove(CharacterBase characterBase)
     {
-        throw new NotImplementedException();
+
+    }
+
+    protected override void OnTick(CharacterBase characterBase)
+    {
+        //TODO add damage on tick
+        Debug.Log($"DamageModifier: {ModifierName} applied {Damage} damage");
     }
 }

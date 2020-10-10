@@ -25,7 +25,7 @@ public class StatAbility : DurationAbility
 
     public override void Remove()
     {
-        Debug.Log($"Remove stat boost {Ability.AbilityName} to character");
+        Debug.Log($"OnRemove stat boost {Ability.AbilityName} to character");
         ScriptableStatAbility statAbility = (ScriptableStatAbility)Ability;
 
         useableAbility.CharacterBase.ApplyStatModifier(statAbility.StatType, -statAbility.Modifier);

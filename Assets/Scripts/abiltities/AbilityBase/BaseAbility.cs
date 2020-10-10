@@ -41,19 +41,30 @@ public abstract class BaseAbility
 
 public static class AbilityFactory
 {
-    public static BaseAbility Create(UseableAbility useableAbility, ScriptableAbility scriptableAbility, GameObject worldGameObject)
+    public static BaseAbility Create(UseableAbility useableAbility, ScriptableAbility scriptableAbility, 
+        GameObject worldGameObject, AttackAbility.HitAction hitAction = null)
     {
         switch (scriptableAbility)
         {
             case ScriptableMeleeAbility _:
             {
                 ForwardTriggerCollision forwardTrigger = worldGameObject.GetComponentInChildren<ForwardTriggerCollision>();
-                return new MeleeAbility(useableAbility, forwardTrigger);
+                MeleeAbility meleeAbility = new MeleeAbility(useableAbility, forwardTrigger);
+                if (hitAction != null)
+                    meleeAbility.OnHit += hitAction;
+
+                return meleeAbility;
             }
             case ScriptableRaycastAbility _:
-                return new RaycastAbilitiy(useableAbility);
+                RaycastAbilitiy raycastAbility = new RaycastAbilitiy(useableAbility);
+                if (hitAction != null)
+                    raycastAbility.OnHit += hitAction;
+                return raycastAbility;
             case ScriptableProjectileAbility _:
-                return new ProjectileAbility(useableAbility);
+                ProjectileAbility projectileAbility = new ProjectileAbility(useableAbility);
+                if (hitAction != null)
+                    projectileAbility.OnHit += hitAction;
+                return projectileAbility;
             case ScriptableStatAbility _:
                 return new StatAbility(useableAbility); ;
         }
