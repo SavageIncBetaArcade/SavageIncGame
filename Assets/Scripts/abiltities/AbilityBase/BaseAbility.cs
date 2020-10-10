@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -36,4 +37,27 @@ public abstract class BaseAbility
     /// </summary>
     public abstract void Use();
 
+}
+
+public static class AbilityFactory
+{
+    public static BaseAbility Create(UseableAbility useableAbility, ScriptableAbility scriptableAbility, GameObject worldGameObject)
+    {
+        switch (scriptableAbility)
+        {
+            case ScriptableMeleeAbility _:
+            {
+                ForwardTriggerCollision forwardTrigger = worldGameObject.GetComponentInChildren<ForwardTriggerCollision>();
+                return new MeleeAbility(useableAbility, forwardTrigger);
+            }
+            case ScriptableRaycastAbility _:
+                return new RaycastAbilitiy(useableAbility);
+            case ScriptableProjectileAbility _:
+                return new ProjectileAbility(useableAbility);
+            case ScriptableStatAbility _:
+                return new StatAbility(useableAbility); ;
+        }
+
+        throw new Exception($"{scriptableAbility.GetType()} doesn't exist within the AbilityFactory");
+    }
 }

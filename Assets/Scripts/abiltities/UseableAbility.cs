@@ -24,6 +24,8 @@ public class UseableAbility : MonoBehaviour
     public CharacterBase CharacterBase;
     public Transform Origin;
 
+    public AbilityModifier[] Modifiers;
+
     private float _lastUseTime;
 
     private BaseAbility ability;
@@ -31,23 +33,7 @@ public class UseableAbility : MonoBehaviour
 
     void Initilise()
     {
-        if(ScriptableAbility is ScriptableMeleeAbility scriptableMelee)
-        {
-            ForwardTriggerCollision forwardTrigger = worldGameObject.GetComponentInChildren<ForwardTriggerCollision>();
-            ability = new MeleeAbility(this, forwardTrigger);
-        }
-        else if (ScriptableAbility is ScriptableRaycastAbility scriptableRaycast)
-        {
-            ability = new RaycastAbilitiy(this);
-        }
-        else if (ScriptableAbility is ScriptableProjectileAbility scriptableProjectile)
-        {
-            ability = new ProjectileAbility(this);
-        }
-        else if (ScriptableAbility is ScriptableStatAbility scriptableStat)
-        {
-            ability = new StatAbility(this);
-        }
+        ability = AbilityFactory.Create(this, ScriptableAbility, worldGameObject);
     }
 
     protected virtual void Awake()
