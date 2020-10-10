@@ -16,7 +16,7 @@ public abstract class AttackAbility : BaseAbility
 
     }
 
-    protected virtual void Hit(CharacterBase targetCharacter)
+    public virtual void Hit(CharacterBase targetCharacter)
     {
         //TODO make calls to damage system
 

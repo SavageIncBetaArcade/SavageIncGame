@@ -30,8 +30,13 @@ public class ProjectileAbility : AttackAbility
 
         //Set the projectiles caster ability to this
         if (projectile != null)
-        {
+        {   
             projectile.SetCastersProjectileAbilty(this);
         }
+    }
+
+    public override void Hit(CharacterBase targetCharacter)
+    {
+        base.Hit(targetCharacter);
     }
 }

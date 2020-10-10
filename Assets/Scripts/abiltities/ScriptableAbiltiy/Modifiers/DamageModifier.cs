@@ -41,5 +41,7 @@ public class DamageModifier : BaseModifier
             currentActiveTime += ApplyFrequency;
             yield return new WaitForSeconds(ApplyFrequency);
         }
+
+        currentActiveTime = 0.0f;
     }
 }

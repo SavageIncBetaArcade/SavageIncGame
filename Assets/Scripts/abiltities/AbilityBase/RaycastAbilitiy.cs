@@ -31,7 +31,7 @@ public class RaycastAbilitiy : AttackAbility
         Debug.Log("Firing Raycast");
     }
 
-    protected override void Hit(CharacterBase hitCharacter)
+    public override void Hit(CharacterBase hitCharacter)
     {
         Debug.Log("Hit");
 

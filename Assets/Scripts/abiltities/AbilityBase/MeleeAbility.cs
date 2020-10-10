@@ -48,7 +48,7 @@ public class MeleeAbility : AttackAbility
         Debug.Log("Attacking");
     }
 
-    protected override void Hit(CharacterBase hitCharacter)
+    public override void Hit(CharacterBase hitCharacter)
     {
         Debug.Log("Hit");
 

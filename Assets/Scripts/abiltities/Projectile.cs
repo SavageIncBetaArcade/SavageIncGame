@@ -48,13 +48,24 @@ public class Projectile : MonoBehaviour
         //First check if it has a health component
         //TODO add health component and pass into hit
 
-        Impact();
+        CharacterBase hitCharacter = collision.gameObject.GetComponent<CharacterBase>();
+        if (hitCharacter != null)
+        {
+            Impact(hitCharacter);
+        }
+
+        Destroy(gameObject);
     }
 
-    void Impact()
+    void Impact(CharacterBase characterBase)
     {
         //First check if it has a health component
         Debug.Log("Projectile Hit");
+
+        if (_castersProjectileAbility != null)
+        {
+            _castersProjectileAbility.Hit(characterBase);
+        }
 
         Destroy(gameObject);
     }
@@ -70,4 +81,6 @@ public class Projectile : MonoBehaviour
         projectileRigidbody.useGravity = gravityAffected;
         RangeCutoff = scriptableProjectile.Range;
     }
+
+    
 }
