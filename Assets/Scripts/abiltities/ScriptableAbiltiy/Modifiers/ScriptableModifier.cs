@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,7 +16,7 @@ public enum ModifierTarget
     TARGET
 }
 
-public abstract class BaseModifier : ScriptableObject
+public abstract class ScriptableModifier : ScriptableObject
 {
     [SerializeField]
     protected string modifierName;
@@ -37,8 +38,6 @@ public abstract class BaseModifier : ScriptableObject
     [SerializeField]
     protected float applyFrequency = 0.0f;
 
-    protected float currentActiveTime = 0.0f;
-
     #region properties
     public string ModifierName => modifierName;
     public string ModifierDescription => modifierDescription;
@@ -46,16 +45,38 @@ public abstract class BaseModifier : ScriptableObject
     public float ApplyFrequency => applyFrequency;
     #endregion
 
-    public abstract void OnApply(CharacterBase characterBase, MonoBehaviour mono);
-    public abstract void OnRemove(CharacterBase characterBase);
+    public virtual void OnApply(CharacterBase characterBase)
+    {
+        if (ActivePeriod <= 0.0f)
+        {
+            OnTick(characterBase);
+            return;
+        }
 
+        characterBase.StartCoroutine(tickCoroutine(characterBase));
+    }
+
+    public abstract void OnRemove(CharacterBase characterBase);
     protected abstract void OnTick(CharacterBase characterBase);
+
+    private IEnumerator tickCoroutine(CharacterBase characterBase)
+    {
+        float currentActiveTime = 0.0f;
+        while (currentActiveTime <= ActivePeriod)
+        {
+            OnTick(characterBase);
+            currentActiveTime += ApplyFrequency;
+            yield return new WaitForSeconds(ApplyFrequency);
+        }
+
+        currentActiveTime = 0.0f;
+    }
 }
 
 [Serializable]
 public struct AbilityModifier
 {
-    public BaseModifier Modifier;
+    public ScriptableModifier Modifier;
     public ModifierStage Stage;
     public ModifierTarget Target;
 }
