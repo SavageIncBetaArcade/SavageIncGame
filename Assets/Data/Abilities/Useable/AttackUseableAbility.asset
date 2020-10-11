@@ -14,7 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AbilityName: Attack Buff Ability
   AbilitySprite: {fileID: 0}
-  Cooldown: 5
+  Cooldown: 2
   UseAnimationCooldown: 0
   AbilityPrefab: {fileID: 6413331160640061430, guid: 427b8716510a9ca4bbc52bcb60d1a61c,
     type: 3}
+  StartingModifiers:
+  - Modifier:
+      scriptableModifier: {fileID: 11400000, guid: 75d5d2c2c7c1fa84c9c7b5fc6cdc758c,
+        type: 2}
+    Stage: 0
+    Target: 0

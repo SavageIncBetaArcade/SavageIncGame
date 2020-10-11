@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 public class ModifierHandler
 {
-    private AbilityModifier[] allModifiers;
+    private List<AbilityModifier> allModifiers;
 
     //cache stage modifiers
     private List<AbilityModifier> preModifiers;
     private List<AbilityModifier> actionModifiers;
     private List<AbilityModifier> postModifiers;
 
-    public ModifierHandler(AbilityModifier[] modifiers)
+    public ModifierHandler(List<AbilityModifier> modifiers)
     {
         allModifiers = modifiers;
         preModifiers = new List<AbilityModifier>();

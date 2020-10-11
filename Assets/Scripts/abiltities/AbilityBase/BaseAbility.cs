@@ -44,32 +44,41 @@ public static class AbilityFactory
     public static BaseAbility Create(UseableAbility useableAbility, ScriptableAbility scriptableAbility, 
         GameObject worldGameObject, AttackAbility.HitAction hitAction = null)
     {
-
-        switch (scriptableAbility)
+        Func<BaseAbility> abilityFunc = () =>
         {
-            case ScriptableMeleeAbility _:
+            switch (scriptableAbility)
             {
-                ForwardTriggerCollision forwardTrigger = worldGameObject.GetComponentInChildren<ForwardTriggerCollision>();
-                MeleeAbility meleeAbility = new MeleeAbility(useableAbility, forwardTrigger);
-                if (hitAction != null)
-                    meleeAbility.OnHit += hitAction;
+                case ScriptableMeleeAbility _:
+                {
+                    ForwardTriggerCollision forwardTrigger =
+                        worldGameObject.GetComponentInChildren<ForwardTriggerCollision>();
+                    MeleeAbility meleeAbility = new MeleeAbility(useableAbility, forwardTrigger);
+                    if (hitAction != null)
+                        meleeAbility.OnHit += hitAction;
 
-                return meleeAbility;
+                    return meleeAbility;
+                }
+                case ScriptableRaycastAbility _:
+                    RaycastAbilitiy raycastAbility = new RaycastAbilitiy(useableAbility);
+                    if (hitAction != null)
+                        raycastAbility.OnHit += hitAction;
+                    return raycastAbility;
+                case ScriptableProjectileAbility _:
+                    ProjectileAbility projectileAbility = new ProjectileAbility(useableAbility);
+                    if (hitAction != null)
+                        projectileAbility.OnHit += hitAction;
+                    return projectileAbility;
+                case ScriptableUseableAbility _:
+                    return new ModifierAbility(useableAbility);
             }
-            case ScriptableRaycastAbility _:
-                RaycastAbilitiy raycastAbility = new RaycastAbilitiy(useableAbility);
-                if (hitAction != null)
-                    raycastAbility.OnHit += hitAction;
-                return raycastAbility;
-            case ScriptableProjectileAbility _:
-                ProjectileAbility projectileAbility = new ProjectileAbility(useableAbility);
-                if (hitAction != null)
-                    projectileAbility.OnHit += hitAction;
-                return projectileAbility;
-            case ScriptableUseableAbility _:
-                return new ModifierAbility(useableAbility);
-        }
 
-        throw new Exception($"{scriptableAbility.GetType()} doesn't exist within the AbilityFactory");
+            throw new Exception($"{scriptableAbility.GetType()} doesn't exist within the AbilityFactory");
+        };
+
+        //Add base abilities to useable object
+        BaseAbility baseAbility = abilityFunc.Invoke();
+        useableAbility.Modifiers.AddRange(baseAbility.Ability.StartingModifiers);
+
+        return baseAbility;
     }
 }

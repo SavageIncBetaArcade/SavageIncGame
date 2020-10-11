@@ -408,12 +408,7 @@ MonoBehaviour:
   UseAnimator: {fileID: 833056536}
   CharacterBase: {fileID: 2033671301}
   Origin: {fileID: 296695062}
-  Modifiers:
-  - Modifier:
-      scriptableModifier: {fileID: 11400000, guid: 75d5d2c2c7c1fa84c9c7b5fc6cdc758c,
-        type: 2}
-    Stage: 0
-    Target: 0
+  Modifiers: []
 --- !u!1 &849648364
 GameObject:
   m_ObjectHideFlags: 0

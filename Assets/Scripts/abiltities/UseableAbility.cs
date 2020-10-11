@@ -24,7 +24,7 @@ public class UseableAbility : MonoBehaviour
     public CharacterBase CharacterBase;
     public Transform Origin;
 
-    public AbilityModifier[] Modifiers;
+    public List<AbilityModifier> Modifiers;
 
     private float _lastUseTime;
 
