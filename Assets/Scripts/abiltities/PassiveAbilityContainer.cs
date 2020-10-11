@@ -12,33 +12,72 @@ public class PassiveAbilityContainer : MonoBehaviour
 {
     public List<ScriptableModifier> StartingPassiveModifiers;
     private CharacterBase characterBase;
-    private List<Modifier> activePassiveModifiers;
+    private Dictionary<ScriptableModifier,Modifier> activePassiveModifiers;
 
     public void Awake()
     {
         characterBase = GetComponent<CharacterBase>();
-        activePassiveModifiers = new List<Modifier>();
+        activePassiveModifiers = new Dictionary<ScriptableModifier, Modifier>();
     }
 
     public void Start()
     {
         foreach (var modifier in StartingPassiveModifiers)
         {
-            Modifier passive = new Modifier(modifier);
-            passive.IsPassive = true;
-            passive.Apply(characterBase);
-            activePassiveModifiers.Add(passive);
+            AddPassive(modifier);
         }
     }
 
     public void AddPassive(ScriptableModifier passiveModifier)
     {
-        if (!StartingPassiveModifiers.Contains(passiveModifier))
+        if (!activePassiveModifiers.ContainsKey(passiveModifier))
         {
             Modifier passive = new Modifier(passiveModifier);
             passive.IsPassive = true;
             passive.Apply(characterBase);
-            StartingPassiveModifiers.Add(passiveModifier);
+            activePassiveModifiers.Add(passiveModifier,passive);
         }
+    }
+
+    public bool RemovePassive(ScriptableModifier passiveModifier)
+    {
+        if (activePassiveModifiers.ContainsKey(passiveModifier))
+        {
+            activePassiveModifiers[passiveModifier].Remove(characterBase);
+            activePassiveModifiers.Remove(passiveModifier);
+            return true;
+        }
+
+        return false;
+    }
+
+    public bool RemovePassive(string passiveName)
+    {
+        ScriptableModifier modifierToRemove = null;
+        foreach (var passiveModifier in activePassiveModifiers)
+        {
+            if (passiveModifier.Key.ModifierName == passiveName)
+            {
+                passiveModifier.Value.Remove(characterBase);
+                modifierToRemove = passiveModifier.Key;
+                break;
+            }
+        }
+
+        if (modifierToRemove != null)
+        {
+            return activePassiveModifiers.Remove(modifierToRemove);
+        }
+
+        return false;
+    }
+
+    public void RemoveAll()
+    {
+        foreach (var passiveModifier in activePassiveModifiers)
+        {
+            passiveModifier.Value.Remove(characterBase);
+        }
+        activePassiveModifiers.Clear();
     }
 }
