@@ -403,17 +403,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5f465d04b0cf7c488f572067a598ad8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ScriptableAbility: {fileID: 11400000, guid: 79af1956af198bd4eb7772925e323b17, type: 2}
+  ScriptableAbility: {fileID: 11400000, guid: b9fe442c328e70e448fc6917e90bcdce, type: 2}
   AnimationUseBoolName: IsAttacking
   UseAnimator: {fileID: 833056536}
   CharacterBase: {fileID: 2033671301}
   Origin: {fileID: 296695062}
   Modifiers:
   - Modifier:
-      scriptableModifier: {fileID: 11400000, guid: 9f62b78a07408c44697f3fdf45438e99,
+      scriptableModifier: {fileID: 11400000, guid: 75d5d2c2c7c1fa84c9c7b5fc6cdc758c,
         type: 2}
-    Stage: 1
-    Target: 1
+    Stage: 0
+    Target: 0
 --- !u!1 &849648364
 GameObject:
   m_ObjectHideFlags: 0

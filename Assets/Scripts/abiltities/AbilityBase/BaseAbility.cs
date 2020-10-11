@@ -44,6 +44,7 @@ public static class AbilityFactory
     public static BaseAbility Create(UseableAbility useableAbility, ScriptableAbility scriptableAbility, 
         GameObject worldGameObject, AttackAbility.HitAction hitAction = null)
     {
+
         switch (scriptableAbility)
         {
             case ScriptableMeleeAbility _:
@@ -65,8 +66,8 @@ public static class AbilityFactory
                 if (hitAction != null)
                     projectileAbility.OnHit += hitAction;
                 return projectileAbility;
-            case ScriptableStatAbility _:
-                return new StatAbility(useableAbility); ;
+            case ScriptableUseableAbility _:
+                return new ModifierAbility(useableAbility);
         }
 
         throw new Exception($"{scriptableAbility.GetType()} doesn't exist within the AbilityFactory");
