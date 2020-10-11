@@ -10,28 +10,35 @@ using UnityEngine;
 /// </summary>
 public class PassiveAbilityContainer : MonoBehaviour
 {
-    public List<ScriptablePassiveAbility> PassiveAbilities;
+    public List<ScriptableModifier> StartingPassiveModifiers;
     private CharacterBase characterBase;
+    private List<Modifier> activePassiveModifiers;
 
     public void Awake()
     {
         characterBase = GetComponent<CharacterBase>();
+        activePassiveModifiers = new List<Modifier>();
     }
 
     public void Start()
     {
-        foreach (var ability in PassiveAbilities)
+        foreach (var modifier in StartingPassiveModifiers)
         {
-            ability.Apply(characterBase);
+            Modifier passive = new Modifier(modifier);
+            passive.IsPassive = true;
+            passive.Apply(characterBase);
+            activePassiveModifiers.Add(passive);
         }
     }
 
-    public void AddPassive(ScriptablePassiveAbility passiveAbility)
+    public void AddPassive(ScriptableModifier passiveModifier)
     {
-        if (!PassiveAbilities.Contains(passiveAbility))
+        if (!StartingPassiveModifiers.Contains(passiveModifier))
         {
-            passiveAbility.Apply(characterBase);
-            PassiveAbilities.Add(passiveAbility);
+            Modifier passive = new Modifier(passiveModifier);
+            passive.IsPassive = true;
+            passive.Apply(characterBase);
+            StartingPassiveModifiers.Add(passiveModifier);
         }
     }
 }
