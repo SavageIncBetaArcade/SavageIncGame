@@ -48,6 +48,11 @@ public abstract class ScriptableModifier : ScriptableObject
     public abstract void OnApply(CharacterBase characterBase);
     public abstract void OnRemove(CharacterBase characterBase);
     public abstract void OnTick(CharacterBase characterBase);
+
+    protected CharacterBase[] GetAllCharacters()
+    {
+        return FindObjectsOfType<CharacterBase>();
+    }
 }
 
 [Serializable]
