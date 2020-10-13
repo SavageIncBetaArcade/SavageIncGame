@@ -13,8 +13,16 @@ public class CharacterBase : MonoBehaviour, IDamageTaker
 {
     [SerializeField]
     private float attackModifier, defenseModifier, maxHealth, maxEnergy;
-
     private float currentHealth, currentEnergy;
+    
+    public delegate void DeathAction();
+    public event DeathAction OnDeath;
+    public delegate void DamageAction();
+    public event DamageAction OnDamage;
+    public delegate void HealAction();
+    public event HealAction OnHeal;
+    public delegate void HealEnergyAction();
+    public event HealEnergyAction OnHealEnergy;
 
     #region Properties
     public float AttackModifier
@@ -65,16 +73,21 @@ public class CharacterBase : MonoBehaviour, IDamageTaker
 
     public void TakeDamage(float attackDamage)
     {
+        OnDamage?.Invoke();
         currentHealth = Mathf.Clamp((float)(currentHealth - attackDamage * Math.Pow(0.95, defenseModifier)), 0f, maxHealth);
+        if (currentHealth == 0)
+            OnDeath?.Invoke();
     }
 
     public void Heal(float amount)
     {
+        OnHeal?.Invoke();
         currentHealth = Mathf.Clamp(currentHealth + amount, 0f, maxHealth);
     }
 
     public void HealEnergy(float amount)
     {
+        OnHealEnergy?.Invoke();
         currentEnergy = Mathf.Clamp(currentEnergy + amount, 0f, maxEnergy);
     }
 }
