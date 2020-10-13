@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public enum StatType
@@ -11,10 +9,12 @@ public enum StatType
     ENERGY
 }
 
-public class CharacterBase : MonoBehaviour
+public class CharacterBase : MonoBehaviour, IDamageTaker
 {
     [SerializeField]
     private float attackModifier, defenseModifier, maxHealth, maxEnergy;
+
+    private float currentHealth, currentEnergy;
 
     #region Properties
     public float AttackModifier
@@ -60,6 +60,28 @@ public class CharacterBase : MonoBehaviour
                 break;
             default:
                 throw new ArgumentOutOfRangeException();
+        }
+    }
+
+    public void TakeDamage(int attackDamage)
+    {
+        currentHealth -= (float)(attackDamage * Math.Pow(0.95, defenseModifier));
+        HandleHealthBoundaries();
+    }
+
+    public void Heal(int amount)
+    {
+        currentHealth += amount;
+        HandleHealthBoundaries();
+    }
+    
+    private void HandleHealthBoundaries()
+    {
+        if (currentHealth > maxHealth) currentHealth = maxHealth;
+        else if (currentHealth <= 0)
+        {
+            currentHealth = 0;
+            //Die
         }
     }
 }
