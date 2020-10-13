@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
@@ -14,6 +15,8 @@ public class Modifier
     [SerializeField]
     private bool isPassive = false;
     private Coroutine coroutine;
+
+    private List<CharacterBase> affectedCharacters;
 
     #region properties
     public string ModifierName => scriptableModifier.ModifierName;
@@ -32,14 +35,18 @@ public class Modifier
     public Modifier(ScriptableModifier modifier)
     {
         scriptableModifier = modifier;
+        affectedCharacters = new List<CharacterBase>();
     }
 
     public void Apply(CharacterBase characterBase)
     {
+        if (affectedCharacters == null)
+            affectedCharacters = new List<CharacterBase>();
+
         if (!isPassive && scriptableModifier.ActivePeriod <= 0.0f)
         {
-            scriptableModifier.OnApply(characterBase);
-            scriptableModifier.OnTick(characterBase);
+            scriptableModifier.OnApply(characterBase, ref affectedCharacters);
+            scriptableModifier.OnTick(characterBase, ref affectedCharacters);
             Remove(characterBase);
             return;
         }
@@ -49,7 +56,7 @@ public class Modifier
             //Check if the modifier is not already applied, if so renew it
             if (!characterBase.AppliedAbilities.Contains(scriptableModifier))
             {
-                scriptableModifier.OnApply(characterBase);
+                scriptableModifier.OnApply(characterBase, ref affectedCharacters);
                 coroutine = characterBase.StartCoroutine(tickCoroutine(characterBase));
                 characterBase.AppliedAbilities.Add(scriptableModifier);
             }
@@ -60,7 +67,7 @@ public class Modifier
         }
         else
         {
-            scriptableModifier.OnApply(characterBase);
+            scriptableModifier.OnApply(characterBase, ref affectedCharacters);
             if(coroutine == null)
                 coroutine = characterBase.StartCoroutine(tickCoroutine(characterBase));
         }
@@ -69,7 +76,7 @@ public class Modifier
 
     public void Remove(CharacterBase characterBase)
     {
-        scriptableModifier.OnRemove(characterBase);
+        scriptableModifier.OnRemove(characterBase, ref affectedCharacters);
         if (!isPassive)
             characterBase.AppliedAbilities.Remove(scriptableModifier);
 
@@ -93,7 +100,7 @@ public class Modifier
             while (currentActiveTime <= scriptableModifier.ActivePeriod)
             {
                 UnityEngine.Debug.Log(currentActiveTime);
-                scriptableModifier.OnTick(characterBase);
+                scriptableModifier.OnTick(characterBase, ref affectedCharacters);
 
                 //Only update current active time if the ability is not passive as passive abilites will continuously tick
                 if(!isPassive)
@@ -104,7 +111,7 @@ public class Modifier
         }
         else
         {
-            scriptableModifier.OnTick(characterBase);
+            scriptableModifier.OnTick(characterBase, ref affectedCharacters);
             yield return new WaitForSeconds(scriptableModifier.ActivePeriod);
         }
 

@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   modifierName: Test Splash Damage
   modifierDescription: 
-  activePeriod: 0
-  applyFrequency: 0
+  activePeriod: 5
+  applyFrequency: 0.5
   tickEffectGameObjects:
   - {fileID: 3966173770737333436, guid: ef64ab604ff1bfd4191862dc59f2b9a1, type: 3}
   Damage: 5

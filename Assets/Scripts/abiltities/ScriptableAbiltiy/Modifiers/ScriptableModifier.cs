@@ -48,15 +48,15 @@ public abstract class ScriptableModifier : ScriptableObject
     public float ApplyFrequency => applyFrequency;
     #endregion
 
-    public abstract void OnApply(CharacterBase characterBase);
-    public abstract void OnRemove(CharacterBase characterBase);
-    public abstract void OnTick(CharacterBase characterBase);
+    public abstract void OnApply(CharacterBase targetCharacter, ref List<CharacterBase> affectedCharacters);
+    public abstract void OnRemove(CharacterBase targetCharacter, ref List<CharacterBase> affectedCharacters);
+    public abstract void OnTick(CharacterBase targetCharacter, ref List<CharacterBase> affectedCharacters);
 
-    protected void ApplyEffects(CharacterBase characterBase)
+    protected void ApplyEffects(CharacterBase targetCharacter)
     {
         foreach (var effect in tickEffectGameObjects)
         {
-            Instantiate(effect, characterBase.transform.position, characterBase.transform.rotation);
+            Instantiate(effect, targetCharacter.transform.position, targetCharacter.transform.rotation);
         }
     }
 
