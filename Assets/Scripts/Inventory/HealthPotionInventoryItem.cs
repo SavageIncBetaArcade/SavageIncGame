@@ -1,12 +1,12 @@
-﻿public class WeaponInventoryItem : InventoryItem
+﻿public class HealthPotionInventoryItem : InventoryItem
 {
     public override void LeftClick(Inventory inventory, CharacterBase character)
     {
-        inventory.EquipWeaponInLeftHand(this);
+        inventory.RemoveItem(Item);
+        character.Heal(((HealthPotionItem)Item).effectAmount);
     }
 
     public override void RightClick(Inventory inventory)
     {
-        inventory.EquipWeaponInRightHand(this);
     }
 }

@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
@@ -78,7 +77,7 @@ public class Inventory : MonoBehaviour
         items[position].Quantity.enabled = false;
     }
 
-    public void LeftClickItem(int position) { items[position].InventoryItem.LeftClick(this); }
+    public void LeftClickItem(int position) { items[position].InventoryItem.LeftClick(this, null); }
 
     public void RightClickItem(int position) { items[position].InventoryItem.RightClick(this); }
     

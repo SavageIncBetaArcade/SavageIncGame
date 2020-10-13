@@ -72,4 +72,9 @@ public class CharacterBase : MonoBehaviour, IDamageTaker
     {
         currentHealth = Mathf.Clamp(currentHealth + amount, 0f, maxHealth);
     }
+
+    public void HealEnergy(float amount)
+    {
+        currentEnergy = Mathf.Clamp(currentEnergy + amount, 0f, maxEnergy);
+    }
 }
