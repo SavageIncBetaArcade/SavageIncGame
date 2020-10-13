@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public enum ModifierStage
@@ -64,6 +65,11 @@ public abstract class ScriptableModifier : ScriptableObject
     protected CharacterBase[] GetAllCharacters()
     {
         return FindObjectsOfType<CharacterBase>();
+    }
+
+    protected CharacterBase[] GetOrderedCharactersByPosition(CharacterBase characterBase)
+    {
+        return GetAllCharacters().OrderBy(x => Vector3.Distance(characterBase.transform.position,x.transform.position)).ToArray();
     }
 }
 
