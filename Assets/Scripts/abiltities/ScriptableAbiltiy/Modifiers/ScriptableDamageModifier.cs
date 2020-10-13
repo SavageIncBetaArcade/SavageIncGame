@@ -23,6 +23,8 @@ public class ScriptableDamageModifier : ScriptableModifier
 
     public override void OnTick(CharacterBase characterBase)
     {
+        ApplyEffects(characterBase);
+
         //TODO add damage on tick
         Debug.Log($"ScriptableDamageModifier: {ModifierName} applied {Damage} damage");
     }

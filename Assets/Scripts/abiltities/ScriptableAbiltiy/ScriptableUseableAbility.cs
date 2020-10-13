@@ -7,4 +7,5 @@ public class ScriptableUseableAbility : ScriptableAbility
     public bool UseAnimationCooldown;
     public GameObject AbilityPrefab;
     public AbilityModifier[] StartingModifiers;
+    public GameObject[] HitEffects;
 }

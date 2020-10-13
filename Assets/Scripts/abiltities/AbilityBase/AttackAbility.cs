@@ -22,6 +22,10 @@ public abstract class AttackAbility : BaseAbility
 
         OnHit?.Invoke(useableAbility.CharacterBase,targetCharacter);
 
+        foreach (var hitEffect in ability.HitEffects)
+        {
+            useableAbility.InstantiateObject(hitEffect, targetCharacter.transform);
+        }
     }
 
 }

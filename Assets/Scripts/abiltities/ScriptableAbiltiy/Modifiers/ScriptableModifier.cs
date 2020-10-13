@@ -38,6 +38,9 @@ public abstract class ScriptableModifier : ScriptableObject
     [SerializeField]
     protected float applyFrequency = 0.0f;
 
+    [SerializeField]
+    protected GameObject[] tickEffectGameObjects;
+
     #region properties
     public string ModifierName => modifierName;
     public string ModifierDescription => modifierDescription;
@@ -48,6 +51,14 @@ public abstract class ScriptableModifier : ScriptableObject
     public abstract void OnApply(CharacterBase characterBase);
     public abstract void OnRemove(CharacterBase characterBase);
     public abstract void OnTick(CharacterBase characterBase);
+
+    protected void ApplyEffects(CharacterBase characterBase)
+    {
+        foreach (var effect in tickEffectGameObjects)
+        {
+            Instantiate(effect, characterBase.transform.position, characterBase.transform.rotation);
+        }
+    }
 
     protected CharacterBase[] GetAllCharacters()
     {

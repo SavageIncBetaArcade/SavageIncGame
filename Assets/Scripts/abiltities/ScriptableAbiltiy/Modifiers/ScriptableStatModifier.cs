@@ -24,6 +24,6 @@ public class ScriptableStatModifier : ScriptableModifier
 
     public override void OnTick(CharacterBase characterBase)
     {
-
+        ApplyEffects(characterBase);
     }
 }
