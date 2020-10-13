@@ -19,6 +19,8 @@ public class Modifier
     private List<CharacterBase> affectedCharacters;
 
     #region properties
+
+    public ScriptableModifier ScriptableModifier => scriptableModifier;
     public string ModifierName => scriptableModifier.ModifierName;
     public string ModifierDescription => scriptableModifier.ModifierDescription;
     public float ActivePeriod => scriptableModifier.ActivePeriod;

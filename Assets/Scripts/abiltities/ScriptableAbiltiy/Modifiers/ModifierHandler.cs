@@ -87,13 +87,16 @@ public class ModifierHandler
     private void applyModifier(AbilityModifier abilityModifier, CharacterBase characterBase,
         CharacterBase targetCharacterBase)
     {
+        //create a new instance of the modifier
+        Modifier modifier = new Modifier(abilityModifier.Modifier.ScriptableModifier);
+
         switch (abilityModifier.Target)
         {
             case ModifierTarget.CASTER:
-                abilityModifier.Modifier.Apply(characterBase);
+                modifier.Apply(characterBase);
                 break;
             case ModifierTarget.TARGET:
-                abilityModifier.Modifier.Apply(targetCharacterBase);
+                modifier.Apply(targetCharacterBase);
                 break;
             default:
                 throw new ArgumentOutOfRangeException();
