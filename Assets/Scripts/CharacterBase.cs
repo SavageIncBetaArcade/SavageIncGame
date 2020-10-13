@@ -63,25 +63,13 @@ public class CharacterBase : MonoBehaviour, IDamageTaker
         }
     }
 
-    public void TakeDamage(int attackDamage)
+    public void TakeDamage(float attackDamage)
     {
-        currentHealth -= (float)(attackDamage * Math.Pow(0.95, defenseModifier));
-        HandleHealthBoundaries();
+        currentHealth = Mathf.Clamp((float)(currentHealth - attackDamage * Math.Pow(0.95, defenseModifier)), 0f, maxHealth);
     }
 
-    public void Heal(int amount)
+    public void Heal(float amount)
     {
-        currentHealth += amount;
-        HandleHealthBoundaries();
-    }
-    
-    private void HandleHealthBoundaries()
-    {
-        if (currentHealth > maxHealth) currentHealth = maxHealth;
-        else if (currentHealth <= 0)
-        {
-            currentHealth = 0;
-            //Die
-        }
+        currentHealth = Mathf.Clamp(currentHealth + amount, 0f, maxHealth);
     }
 }

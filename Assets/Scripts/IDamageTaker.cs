@@ -1,5 +1,5 @@
 ﻿public interface IDamageTaker
 {
-    void TakeDamage(int attackDamage);
-    void Heal(int amount);
+    void TakeDamage(float attackDamage);
+    void Heal(float amount);
 }
