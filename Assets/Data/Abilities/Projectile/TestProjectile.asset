@@ -18,6 +18,8 @@ MonoBehaviour:
   UseAnimationCooldown: 0
   AbilityPrefab: {fileID: 6413331160640061430, guid: 3b4ac081e3ee33f4197fd33032e62454,
     type: 3}
+  StartingModifiers: []
+  HitEffects: []
   ProjectileGameObject: {fileID: 6167524000098639644, guid: 9c2e1c1ac5f187d4789ac656af43d0b4,
     type: 3}
   GravityAffected: 0

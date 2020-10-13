@@ -56,7 +56,8 @@ public abstract class ScriptableModifier : ScriptableObject
     {
         foreach (var effect in tickEffectGameObjects)
         {
-            Instantiate(effect, targetCharacter.transform.position, targetCharacter.transform.rotation);
+            if(effect != null)
+                Instantiate(effect, targetCharacter.transform.position, targetCharacter.transform.rotation);
         }
     }
 
@@ -69,7 +70,7 @@ public abstract class ScriptableModifier : ScriptableObject
 [Serializable]
 public struct AbilityModifier
 {
-    public Modifier Modifier;
+    public ScriptableModifier Modifier;
     public ModifierStage Stage;
     public ModifierTarget Target;
 }

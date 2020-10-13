@@ -88,7 +88,7 @@ public class ModifierHandler
         CharacterBase targetCharacterBase)
     {
         //create a new instance of the modifier
-        Modifier modifier = new Modifier(abilityModifier.Modifier.ScriptableModifier);
+        Modifier modifier = new Modifier(abilityModifier.Modifier);
 
         switch (abilityModifier.Target)
         {
