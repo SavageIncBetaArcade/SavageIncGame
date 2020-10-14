@@ -70,14 +70,6 @@ public class FlexibleGridLayout : LayoutGroup
 
             var item = rectChildren[i];
 
-            //get last child bottom pos
-            float lastBottom = 0.0f;
-            if (i > 0)
-            {
-                lastBottom = rectChildren[i - 1].rect.yMax;
-                Debug.Log(lastBottom);
-            }
-
             var xPos = (CellSize.x * columnCount) + (Spacing.x * columnCount) + padding.left;
             var yPos = (CellSize.y * rowCount) + (Spacing.y * rowCount) + padding.top;
 
