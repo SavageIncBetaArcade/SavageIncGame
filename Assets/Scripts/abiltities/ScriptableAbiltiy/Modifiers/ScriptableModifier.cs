@@ -53,7 +53,7 @@ public abstract class ScriptableModifier : ScriptableObject
     public abstract void OnRemove(CharacterBase targetCharacter, ref List<CharacterBase> affectedCharacters);
     public abstract void OnTick(CharacterBase targetCharacter, ref List<CharacterBase> affectedCharacters);
 
-    protected void ApplyEffects(CharacterBase targetCharacter)
+    protected virtual void ApplyEffects(CharacterBase targetCharacter)
     {
         foreach (var effect in tickEffectGameObjects)
         {

@@ -10,6 +10,7 @@ public class ScriptableChainDamageModifier : ScriptableDamageModifier
     public float Range = 5.0f;
     public float Delay = 0.0f;
 
+    public Material ElectricMaterial;
     public GameObject LineGameObject;
     private CharacterBase[] allCharacters;
 
@@ -82,9 +83,40 @@ public class ScriptableChainDamageModifier : ScriptableDamageModifier
             yield return new WaitForSeconds(Delay);
         }
 
+        foreach (var affectedCharacter in affectedCharacters)
+        {
+            if (ElectricMaterial != null)
+            {
+                var meshRenderer = affectedCharacter.GetComponent<MeshRenderer>();
+                if (meshRenderer != null)
+                {
+                    List<Material> matArray = meshRenderer.materials.ToList();
+                    matArray.RemoveAt(1);
+                    meshRenderer.materials = matArray.ToArray();
+                }
+            }
+        }
+
         for (int i = 0; i < bolts.Count; i++)
         {
             Destroy(bolts[i]);
+        }
+    }
+
+    protected override void ApplyEffects(CharacterBase targetCharacter)
+    {
+        base.ApplyEffects(targetCharacter);
+
+        if (ElectricMaterial != null)
+        {
+
+            var meshRenderer = targetCharacter.gameObject.GetComponent<MeshRenderer>();
+            if (meshRenderer != null)
+            {
+                List<Material> matArray = meshRenderer.materials.ToList();
+                matArray.Add(ElectricMaterial); 
+                meshRenderer.materials = matArray.ToArray();
+            }
         }
     }
 }
