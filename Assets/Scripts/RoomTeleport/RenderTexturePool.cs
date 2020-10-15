@@ -1,41 +1,41 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Dynamic;
 using UnityEngine;
 
 public class RenderTexturePool : MonoBehaviour
 {
-
-    public class PoolItem
-    {
-        public RenderTexture Texture;
-        public bool Used;
-    }
-
     public static RenderTexturePool Instance;
 
     public int maxSize = 100;
+
     private List<PoolItem> pool = new List<PoolItem>();
+
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     private void Start()
     {
         Instance = this;
     }
+
+    // Gets a new temporary texture from the pool.
     public PoolItem GetTexture()
     {
-        //check for unused item in pool, grab it, mark it as used and return it
+        // Check all pool items. Are any one of them unused?
+        // If so, take the first unused one we come across, mark it as used, and return it.
 
-        foreach(var poolItem in pool)
+        foreach (var poolItem in pool)
         {
-            if(!poolItem.Used)
+            if (!poolItem.Used)
             {
                 poolItem.Used = true;
                 return poolItem;
             }
         }
 
-        // all are in use ? make some more!
+        // Are none of them unused? Time to expand!
 
         if (pool.Count >= maxSize)
         {
@@ -50,11 +50,16 @@ public class RenderTexturePool : MonoBehaviour
         return newPoolItem;
     }
 
+    // Releases the temporary texture back into the pool.
     public void ReleaseTexture(PoolItem item)
     {
+        // When releasing a texture, simply mark it as unused.
+        // No need to overwrite it or anything!
+
         item.Used = false;
     }
 
+    // Releases all temporary textures back to the pool.
     public void ReleaseAllTextures()
     {
         foreach (var poolItem in pool)
@@ -63,9 +68,12 @@ public class RenderTexturePool : MonoBehaviour
         }
     }
 
+    // Actually create a new texture, taking up memory and all!
     private PoolItem CreateTexture()
     {
-       
+        // As before, create a new RenderTexture with the full screen width and height.
+        // Use .Create() to create it on the GPU as well.
+
         var newTexture = new RenderTexture(Screen.width, Screen.height, 24, RenderTextureFormat.DefaultHDR);
         newTexture.Create();
 
@@ -76,22 +84,31 @@ public class RenderTexturePool : MonoBehaviour
         };
     }
 
+    // Actually destroy the texture. It'll be gone for good!
     private void DestroyTexture(PoolItem item)
     {
-        // release on the GPU...
+        // First, release on the GPU...
 
         item.Texture.Release();
 
-        // remove it from Unity.
+        // Then Destroy() to remove it from Unity completely.
 
         Destroy(item.Texture);
     }
 
     private void OnDestroy()
     {
+        // Do cleanup!
+
         foreach (var poolItem in pool)
         {
             DestroyTexture(poolItem);
         }
+    }
+
+    public class PoolItem
+    {
+        public RenderTexture Texture;
+        public bool Used;
     }
 }

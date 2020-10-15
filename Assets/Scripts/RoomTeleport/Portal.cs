@@ -9,11 +9,17 @@ public class Portal : MonoBehaviour
     public Portal targetPortal;
 
     public Transform normalVisible;
+
     public Transform normalInvisible;
 
-    public Camera portalCamera;
     public Renderer viewthroughRenderer;
-    private RenderTexture viewthroughRenderTexture;
+
+    public Texture viewthroughDefaultTexture;
+
+    public Portal[] visiblePortals;
+
+    public int maxRecursionsOverride = -1;
+
     private Material viewthroughMaterial;
 
     private Camera mainCamera;
@@ -22,6 +28,36 @@ public class Portal : MonoBehaviour
 
     private HashSet<PortalableObject> objectsInPortal = new HashSet<PortalableObject>();
     private HashSet<PortalableObject> objectsInPortalToRemove = new HashSet<PortalableObject>();
+
+    public bool ShouldRender(Plane[] cameraPlanes) =>
+    viewthroughRenderer.isVisible &&
+    GeometryUtility.TestPlanesAABB(cameraPlanes,
+        viewthroughRenderer.bounds);
+
+    private struct VisiblePortalResources
+    {
+        public Portal VisiblePortal;
+        public RenderTexturePool.PoolItem PoolItem;
+        public Texture OriginalTexture;
+    }
+
+    private void OnDrawGizmos()
+    {
+        // Linked portals
+
+        if (targetPortal != null)
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawLine(transform.position, targetPortal.transform.position);
+        }
+
+        // Visible portals
+        Gizmos.color = Color.blue;
+        foreach (var visiblePortal in visiblePortals)
+        {
+            Gizmos.DrawLine(transform.position, visiblePortal.transform.position);
+        }
+    }
 
     public static Vector3 TransformPositionBetweenPortals(Portal sender, Portal target, Vector3 position)
     {
@@ -40,19 +76,7 @@ public class Portal : MonoBehaviour
 
     private void Start()
     {
-        // Create render texture
-
-        viewthroughRenderTexture = new RenderTexture(Screen.width, Screen.height, 24, RenderTextureFormat.DefaultHDR);
-        viewthroughRenderTexture.Create();
-
-        // Assign render texture to portal material (cloned)
-
         viewthroughMaterial = viewthroughRenderer.material;
-        viewthroughMaterial.mainTexture = viewthroughRenderTexture;
-
-        // Assign render texture to portal camera
-
-        portalCamera.targetTexture = viewthroughRenderTexture;
 
         // Cache the main camera
 
@@ -82,6 +106,132 @@ public class Portal : MonoBehaviour
                 Debug.LogException(e);
             }
         }
+    }
+
+
+    public void RenderViewthroughRecursive(
+    Vector3 refPosition,
+    Quaternion refRotation,
+    out RenderTexturePool.PoolItem temporaryPoolItem,
+    out Texture originalTexture,
+    out int debugRenderCount,
+    Camera portalCamera,
+    int currentRecursion,
+    int maxRecursions)
+    {
+        debugRenderCount = 1;
+
+        // Calculate virtual camera position and rotation
+
+        var virtualPosition = TransformPositionBetweenPortals(this, targetPortal, refPosition);
+        var virtualRotation = TransformRotationBetweenPortals(this, targetPortal, refRotation);
+        // Setup portal camera for calculations
+
+        portalCamera.transform.SetPositionAndRotation(virtualPosition, virtualRotation);
+
+        // Convert target portal's plane to camera space (relative to target camera)
+
+        var targetViewThroughPlaneCameraSpace =
+            Matrix4x4.Transpose(Matrix4x4.Inverse(portalCamera.worldToCameraMatrix))
+            * targetPortal.vectorPlane;
+
+        // Set portal camera projection matrix to clip walls between target portal and target camera
+        // Inherits main camera near/far clip plane and FOV settings
+
+        var obliqueProjectionMatrix = mainCamera.CalculateObliqueMatrix(targetViewThroughPlaneCameraSpace);
+        portalCamera.projectionMatrix = obliqueProjectionMatrix;
+
+        // Store visible portal resources to release and reset (see function description for details)
+
+        var visiblePortalResourcesList = new List<VisiblePortalResources>();
+
+        var cameraPlanes = GeometryUtility.CalculateFrustumPlanes(portalCamera);
+
+        var actualMaxRecursions = targetPortal.maxRecursionsOverride >= 0
+        ? targetPortal.maxRecursionsOverride
+        : maxRecursions;
+
+        if (currentRecursion < actualMaxRecursions)
+        {
+            foreach (var visiblePortal in targetPortal.visiblePortals)
+            {
+                if (!visiblePortal.ShouldRender(cameraPlanes)) continue;
+                visiblePortal.RenderViewthroughRecursive(
+                    virtualPosition,
+                    virtualRotation,
+                    out var visiblePortalTemporaryPoolItem,
+                    out var visiblePortalOriginalTexture,
+                    out var visiblePortalRenderCount,
+                    portalCamera,
+                    currentRecursion + 1,
+                    maxRecursions);
+
+                visiblePortalResourcesList.Add(new VisiblePortalResources()
+                {
+                    OriginalTexture = visiblePortalOriginalTexture,
+                    PoolItem = visiblePortalTemporaryPoolItem,
+                    VisiblePortal = visiblePortal
+                });
+
+                debugRenderCount += visiblePortalRenderCount;
+            }
+        }
+        else
+        {
+            foreach (var visiblePortal in targetPortal.visiblePortals)
+            {
+                visiblePortal.ShowViewthroughDefaultTexture(out var visiblePortalOriginalTexture);
+
+                visiblePortalResourcesList.Add(new VisiblePortalResources()
+                {
+                    OriginalTexture = visiblePortalOriginalTexture,
+                    VisiblePortal = visiblePortal
+                });
+            }
+        }
+
+        temporaryPoolItem = RenderTexturePool.Instance.GetTexture();
+
+        // Use portal camera
+
+        portalCamera.targetTexture = temporaryPoolItem.Texture;
+        portalCamera.transform.SetPositionAndRotation(virtualPosition, virtualRotation);
+        portalCamera.projectionMatrix = obliqueProjectionMatrix;
+
+        // Render portal camera to target texture
+
+        portalCamera.Render();
+
+        // Reset and release
+
+        foreach (var resources in visiblePortalResourcesList)
+        {
+            // Reset to original texture
+            // So that it will remain correct if the visible portal is still expecting to be rendered
+            // on another camera but has already rendered its texture. Originally the texture may be overriden by other renders.
+
+            resources.VisiblePortal.viewthroughMaterial.mainTexture = resources.OriginalTexture;
+
+            // Release temp render texture
+
+            if (resources.PoolItem != null)
+            {
+                RenderTexturePool.Instance.ReleaseTexture(resources.PoolItem);
+            }
+        }
+
+        // Must be after camera render, in case it renders itself (in which the texture must not be replaced before rendering itself)
+        // Must be after restore, in case it restores its own old texture (in which the new texture must take precedence)
+
+        originalTexture = viewthroughMaterial.mainTexture;
+        viewthroughMaterial.mainTexture = temporaryPoolItem.Texture;
+
+    }
+
+    private void ShowViewthroughDefaultTexture(out Texture originalTexture)
+    {
+        originalTexture = viewthroughMaterial.mainTexture;
+        viewthroughMaterial.mainTexture = viewthroughDefaultTexture;
     }
 
     private void CheckForPortalCrossing()
@@ -131,29 +281,29 @@ public class Portal : MonoBehaviour
         }
     }
 
-    private void LateUpdate()
-    {
-        // Calculate portal camera position and rotation
+    //private void LateUpdate()
+    //{
+    //    // Calculate portal camera position and rotation
 
-        var virtualPosition = TransformPositionBetweenPortals(this, targetPortal, mainCamera.transform.position);
-        var virtualRotation = TransformRotationBetweenPortals(this, targetPortal, mainCamera.transform.rotation);
+    //    var virtualPosition = TransformPositionBetweenPortals(this, targetPortal, mainCamera.transform.position);
+    //    var virtualRotation = TransformRotationBetweenPortals(this, targetPortal, mainCamera.transform.rotation);
 
-        // Position camera
+    //    // Position camera
 
-        portalCamera.transform.SetPositionAndRotation(virtualPosition, virtualRotation);
+    //    portalCamera.transform.SetPositionAndRotation(virtualPosition, virtualRotation);
 
-        // Calculate projection matrix
+    //    // Calculate projection matrix
 
-        var clipThroughSpace =
-            Matrix4x4.Transpose(Matrix4x4.Inverse(portalCamera.worldToCameraMatrix))
-            * targetPortal.vectorPlane;
+    //    var clipThroughSpace =
+    //        Matrix4x4.Transpose(Matrix4x4.Inverse(portalCamera.worldToCameraMatrix))
+    //        * targetPortal.vectorPlane;
 
-        // Set portal camera projection matrix to clip walls between target portal and portal camera
-        // Inherits main camera near/far clip plane and FOV settings
+    //    // Set portal camera projection matrix to clip walls between target portal and portal camera
+    //    // Inherits main camera near/far clip plane and FOV settings
 
-        var obliqueProjectionMatrix = mainCamera.CalculateObliqueMatrix(clipThroughSpace);
-        portalCamera.projectionMatrix = obliqueProjectionMatrix;
-    }
+    //    var obliqueProjectionMatrix = mainCamera.CalculateObliqueMatrix(clipThroughSpace);
+    //    portalCamera.projectionMatrix = obliqueProjectionMatrix;
+    //}
 
     private void OnTriggerEnter(Collider other)
     {
@@ -175,13 +325,8 @@ public class Portal : MonoBehaviour
 
     private void OnDestroy()
     {
-        // Release render texture from GPU
-
-        viewthroughRenderTexture.Release();
-
-        // Destroy cloned material and render texture
-
+        // Destroy cloned material 
         Destroy(viewthroughMaterial);
-        Destroy(viewthroughRenderTexture);
+        
     }
 }

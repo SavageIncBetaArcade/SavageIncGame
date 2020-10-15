@@ -12,44 +12,63 @@ public class PortalRender : MonoBehaviour
     public int debugTotalRenderCount;
 
     private Camera mainCamera;
-    private Portal[] allPortals;
+    private PortalOcclusionVolume[] occlusionVolumes;
+    private bool onPreRender;
+    private bool onPostRender;
 
     // Start is called before the first frame update
     void Start()
     {
         mainCamera = Camera.main;
-        allPortals = FindObjectsOfType<Portal>();
-        //RenderPipelineManager.beginCameraRendering += RenderPipelineManager_StartCameraRendering;
-        RenderPipelineManager.endCameraRendering += RenderPipelineManager_endCameraRendering;
+        occlusionVolumes = FindObjectsOfType<PortalOcclusionVolume>();
+        RenderPipelineManager.beginFrameRendering += RenderPipelineManager_StartCameraRendering;
+        RenderPipelineManager.endFrameRendering += RenderPipelineManager_endCameraRendering;
     }
 
-    private void RenderPipelineManager_StartCameraRendering(ScriptableRenderContext context, Camera camera)
+    private void RenderPipelineManager_StartCameraRendering(ScriptableRenderContext context, Camera[] camera)
     {
-        OnPreRender();
+        onPreRender = true;
     }
 
-    private void RenderPipelineManager_endCameraRendering(ScriptableRenderContext context, Camera camera)
+    private void RenderPipelineManager_endCameraRendering(ScriptableRenderContext context, Camera[] camera)
     {
-        OnPostRender();
+        onPostRender = true;
     }
 
     private void OnPreRender()
     {
         debugTotalRenderCount = 0;
 
-        foreach (var portal in allPortals)
+        PortalOcclusionVolume currentOcclusionVolume = null;
+        foreach (var occlusionVolume in occlusionVolumes)
         {
-            //portal.RenderViewthroughRecursive(
-            //    mainCamera.transform.position,
-            //    mainCamera.transform.rotation,
-            //    out _,
-            //    out _,
-            //    out var renderCount,
-            //    portalCamera,
-            //    0,
-            //    maxRecursions);
+            if (occlusionVolume.collider.bounds.Contains(mainCamera.transform.position))
+            {
+                currentOcclusionVolume = occlusionVolume;
+                break;
+            }
+        }
 
-            //debugTotalRenderCount += renderCount;
+        if (currentOcclusionVolume != null)
+        {
+            var cameraPlanes = GeometryUtility.CalculateFrustumPlanes(mainCamera);
+
+            foreach (var portal in currentOcclusionVolume.portals)
+            {
+                if (!portal.ShouldRender(cameraPlanes)) continue;
+                
+                portal.RenderViewthroughRecursive(
+                    mainCamera.transform.position,
+                    mainCamera.transform.rotation,
+                    out _,
+                    out _,
+                    out var renderCount,
+                    portalCamera,
+                    0,
+                    maxRecursions);
+
+                debugTotalRenderCount += renderCount;
+            }
         }
     }
 
@@ -58,9 +77,21 @@ public class PortalRender : MonoBehaviour
         RenderTexturePool.Instance.ReleaseAllTextures();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void LateUpdate()
     {
-        OnPreRender();
+        if(onPreRender)
+        {
+            OnPreRender();
+            onPreRender = false;
+        }
+
+        if(onPostRender)
+        {
+            OnPostRender();
+            onPostRender = false;
+        }
+        
     }
+
+
 }
