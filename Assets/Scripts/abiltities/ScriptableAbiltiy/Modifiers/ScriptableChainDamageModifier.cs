@@ -10,6 +10,7 @@ public class ScriptableChainDamageModifier : ScriptableDamageModifier
     public float Range = 5.0f;
     public float Delay = 0.0f;
 
+    public GameObject LineGameObject;
     private CharacterBase[] allCharacters;
 
     public override void OnApply(CharacterBase targetCharacter, ref List<CharacterBase> affectedCharacters)
@@ -56,10 +57,34 @@ public class ScriptableChainDamageModifier : ScriptableDamageModifier
 
     private IEnumerator ChainAttack(List<CharacterBase> affectedCharacters)
     {
-        foreach (var affectedCharacter in affectedCharacters)
+        List<GameObject> bolts = new List<GameObject>();
+        for (var i = 0; i < affectedCharacters.Count; i++)
         {
-            ApplyEffects(affectedCharacter);
+            if (i < affectedCharacters.Count-1)
+            {
+                var affectedCharacter = affectedCharacters[i];
+                Transform start = affectedCharacter.transform;
+                Transform end = affectedCharacters[i + 1].transform;
+
+                GameObject gameObject = Instantiate(LineGameObject, start.position, start.rotation);
+                bolts.Add(gameObject);
+                LightningBolt lightningBolt = gameObject.GetComponent<LightningBolt>();
+
+                lightningBolt.TimeToTarget = Delay;
+                lightningBolt.SetPoints(start.position , end.position);
+
+
+            }
+
+
+
+            ApplyEffects(affectedCharacters[i]);
             yield return new WaitForSeconds(Delay);
+        }
+
+        for (int i = 0; i < bolts.Count; i++)
+        {
+            Destroy(bolts[i]);
         }
     }
 }

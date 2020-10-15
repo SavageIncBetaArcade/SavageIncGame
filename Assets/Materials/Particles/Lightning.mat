@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Lightning
+  m_Shader: {fileID: -6465566751694194690, guid: fd42457eb6e384f499447eaff4257fea,
+    type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap:
+    MotionVector: User
+  disabledShaderPasses:
+  - DistortionVectors
+  - MOTIONVECTORS
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - Texture2D_A227515D:
+        m_Texture: {fileID: 2800000, guid: 796a2ace265e66d40a25fc89096db5ad, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - Vector1_63D3EAA9: 25
+    - Vector1_7CE37A17: 0.4
+    m_Colors:
+    - Color_5DEA6CC0: {r: 1, g: 1, b: 1, a: 0}
+    - Color_A399274C: {r: 0, g: 0.4793749, b: 2.670157, a: 1}
+    - Vector3_1D006A11: {r: -0.8, g: -0.75, b: -0.78, a: 0}
+    - Vector3_5AA6B02: {r: 0.5, g: 0.4, b: 0.1, a: 0}
