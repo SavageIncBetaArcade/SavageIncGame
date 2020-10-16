@@ -6,13 +6,19 @@ public enum StatType
     ATTACK,
     DEFENSE,
     HEALTH,
-    ENERGY
+    ENERGY,
+    SPEED,
+    JUMP_HEIGHT
 }
 
 public class CharacterBase : MonoBehaviour, IDamageTaker
 {
-    [SerializeField]
+    [SerializeField] 
     private float attackModifier, defenseModifier, maxHealth, maxEnergy;
+    [SerializeField]
+    private float speed = 6.0f;
+    [SerializeField]
+    private float jumpHeight = 1.0f;
     private float currentHealth, currentEnergy;
     
     public delegate void DeathAction();
@@ -25,6 +31,8 @@ public class CharacterBase : MonoBehaviour, IDamageTaker
     public event ReplenishEnergyAction OnReplenishEnergy;
 
     #region Properties
+    public float Gravity { get; } = -9.81f;
+
     public float AttackModifier
     {
         get => attackModifier;
@@ -49,8 +57,19 @@ public class CharacterBase : MonoBehaviour, IDamageTaker
         set => maxEnergy = value;
     }
 
-    public bool IsAlive => currentHealth >= 0.0f;
+    public float Speed
+    {
+        get => speed;
+        set => speed = value;
+    }
 
+    public float JumpHeight
+    {
+        get => jumpHeight;
+        set => jumpHeight = value;
+    }
+
+    public bool IsAlive => currentHealth >= 0.0f;
     #endregion
 
     public void ApplyStatModifier(StatType type, float amount)
@@ -68,6 +87,12 @@ public class CharacterBase : MonoBehaviour, IDamageTaker
                 break;
             case StatType.ENERGY:
                 MaxEnergy += amount;
+                break;
+            case StatType.SPEED:
+                Speed += amount;
+                break;
+            case StatType.JUMP_HEIGHT:
+                JumpHeight += amount;
                 break;
             default:
                 throw new ArgumentOutOfRangeException();
