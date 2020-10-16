@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEditor.UIElements;
 using UnityEngine;
 
+[RequireComponent(typeof(CharacterController))]
 public class PlayerBase : CharacterBase
 {
     public CharacterController Controller;
@@ -11,23 +12,13 @@ public class PlayerBase : CharacterBase
     private bool onGround;
     private bool isCrouching;
 
-    void Start()
+    void Awake()
     {
-        Speed = 6.0f;
-        JumpHeight = 1.0f;
+        Controller = GetComponent<CharacterController>();
     }
 
     void Update()
     {
-        //Temporary code for finding correct controller buttons
-        //for (int i = 0; i < 20; i++)
-        //{
-        //    if (Input.GetKeyDown("joystick 1 button " + i))
-        //    {
-        //        print("joystick 1 button " + i);
-        //    }
-        //}
-
         MovePlayer();
     }
 
