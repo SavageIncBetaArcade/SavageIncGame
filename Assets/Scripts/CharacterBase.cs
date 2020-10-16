@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,17 +7,35 @@ public enum StatType
     ATTACK,
     DEFENSE,
     HEALTH,
-    ENERGY
+    ENERGY,
+    SPEED,
+    JUMP_HEIGHT
 }
 
-public class CharacterBase : MonoBehaviour
+public class CharacterBase : MonoBehaviour, IDamageTaker
 {
-    [SerializeField]
+    [SerializeField] 
     private float attackModifier, defenseModifier, maxHealth, maxEnergy;
+    [SerializeField]
+    private float speed = 6.0f;
+    [SerializeField]
+    private float jumpHeight = 1.0f;
+    private float currentHealth, currentEnergy;
+    
+    public delegate void DeathAction();
+    public event DeathAction OnDeath;
+    public delegate void DamageAction();
+    public event DamageAction OnDamage;
+    public delegate void HealAction();
+    public event HealAction OnHeal;
+    public delegate void ReplenishEnergyAction();
+    public event ReplenishEnergyAction OnReplenishEnergy;
 
     private readonly HashSet<ScriptableModifier> appliedAbilities;
 
     #region Properties
+    public float Gravity { get; } = -9.81f;
+
     public float AttackModifier
     {
         get => attackModifier;
@@ -45,6 +62,20 @@ public class CharacterBase : MonoBehaviour
 
     public HashSet<ScriptableModifier> AppliedAbilities => appliedAbilities;
 
+    public float Speed
+    {
+        get => speed;
+        set => speed = value;
+    }
+
+    public float JumpHeight
+    {
+        get => jumpHeight;
+        set => jumpHeight = value;
+    }
+
+    public bool IsAlive => currentHealth >= 0.0f;
+
     #endregion
 
     public CharacterBase()
@@ -68,8 +99,34 @@ public class CharacterBase : MonoBehaviour
             case StatType.ENERGY:
                 MaxEnergy += amount;
                 break;
+            case StatType.SPEED:
+                Speed += amount;
+                break;
+            case StatType.JUMP_HEIGHT:
+                JumpHeight += amount;
+                break;
             default:
                 throw new ArgumentOutOfRangeException();
         }
+    }
+
+    public void TakeDamage(float attackDamage)
+    {
+        OnDamage?.Invoke();
+        currentHealth = Mathf.Clamp((float)(currentHealth - attackDamage * Math.Pow(0.95, defenseModifier)), 0f, maxHealth);
+        if (currentHealth == 0)
+            OnDeath?.Invoke();
+    }
+
+    public void Heal(float amount)
+    {
+        OnHeal?.Invoke();
+        currentHealth = Mathf.Clamp(currentHealth + amount, 0f, maxHealth);
+    }
+
+    public void ReplenishEnergy(float amount)
+    {
+        OnReplenishEnergy?.Invoke();
+        currentEnergy = Mathf.Clamp(currentEnergy + amount, 0f, maxEnergy);
     }
 }

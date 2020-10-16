@@ -87,6 +87,9 @@ public class ModifierHandler
     private void applyModifier(AbilityModifier abilityModifier, CharacterBase characterBase,
         CharacterBase targetCharacterBase)
     {
+        if(abilityModifier.Modifier == null)
+            return;
+        
         //create a new instance of the modifier
         Modifier modifier = new Modifier(abilityModifier.Modifier);
 
