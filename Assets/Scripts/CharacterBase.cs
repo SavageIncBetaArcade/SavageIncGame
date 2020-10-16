@@ -15,10 +15,7 @@ public class CharacterBase : MonoBehaviour, IDamageTaker
 {
     [SerializeField] 
     private float attackModifier, defenseModifier, maxHealth, maxEnergy;
-    [SerializeField]
-    private float speed = 6.0f;
-    [SerializeField]
-    private float jumpHeight = 1.0f;
+
     private float currentHealth, currentEnergy;
     
     public delegate void DeathAction();
@@ -32,6 +29,8 @@ public class CharacterBase : MonoBehaviour, IDamageTaker
 
     #region Properties
     public float Gravity { get; } = -9.81f;
+    public float Speed { get; set; } = 6.0f;
+    public float JumpHeight { get; set; } = 1.0f;
 
     public float AttackModifier
     {
@@ -55,18 +54,6 @@ public class CharacterBase : MonoBehaviour, IDamageTaker
     {
         get => maxEnergy;
         set => maxEnergy = value;
-    }
-
-    public float Speed
-    {
-        get => speed;
-        set => speed = value;
-    }
-
-    public float JumpHeight
-    {
-        get => jumpHeight;
-        set => jumpHeight = value;
     }
 
     public bool IsAlive => currentHealth >= 0.0f;
