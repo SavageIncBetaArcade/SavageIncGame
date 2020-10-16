@@ -78,8 +78,6 @@ public class Portal : MonoBehaviour
     {
         viewthroughMaterial = viewthroughRenderer.material;
 
-        // Cache the main camera
-
         mainCamera = Camera.main;
 
         // Generate bounding plane
@@ -102,7 +100,6 @@ public class Portal : MonoBehaviour
             }
             catch (Exception e)
             {
-                // Catch exceptions so our loop doesn't die whenever there is an error
                 Debug.LogException(e);
             }
         }
@@ -125,7 +122,7 @@ public class Portal : MonoBehaviour
 
         var virtualPosition = TransformPositionBetweenPortals(this, targetPortal, refPosition);
         var virtualRotation = TransformRotationBetweenPortals(this, targetPortal, refRotation);
-        // Setup portal camera for calculations
+
 
         portalCamera.transform.SetPositionAndRotation(virtualPosition, virtualRotation);
 
@@ -141,7 +138,7 @@ public class Portal : MonoBehaviour
         var obliqueProjectionMatrix = mainCamera.CalculateObliqueMatrix(targetViewThroughPlaneCameraSpace);
         portalCamera.projectionMatrix = obliqueProjectionMatrix;
 
-        // Store visible portal resources to release and reset (see function description for details)
+        // Store visible portal resources to release and reset 
 
         var visiblePortalResourcesList = new List<VisiblePortalResources>();
 
@@ -155,7 +152,9 @@ public class Portal : MonoBehaviour
         {
             foreach (var visiblePortal in targetPortal.visiblePortals)
             {
+                //only render for portals which are visible
                 if (!visiblePortal.ShouldRender(cameraPlanes)) continue;
+
                 visiblePortal.RenderViewthroughRecursive(
                     virtualPosition,
                     virtualRotation,
@@ -280,30 +279,6 @@ public class Portal : MonoBehaviour
             objectsInPortal.Remove(portalableObject);
         }
     }
-
-    //private void LateUpdate()
-    //{
-    //    // Calculate portal camera position and rotation
-
-    //    var virtualPosition = TransformPositionBetweenPortals(this, targetPortal, mainCamera.transform.position);
-    //    var virtualRotation = TransformRotationBetweenPortals(this, targetPortal, mainCamera.transform.rotation);
-
-    //    // Position camera
-
-    //    portalCamera.transform.SetPositionAndRotation(virtualPosition, virtualRotation);
-
-    //    // Calculate projection matrix
-
-    //    var clipThroughSpace =
-    //        Matrix4x4.Transpose(Matrix4x4.Inverse(portalCamera.worldToCameraMatrix))
-    //        * targetPortal.vectorPlane;
-
-    //    // Set portal camera projection matrix to clip walls between target portal and portal camera
-    //    // Inherits main camera near/far clip plane and FOV settings
-
-    //    var obliqueProjectionMatrix = mainCamera.CalculateObliqueMatrix(clipThroughSpace);
-    //    portalCamera.projectionMatrix = obliqueProjectionMatrix;
-    //}
 
     private void OnTriggerEnter(Collider other)
     {

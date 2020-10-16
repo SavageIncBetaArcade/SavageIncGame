@@ -15,11 +15,6 @@ public class RenderTexturePool : MonoBehaviour
         Instance = this;
     }
 
-    private void Start()
-    {
-        Instance = this;
-    }
-
     // Gets a new temporary texture from the pool.
     public PoolItem GetTexture()
     {

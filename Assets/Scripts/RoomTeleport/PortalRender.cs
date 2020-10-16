@@ -21,6 +21,8 @@ public class PortalRender : MonoBehaviour
     {
         mainCamera = Camera.main;
         occlusionVolumes = FindObjectsOfType<PortalOcclusionVolume>();
+
+        //sets up callback for hdrp camera rendering
         RenderPipelineManager.beginFrameRendering += RenderPipelineManager_StartCameraRendering;
         RenderPipelineManager.endFrameRendering += RenderPipelineManager_endCameraRendering;
     }
@@ -79,6 +81,9 @@ public class PortalRender : MonoBehaviour
 
     private void LateUpdate()
     {
+
+        //have to use the booleans as trying to run pre and post render inside the callback function causes an error
+        //this is because hdrp does not support recursive rendering
         if(onPreRender)
         {
             OnPreRender();
