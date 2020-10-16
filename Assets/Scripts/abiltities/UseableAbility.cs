@@ -45,7 +45,8 @@ public class UseableAbility : MonoBehaviour
     {
         if (ScriptableAbility != null && ScriptableAbility.AbilityPrefab != null)
         {
-            worldGameObject = Instantiate(ScriptableAbility.AbilityPrefab, transform);
+            worldGameObject = Instantiate(ScriptableAbility.AbilityPrefab, transform.position, transform.rotation,
+                transform);
             Initilise();
         }
         else
