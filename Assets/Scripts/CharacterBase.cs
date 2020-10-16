@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public enum StatType
@@ -30,6 +31,8 @@ public class CharacterBase : MonoBehaviour, IDamageTaker
     public delegate void ReplenishEnergyAction();
     public event ReplenishEnergyAction OnReplenishEnergy;
 
+    private readonly HashSet<ScriptableModifier> appliedAbilities;
+
     #region Properties
     public float Gravity { get; } = -9.81f;
 
@@ -57,6 +60,8 @@ public class CharacterBase : MonoBehaviour, IDamageTaker
         set => maxEnergy = value;
     }
 
+    public HashSet<ScriptableModifier> AppliedAbilities => appliedAbilities;
+
     public float Speed
     {
         get => speed;
@@ -70,7 +75,13 @@ public class CharacterBase : MonoBehaviour, IDamageTaker
     }
 
     public bool IsAlive => currentHealth >= 0.0f;
+
     #endregion
+
+    public CharacterBase()
+    {
+        appliedAbilities = new HashSet<ScriptableModifier>();
+    }
 
     public void ApplyStatModifier(StatType type, float amount)
     {
