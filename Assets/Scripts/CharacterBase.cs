@@ -60,8 +60,6 @@ public class CharacterBase : MonoBehaviour, IDamageTaker
         set => maxEnergy = value;
     }
 
-    public HashSet<ScriptableModifier> AppliedAbilities => appliedAbilities;
-
     public float Speed
     {
         get => speed;
@@ -73,6 +71,8 @@ public class CharacterBase : MonoBehaviour, IDamageTaker
         get => jumpHeight;
         set => jumpHeight = value;
     }
+
+    public HashSet<ScriptableModifier> AppliedAbilities => appliedAbilities;
 
     public bool IsAlive => currentHealth >= 0.0f;
 
