@@ -16,16 +16,19 @@ using UnityEngine;
 /// </summary>
 public abstract class BaseAbility
 {
-    protected readonly ScriptableUseableAbility ability;
     protected readonly UseableAbility useableAbility;
+    private readonly ScriptableUseableAbility ability;
+    private readonly CharacterBase ownerCharacter;
 
-    protected BaseAbility(UseableAbility useableAbility)
+    protected BaseAbility(UseableAbility useableAbility, CharacterBase ownerCharacter)
     {
         this.ability = useableAbility.ScriptableAbility;
         this.useableAbility = useableAbility;
+        this.ownerCharacter = ownerCharacter;
     }
 
     public ScriptableUseableAbility Ability => ability;
+    public CharacterBase OwnerCharacter => ownerCharacter;
 
     /// <summary>
     /// Initilise is used to initilse the ability - called on the UseableAbility awake method
@@ -41,7 +44,7 @@ public abstract class BaseAbility
 
 public static class AbilityFactory
 {
-    public static BaseAbility Create(UseableAbility useableAbility, ScriptableAbility scriptableAbility, 
+    public static BaseAbility Create(UseableAbility useableAbility, ScriptableAbility scriptableAbility, CharacterBase ownerCharacter,
         GameObject worldGameObject, AttackAbility.HitAction hitAction = null)
     {
         Func<BaseAbility> abilityFunc = () =>
@@ -52,24 +55,24 @@ public static class AbilityFactory
                 {
                     ForwardTriggerCollision forwardTrigger =
                         worldGameObject.GetComponentInChildren<ForwardTriggerCollision>();
-                    MeleeAbility meleeAbility = new MeleeAbility(useableAbility, forwardTrigger);
+                    MeleeAbility meleeAbility = new MeleeAbility(useableAbility, forwardTrigger, ownerCharacter);
                     if (hitAction != null)
                         meleeAbility.OnHit += hitAction;
 
                     return meleeAbility;
                 }
                 case ScriptableRaycastAbility _:
-                    RaycastAbilitiy raycastAbility = new RaycastAbilitiy(useableAbility);
+                    RaycastAbilitiy raycastAbility = new RaycastAbilitiy(useableAbility, ownerCharacter);
                     if (hitAction != null)
                         raycastAbility.OnHit += hitAction;
                     return raycastAbility;
                 case ScriptableProjectileAbility _:
-                    ProjectileAbility projectileAbility = new ProjectileAbility(useableAbility);
+                    ProjectileAbility projectileAbility = new ProjectileAbility(useableAbility, ownerCharacter);
                     if (hitAction != null)
                         projectileAbility.OnHit += hitAction;
                     return projectileAbility;
                 case ScriptableUseableAbility _:
-                    return new ModifierAbility(useableAbility);
+                    return new ModifierAbility(useableAbility, ownerCharacter);
             }
 
             throw new Exception($"{scriptableAbility.GetType()} doesn't exist within the AbilityFactory");

@@ -12,19 +12,22 @@ public class ScriptableStatModifier : ScriptableModifier
     public StatType Type;
     public float Amount;
 
-    public override void OnApply(CharacterBase targetCharacter, ref List<CharacterBase> affectedCharacters)
+    public override void OnApply(CharacterBase ownerCharacter, CharacterBase targetCharacter,
+        ref List<CharacterBase> affectedCharacters)
     {
         affectedCharacters.Add(targetCharacter);
         targetCharacter.ApplyStatModifier(Type, Amount);
     }
 
-    public override void OnRemove(CharacterBase targetCharacter, ref List<CharacterBase> affectedCharacters)
+    public override void OnRemove(CharacterBase ownerCharacter, CharacterBase targetCharacter,
+        ref List<CharacterBase> affectedCharacters)
     {
         affectedCharacters.Clear();
         targetCharacter.ApplyStatModifier(Type, -Amount);
     }
 
-    public override void OnTick(CharacterBase targetCharacter, ref List<CharacterBase> affectedCharacters)
+    public override void OnTick(CharacterBase ownerCharacter, CharacterBase targetCharacter,
+        ref List<CharacterBase> affectedCharacters)
     {
         ApplyEffects(targetCharacter);
     }

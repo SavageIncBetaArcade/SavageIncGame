@@ -11,7 +11,7 @@ public abstract class AttackAbility : BaseAbility
     public delegate void HitAction(CharacterBase attackingCharacter, CharacterBase targetCharacter);
     public event HitAction OnHit;
 
-    protected AttackAbility(UseableAbility useableAbility) : base(useableAbility)
+    protected AttackAbility(UseableAbility useableAbility, CharacterBase ownerCharacter) : base(useableAbility, ownerCharacter)
     {
 
     }
@@ -22,7 +22,7 @@ public abstract class AttackAbility : BaseAbility
 
         OnHit?.Invoke(useableAbility.CharacterBase,targetCharacter);
 
-        foreach (var hitEffect in ability.HitEffects)
+        foreach (var hitEffect in Ability.HitEffects)
         {
             useableAbility.InstantiateObject(hitEffect, targetCharacter.transform);
         }

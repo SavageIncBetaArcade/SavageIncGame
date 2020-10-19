@@ -14,25 +14,28 @@ public class ScriptableChainDamageModifier : ScriptableDamageModifier
     public GameObject LineGameObject;
     private CharacterBase[] allCharacters;
 
-    public override void OnApply(CharacterBase targetCharacter, ref List<CharacterBase> affectedCharacters)
+    public override void OnApply(CharacterBase ownerCharacter, CharacterBase targetCharacter,
+        ref List<CharacterBase> affectedCharacters)
     {
         allCharacters = GetOrderedCharactersByPosition(targetCharacter);
         affectedCharacters.Add(targetCharacter);
-        AddClosestCharacters(targetCharacter, ref affectedCharacters);
+        AddClosestCharacters(ownerCharacter,targetCharacter, ref affectedCharacters);
     }
 
 
-    public override void OnRemove(CharacterBase targetCharacter, ref List<CharacterBase> affectedCharacters)
+    public override void OnRemove(CharacterBase ownerCharacter, CharacterBase targetCharacter,
+        ref List<CharacterBase> affectedCharacters)
     {
         //affectedCharacters.Clear();
     }
 
-    public override void OnTick(CharacterBase targetCharacter, ref List<CharacterBase> affectedCharacters)
+    public override void OnTick(CharacterBase ownerCharacter, CharacterBase targetCharacter,
+        ref List<CharacterBase> affectedCharacters)
     {
         targetCharacter.StartCoroutine(ChainAttack(affectedCharacters));
     }
 
-    private void AddClosestCharacters(CharacterBase targetCharacter, ref List<CharacterBase> affectedCharacters)
+    private void AddClosestCharacters(CharacterBase owner, CharacterBase targetCharacter, ref List<CharacterBase> affectedCharacters)
     {
         if (affectedCharacters.Count >= MaxTarget)
             return;
@@ -41,7 +44,7 @@ public class ScriptableChainDamageModifier : ScriptableDamageModifier
 
         foreach (var orderedCharacter in orderedCharacters)
         {
-            if (orderedCharacter != targetCharacter && !affectedCharacters.Contains(orderedCharacter))
+            if (orderedCharacter != owner && orderedCharacter != targetCharacter && !affectedCharacters.Contains(orderedCharacter))
             {
                 float distance =
                     Vector3.Distance(targetCharacter.transform.position, orderedCharacter.transform.position);
@@ -50,7 +53,7 @@ public class ScriptableChainDamageModifier : ScriptableDamageModifier
                     break;
 
                 affectedCharacters.Add(orderedCharacter);
-                AddClosestCharacters(orderedCharacter, ref affectedCharacters);
+                AddClosestCharacters(owner,orderedCharacter, ref affectedCharacters);
                 break;
             }
         }

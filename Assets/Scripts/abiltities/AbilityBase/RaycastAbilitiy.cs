@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class RaycastAbilitiy : AttackAbility
 {
-    public RaycastAbilitiy(UseableAbility useableAbility) : base(useableAbility)
+    public RaycastAbilitiy(UseableAbility useableAbility, CharacterBase ownerCharacter) : base(useableAbility, ownerCharacter)
     {
 
     }
@@ -20,7 +20,7 @@ public class RaycastAbilitiy : AttackAbility
         if (Physics.Raycast(useableAbility.Origin.position, useableAbility.Origin.forward, out hitInfo, ((ScriptableRaycastAbility)Ability).Range))
         {
             CharacterBase hitCharacter = hitInfo.transform.GetComponent<CharacterBase>();
-            if (hitCharacter != null && hitCharacter != useableAbility.CharacterBase)
+            if (hitCharacter != null && hitCharacter != OwnerCharacter)
             {
                 Hit(hitCharacter);
             }
