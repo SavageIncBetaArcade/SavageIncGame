@@ -76,12 +76,10 @@ public class ScriptableChainDamageModifier : ScriptableDamageModifier
 
                 lightningBolt.TimeToTarget = Delay;
                 lightningBolt.SetPoints(start.position , end.position);
-
-
             }
 
 
-
+            affectedCharacters[i].TakeDamage(Damage);
             ApplyEffects(affectedCharacters[i]);
             yield return new WaitForSeconds(Delay);
         }

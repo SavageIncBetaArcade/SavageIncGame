@@ -20,6 +20,7 @@ public class CharacterBase : MonoBehaviour, IDamageTaker
     private float speed = 6.0f;
     [SerializeField]
     private float jumpHeight = 1.0f;
+    [SerializeField]
     private float currentHealth, currentEnergy;
     
     public delegate void DeathAction();
@@ -31,7 +32,7 @@ public class CharacterBase : MonoBehaviour, IDamageTaker
     public delegate void ReplenishEnergyAction();
     public event ReplenishEnergyAction OnReplenishEnergy;
 
-    private readonly HashSet<ScriptableModifier> appliedAbilities;
+    private HashSet<ScriptableModifier> appliedAbilities;
 
     #region Properties
     public float Gravity { get; } = -9.81f;
@@ -78,9 +79,11 @@ public class CharacterBase : MonoBehaviour, IDamageTaker
 
     #endregion
 
-    public CharacterBase()
+    void Awake()
     {
         appliedAbilities = new HashSet<ScriptableModifier>();
+        currentHealth = maxHealth;
+        currentEnergy = maxEnergy;
     }
 
     public void ApplyStatModifier(StatType type, float amount)

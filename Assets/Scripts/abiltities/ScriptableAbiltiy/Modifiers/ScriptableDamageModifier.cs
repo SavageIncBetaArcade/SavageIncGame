@@ -28,7 +28,7 @@ public class ScriptableDamageModifier : ScriptableModifier
     {
         ApplyEffects(targetCharacter);
 
-        //TODO add damage on tick
+        targetCharacter.TakeDamage(Damage);
         Debug.Log($"ScriptableDamageModifier: {ModifierName} applied {Damage} damage");
     }
 }

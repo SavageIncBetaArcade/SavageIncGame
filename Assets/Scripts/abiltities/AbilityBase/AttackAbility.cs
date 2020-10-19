@@ -16,9 +16,9 @@ public abstract class AttackAbility : BaseAbility
 
     }
 
-    public virtual void Hit(CharacterBase targetCharacter)
+    public virtual void Hit(CharacterBase targetCharacter, float damage)
     {
-        //TODO make calls to damage system
+        targetCharacter.TakeDamage(damage);
 
         OnHit?.Invoke(useableAbility.CharacterBase,targetCharacter);
 

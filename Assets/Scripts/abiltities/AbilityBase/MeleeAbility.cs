@@ -28,7 +28,11 @@ public class MeleeAbility : AttackAbility
             CharacterBase hitCharacter = collider.GetComponent<CharacterBase>();
             if (hitCharacter != null && hitCharacter != OwnerCharacter)
             {
-                Hit(hitCharacter);
+                ScriptableMeleeAbility meleeAbility = Ability as ScriptableMeleeAbility;
+                if(meleeAbility == null)
+                    Debug.LogError("MeleeAbility: ScriptableAbility is not of type ScriptableMeleeAbility");
+
+                Hit(hitCharacter, meleeAbility != null ? meleeAbility.Damage : 0.0f);
                 _hasHit = true;
             }
         }
@@ -47,10 +51,10 @@ public class MeleeAbility : AttackAbility
         Debug.Log("Attacking");
     }
 
-    public override void Hit(CharacterBase hitCharacter)
+    public override void Hit(CharacterBase hitCharacter, float damage)
     {
         Debug.Log("Hit");
 
-        base.Hit(hitCharacter);
+        base.Hit(hitCharacter, damage);
     }
 }

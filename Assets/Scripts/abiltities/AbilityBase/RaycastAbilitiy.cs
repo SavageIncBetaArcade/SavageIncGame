@@ -22,7 +22,11 @@ public class RaycastAbilitiy : AttackAbility
             CharacterBase hitCharacter = hitInfo.transform.GetComponent<CharacterBase>();
             if (hitCharacter != null && hitCharacter != OwnerCharacter)
             {
-                Hit(hitCharacter);
+                ScriptableRaycastAbility raycastAbility = Ability as ScriptableRaycastAbility;
+                if (raycastAbility == null)
+                    Debug.LogError("RaycastAbility: ScriptableAbility is not of type ScriptableRaycastAbility");
+
+                Hit(hitCharacter, raycastAbility != null ? raycastAbility.Damage : 0.0f);
             }
 
         }
@@ -31,10 +35,10 @@ public class RaycastAbilitiy : AttackAbility
         Debug.Log("Firing Raycast");
     }
 
-    public override void Hit(CharacterBase hitCharacter)
+    public override void Hit(CharacterBase hitCharacter, float damage)
     {
         Debug.Log("Hit");
 
-        base.Hit(hitCharacter);
+        base.Hit(hitCharacter, damage);
     }
 }

@@ -64,7 +64,12 @@ public class Projectile : MonoBehaviour
 
         if (_castersProjectileAbility != null && characterBase != _castersProjectileAbility.OwnerCharacter)
         {
-            _castersProjectileAbility.Hit(characterBase);
+            ScriptableProjectileAbility projectileAbility = _castersProjectileAbility.Ability as ScriptableProjectileAbility;
+        
+            if (projectileAbility == null)
+                Debug.LogError("Projectile: ScriptableAbility is not of type ScriptableProjectileAbility");
+
+            _castersProjectileAbility.Hit(characterBase, projectileAbility != null ? projectileAbility.Damage : 0.0f);
         }
 
         Destroy(gameObject);
