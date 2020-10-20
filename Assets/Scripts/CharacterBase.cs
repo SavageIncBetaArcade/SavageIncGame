@@ -32,7 +32,7 @@ public class CharacterBase : MonoBehaviour, IDamageTaker
     public delegate void ReplenishEnergyAction();
     public event ReplenishEnergyAction OnReplenishEnergy;
 
-    private HashSet<ScriptableModifier> appliedAbilities;
+    private HashSet<Modifier> appliedModifiers;
 
     #region Properties
     public float Gravity { get; } = -9.81f;
@@ -61,7 +61,7 @@ public class CharacterBase : MonoBehaviour, IDamageTaker
         set => maxEnergy = value;
     }
 
-    public HashSet<ScriptableModifier> AppliedAbilities => appliedAbilities;
+    public HashSet<Modifier> AppliedModifiers => appliedModifiers;
 
     public float Speed
     {
@@ -79,9 +79,9 @@ public class CharacterBase : MonoBehaviour, IDamageTaker
 
     #endregion
 
-    void Awake()
+    protected virtual void Awake()
     {
-        appliedAbilities = new HashSet<ScriptableModifier>();
+        appliedModifiers = new HashSet<Modifier>();
         currentHealth = maxHealth;
         currentEnergy = maxEnergy;
     }

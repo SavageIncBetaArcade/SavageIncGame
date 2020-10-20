@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 /// <summary>
@@ -58,11 +59,11 @@ public class Modifier
         if (!isPassive)
         {
             //Check if the modifier is not already applied, if so renew it
-            if (!targetCharacter.AppliedAbilities.Contains(scriptableModifier))
+            if (targetCharacter.AppliedModifiers.All(x => x.ScriptableModifier != scriptableModifier))
             {
                 scriptableModifier.OnApply(owner, targetCharacter, ref affectedCharacters);
                 coroutine = targetCharacter.StartCoroutine(tickCoroutine(owner, targetCharacter));
-                targetCharacter.AppliedAbilities.Add(scriptableModifier);
+                targetCharacter.AppliedModifiers.Add(this);
             }
             else
             {
@@ -82,7 +83,7 @@ public class Modifier
     {
         scriptableModifier.OnRemove(owner, targetCharacter, ref affectedCharacters);
         if (!isPassive)
-            targetCharacter.AppliedAbilities.Remove(scriptableModifier);
+            targetCharacter.AppliedModifiers.Remove(this);
 
         if (coroutine != null)
             targetCharacter.StopCoroutine(coroutine);
@@ -90,9 +91,18 @@ public class Modifier
 
     private void Renew(CharacterBase owner, CharacterBase targetCharacter)
     {
-        if(coroutine != null)
-            targetCharacter.StopCoroutine(coroutine);
+        //get the currently applies modifier on the character
+        var appliedModifier = targetCharacter.AppliedModifiers.FirstOrDefault(x => x.ScriptableModifier == scriptableModifier);
+
+        //if the currently applied modifier has a coroutine running stop it and remove from applied modifiers set
+        if (appliedModifier != null && appliedModifier.coroutine != null)
+        {
+            targetCharacter.StopCoroutine(appliedModifier.coroutine);
+            targetCharacter.AppliedModifiers.Remove(appliedModifier);
+        }
+        //Start a new coroutine and add the new modifier to the applied set replacing the old one
         coroutine = targetCharacter.StartCoroutine(tickCoroutine(owner, targetCharacter));
+        targetCharacter.AppliedModifiers.Add(this);
     }
 
     private IEnumerator tickCoroutine(CharacterBase owner, CharacterBase targetCharacter)
