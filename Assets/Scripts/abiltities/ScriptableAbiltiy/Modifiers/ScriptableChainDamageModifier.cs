@@ -72,10 +72,10 @@ public class ScriptableChainDamageModifier : ScriptableDamageModifier
 
                 GameObject gameObject = Instantiate(LineGameObject, start.position, start.rotation);
                 bolts.Add(gameObject);
-                LightningBolt lightningBolt = gameObject.GetComponent<LightningBolt>();
-
-                lightningBolt.TimeToTarget = Delay;
-                lightningBolt.SetPoints(start.position , end.position);
+                RaycastBolt raycastBolt = gameObject.GetComponent<RaycastBolt>();
+                raycastBolt.LifeTime = -1.0f;
+                raycastBolt.TimeToTarget = Delay;
+                raycastBolt.SetPoints(start.position , end.position);
             }
 
 

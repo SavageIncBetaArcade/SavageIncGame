@@ -160,6 +160,8 @@ MonoBehaviour:
   maxEnergy: 0
   speed: 6
   jumpHeight: 1
+  currentHealth: 0
+  currentEnergy: 0
 --- !u!54 &263912852
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -287,6 +289,8 @@ MonoBehaviour:
   maxEnergy: 0
   speed: 6
   jumpHeight: 1
+  currentHealth: 0
+  currentEnergy: 0
 --- !u!54 &293615422
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -414,6 +418,8 @@ MonoBehaviour:
   maxEnergy: 0
   speed: 6
   jumpHeight: 1
+  currentHealth: 0
+  currentEnergy: 0
 --- !u!54 &296301438
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -541,6 +547,8 @@ MonoBehaviour:
   maxEnergy: 0
   speed: 6
   jumpHeight: 1
+  currentHealth: 0
+  currentEnergy: 0
 --- !u!54 &363091551
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -668,6 +676,8 @@ MonoBehaviour:
   maxEnergy: 0
   speed: 6
   jumpHeight: 1
+  currentHealth: 0
+  currentEnergy: 0
 --- !u!54 &388060330
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -947,6 +957,8 @@ MonoBehaviour:
   maxEnergy: 0
   speed: 6
   jumpHeight: 1
+  currentHealth: 0
+  currentEnergy: 0
 --- !u!1 &761123562
 GameObject:
   m_ObjectHideFlags: 0
@@ -986,6 +998,8 @@ MonoBehaviour:
   maxEnergy: 0
   speed: 6
   jumpHeight: 1
+  currentHealth: 0
+  currentEnergy: 0
 --- !u!54 &761123564
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1663,6 +1677,8 @@ MonoBehaviour:
   maxEnergy: 0
   speed: 6
   jumpHeight: 1
+  currentHealth: 0
+  currentEnergy: 0
 --- !u!54 &1078661398
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1790,6 +1806,8 @@ MonoBehaviour:
   maxEnergy: 0
   speed: 6
   jumpHeight: 1
+  currentHealth: 0
+  currentEnergy: 0
 --- !u!54 &1116903246
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1917,6 +1935,8 @@ MonoBehaviour:
   maxEnergy: 0
   speed: 6
   jumpHeight: 1
+  currentHealth: 0
+  currentEnergy: 0
 --- !u!54 &1163539376
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2011,7 +2031,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-3558
+  m_Name: pb_Mesh16938
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -2361,6 +2381,8 @@ MonoBehaviour:
   maxEnergy: 0
   speed: 6
   jumpHeight: 1
+  currentHealth: 0
+  currentEnergy: 0
 --- !u!54 &1392345443
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2488,6 +2510,8 @@ MonoBehaviour:
   maxEnergy: 0
   speed: 6
   jumpHeight: 1
+  currentHealth: 0
+  currentEnergy: 0
 --- !u!54 &1462699320
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2648,6 +2672,8 @@ MonoBehaviour:
   maxEnergy: 0
   speed: 6
   jumpHeight: 1
+  currentHealth: 0
+  currentEnergy: 0
 --- !u!54 &1612793844
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2975,6 +3001,8 @@ MonoBehaviour:
   maxEnergy: 0
   speed: 6
   jumpHeight: 1
+  currentHealth: 0
+  currentEnergy: 0
 --- !u!54 &1708350948
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3102,6 +3130,8 @@ MonoBehaviour:
   maxEnergy: 0
   speed: 6
   jumpHeight: 1
+  currentHealth: 0
+  currentEnergy: 0
 --- !u!54 &1870697067
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3229,6 +3259,8 @@ MonoBehaviour:
   maxEnergy: 0
   speed: 6
   jumpHeight: 1
+  currentHealth: 0
+  currentEnergy: 0
 --- !u!54 &1954069686
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3356,6 +3388,8 @@ MonoBehaviour:
   maxEnergy: 0
   speed: 6
   jumpHeight: 1
+  currentHealth: 0
+  currentEnergy: 0
 --- !u!54 &2036382519
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3483,6 +3517,8 @@ MonoBehaviour:
   maxEnergy: 0
   speed: 6
   jumpHeight: 1
+  currentHealth: 0
+  currentEnergy: 0
 --- !u!54 &2084476993
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3642,7 +3678,7 @@ PrefabInstance:
         type: 3}
       propertyPath: ScriptableAbility
       value: 
-      objectReference: {fileID: 11400000, guid: 79af1956af198bd4eb7772925e323b17,
+      objectReference: {fileID: 11400000, guid: d5b2490e243ac9444bfdde5afcaacf42,
         type: 2}
     - target: {fileID: 3287459473351049832, guid: 6977d88c4b1ceec4c96e0ab898b9402d,
         type: 3}
@@ -3654,6 +3690,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3287459473354534074, guid: 6977d88c4b1ceec4c96e0ab898b9402d,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.06
+      objectReference: {fileID: 0}
+    - target: {fileID: 3287459473354534074, guid: 6977d88c4b1ceec4c96e0ab898b9402d,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.22499996
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6977d88c4b1ceec4c96e0ab898b9402d, type: 3}
