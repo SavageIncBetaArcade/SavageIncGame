@@ -42,7 +42,7 @@ public class Inventory : MonoBehaviour
     {
         items[position].InventoryItem = InventoryItemFactory.CreateInventoryItem(itemToAdd);
         items[position].InventoryItem.Item = itemToAdd;
-        items[position].Image.sprite = itemToAdd.sprite;
+        items[position].Image.sprite = itemToAdd.Sprite;
         items[position].Image.enabled = true;
         UpdateQuantityUiAt(position);
         items[position].Quantity.enabled = true;

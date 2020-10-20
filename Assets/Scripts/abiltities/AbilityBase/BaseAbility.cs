@@ -44,7 +44,7 @@ public abstract class BaseAbility
 
 public static class AbilityFactory
 {
-    public static BaseAbility Create(UseableAbility useableAbility, ScriptableAbility scriptableAbility, CharacterBase ownerCharacter,
+    public static BaseAbility Create(UseableAbility useableAbility, Item scriptableAbility, CharacterBase ownerCharacter,
         GameObject worldGameObject, AttackAbility.HitAction hitAction = null)
     {
         Func<BaseAbility> abilityFunc = () =>
