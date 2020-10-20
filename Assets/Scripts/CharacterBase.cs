@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -108,6 +109,34 @@ public class CharacterBase : MonoBehaviour, IDamageTaker
             case StatType.JUMP_HEIGHT:
                 JumpHeight += amount;
                 break;
+            default:
+                throw new ArgumentOutOfRangeException();
+        }
+    }
+
+    public IEnumerator ApplyStatsModifierOverPeriod(StatType type, float amount, float activePeriod)
+    {
+        ApplyStatModifier(type,amount);
+        yield return new WaitForSeconds(activePeriod);
+        ApplyStatModifier(type, -amount);
+    }
+
+    public float GetStatModifier(StatType type)
+    {
+        switch (type)
+        {
+            case StatType.ATTACK:
+                return AttackModifier;
+            case StatType.DEFENSE:
+                return DefenseModifier;
+            case StatType.HEALTH:
+                return MaxHealth;
+            case StatType.ENERGY:
+                return MaxEnergy;
+            case StatType.SPEED:
+                return Speed;
+            case StatType.JUMP_HEIGHT:
+                return JumpHeight;
             default:
                 throw new ArgumentOutOfRangeException();
         }
