@@ -21,8 +21,8 @@ public class CharacterBase : MonoBehaviour, IDamageTaker
     public event DamageAction OnDamage;
     public delegate void HealAction();
     public event HealAction OnHeal;
-    public delegate void HealEnergyAction();
-    public event HealEnergyAction OnHealEnergy;
+    public delegate void ReplenishEnergyAction();
+    public event ReplenishEnergyAction OnReplenishEnergy;
 
     #region Properties
     public float AttackModifier
@@ -48,6 +48,9 @@ public class CharacterBase : MonoBehaviour, IDamageTaker
         get => maxEnergy;
         set => maxEnergy = value;
     }
+
+    public bool IsAlive => currentHealth >= 0.0f;
+
     #endregion
 
     public void ApplyStatModifier(StatType type, float amount)
@@ -84,9 +87,9 @@ public class CharacterBase : MonoBehaviour, IDamageTaker
         currentHealth = Mathf.Clamp(currentHealth + amount, 0f, maxHealth);
     }
 
-    public void HealEnergy(float amount)
+    public void ReplenishEnergy(float amount)
     {
-        OnHealEnergy?.Invoke();
+        OnReplenishEnergy?.Invoke();
         currentEnergy = Mathf.Clamp(currentEnergy + amount, 0f, maxEnergy);
     }
 }

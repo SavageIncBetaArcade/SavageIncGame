@@ -77,9 +77,17 @@ public class Inventory : MonoBehaviour
         items[position].Quantity.enabled = false;
     }
 
-    public void LeftClickItem(int position) { items[position].InventoryItem.LeftClick(this, null); }
+    public void LeftClickItem(int position)
+    {
+        if (items[position].InventoryItem != null)
+            items[position].InventoryItem.LeftClick(this, null);
+    }
 
-    public void RightClickItem(int position) { items[position].InventoryItem.RightClick(this); }
+    public void RightClickItem(int position)
+    {
+        if (items[position].InventoryItem != null)
+            items[position].InventoryItem.RightClick(this);
+    }
     
     public void EquipWeaponInLeftHand(WeaponInventoryItem weaponToEquip)
     {
