@@ -12,8 +12,10 @@ public class PlayerBase : CharacterBase
     private bool onGround;
     private bool isCrouching;
 
-    void Awake()
+    protected override void Awake()
     {
+        base.Awake();
+
         Controller = GetComponent<CharacterController>();
     }
 
@@ -43,17 +45,19 @@ public class PlayerBase : CharacterBase
         {
             isCrouching = true;
             Controller.height = Controller.height / 2;
+            Speed = Speed / 2;
         }
         else if (Input.GetButtonDown("Crouch") && isCrouching)
         {
             isCrouching = false;
             Controller.height = Controller.height * 2;
+            Speed = Speed * 2;
         }
 
         //Check if sprinting and move
         if (Input.GetButton("Sprint") && !isCrouching)
         {
-            Controller.Move(move * (Speed * 2) * Time.deltaTime);
+            Controller.Move(move * (Speed * 1.5f) * Time.deltaTime);
         }
         else
         {
