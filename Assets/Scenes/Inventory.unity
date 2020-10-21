@@ -651,6 +651,7 @@ MonoBehaviour:
   armourItem2: {fileID: 11400000, guid: 48e5833b3a65f1c449dc7155d651e064, type: 2}
   weaponItem: {fileID: 11400000, guid: ba164802c3956fc4e97b0a4ce425211a, type: 2}
   weaponItem2: {fileID: 11400000, guid: 355f91b6b6cf78844b9b6d92b64ee22a, type: 2}
+  healthPotion: {fileID: 11400000, guid: f3eced1f746f8ad46a76fb928f1d4d55, type: 2}
 --- !u!1 &139282785
 GameObject:
   m_ObjectHideFlags: 0
@@ -4607,6 +4608,7 @@ MonoBehaviour:
   - {fileID: 548519256}
   armourSlot: {fileID: 365390782}
   warningText: {fileID: 1710603799}
+  character: {fileID: 1130789341}
 --- !u!1 &838284451
 GameObject:
   m_ObjectHideFlags: 0
@@ -6149,6 +6151,57 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1116080135}
   m_CullTransparentMesh: 0
+--- !u!1 &1130789340
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1130789342}
+  - component: {fileID: 1130789341}
+  m_Layer: 0
+  m_Name: CharacterBase
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1130789341
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1130789340}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea3bc292eff0e714e812ea36bc78471b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackModifier: 0
+  defenseModifier: 0
+  maxHealth: 0
+  maxEnergy: 0
+  speed: 6
+  jumpHeight: 1
+  currentHealth: 0
+  currentEnergy: 0
+--- !u!4 &1130789342
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1130789340}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 521.31104, y: 307.75488, z: -541.625}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1147860271
 GameObject:
   m_ObjectHideFlags: 0
