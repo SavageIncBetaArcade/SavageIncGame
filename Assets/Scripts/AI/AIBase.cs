@@ -20,6 +20,10 @@ public class AIBase : CharacterBase
     {
         navAgent = GetComponent<NavMeshAgent>();
         stackOfStates = GetComponent<StackFSM>();
+        if(potentialStates.Length > 0)
+        {
+            stackOfStates.PushState(potentialStates[0]);
+        }
     }
 
     public bool LineSightToPlayer()

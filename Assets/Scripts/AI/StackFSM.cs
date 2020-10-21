@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class StackFSM : MonoBehaviour
 {
-    private List<State> stateStack;
+    private List<State> stateStack = new List<State>();
 
     // Update is called once per frame
     void Update()
@@ -30,7 +30,8 @@ public class StackFSM : MonoBehaviour
 
     public void PushState(State newState)
     {
-        if(GetCurrentState() != newState)
+        State currentState = GetCurrentState();
+        if (currentState != newState)
         {
             newState.OnPush();
             stateStack.Add(newState);
