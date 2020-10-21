@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "AIStates/Follow")]
 public class FollowState : State
 {
-    public override void OnUpdate()
+    public override void OnUpdate(ref StackFSM stackStates)
     {
         throw new System.NotImplementedException();
     }

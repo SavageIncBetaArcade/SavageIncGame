@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
 public abstract class State : ScriptableObject
 {
     public virtual void OnPush()
@@ -15,5 +14,5 @@ public abstract class State : ScriptableObject
 
     }
 
-    public abstract void OnUpdate();
+    public abstract void OnUpdate(ref StackFSM stackStates);
 }

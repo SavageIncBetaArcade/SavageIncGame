@@ -5,20 +5,21 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "AIStates/Idle")]
 public class IdleState : State
 {
-    public override void OnUpdate()
+    float stateExpireTime;
+
+    public override void OnUpdate(ref StackFSM stackStates)
     {
-        throw new System.NotImplementedException();
+        //MG need to make any idle animation play here.
+
+        stateExpireTime -= Time.deltaTime;
+        if(stateExpireTime <= 0.0f)
+        {
+            stackStates.PopState();
+        }
     }
 
-    // Start is called before the first frame update
-    void Start()
+    public override void OnPush()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        stateExpireTime = 5.0f;
     }
 }

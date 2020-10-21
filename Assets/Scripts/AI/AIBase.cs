@@ -8,8 +8,9 @@ public class AIBase : CharacterBase
     public float senseRange = 60.0f;
     public float angleOfVision = 45.0f;
     public Vector3[] patrolPoints;
-    private int currentPatrolPoint = 0;
-    private NavMeshAgent navAgent;
+    public int currentPatrolPoint = 0;
+    public int nextPatrolPoint = 1;
+    public NavMeshAgent navAgent;
     private StackFSM stackOfStates;
     public State[] potentialStates;
     GameObject player;
@@ -20,7 +21,16 @@ public class AIBase : CharacterBase
     {
         navAgent = GetComponent<NavMeshAgent>();
         stackOfStates = GetComponent<StackFSM>();
-        if(potentialStates.Length > 0)
+
+        if (potentialStates.Length > 0)
+        {
+            stackOfStates.PushState(potentialStates[0]);
+        }        
+    }
+
+    private void Update()
+    {
+        if(potentialStates.Length > 0 && stackOfStates.GetCurrentState() == null)
         {
             stackOfStates.PushState(potentialStates[0]);
         }

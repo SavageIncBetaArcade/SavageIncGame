@@ -6,6 +6,12 @@ using UnityEngine;
 public class StackFSM : MonoBehaviour
 {
     private List<State> stateStack = new List<State>();
+    public AIBase aiBase;
+
+    private void Start()
+    {
+        aiBase = GetComponent<AIBase>();
+    }
 
     // Update is called once per frame
     void Update()
@@ -14,7 +20,8 @@ public class StackFSM : MonoBehaviour
 
         if(currentState != null)
         {
-            currentState.OnUpdate();
+            StackFSM stackfsm = gameObject.GetComponent<StackFSM>();
+            currentState.OnUpdate(ref stackfsm);
         }
     }
 
