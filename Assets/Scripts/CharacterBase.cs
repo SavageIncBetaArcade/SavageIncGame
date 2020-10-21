@@ -75,8 +75,7 @@ public class CharacterBase : MonoBehaviour, IDamageTaker
     {
         OnDamage?.Invoke();
         currentHealth = Mathf.Clamp((float)(currentHealth - attackDamage * Math.Pow(0.95, defenseModifier)), 0f, maxHealth);
-        if (currentHealth == 0)
-            OnDeath?.Invoke();
+        if (currentHealth == 0) OnDeath?.Invoke();
     }
 
     public void Heal(float amount)
