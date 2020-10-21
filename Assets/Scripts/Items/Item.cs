@@ -2,5 +2,6 @@
 
 public abstract class Item : ScriptableObject
 {
-    public Sprite sprite;
+    public string Name;
+    public Sprite Sprite;
 }

@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Electric
+  m_Shader: {fileID: -6465566751694194690, guid: 6dcf4fa9a3bccdb4bbfc01e4f5c0fe78,
+    type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap:
+    MotionVector: User
+  disabledShaderPasses:
+  - DistortionVectors
+  - MOTIONVECTORS
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs: []
+    m_Floats:
+    - Vector1_33FD48E0: 20
+    - Vector1_97F119A: 3
+    - Vector1_C3468A6E: 0.2
+    m_Colors:
+    - Color_A399274C: {r: 0, g: 1.1976397, b: 12.708288, a: 1}
+    - Vector2_81330C31: {r: -0.5, g: 0.1, b: 0, a: 0}
+    - Vector2_BB3681EC: {r: 0.5, g: 0, b: 0, a: 0}

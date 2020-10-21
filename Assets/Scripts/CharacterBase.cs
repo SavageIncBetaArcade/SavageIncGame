@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public enum StatType
@@ -6,13 +8,20 @@ public enum StatType
     ATTACK,
     DEFENSE,
     HEALTH,
-    ENERGY
+    ENERGY,
+    SPEED,
+    JUMP_HEIGHT
 }
 
 public class CharacterBase : MonoBehaviour, IDamageTaker
 {
-    [SerializeField]
+    [SerializeField] 
     private float attackModifier, defenseModifier, maxHealth, maxEnergy;
+    [SerializeField]
+    private float speed = 6.0f;
+    [SerializeField]
+    private float jumpHeight = 1.0f;
+    [SerializeField]
     private float currentHealth, currentEnergy;
     
     public delegate void DeathAction();
@@ -24,7 +33,11 @@ public class CharacterBase : MonoBehaviour, IDamageTaker
     public delegate void ReplenishEnergyAction();
     public event ReplenishEnergyAction OnReplenishEnergy;
 
+    private HashSet<Modifier> appliedModifiers;
+
     #region Properties
+    public float Gravity { get; } = -9.81f;
+
     public float AttackModifier
     {
         get => attackModifier;
@@ -49,9 +62,31 @@ public class CharacterBase : MonoBehaviour, IDamageTaker
         set => maxEnergy = value;
     }
 
+
+    public HashSet<Modifier> AppliedModifiers => appliedModifiers;
+
+    public float Speed
+    {
+        get => speed;
+        set => speed = value;
+    }
+
+    public float JumpHeight
+    {
+        get => jumpHeight;
+        set => jumpHeight = value;
+    }
+
     public bool IsAlive => currentHealth >= 0.0f;
 
     #endregion
+
+    protected virtual void Awake()
+    {
+        appliedModifiers = new HashSet<Modifier>();
+        currentHealth = maxHealth;
+        currentEnergy = maxEnergy;
+    }
 
     public void ApplyStatModifier(StatType type, float amount)
     {
@@ -69,6 +104,40 @@ public class CharacterBase : MonoBehaviour, IDamageTaker
             case StatType.ENERGY:
                 MaxEnergy += amount;
                 break;
+            case StatType.SPEED:
+                Speed += amount;
+                break;
+            case StatType.JUMP_HEIGHT:
+                JumpHeight += amount;
+                break;
+            default:
+                throw new ArgumentOutOfRangeException();
+        }
+    }
+
+    public IEnumerator ApplyStatsModifierOverPeriod(StatType type, float amount, float activePeriod)
+    {
+        ApplyStatModifier(type,amount);
+        yield return new WaitForSeconds(activePeriod);
+        ApplyStatModifier(type, -amount);
+    }
+
+    public float GetStatModifier(StatType type)
+    {
+        switch (type)
+        {
+            case StatType.ATTACK:
+                return AttackModifier;
+            case StatType.DEFENSE:
+                return DefenseModifier;
+            case StatType.HEALTH:
+                return MaxHealth;
+            case StatType.ENERGY:
+                return MaxEnergy;
+            case StatType.SPEED:
+                return Speed;
+            case StatType.JUMP_HEIGHT:
+                return JumpHeight;
             default:
                 throw new ArgumentOutOfRangeException();
         }
