@@ -12,6 +12,7 @@ public class Inventory : MonoBehaviour
     public EquipSlot armourSlot;
     public const int ItemSlotsAmount = 16;
     public Text warningText;
+    public CharacterBase character;
     
     public void AddItem(Item itemToAdd)
     {
@@ -80,13 +81,13 @@ public class Inventory : MonoBehaviour
     public void LeftClickItem(int position)
     {
         if (items[position].InventoryItem != null)
-            items[position].InventoryItem.LeftClick(this, null);
+            items[position].InventoryItem.LeftClick(this, character);
     }
 
     public void RightClickItem(int position)
     {
         if (items[position].InventoryItem != null)
-            items[position].InventoryItem.RightClick(this);
+            items[position].InventoryItem.RightClick(this, character);
     }
     
     public void EquipWeaponInLeftHand(WeaponInventoryItem weaponToEquip)

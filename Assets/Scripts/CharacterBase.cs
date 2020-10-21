@@ -117,7 +117,7 @@ public class CharacterBase : MonoBehaviour, IDamageTaker
 
     public IEnumerator ApplyStatsModifierOverPeriod(StatType type, float amount, float activePeriod)
     {
-        ApplyStatModifier(type,amount);
+        ApplyStatModifier(type, amount);
         yield return new WaitForSeconds(activePeriod);
         ApplyStatModifier(type, -amount);
     }

@@ -7,6 +7,7 @@ public class Pickup : MonoBehaviour
     public Item armourItem2;
     public Item weaponItem;
     public Item weaponItem2;
+    public ConsumableItem healthPotion;
 
     public void Update()
     {
@@ -18,5 +19,7 @@ public class Pickup : MonoBehaviour
             inventory.AddItem(weaponItem);
         else if(Input.GetKeyDown(KeyCode.Y))
             inventory.AddItem(weaponItem2);
+        else if(Input.GetKeyDown(KeyCode.U))
+            inventory.AddItem(healthPotion);
     }
 }
