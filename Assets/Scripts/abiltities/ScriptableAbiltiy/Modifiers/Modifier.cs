@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 /// <summary>
@@ -14,6 +15,7 @@ public class Modifier
     private ScriptableModifier scriptableModifier;
     [SerializeField]
     private bool isPassive = false;
+    private readonly CharacterBase ownerCharacter;
     private Coroutine coroutine;
 
     private List<CharacterBase> affectedCharacters;
@@ -34,66 +36,76 @@ public class Modifier
 
     #endregion
 
-    public Modifier(ScriptableModifier modifier)
+    public Modifier(ScriptableModifier modifier, CharacterBase owner)
     {
         scriptableModifier = modifier;
+        ownerCharacter = owner;
         affectedCharacters = new List<CharacterBase>();
     }
 
-    public void Apply(CharacterBase characterBase)
+    public void Apply(CharacterBase owner, CharacterBase targetCharacter)
     {
         if (affectedCharacters == null)
             affectedCharacters = new List<CharacterBase>();
 
         if (!isPassive && scriptableModifier.ActivePeriod <= 0.0f)
         {
-            scriptableModifier.OnApply(characterBase, ref affectedCharacters);
-            scriptableModifier.OnTick(characterBase, ref affectedCharacters);
-            Remove(characterBase);
+            scriptableModifier.OnApply(owner, targetCharacter, ref affectedCharacters);
+            scriptableModifier.OnTick(owner, targetCharacter, ref affectedCharacters);
+            Remove(owner, targetCharacter);
             return;
         }
 
         if (!isPassive)
         {
             //Check if the modifier is not already applied, if so renew it
-            if (!characterBase.AppliedAbilities.Contains(scriptableModifier))
+            if (targetCharacter.AppliedModifiers.All(x => x.ScriptableModifier != scriptableModifier))
             {
-                scriptableModifier.OnApply(characterBase, ref affectedCharacters);
-                coroutine = characterBase.StartCoroutine(tickCoroutine(characterBase));
-                characterBase.AppliedAbilities.Add(scriptableModifier);
+                scriptableModifier.OnApply(owner, targetCharacter, ref affectedCharacters);
+                coroutine = targetCharacter.StartCoroutine(tickCoroutine(owner, targetCharacter));
+                targetCharacter.AppliedModifiers.Add(this);
             }
             else
             {
-                Renew(characterBase);
+                Renew(owner, targetCharacter);
             }
         }
         else
         {
-            scriptableModifier.OnApply(characterBase, ref affectedCharacters);
+            scriptableModifier.OnApply(owner, targetCharacter, ref affectedCharacters);
             if(coroutine == null)
-                coroutine = characterBase.StartCoroutine(tickCoroutine(characterBase));
+                coroutine = targetCharacter.StartCoroutine(tickCoroutine(owner, targetCharacter));
         }
     }
 
 
-    public void Remove(CharacterBase characterBase)
+    public void Remove(CharacterBase owner, CharacterBase targetCharacter)
     {
-        scriptableModifier.OnRemove(characterBase, ref affectedCharacters);
+        scriptableModifier.OnRemove(owner, targetCharacter, ref affectedCharacters);
         if (!isPassive)
-            characterBase.AppliedAbilities.Remove(scriptableModifier);
+            targetCharacter.AppliedModifiers.Remove(this);
 
         if (coroutine != null)
-            characterBase.StopCoroutine(coroutine);
+            targetCharacter.StopCoroutine(coroutine);
     }
 
-    private void Renew(CharacterBase characterBase)
+    private void Renew(CharacterBase owner, CharacterBase targetCharacter)
     {
-        if(coroutine != null)
-            characterBase.StopCoroutine(coroutine);
-        coroutine = characterBase.StartCoroutine(tickCoroutine(characterBase));
+        //get the currently applies modifier on the character
+        var appliedModifier = targetCharacter.AppliedModifiers.FirstOrDefault(x => x.ScriptableModifier == scriptableModifier);
+
+        //if the currently applied modifier has a coroutine running stop it and remove from applied modifiers set
+        if (appliedModifier != null && appliedModifier.coroutine != null)
+        {
+            targetCharacter.StopCoroutine(appliedModifier.coroutine);
+            targetCharacter.AppliedModifiers.Remove(appliedModifier);
+        }
+        //Start a new coroutine and add the new modifier to the applied set replacing the old one
+        coroutine = targetCharacter.StartCoroutine(tickCoroutine(owner, targetCharacter));
+        targetCharacter.AppliedModifiers.Add(this);
     }
 
-    private IEnumerator tickCoroutine(CharacterBase characterBase)
+    private IEnumerator tickCoroutine(CharacterBase owner, CharacterBase targetCharacter)
     {
         float currentActiveTime = 0.0f;
 
@@ -102,7 +114,7 @@ public class Modifier
             while (currentActiveTime <= scriptableModifier.ActivePeriod)
             {
                 UnityEngine.Debug.Log(currentActiveTime);
-                scriptableModifier.OnTick(characterBase, ref affectedCharacters);
+                scriptableModifier.OnTick(owner, targetCharacter, ref affectedCharacters);
 
                 //Only update current active time if the ability is not passive as passive abilites will continuously tick
                 if(!isPassive)
@@ -113,11 +125,11 @@ public class Modifier
         }
         else
         {
-            scriptableModifier.OnTick(characterBase, ref affectedCharacters);
+            scriptableModifier.OnTick(owner, targetCharacter, ref affectedCharacters);
             yield return new WaitForSeconds(scriptableModifier.ActivePeriod);
         }
 
         if (!isPassive)
-            Remove(characterBase);
+            Remove(owner, targetCharacter);
     }
 }

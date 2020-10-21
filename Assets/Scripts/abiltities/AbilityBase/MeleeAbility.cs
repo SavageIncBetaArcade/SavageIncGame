@@ -9,8 +9,7 @@ public class MeleeAbility : AttackAbility
     //ForwardTriggerCollision from the weapons collider, so when the OnTriggerEnter get called the TriggerEnter also gets called
     private ForwardTriggerCollision forwardTrigger;
 
-    public MeleeAbility(UseableAbility useableAbility, ForwardTriggerCollision forwardTrigger) 
-        : base(useableAbility)
+    public MeleeAbility(UseableAbility useableAbility, ForwardTriggerCollision forwardTrigger, CharacterBase ownerCharacter) : base(useableAbility, ownerCharacter)
     {
         this.forwardTrigger = forwardTrigger;
         this.forwardTrigger.Initialize(TriggerEnter);
@@ -27,9 +26,13 @@ public class MeleeAbility : AttackAbility
         if (!_hasHit)
         {
             CharacterBase hitCharacter = collider.GetComponent<CharacterBase>();
-            if (hitCharacter != null && hitCharacter != useableAbility.CharacterBase)
+            if (hitCharacter != null && hitCharacter != OwnerCharacter)
             {
-                Hit(hitCharacter);
+                ScriptableMeleeAbility meleeAbility = Ability as ScriptableMeleeAbility;
+                if(meleeAbility == null)
+                    Debug.LogError("MeleeAbility: ScriptableAbility is not of type ScriptableMeleeAbility");
+
+                Hit(hitCharacter, meleeAbility != null ? meleeAbility.Damage : 0.0f);
                 _hasHit = true;
             }
         }
@@ -48,10 +51,10 @@ public class MeleeAbility : AttackAbility
         Debug.Log("Attacking");
     }
 
-    public override void Hit(CharacterBase hitCharacter)
+    public override void Hit(CharacterBase hitCharacter, float damage)
     {
         Debug.Log("Hit");
 
-        base.Hit(hitCharacter);
+        base.Hit(hitCharacter, damage);
     }
 }

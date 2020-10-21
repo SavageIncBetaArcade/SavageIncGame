@@ -2,7 +2,7 @@
 
 public class ProjectileAbility : AttackAbility
 {
-    public ProjectileAbility(UseableAbility useableAbility) : base(useableAbility)
+    public ProjectileAbility(UseableAbility useableAbility, CharacterBase ownerCharacter) : base(useableAbility, ownerCharacter)
     {
 
     } 
@@ -35,8 +35,8 @@ public class ProjectileAbility : AttackAbility
         }
     }
 
-    public override void Hit(CharacterBase targetCharacter)
+    public override void Hit(CharacterBase targetCharacter, float damage)
     {
-        base.Hit(targetCharacter);
+        base.Hit(targetCharacter, damage);
     }
 }

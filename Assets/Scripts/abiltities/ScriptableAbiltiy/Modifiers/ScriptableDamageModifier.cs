@@ -11,21 +11,24 @@ public class ScriptableDamageModifier : ScriptableModifier
 {
     public float Damage;
 
-    public override void OnApply(CharacterBase targetCharacter, ref List<CharacterBase> affectedCharacters)
+    public override void OnApply(CharacterBase ownerCharacter, CharacterBase targetCharacter,
+        ref List<CharacterBase> affectedCharacters)
     {
         affectedCharacters.Add(targetCharacter);
     }
 
-    public override void OnRemove(CharacterBase targetCharacter, ref List<CharacterBase> affectedCharacters)
+    public override void OnRemove(CharacterBase ownerCharacter, CharacterBase targetCharacter,
+        ref List<CharacterBase> affectedCharacters)
     {
         affectedCharacters.Clear();
     }
 
-    public override void OnTick(CharacterBase targetCharacter, ref List<CharacterBase> affectedCharacters)
+    public override void OnTick(CharacterBase ownerCharacter, CharacterBase targetCharacter,
+        ref List<CharacterBase> affectedCharacters)
     {
         ApplyEffects(targetCharacter);
 
-        //TODO add damage on tick
+        targetCharacter.TakeDamage(Damage);
         Debug.Log($"ScriptableDamageModifier: {ModifierName} applied {Damage} damage");
     }
 }

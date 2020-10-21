@@ -6,11 +6,15 @@ public class ScriptableSplashDamageModifier : ScriptableDamageModifier
 {
     public float Radius = 5.0f;
 
-    public override void OnApply(CharacterBase targetCharacter, ref List<CharacterBase> affectedCharacters)
+    public override void OnApply(CharacterBase ownerCharacter, CharacterBase targetCharacter,
+        ref List<CharacterBase> affectedCharacters)
     {
         //Get all characters within radius of the hit character
         foreach (var character in GetAllCharacters())
         {
+            if(character == ownerCharacter)
+                continue;
+            
             if (Vector3.Distance(character.transform.position, targetCharacter.transform.position) <= Radius)
             {
                 affectedCharacters.Add(character);
@@ -19,17 +23,19 @@ public class ScriptableSplashDamageModifier : ScriptableDamageModifier
         }
     }
 
-    public override void OnRemove(CharacterBase targetCharacter, ref List<CharacterBase> affectedCharacters)
+    public override void OnRemove(CharacterBase ownerCharacter, CharacterBase targetCharacter,
+        ref List<CharacterBase> affectedCharacters)
     {
         affectedCharacters.Clear();
     }
 
-    public override void OnTick(CharacterBase targetCharacter, ref List<CharacterBase> affectedCharacters)
+    public override void OnTick(CharacterBase ownerCharacter, CharacterBase targetCharacter,
+        ref List<CharacterBase> affectedCharacters)
     {
         foreach (var character in affectedCharacters)
         {
             ApplyEffects(character);
-            //TODO apply damage
+            targetCharacter.TakeDamage(Damage);
             Debug.Log($"Applied '{ModifierName}' dealing: {Damage} splash damage to {character.gameObject.name}");
         }
     }

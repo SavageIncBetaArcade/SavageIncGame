@@ -35,7 +35,7 @@ public class UseableAbility : MonoBehaviour
 
     void Initilise()
     {
-        ability = AbilityFactory.Create(this, ScriptableAbility, worldGameObject, HitAction);
+        ability = AbilityFactory.Create(this, ScriptableAbility, CharacterBase, worldGameObject, HitAction);
 
         //Create a copy of the Modifiers so this ability has its own instance
         modifierHandler = new ModifierHandler(Modifiers);

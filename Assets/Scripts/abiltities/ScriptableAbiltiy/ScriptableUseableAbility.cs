@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 
+//ScriptableUseableAbility inheirts from Item so abilities can exist within the inventory 
 [CreateAssetMenu(menuName = "Abilities/UseableAbility")]
-public class ScriptableUseableAbility : ScriptableAbility
+public class ScriptableUseableAbility : Item
 {
     public float Cooldown;
     public bool UseAnimationCooldown;

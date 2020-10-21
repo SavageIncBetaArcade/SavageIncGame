@@ -12,8 +12,10 @@ public class PlayerBase : CharacterBase
     private bool onGround;
     private bool isCrouching;
 
-    void Awake()
+    protected override void Awake()
     {
+        base.Awake();
+
         Controller = GetComponent<CharacterController>();
     }
 

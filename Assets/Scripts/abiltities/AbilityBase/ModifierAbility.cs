@@ -8,7 +8,7 @@ using UnityEngine;
 /// </summary>
 public class ModifierAbility : BaseAbility
 {
-    public ModifierAbility(UseableAbility useableAbility) : base(useableAbility)
+    public ModifierAbility(UseableAbility useableAbility, CharacterBase ownerCharacter) : base(useableAbility, ownerCharacter)
     {
 
     }

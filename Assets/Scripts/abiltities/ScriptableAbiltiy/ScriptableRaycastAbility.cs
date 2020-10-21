@@ -10,4 +10,5 @@ public class ScriptableRaycastAbility : ScriptableUseableAbility
 {
     public float Damage = 5.0f;
     public float Range = 25.0f;
+    public RaycastBolt RaycastBolt;
 }

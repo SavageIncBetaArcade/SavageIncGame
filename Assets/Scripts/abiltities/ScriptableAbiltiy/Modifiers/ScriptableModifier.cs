@@ -49,9 +49,12 @@ public abstract class ScriptableModifier : ScriptableObject
     public float ApplyFrequency => applyFrequency;
     #endregion
 
-    public abstract void OnApply(CharacterBase targetCharacter, ref List<CharacterBase> affectedCharacters);
-    public abstract void OnRemove(CharacterBase targetCharacter, ref List<CharacterBase> affectedCharacters);
-    public abstract void OnTick(CharacterBase targetCharacter, ref List<CharacterBase> affectedCharacters);
+    public abstract void OnApply(CharacterBase ownerCharacter, CharacterBase targetCharacter,
+        ref List<CharacterBase> affectedCharacters);
+    public abstract void OnRemove(CharacterBase ownerCharacter, CharacterBase targetCharacter,
+        ref List<CharacterBase> affectedCharacters);
+    public abstract void OnTick(CharacterBase ownerCharacter, CharacterBase targetCharacter,
+        ref List<CharacterBase> affectedCharacters);
 
     protected virtual void ApplyEffects(CharacterBase targetCharacter)
     {
