@@ -8,7 +8,8 @@ public class ScriptableChainDamageModifier : ScriptableDamageModifier
 {
     public int MaxTarget = 3;
     public float Range = 5.0f;
-    public float Delay = 0.0f;
+    public float Delay = 0.025f;
+    public float LifeTime = 0.5f;
 
     public Material ElectricMaterial;
     public GameObject LineGameObject;
@@ -20,19 +21,20 @@ public class ScriptableChainDamageModifier : ScriptableDamageModifier
         allCharacters = GetOrderedCharactersByPosition(targetCharacter);
         affectedCharacters.Add(targetCharacter);
         AddClosestCharacters(ownerCharacter,targetCharacter, ref affectedCharacters);
+        targetCharacter.StartCoroutine(ChainAttack(affectedCharacters));
     }
 
 
     public override void OnRemove(CharacterBase ownerCharacter, CharacterBase targetCharacter,
         ref List<CharacterBase> affectedCharacters)
     {
-        //affectedCharacters.Clear();
+
     }
 
     public override void OnTick(CharacterBase ownerCharacter, CharacterBase targetCharacter,
         ref List<CharacterBase> affectedCharacters)
     {
-        targetCharacter.StartCoroutine(ChainAttack(affectedCharacters));
+
     }
 
     private void AddClosestCharacters(CharacterBase owner, CharacterBase targetCharacter, ref List<CharacterBase> affectedCharacters)
@@ -84,6 +86,8 @@ public class ScriptableChainDamageModifier : ScriptableDamageModifier
             yield return new WaitForSeconds(Delay);
         }
 
+
+        yield return new WaitForSeconds(LifeTime);
         foreach (var affectedCharacter in affectedCharacters)
         {
             if (ElectricMaterial != null)

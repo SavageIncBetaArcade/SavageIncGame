@@ -21,22 +21,25 @@ public class ScriptableSplashDamageModifier : ScriptableDamageModifier
             }
 
         }
+
+        foreach (var character in affectedCharacters)
+        {
+            targetCharacter.TakeDamage(Damage);
+            Debug.Log($"Applied '{ModifierName}' dealing: {Damage} splash damage to {character.gameObject.name}");
+
+            ApplyEffects(character);
+        }
     }
 
     public override void OnRemove(CharacterBase ownerCharacter, CharacterBase targetCharacter,
         ref List<CharacterBase> affectedCharacters)
     {
-        affectedCharacters.Clear();
+
     }
 
     public override void OnTick(CharacterBase ownerCharacter, CharacterBase targetCharacter,
         ref List<CharacterBase> affectedCharacters)
     {
-        foreach (var character in affectedCharacters)
-        {
-            ApplyEffects(character);
-            targetCharacter.TakeDamage(Damage);
-            Debug.Log($"Applied '{ModifierName}' dealing: {Damage} splash damage to {character.gameObject.name}");
-        }
+        
     }
 }
