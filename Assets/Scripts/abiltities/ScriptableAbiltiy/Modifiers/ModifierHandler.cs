@@ -49,9 +49,18 @@ public class ModifierHandler
 
     public void ApplyActionModifiers(CharacterBase characterBase, CharacterBase targetCharacterBase)
     {
+        HashSet<CharacterBase> affectedCharacters = new HashSet<CharacterBase>(){targetCharacterBase};
         foreach (var abilityModifier in actionModifiers)
         {
-            applyModifier(abilityModifier, characterBase, targetCharacterBase);
+            int count = affectedCharacters.Count;
+            for (int i = 0; i < count; i++)
+            {
+                Modifier modifier = applyModifier(abilityModifier, characterBase, affectedCharacters.ElementAt(i));
+                foreach (var character in modifier.AffectedCharacters)
+                {
+                    affectedCharacters.Add(character);
+                }
+            }
         }
     }
 
@@ -63,11 +72,11 @@ public class ModifierHandler
         }
     }
 
-    private void applyModifier(AbilityModifier abilityModifier, CharacterBase characterBase,
+    private Modifier applyModifier(AbilityModifier abilityModifier, CharacterBase characterBase,
         CharacterBase targetCharacterBase)
     {
         if(abilityModifier.Modifier == null)
-            return;
+            return null;
         
         //create a new instance of the modifier
         Modifier modifier = new Modifier(abilityModifier.Modifier, characterBase);
@@ -83,5 +92,7 @@ public class ModifierHandler
             default:
                 throw new ArgumentOutOfRangeException();
         }
+
+        return modifier;
     }
 }

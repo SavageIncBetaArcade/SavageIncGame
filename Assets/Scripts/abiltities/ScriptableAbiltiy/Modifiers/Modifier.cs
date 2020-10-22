@@ -27,6 +27,7 @@ public class Modifier
     public string ModifierDescription => scriptableModifier.ModifierDescription;
     public float ActivePeriod => scriptableModifier.ActivePeriod;
     public float ApplyFrequency => scriptableModifier.ApplyFrequency;
+    public List<CharacterBase> AffectedCharacters => affectedCharacters;
 
     public bool IsPassive
     {

@@ -14,13 +14,13 @@ public class ScriptableDamageModifier : ScriptableModifier
     public override void OnApply(CharacterBase ownerCharacter, CharacterBase targetCharacter,
         ref List<CharacterBase> affectedCharacters)
     {
-        affectedCharacters.Add(targetCharacter);
+
     }
 
     public override void OnRemove(CharacterBase ownerCharacter, CharacterBase targetCharacter,
         ref List<CharacterBase> affectedCharacters)
     {
-        affectedCharacters.Clear();
+
     }
 
     public override void OnTick(CharacterBase ownerCharacter, CharacterBase targetCharacter,

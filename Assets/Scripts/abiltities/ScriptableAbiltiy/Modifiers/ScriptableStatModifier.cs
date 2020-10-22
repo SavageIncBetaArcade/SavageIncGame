@@ -16,7 +16,6 @@ public class ScriptableStatModifier : ScriptableModifier
     public override void OnApply(CharacterBase ownerCharacter, CharacterBase targetCharacter,
         ref List<CharacterBase> affectedCharacters)
     {
-        affectedCharacters.Add(targetCharacter);
         if(!Percentage)
             targetCharacter.ApplyStatModifier(Type, Amount);
         else
@@ -25,12 +24,13 @@ public class ScriptableStatModifier : ScriptableModifier
             targetCharacter.StartCoroutine(
                 targetCharacter.ApplyStatsModifierOverPeriod(Type, percentageAmount, ActivePeriod));
         }
+
+        ApplyEffects(targetCharacter);
     }
 
     public override void OnRemove(CharacterBase ownerCharacter, CharacterBase targetCharacter,
         ref List<CharacterBase> affectedCharacters)
     {
-        affectedCharacters.Clear();
         if (!Percentage)
             targetCharacter.ApplyStatModifier(Type, -Amount);
 
@@ -39,6 +39,6 @@ public class ScriptableStatModifier : ScriptableModifier
     public override void OnTick(CharacterBase ownerCharacter, CharacterBase targetCharacter,
         ref List<CharacterBase> affectedCharacters)
     {
-        ApplyEffects(targetCharacter);
+
     }
 }
