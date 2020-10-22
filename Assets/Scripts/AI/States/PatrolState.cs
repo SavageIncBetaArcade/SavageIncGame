@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.AI;
 
 [CreateAssetMenu(menuName = "AIStates/Patrol")]
 public class PatrolState : State
@@ -12,31 +14,32 @@ public class PatrolState : State
 
     void Patrol(ref StackFSM stackStates)
     {
-        stackStates.aiBase.navAgent.isStopped = false; // makes sure the enemy is moving
+        NavMeshAgent navAgent = stackStates.aiBase.GetNavMeshAgent();
+        navAgent.isStopped = false; // makes sure the enemy is moving
+        ref AIBase aiBase = ref stackStates.aiBase;
 
         if (stackStates.aiBase.patrolPoints.Length > 1) //checks if enemy is patroling.
         {
-            stackStates.aiBase.navAgent.SetDestination(stackStates.aiBase.patrolPoints[stackStates.aiBase.currentPatrolPoint]); //sets next destination point
+            navAgent.SetDestination(aiBase.patrolPoints[aiBase.currentPatrolPoint]); //sets next destination point
 
             //moves the enemy onto the next patrolpoint
-            if (stackStates.aiBase.transform.position == stackStates.aiBase.patrolPoints[stackStates.aiBase.currentPatrolPoint] || 
-                Vector3.Distance(stackStates.aiBase.transform.position, stackStates.aiBase.patrolPoints[stackStates.aiBase.currentPatrolPoint]) < 5.0f)
+            if (aiBase.transform.position == aiBase.patrolPoints[aiBase.currentPatrolPoint] || 
+                Vector3.Distance(aiBase.transform.position, aiBase.patrolPoints[aiBase.currentPatrolPoint]) < 5.0f)
             {
-                if (stackStates.aiBase.patrolPoints[stackStates.aiBase.currentPatrolPoint] == stackStates.aiBase.patrolPoints[stackStates.aiBase.nextPatrolPoint])
+                if (aiBase.patrolPoints[aiBase.currentPatrolPoint] == aiBase.patrolPoints[aiBase.nextPatrolPoint])
                 {
-                    stackStates.PushState(stackStates.aiBase.potentialStates[1]);
+                    State idle = aiBase.potentialStates.Where(x => x.stateName == StateNames.IdleState).FirstOrDefault();
+                    if(idle)
+                        stackStates.PushState(idle);
                 }
-                stackStates.aiBase.currentPatrolPoint = stackStates.aiBase.nextPatrolPoint;
-                stackStates.aiBase.nextPatrolPoint++;
-                //finds a random point for the roamers
-                //if (randomPatrol)
-                //    patrolPoint = Random.Range(0, patrolPoints.Length);
+                aiBase.currentPatrolPoint = aiBase.nextPatrolPoint;
+                aiBase.nextPatrolPoint++;               
             }
 
             //checks if out of the patrol array of points
-            if (stackStates.aiBase.nextPatrolPoint >= stackStates.aiBase.patrolPoints.Length)
+            if (aiBase.nextPatrolPoint >= aiBase.patrolPoints.Length)
             {
-                stackStates.aiBase.nextPatrolPoint = 0;
+                aiBase.nextPatrolPoint = 0;
             }
         }
     }

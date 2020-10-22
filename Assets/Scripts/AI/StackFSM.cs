@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
 public class StackFSM : MonoBehaviour
 {
     private List<State> stateStack = new List<State>();
