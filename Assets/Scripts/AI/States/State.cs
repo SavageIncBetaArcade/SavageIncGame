@@ -12,6 +12,8 @@ public enum StateNames
 
 public abstract class State : ScriptableObject
 {
+    public StateNames StateName;
+
     public virtual void OnPush()
     {
 
@@ -23,7 +25,4 @@ public abstract class State : ScriptableObject
     }
 
     public abstract void OnUpdate(ref StackFSM stackStates);
-
-    public StateNames stateName;
-
 }

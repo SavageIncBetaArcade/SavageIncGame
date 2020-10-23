@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "AIStates/Idle")]
 public class IdleState : State
 {
-    float stateExpireTime;
+    private float stateExpireTime;
 
     public override void OnUpdate(ref StackFSM stackStates)
     {

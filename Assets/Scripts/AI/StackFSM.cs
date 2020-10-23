@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class StackFSM : MonoBehaviour
 {
-    private List<State> stateStack = new List<State>();
     public AIBase aiBase;
+    private List<State> stateStack = new List<State>();
 
     private void Start()
     {

@@ -14,32 +14,32 @@ public class PatrolState : State
 
     void Patrol(ref StackFSM stackStates)
     {
-        NavMeshAgent navAgent = stackStates.aiBase.GetNavMeshAgent();
+        NavMeshAgent navAgent = stackStates.aiBase.NavAgent;
         navAgent.isStopped = false; // makes sure the enemy is moving
         ref AIBase aiBase = ref stackStates.aiBase;
 
-        if (stackStates.aiBase.patrolPoints.Length > 1) //checks if enemy is patroling.
+        if (stackStates.aiBase.PatrolPoints.Length > 1) //checks if enemy is patroling.
         {
-            navAgent.SetDestination(aiBase.patrolPoints[aiBase.currentPatrolPoint]); //sets next destination point
+            navAgent.SetDestination(aiBase.PatrolPoints[aiBase.CurrentPatrolPoint]); //sets next destination point
 
             //moves the enemy onto the next patrolpoint
-            if (aiBase.transform.position == aiBase.patrolPoints[aiBase.currentPatrolPoint] || 
-                Vector3.Distance(aiBase.transform.position, aiBase.patrolPoints[aiBase.currentPatrolPoint]) < 5.0f)
+            if (aiBase.transform.position == aiBase.PatrolPoints[aiBase.CurrentPatrolPoint] || 
+                Vector3.Distance(aiBase.transform.position, aiBase.PatrolPoints[aiBase.CurrentPatrolPoint]) < 5.0f)
             {
-                if (aiBase.patrolPoints[aiBase.currentPatrolPoint] == aiBase.patrolPoints[aiBase.nextPatrolPoint])
+                if (aiBase.PatrolPoints[aiBase.CurrentPatrolPoint] == aiBase.PatrolPoints[aiBase.NextPatrolPoint])
                 {
-                    State idle = aiBase.potentialStates.Where(x => x.stateName == StateNames.IdleState).FirstOrDefault();
+                    State idle = aiBase.PotentialStates.FirstOrDefault(x => x.StateName == StateNames.IdleState);
                     if(idle)
                         stackStates.PushState(idle);
                 }
-                aiBase.currentPatrolPoint = aiBase.nextPatrolPoint;
-                aiBase.nextPatrolPoint++;               
+                aiBase.CurrentPatrolPoint = aiBase.NextPatrolPoint;
+                aiBase.NextPatrolPoint++;               
             }
 
             //checks if out of the patrol array of points
-            if (aiBase.nextPatrolPoint >= aiBase.patrolPoints.Length)
+            if (aiBase.NextPatrolPoint >= aiBase.PatrolPoints.Length)
             {
-                aiBase.nextPatrolPoint = 0;
+                aiBase.NextPatrolPoint = 0;
             }
         }
     }

@@ -663,17 +663,17 @@ MonoBehaviour:
   jumpHeight: 1
   currentHealth: 0
   currentEnergy: 0
-  senseRange: 60
-  angleOfVision: 45
-  patrolPoints:
+  SenseRange: 60
+  AngleOfVision: 45
+  PatrolPoints:
   - {x: 0, y: 1, z: 0}
   - {x: 15, y: 1, z: 0}
   - {x: 0, y: 1, z: -15}
   - {x: 15, y: 1, z: -15}
   - {x: 0, y: 1, z: 0}
-  currentPatrolPoint: 0
-  nextPatrolPoint: 1
-  potentialStates:
+  CurrentPatrolPoint: 0
+  NextPatrolPoint: 1
+  PotentialStates:
   - {fileID: 11400000, guid: 848f97773e962304a865562377e82769, type: 2}
   - {fileID: 11400000, guid: 281664a7cb7e76e4f8a900fb10c767cd, type: 2}
   - {fileID: 11400000, guid: d4bc6a6975d0580418bf3b97e5618493, type: 2}
