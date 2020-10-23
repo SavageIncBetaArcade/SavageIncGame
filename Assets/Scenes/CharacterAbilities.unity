@@ -3677,7 +3677,7 @@ PrefabInstance:
     - target: {fileID: 3287459473351049832, guid: 6977d88c4b1ceec4c96e0ab898b9402d,
         type: 3}
       propertyPath: Modifiers.Array.size
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3287459473351049832, guid: 6977d88c4b1ceec4c96e0ab898b9402d,
         type: 3}
@@ -3707,6 +3707,33 @@ PrefabInstance:
       propertyPath: Modifiers.Array.data[1].Target
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3287459473351049832, guid: 6977d88c4b1ceec4c96e0ab898b9402d,
+        type: 3}
+      propertyPath: Modifiers.Array.data[2].Modifier
+      value: 
+      objectReference: {fileID: 11400000, guid: 132d231ad712de541b4efd80e9997649,
+        type: 2}
+    - target: {fileID: 3287459473351049832, guid: 6977d88c4b1ceec4c96e0ab898b9402d,
+        type: 3}
+      propertyPath: Modifiers.Array.data[2].Stage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3287459473351049832, guid: 6977d88c4b1ceec4c96e0ab898b9402d,
+        type: 3}
+      propertyPath: Modifiers.Array.data[2].Target
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3287459473351049832, guid: 6977d88c4b1ceec4c96e0ab898b9402d,
+        type: 3}
+      propertyPath: Modifiers.Array.data[3].Modifier
+      value: 
+      objectReference: {fileID: 11400000, guid: 308988ef461c47f4e87c00051f291932,
+        type: 2}
+    - target: {fileID: 3287459473351049832, guid: 6977d88c4b1ceec4c96e0ab898b9402d,
+        type: 3}
+      propertyPath: Modifiers.Array.data[3].Stage
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3287459473709432247, guid: 6977d88c4b1ceec4c96e0ab898b9402d,
         type: 3}
       propertyPath: m_Enabled
@@ -3721,6 +3748,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.y
       value: 0.22499996
+      objectReference: {fileID: 0}
+    - target: {fileID: 3287459474639506984, guid: 6977d88c4b1ceec4c96e0ab898b9402d,
+        type: 3}
+      propertyPath: maxHealth
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3287459474639506984, guid: 6977d88c4b1ceec4c96e0ab898b9402d,
+        type: 3}
+      propertyPath: maxEnergy
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6977d88c4b1ceec4c96e0ab898b9402d, type: 3}

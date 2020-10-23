@@ -72,22 +72,22 @@ public class ModifierHandler
         }
     }
 
-    private Modifier applyModifier(AbilityModifier abilityModifier, CharacterBase characterBase,
+    private Modifier applyModifier(AbilityModifier abilityModifier, CharacterBase ownerCharacter,
         CharacterBase targetCharacterBase)
     {
         if(abilityModifier.Modifier == null)
             return null;
         
         //create a new instance of the modifier
-        Modifier modifier = new Modifier(abilityModifier.Modifier, characterBase);
+        Modifier modifier = new Modifier(abilityModifier.Modifier, ownerCharacter);
 
         switch (abilityModifier.Target)
         {
             case ModifierTarget.CASTER:
-                modifier.Apply(characterBase, characterBase);
+                modifier.Apply(ownerCharacter, ownerCharacter);
                 break;
             case ModifierTarget.TARGET:
-                modifier.Apply(characterBase, targetCharacterBase);
+                modifier.Apply(ownerCharacter, targetCharacterBase);
                 break;
             default:
                 throw new ArgumentOutOfRangeException();
