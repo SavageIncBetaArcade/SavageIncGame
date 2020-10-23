@@ -25,8 +25,10 @@ public class AIBase : CharacterBase
     public NavMeshAgent NavAgent => navAgent;
     #endregion
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
+
         navAgent = GetComponent<NavMeshAgent>();
         stackOfStates = GetComponent<StackFSM>();
 
