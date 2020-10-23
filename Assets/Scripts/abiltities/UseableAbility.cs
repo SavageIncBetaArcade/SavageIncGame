@@ -13,6 +13,7 @@ public class UseableAbility : MonoBehaviour
 {
     //Abilities that use mono behavior are all useable I.E (Weapons, Buffs) - Passive abilities work in a different way
     public ScriptableUseableAbility ScriptableAbility;
+    public string UseButton = "Fire1";
     public string AnimationUseBoolName;
     public Animator UseAnimator;
 
@@ -62,7 +63,7 @@ public class UseableAbility : MonoBehaviour
     protected virtual void Update()
     {
         //TODO check if the current CharacterBase is the player, only attack on left click if player
-        if (!OnCooldown() && Input.GetButtonDown("Fire1"))
+        if (!OnCooldown() && Input.GetButtonDown(UseButton))
         {
             ExecuteUse();
             _lastUseTime = Time.time;
@@ -71,6 +72,9 @@ public class UseableAbility : MonoBehaviour
 
     protected bool OnCooldown()
     {
+        if (_lastUseTime == 0.0f)
+            return false;
+
         if (ScriptableAbility.UseAnimationCooldown && UseAnimator != null && !string.IsNullOrWhiteSpace(AnimationUseBoolName))
         {
             return UseAnimator.GetBool(AnimationUseBoolName);
