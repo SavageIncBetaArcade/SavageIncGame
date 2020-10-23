@@ -23,6 +23,8 @@ public abstract class ScriptableModifier : ScriptableObject
     protected string modifierName;
     [SerializeField]
     protected string modifierDescription;
+    [SerializeField] 
+    protected int modifierLevel;
 
     /// <summary>
     /// How Long is the modifier active for till it gets removed from the target?
