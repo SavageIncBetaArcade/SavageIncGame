@@ -15,10 +15,15 @@ public class ScriptableChainDamageModifier : ScriptableDamageModifier
     public GameObject LineGameObject;
     private CharacterBase[] allCharacters;
 
+    public override void OnHit(CharacterBase ownerCharacter, Vector3 hitPosition, ref List<CharacterBase> affectedCharacters)
+    {
+        
+    }
+
     public override void OnApply(CharacterBase ownerCharacter, CharacterBase targetCharacter,
         ref List<CharacterBase> affectedCharacters)
     {
-        allCharacters = GetOrderedCharactersByPosition(targetCharacter);
+        allCharacters = GetOrderedCharactersByPosition(targetCharacter.transform.position);
         affectedCharacters.Add(targetCharacter);
         AddClosestCharacters(ownerCharacter,targetCharacter, ref affectedCharacters);
         targetCharacter.StartCoroutine(ChainAttack(affectedCharacters));
@@ -42,7 +47,7 @@ public class ScriptableChainDamageModifier : ScriptableDamageModifier
         if (affectedCharacters.Count >= MaxTarget)
             return;
         
-        var orderedCharacters = GetOrderedCharactersByPosition(targetCharacter);
+        var orderedCharacters = GetOrderedCharactersByPosition(targetCharacter.transform.position);
 
         foreach (var orderedCharacter in orderedCharacters)
         {

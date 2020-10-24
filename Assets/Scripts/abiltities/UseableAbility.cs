@@ -104,8 +104,8 @@ public class UseableAbility : MonoBehaviour
         return Instantiate(gameObject, transform.position, transform.rotation);
     }
 
-    private void HitAction(CharacterBase attackingcharacter, CharacterBase targetcharacter)
+    private void HitAction(CharacterBase attackingcharacter, GameObject targetObject, Vector3 hitPoint)
     {
-        modifierHandler.ApplyActionModifiers(attackingcharacter, targetcharacter);
+        modifierHandler.ApplyActionModifiers(attackingcharacter, targetObject, hitPoint);
     }
 }

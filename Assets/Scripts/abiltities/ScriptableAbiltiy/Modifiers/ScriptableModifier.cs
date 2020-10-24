@@ -51,6 +51,8 @@ public abstract class ScriptableModifier : ScriptableObject
     public float ApplyFrequency => applyFrequency;
     #endregion
 
+    public abstract void OnHit(CharacterBase ownerCharacter, Vector3 hitPosition,
+        ref List<CharacterBase> affectedCharacters);
     public abstract void OnApply(CharacterBase ownerCharacter, CharacterBase targetCharacter,
         ref List<CharacterBase> affectedCharacters);
     public abstract void OnRemove(CharacterBase ownerCharacter, CharacterBase targetCharacter,
@@ -72,9 +74,9 @@ public abstract class ScriptableModifier : ScriptableObject
         return FindObjectsOfType<CharacterBase>();
     }
 
-    protected CharacterBase[] GetOrderedCharactersByPosition(CharacterBase characterBase)
+    protected CharacterBase[] GetOrderedCharactersByPosition(Vector3 position)
     {
-        return GetAllCharacters().OrderBy(x => Vector3.Distance(characterBase.transform.position,x.transform.position)).ToArray();
+        return GetAllCharacters().OrderBy(x => Vector3.Distance(position,x.transform.position)).ToArray();
     }
 }
 

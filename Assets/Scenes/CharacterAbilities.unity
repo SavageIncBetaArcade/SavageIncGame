@@ -3677,13 +3677,13 @@ PrefabInstance:
     - target: {fileID: 3287459473351049832, guid: 6977d88c4b1ceec4c96e0ab898b9402d,
         type: 3}
       propertyPath: Modifiers.Array.size
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3287459473351049832, guid: 6977d88c4b1ceec4c96e0ab898b9402d,
         type: 3}
       propertyPath: ScriptableAbility
       value: 
-      objectReference: {fileID: 11400000, guid: 2831fb0e02732a945a8070644a502fd7,
+      objectReference: {fileID: 11400000, guid: 79af1956af198bd4eb7772925e323b17,
         type: 2}
     - target: {fileID: 3287459473351049832, guid: 6977d88c4b1ceec4c96e0ab898b9402d,
         type: 3}
@@ -3739,6 +3739,16 @@ PrefabInstance:
       propertyPath: UseButton
       value: Fire1
       objectReference: {fileID: 0}
+    - target: {fileID: 3287459473351049832, guid: 6977d88c4b1ceec4c96e0ab898b9402d,
+        type: 3}
+      propertyPath: Modifiers.Array.data[0].Stage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3287459473351049832, guid: 6977d88c4b1ceec4c96e0ab898b9402d,
+        type: 3}
+      propertyPath: Modifiers.Array.data[0].Target
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3287459473709432247, guid: 6977d88c4b1ceec4c96e0ab898b9402d,
         type: 3}
       propertyPath: m_Enabled
@@ -3752,7 +3762,7 @@ PrefabInstance:
     - target: {fileID: 3287459473354534074, guid: 6977d88c4b1ceec4c96e0ab898b9402d,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.06
+      value: 0.364
       objectReference: {fileID: 0}
     - target: {fileID: 3287459473354534074, guid: 6977d88c4b1ceec4c96e0ab898b9402d,
         type: 3}

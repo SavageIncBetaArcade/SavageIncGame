@@ -35,8 +35,8 @@ public class ProjectileAbility : AttackAbility
         }
     }
 
-    public override void Hit(CharacterBase targetCharacter, float damage)
+    public override void Hit(GameObject hitObject, float damage, Vector3 hitPoint)
     {
-        base.Hit(targetCharacter, damage);
+        base.Hit(hitObject, damage, hitPoint);
     }
 }
