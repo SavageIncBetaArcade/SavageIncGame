@@ -48,10 +48,10 @@ public class Projectile : MonoBehaviour
         //First check if it has a health component
         //TODO add health component and pass into hit
 
-        Impact(collision.gameObject, collision.GetContact(0).point);
+        Impact(collision.gameObject, collision.GetContact(0).point, collision.GetContact(0).normal);
     }
 
-    void Impact(GameObject hitGameObject, Vector3 hitPoint)
+    void Impact(GameObject hitGameObject, Vector3 hitPoint, Vector3 hitNormal)
     {
         if (castersProjectileAbility != null)
         {
@@ -65,7 +65,7 @@ public class Projectile : MonoBehaviour
                 Debug.LogError("Projectile: ScriptableAbility is not of type ScriptableProjectileAbility");
 
             castersProjectileAbility.Hit(hitGameObject, projectileAbility != null ? projectileAbility.Damage : 0.0f,
-                hitPoint);
+                hitPoint, hitNormal);
         }
 
         Destroy(gameObject);
