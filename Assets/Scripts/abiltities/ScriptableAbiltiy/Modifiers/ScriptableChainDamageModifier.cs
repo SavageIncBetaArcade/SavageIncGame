@@ -84,7 +84,7 @@ public class ScriptableChainDamageModifier : ScriptableDamageModifier
                 RaycastBolt raycastBolt = gameObject.GetComponent<RaycastBolt>();
                 raycastBolt.LifeTime = -1.0f;
                 raycastBolt.TimeToTarget = Delay;
-                raycastBolt.SetPoints(start.position , end.position);
+                raycastBolt.SetPoints(start , end);
             }
 
 

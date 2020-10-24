@@ -13,6 +13,9 @@ public class RaycastBolt : MonoBehaviour
     private LineRenderer lineRenderer;
     private Vector3 startPosition;
     private Vector3 target;
+
+    private Transform startTransform;
+    private Transform endTransform;
     private float time = 0.0f;
 
     void Awake()
@@ -26,8 +29,21 @@ public class RaycastBolt : MonoBehaviour
     void Update()
     {
         time += Time.deltaTime / TimeToTarget;
-        Vector3 pos = Vector3.Lerp(startPosition, target, time);
-        lineRenderer.SetPosition(1, pos);
+
+        if (startTransform != null && endTransform != null)
+        {
+            Vector3 end = Vector3.Lerp(startTransform.position, endTransform.position, time);
+
+            lineRenderer.SetPosition(0, startTransform.position);
+            lineRenderer.SetPosition(1, end);
+        }
+        else
+        {
+            Vector3 end = Vector3.Lerp(startPosition, target, time);
+
+            lineRenderer.SetPosition(0, startPosition);
+            lineRenderer.SetPosition(1, end);
+        }
     }
 
     public void SetPoints(Vector3 start, Vector3 end)
@@ -37,6 +53,18 @@ public class RaycastBolt : MonoBehaviour
         target = end;
         lineRenderer.SetPosition(0, startPosition);
         lineRenderer.SetPosition(1, startPosition);
+        lineRenderer.enabled = true;
+
+        SetDestroy();
+    }
+
+    public void SetPoints(Transform start, Transform end)
+    {
+        time = 0;
+        startTransform = start;
+        endTransform = end;
+        lineRenderer.SetPosition(0, startTransform.position);
+        lineRenderer.SetPosition(1, startTransform.position);
         lineRenderer.enabled = true;
 
         SetDestroy();
