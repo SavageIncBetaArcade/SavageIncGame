@@ -13,6 +13,7 @@ public class MeleeAbility : AttackAbility
     {
         this.forwardTrigger = forwardTrigger;
         this.forwardTrigger.Initialize(TriggerEnter);
+        _hasHit = true;
     }
 
     /// <summary>
@@ -25,16 +26,12 @@ public class MeleeAbility : AttackAbility
         //TODO add health component
         if (!_hasHit)
         {
-            CharacterBase hitCharacter = collider.GetComponent<CharacterBase>();
-            if (hitCharacter != null && hitCharacter != OwnerCharacter)
-            {
-                ScriptableMeleeAbility meleeAbility = Ability as ScriptableMeleeAbility;
-                if(meleeAbility == null)
-                    Debug.LogError("MeleeAbility: ScriptableAbility is not of type ScriptableMeleeAbility");
+            ScriptableMeleeAbility meleeAbility = Ability as ScriptableMeleeAbility;
+            if (meleeAbility == null)
+                Debug.LogError("MeleeAbility: ScriptableAbility is not of type ScriptableMeleeAbility");
 
-                Hit(hitCharacter, meleeAbility != null ? meleeAbility.Damage : 0.0f);
-                _hasHit = true;
-            }
+            Hit(collider.gameObject, meleeAbility != null ? meleeAbility.Damage : 0.0f, collider.ClosestPoint(collider.transform.position));
+            _hasHit = true;
         }
     }
 
@@ -51,10 +48,10 @@ public class MeleeAbility : AttackAbility
         Debug.Log("Attacking");
     }
 
-    public override void Hit(CharacterBase hitCharacter, float damage)
+    public override void Hit(GameObject hitObject, float damage, Vector3 hitPoint)
     {
         Debug.Log("Hit");
 
-        base.Hit(hitCharacter, damage);
+        base.Hit(hitObject, damage, hitPoint);
     }
 }

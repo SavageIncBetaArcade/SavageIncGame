@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// The AttackAbility is a BaseAbility with an additional Hit method and OnHit event
+/// The AttackAbility is a BaseAbility with an additional Hit method and Hit event
 /// MeleeAbility, ProjectileAbility and RaycaseAbility all derive from the AttackAbility
 /// </summary>
 public abstract class AttackAbility : BaseAbility
 {
-    public delegate void HitAction(CharacterBase attackingCharacter, CharacterBase targetCharacter);
+    public delegate void HitAction(CharacterBase attackingCharacter, GameObject targetObject, Vector3 hitPoint);
     public event HitAction OnHit;
 
     protected AttackAbility(UseableAbility useableAbility, CharacterBase ownerCharacter) : base(useableAbility, ownerCharacter)
@@ -16,15 +16,18 @@ public abstract class AttackAbility : BaseAbility
 
     }
 
-    public virtual void Hit(CharacterBase targetCharacter, float damage)
+    public virtual void Hit(GameObject hitObject, float damage, Vector3 hitPoint)
     {
-        targetCharacter.TakeDamage(damage);
+        if(hitObject == OwnerCharacter.gameObject)
+            return;
 
-        OnHit?.Invoke(useableAbility.CharacterBase,targetCharacter);
+        hitObject.GetComponent<CharacterBase>()?.TakeDamage(damage);
+
+        OnHit?.Invoke(useableAbility.CharacterBase,hitObject, hitPoint);
 
         foreach (var hitEffect in Ability.HitEffects)
         {
-            useableAbility.InstantiateObject(hitEffect, targetCharacter.transform);
+            useableAbility.InstantiateObject(hitEffect, hitObject.transform);
         }
     }
 

@@ -11,6 +11,11 @@ public class ScriptableDamageModifier : ScriptableModifier
 {
     public float Damage;
 
+    public override void OnHit(CharacterBase ownerCharacter, Vector3 hitPosition, ref List<CharacterBase> affectedCharacters)
+    {
+
+    }
+
     public override void OnApply(CharacterBase ownerCharacter, CharacterBase targetCharacter,
         ref List<CharacterBase> affectedCharacters)
     {

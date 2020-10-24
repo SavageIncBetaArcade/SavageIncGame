@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEngine;
 
 public class ModifierHandler
 {
@@ -47,11 +48,28 @@ public class ModifierHandler
         }
     }
 
-    public void ApplyActionModifiers(CharacterBase characterBase, CharacterBase targetCharacterBase)
+    public void ApplyActionModifiers(CharacterBase characterBase, GameObject targetObject, Vector3 hitPoint)
     {
-        HashSet<CharacterBase> affectedCharacters = new HashSet<CharacterBase>(){targetCharacterBase};
-        foreach (var abilityModifier in actionModifiers)
+        if(actionModifiers.Count == 0)
+            return;
+
+        CharacterBase targetcharacter = targetObject.GetComponent<CharacterBase>();
+        HashSet<CharacterBase> affectedCharacters = new HashSet<CharacterBase>();
+
+        if (targetcharacter)
+            affectedCharacters.Add(targetcharacter);
+
+        Modifier mod = new Modifier(actionModifiers[0].Modifier, characterBase);
+        mod.Hit(hitPoint);
+        foreach (var character in mod.AffectedCharacters)
         {
+            affectedCharacters.Add(character);
+        }
+
+
+        for (var modifierIndex = 1; modifierIndex < actionModifiers.Count; modifierIndex++)
+        {
+            var abilityModifier = actionModifiers[modifierIndex];
             int count = affectedCharacters.Count;
             for (int i = 0; i < count; i++)
             {
@@ -73,21 +91,21 @@ public class ModifierHandler
     }
 
     private Modifier applyModifier(AbilityModifier abilityModifier, CharacterBase ownerCharacter,
-        CharacterBase targetCharacterBase)
+        CharacterBase targetCharacter)
     {
         if(abilityModifier.Modifier == null)
             return null;
-        
+
         //create a new instance of the modifier
         Modifier modifier = new Modifier(abilityModifier.Modifier, ownerCharacter);
 
         switch (abilityModifier.Target)
         {
             case ModifierTarget.CASTER:
-                modifier.Apply(ownerCharacter, ownerCharacter);
+                modifier.Apply(ownerCharacter);
                 break;
             case ModifierTarget.TARGET:
-                modifier.Apply(ownerCharacter, targetCharacterBase);
+                modifier.Apply(targetCharacter);
                 break;
             default:
                 throw new ArgumentOutOfRangeException();

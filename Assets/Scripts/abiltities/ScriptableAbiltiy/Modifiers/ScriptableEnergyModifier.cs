@@ -12,6 +12,11 @@ public class ScriptableEnergyModifier : ScriptableModifier
     public bool Percentage = false;
     public bool ReplenishOwner = false;
 
+    public override void OnHit(CharacterBase ownerCharacter, Vector3 hitPosition, ref List<CharacterBase> affectedCharacters)
+    {
+        throw new NotImplementedException();
+    }
+
     public override void OnApply(CharacterBase ownerCharacter, CharacterBase targetCharacter, ref List<CharacterBase> affectedCharacters)
     {
         CharacterBase target = ReplenishOwner ? ownerCharacter : targetCharacter;
