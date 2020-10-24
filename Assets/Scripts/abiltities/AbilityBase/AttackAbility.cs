@@ -8,7 +8,7 @@ using UnityEngine;
 /// </summary>
 public abstract class AttackAbility : BaseAbility
 {
-    public delegate void HitAction(CharacterBase attackingCharacter, GameObject targetObject, Vector3 hitPoint);
+    public delegate void HitAction(CharacterBase attackingCharacter, GameObject targetObject, Vector3 hitPoint, Vector3 hitNormal);
     public event HitAction OnHit;
 
     protected AttackAbility(UseableAbility useableAbility, CharacterBase ownerCharacter) : base(useableAbility, ownerCharacter)
@@ -16,14 +16,14 @@ public abstract class AttackAbility : BaseAbility
 
     }
 
-    public virtual void Hit(GameObject hitObject, float damage, Vector3 hitPoint)
+    public virtual void Hit(GameObject hitObject, float damage, Vector3 hitPoint, Vector3 hitNormal)
     {
         if(hitObject == OwnerCharacter.gameObject)
             return;
 
         hitObject.GetComponent<CharacterBase>()?.TakeDamage(damage);
 
-        OnHit?.Invoke(useableAbility.CharacterBase,hitObject, hitPoint);
+        OnHit?.Invoke(useableAbility.CharacterBase,hitObject, hitPoint, hitNormal);
 
         foreach (var hitEffect in Ability.HitEffects)
         {

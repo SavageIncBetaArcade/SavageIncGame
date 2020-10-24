@@ -12,7 +12,9 @@ public class ScriptableHealModifier : ScriptableModifier
     public bool Percentage = false;
     public bool HealOwner = false;
 
-    public override void OnHit(CharacterBase ownerCharacter, Vector3 hitPosition, ref List<CharacterBase> affectedCharacters)
+    public override void OnHit(CharacterBase ownerCharacter, Vector3 hitPosition, Vector3 hitNormal,
+        GameObject hitObject,
+        ref List<CharacterBase> affectedCharacters)
     {
         throw new NotImplementedException();
     }

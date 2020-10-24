@@ -6,9 +6,11 @@ public class ScriptableSplashDamageModifier : ScriptableDamageModifier
 {
     public float Radius = 5.0f;
 
-    public override void OnHit(CharacterBase ownerCharacter, Vector3 hitPosition, ref List<CharacterBase> affectedCharacters)
+    public override void OnHit(CharacterBase ownerCharacter, Vector3 hitPosition, Vector3 hitNormal,
+        GameObject hitObject,
+        ref List<CharacterBase> affectedCharacters)
     {
-        base.OnHit(ownerCharacter, hitPosition, ref affectedCharacters);
+        base.OnHit(ownerCharacter, hitPosition, hitNormal, hitObject, ref affectedCharacters);
 
         //Get all characters within radius of the hit character
         foreach (var character in GetAllCharacters())

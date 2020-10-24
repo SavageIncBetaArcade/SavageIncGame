@@ -30,7 +30,8 @@ public class MeleeAbility : AttackAbility
             if (meleeAbility == null)
                 Debug.LogError("MeleeAbility: ScriptableAbility is not of type ScriptableMeleeAbility");
 
-            Hit(collider.gameObject, meleeAbility != null ? meleeAbility.Damage : 0.0f, collider.ClosestPoint(collider.transform.position));
+            //TODO get hit normal from trigger enter
+            Hit(collider.gameObject, meleeAbility != null ? meleeAbility.Damage : 0.0f, collider.ClosestPoint(collider.transform.position), Vector3.zero);
             _hasHit = true;
         }
     }
@@ -48,10 +49,10 @@ public class MeleeAbility : AttackAbility
         Debug.Log("Attacking");
     }
 
-    public override void Hit(GameObject hitObject, float damage, Vector3 hitPoint)
+    public override void Hit(GameObject hitObject, float damage, Vector3 hitPoint, Vector3 hitNormal)
     {
         Debug.Log("Hit");
 
-        base.Hit(hitObject, damage, hitPoint);
+        base.Hit(hitObject, damage, hitPoint, hitNormal);
     }
 }

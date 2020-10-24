@@ -48,7 +48,8 @@ public class ModifierHandler
         }
     }
 
-    public void ApplyActionModifiers(CharacterBase characterBase, GameObject targetObject, Vector3 hitPoint)
+    public void ApplyActionModifiers(CharacterBase characterBase, GameObject targetObject, Vector3 hitPoint,
+        Vector3 hitNormal)
     {
         if(actionModifiers.Count == 0)
             return;
@@ -60,11 +61,15 @@ public class ModifierHandler
             affectedCharacters.Add(targetcharacter);
 
         Modifier mod = new Modifier(actionModifiers[0].Modifier, characterBase);
-        mod.Hit(hitPoint);
+        mod.Hit(hitPoint, hitNormal, targetObject);
+        if(targetcharacter != null)
+            mod.Apply(targetcharacter);
+
         foreach (var character in mod.AffectedCharacters)
         {
             affectedCharacters.Add(character);
         }
+
 
 
         for (var modifierIndex = 1; modifierIndex < actionModifiers.Count; modifierIndex++)
@@ -74,6 +79,7 @@ public class ModifierHandler
             for (int i = 0; i < count; i++)
             {
                 Modifier modifier = applyModifier(abilityModifier, characterBase, affectedCharacters.ElementAt(i));
+                modifier.Hit(hitPoint, hitNormal, affectedCharacters.ElementAt(i).gameObject);
                 foreach (var character in modifier.AffectedCharacters)
                 {
                     affectedCharacters.Add(character);

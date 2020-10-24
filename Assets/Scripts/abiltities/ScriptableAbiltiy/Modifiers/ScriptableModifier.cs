@@ -52,6 +52,8 @@ public abstract class ScriptableModifier : ScriptableObject
     #endregion
 
     public abstract void OnHit(CharacterBase ownerCharacter, Vector3 hitPosition,
+        Vector3 hitNormal,
+        GameObject hitObject,
         ref List<CharacterBase> affectedCharacters);
     public abstract void OnApply(CharacterBase ownerCharacter, CharacterBase targetCharacter,
         ref List<CharacterBase> affectedCharacters);
