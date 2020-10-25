@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "AIStates/Idle")]
-public class IdleState : State
+public class IdleState : MovingState
 {
     private float stateExpireTime;
 

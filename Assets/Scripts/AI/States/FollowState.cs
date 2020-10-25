@@ -1,12 +1,28 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 [CreateAssetMenu(menuName = "AIStates/Follow")]
 public class FollowState : State
 {
     public override void OnUpdate(ref StackFSM stackStates)
     {
-        throw new System.NotImplementedException();
+        ref AIBase aiBase = ref stackStates.aiBase;
+        NavMeshAgent navAgent = aiBase.NavAgent;
+        Transform player = aiBase.Player.transform;
+
+        //when the enemy is closer than 20 follow the player
+        if (Vector3.Distance(aiBase.transform.position, player.position) < aiBase.SenseRange)
+        {
+
+            navAgent.destination = player.position;// set the enemys destination to the players position
+
+            //TODO:: when get close enough attack the player.
+        }
+        else
+        {
+            stackStates.PopState();
+        }
     }
 }

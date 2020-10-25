@@ -9,9 +9,9 @@ public class AIBase : CharacterBase
     #region member varibles
     public float SenseRange = 60.0f;
     public float AngleOfVision = 45.0f;
+    public float WalkDistance = 50.0f;
 
-    //TODO make Patrol points a transform
-    public Vector3[] PatrolPoints;
+    public Transform[] PatrolPoints;
     public int CurrentPatrolPoint = 0;
     public int NextPatrolPoint = 1;
     public State[] PotentialStates;
@@ -22,7 +22,8 @@ public class AIBase : CharacterBase
     #endregion
 
     #region Properties
-    public NavMeshAgent NavAgent => navAgent;
+    public NavMeshAgent NavAgent    =>  navAgent;
+    public GameObject   Player      =>  player;
     #endregion
 
     protected override void Awake()
@@ -40,8 +41,6 @@ public class AIBase : CharacterBase
                 stackOfStates.PushState(patrol);
             else if (idle)
                 stackOfStates.PushState(idle);
-
-
         }
 
         GetPlayer();
