@@ -18,7 +18,5 @@ MonoBehaviour:
   activePeriod: 0
   applyFrequency: 0
   tickEffectGameObjects: []
-  ForceToApply: {x: 0, y: 20, z: 0}
-  ApplyLocalForce: 1
-  ForceToApplyOnNormal: 0
-  ApplyForceToNormal: 0
+  ForceType: 7
+  ForceToApply: 10

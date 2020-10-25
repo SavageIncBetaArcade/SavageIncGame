@@ -29,7 +29,7 @@ public class RaycastAbilitiy : AttackAbility
             shootBolt(raycastAbility, useableAbility.Origin.position, hitInfo.point);
 
             //CharacterBase hitObject = hitInfo.transform.GetComponent<CharacterBase>();
-            Hit(hitInfo.transform.gameObject, raycastAbility.Damage, hitInfo.point, hitInfo.normal);
+            Hit(hitInfo.transform.gameObject, raycastAbility.Damage, hitInfo.point, useableAbility.Origin.forward, hitInfo.normal);
         }
         else
         {
@@ -41,11 +41,12 @@ public class RaycastAbilitiy : AttackAbility
         Debug.Log("Firing Raycast");
     }
 
-    public override void Hit(GameObject hitObject, float damage, Vector3 hitPoint, Vector3 hitNormal)
+    public override void Hit(GameObject hitObject, float damage, Vector3 hitPoint, Vector3 hitDirection,
+        Vector3 surfaceNormal)
     {
         Debug.Log("Hit");
 
-        base.Hit(hitObject, damage, hitPoint, hitNormal);
+        base.Hit(hitObject, damage, hitPoint, hitDirection, surfaceNormal);
     }
 
     private void shootBolt(ScriptableRaycastAbility raycastAbility, Vector3 start, Vector3 end)

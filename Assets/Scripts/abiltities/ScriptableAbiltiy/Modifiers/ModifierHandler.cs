@@ -49,7 +49,7 @@ public class ModifierHandler
     }
 
     public void ApplyActionModifiers(CharacterBase characterBase, GameObject targetObject, Vector3 hitPoint,
-        Vector3 hitNormal)
+        Vector3 hitDirection, Vector3 hitSurfaceNormal)
     {
         if(actionModifiers.Count == 0)
             return;
@@ -61,7 +61,7 @@ public class ModifierHandler
             affectedCharacters.Add(targetcharacter);
 
         Modifier mod = new Modifier(actionModifiers[0].Modifier, characterBase);
-        mod.Hit(hitPoint, hitNormal, targetObject);
+        mod.Hit(hitPoint, hitDirection, hitSurfaceNormal, targetObject);
         if(targetcharacter != null)
             mod.Apply(targetcharacter);
 
@@ -79,7 +79,7 @@ public class ModifierHandler
             for (int i = 0; i < count; i++)
             {
                 Modifier modifier = applyModifier(abilityModifier, characterBase, affectedCharacters.ElementAt(i));
-                modifier.Hit(hitPoint, hitNormal, affectedCharacters.ElementAt(i).gameObject);
+                modifier.Hit(hitPoint, hitDirection, hitSurfaceNormal, affectedCharacters.ElementAt(i).gameObject);
                 foreach (var character in modifier.AffectedCharacters)
                 {
                     affectedCharacters.Add(character);

@@ -44,12 +44,12 @@ public class Modifier
         affectedCharacters = new List<CharacterBase>();
     }
 
-    public void Hit(Vector3 hitPoint, Vector3 hitNormal, GameObject hitObject)
+    public void Hit(Vector3 hitPoint, Vector3 hitDirection, Vector3 hitSurfaceNormal, GameObject hitObject)
     {
         if(scriptableModifier == null)
             return;
 
-        scriptableModifier.OnHit(ownerCharacter, hitPoint, hitNormal, hitObject, ref affectedCharacters);
+        scriptableModifier.OnHit(ownerCharacter, hitPoint, hitDirection, hitSurfaceNormal, hitObject, ref affectedCharacters);
     }
 
     public void Apply(CharacterBase targetCharacter)

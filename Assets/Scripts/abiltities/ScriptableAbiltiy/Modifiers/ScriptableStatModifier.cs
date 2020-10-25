@@ -13,7 +13,8 @@ public class ScriptableStatModifier : ScriptableModifier
     public float Amount;
     public bool Percentage;
 
-    public override void OnHit(CharacterBase ownerCharacter, Vector3 hitPosition, Vector3 hitNormal,
+    public override void OnHit(CharacterBase ownerCharacter, Vector3 hitPosition, Vector3 hitDirection,
+        Vector3 hitSurfaceNormal,
         GameObject hitObject,
         ref List<CharacterBase> affectedCharacters)
     {
