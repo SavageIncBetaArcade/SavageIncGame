@@ -13,6 +13,7 @@ public enum StatType
     JUMP_HEIGHT
 }
 
+[RequireComponent(typeof(PortalableObject))]
 public class CharacterBase : MonoBehaviour, IDamageTaker
 {
     [SerializeField] 
@@ -34,6 +35,7 @@ public class CharacterBase : MonoBehaviour, IDamageTaker
     public event ReplenishEnergyAction OnReplenishEnergy;
 
     private HashSet<Modifier> appliedModifiers;
+    private PortalableObject portalableObject;
 
     #region Properties
     public float Gravity { get; } = -9.81f;
@@ -84,8 +86,21 @@ public class CharacterBase : MonoBehaviour, IDamageTaker
     protected virtual void Awake()
     {
         appliedModifiers = new HashSet<Modifier>();
+        portalableObject = GetComponent<PortalableObject>();
+        portalableObject.HasTeleported += PortalableObjectOnHasTeleported;
         currentHealth = maxHealth;
         currentEnergy = maxEnergy;
+    }
+
+    private void PortalableObjectOnHasTeleported(Portal startPortal, Portal endPortal, Vector3 newposition, Quaternion newrotation)
+    {
+        // For character controller to update
+        Physics.SyncTransforms();
+    }
+
+    private void OnDestroy()
+    {
+        portalableObject.HasTeleported -= PortalableObjectOnHasTeleported;
     }
 
     public void ApplyStatModifier(StatType type, float amount)
