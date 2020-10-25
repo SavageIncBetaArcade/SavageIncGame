@@ -92,7 +92,7 @@ public class CharacterBase : MonoBehaviour, IDamageTaker
         currentEnergy = maxEnergy;
     }
 
-    private void PortalableObjectOnHasTeleported(Portal startPortal, Portal endPortal, Vector3 newposition, Quaternion newrotation)
+    public virtual void PortalableObjectOnHasTeleported(Portal startPortal, Portal endPortal, Vector3 newposition, Quaternion newrotation)
     {
         // For character controller to update
         Physics.SyncTransforms();

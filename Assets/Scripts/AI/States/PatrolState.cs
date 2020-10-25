@@ -21,11 +21,12 @@ public class PatrolState : MovingState
 
         if (aiBase.PatrolPoints.Length > 1) //checks if enemy is patroling.
         {
+            aiBase.currentDestination = aiBase.PatrolPoints[aiBase.CurrentPatrolPoint].position;
             navAgent.SetDestination(aiBase.PatrolPoints[aiBase.CurrentPatrolPoint].position); //sets next destination point
 
             //moves the enemy onto the next patrolpoint
             if (aiBase.transform.position == aiBase.PatrolPoints[aiBase.CurrentPatrolPoint].position || 
-                Vector3.Distance(aiBase.transform.position, aiBase.PatrolPoints[aiBase.CurrentPatrolPoint].position) < 5.0f)
+                Vector3.Distance(aiBase.transform.position, aiBase.PatrolPoints[aiBase.CurrentPatrolPoint].position) < 2.0f)
             {
                 if (aiBase.PatrolPoints[aiBase.CurrentPatrolPoint].position == aiBase.PatrolPoints[aiBase.NextPatrolPoint].position)
                 {

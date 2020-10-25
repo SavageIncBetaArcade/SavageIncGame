@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Portal : MonoBehaviour
 {
@@ -25,6 +26,38 @@ public class Portal : MonoBehaviour
     private Camera mainCamera;
 
     private Vector4 vectorPlane;
+
+    public float OffMeshLinkResolution = 0.2f;
+    public Transform OffMeshLinkRef1;
+    public Transform OffMeshLinkRef2;
+    public int OffMeshLinkArea;
+    private readonly List<PortalOffMeshLink> offMeshLinks = new List<PortalOffMeshLink>();
+
+    private struct PortalOffMeshLink
+    {
+        public Transform RefTransform;
+    }
+
+    private void Awake()
+    {
+        // Generate OffMeshLinks
+
+        var directionToRef2 = OffMeshLinkRef2.position - OffMeshLinkRef1.position;
+        var distanceToGenerate = directionToRef2.magnitude;
+        directionToRef2.Normalize();
+        for (var currentDistance = 0f; currentDistance <= distanceToGenerate; currentDistance += OffMeshLinkResolution)
+        {
+            var newPosition = OffMeshLinkRef1.position + directionToRef2 * currentDistance;
+            var newTransform = new GameObject("[AUTO] OffMeshLink Transform").transform;
+            newTransform.parent = transform;
+            newTransform.position = newPosition;
+
+            offMeshLinks.Add(new PortalOffMeshLink()
+            {
+                RefTransform = newTransform
+            });
+        }
+    }
 
     private readonly HashSet<PortalableObject> objectsInPortal = new HashSet<PortalableObject>();
     private readonly HashSet<PortalableObject> objectsInPortalToRemove = new HashSet<PortalableObject>();
@@ -76,6 +109,22 @@ public class Portal : MonoBehaviour
 
     private void Start()
     {
+        // Finish OffMeshLink generation
+
+        for (var i = 0; i < offMeshLinks.Count; i++)
+        {
+            var offMeshLink = offMeshLinks[i];
+
+            var newLink = offMeshLink.RefTransform.gameObject.AddComponent<OffMeshLink>();
+            newLink.startTransform = offMeshLink.RefTransform;
+            newLink.endTransform = TargetPortal.offMeshLinks[offMeshLinks.Count - 1 - i].RefTransform;
+            newLink.biDirectional = false;
+            newLink.costOverride = -1;
+            newLink.autoUpdatePositions = false;
+            newLink.activated = true;
+            newLink.area = OffMeshLinkArea;
+        }
+
         viewthroughMaterial = ViewthroughRenderer.material;
 
         mainCamera = Camera.main;
@@ -85,7 +134,7 @@ public class Portal : MonoBehaviour
         var plane = new Plane(NormalVisible.forward, transform.position + NormalInvisible.forward * 0.01f);
         vectorPlane = new Vector4(plane.normal.x, plane.normal.y, plane.normal.z, plane.distance);
 
-        StartCoroutine(WaitForFixedUpdateLoop());
+        StartCoroutine(WaitForFixedUpdateLoop());        
     }
 
     private IEnumerator WaitForFixedUpdateLoop()
