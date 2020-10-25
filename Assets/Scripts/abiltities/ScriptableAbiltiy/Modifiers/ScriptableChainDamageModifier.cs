@@ -15,7 +15,8 @@ public class ScriptableChainDamageModifier : ScriptableDamageModifier
     public GameObject LineGameObject;
     private CharacterBase[] allCharacters;
 
-    public override void OnHit(CharacterBase ownerCharacter, Vector3 hitPosition, Vector3 hitNormal,
+    public override void OnHit(CharacterBase ownerCharacter, Vector3 hitPosition, Vector3 hitDirection,
+        Vector3 hitSurfaceNormal,
         GameObject hitObject,
         ref List<CharacterBase> affectedCharacters)
     {

@@ -31,7 +31,7 @@ public class MeleeAbility : AttackAbility
                 Debug.LogError("MeleeAbility: ScriptableAbility is not of type ScriptableMeleeAbility");
 
             //TODO get hit normal from trigger enter
-            Hit(collider.gameObject, meleeAbility != null ? meleeAbility.Damage : 0.0f, collider.ClosestPoint(collider.transform.position), Vector3.zero);
+            Hit(collider.gameObject, meleeAbility != null ? meleeAbility.Damage : 0.0f, collider.ClosestPoint(collider.transform.position), OwnerCharacter.transform.forward, Vector3.zero);
             _hasHit = true;
         }
     }
@@ -49,10 +49,11 @@ public class MeleeAbility : AttackAbility
         Debug.Log("Attacking");
     }
 
-    public override void Hit(GameObject hitObject, float damage, Vector3 hitPoint, Vector3 hitNormal)
+    public override void Hit(GameObject hitObject, float damage, Vector3 hitPoint, Vector3 hitDirection,
+        Vector3 surfaceNormal)
     {
         Debug.Log("Hit");
 
-        base.Hit(hitObject, damage, hitPoint, hitNormal);
+        base.Hit(hitObject, damage, hitPoint, hitDirection, surfaceNormal);
     }
 }
