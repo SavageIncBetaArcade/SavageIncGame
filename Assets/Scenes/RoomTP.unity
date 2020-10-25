@@ -1068,8 +1068,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a67a6def6067d544a5579deab52b149, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
-  turnSpeed: 5
+  MoveSpeed: 5
+  TurnSpeed: 5
 --- !u!143 &12675252
 CharacterController:
   m_ObjectHideFlags: 0
@@ -1147,6 +1147,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 615613874717672484, guid: 844235dd70ac9374e856c99764e80227,
         type: 3}
+      propertyPath: VisiblePortals.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 615613874717672484, guid: 844235dd70ac9374e856c99764e80227,
+        type: 3}
       propertyPath: targetPortal
       value: 
       objectReference: {fileID: 94001853}
@@ -1158,6 +1163,36 @@ PrefabInstance:
     - target: {fileID: 615613874717672484, guid: 844235dd70ac9374e856c99764e80227,
         type: 3}
       propertyPath: visiblePortals.Array.data[1]
+      value: 
+      objectReference: {fileID: 1140843008}
+    - target: {fileID: 615613874717672484, guid: 844235dd70ac9374e856c99764e80227,
+        type: 3}
+      propertyPath: NormalVisible
+      value: 
+      objectReference: {fileID: 544180028}
+    - target: {fileID: 615613874717672484, guid: 844235dd70ac9374e856c99764e80227,
+        type: 3}
+      propertyPath: NormalInvisible
+      value: 
+      objectReference: {fileID: 571677830}
+    - target: {fileID: 615613874717672484, guid: 844235dd70ac9374e856c99764e80227,
+        type: 3}
+      propertyPath: ViewthroughRenderer
+      value: 
+      objectReference: {fileID: 253579339}
+    - target: {fileID: 615613874717672484, guid: 844235dd70ac9374e856c99764e80227,
+        type: 3}
+      propertyPath: TargetPortal
+      value: 
+      objectReference: {fileID: 94001853}
+    - target: {fileID: 615613874717672484, guid: 844235dd70ac9374e856c99764e80227,
+        type: 3}
+      propertyPath: VisiblePortals.Array.data[0]
+      value: 
+      objectReference: {fileID: 1242817513}
+    - target: {fileID: 615613874717672484, guid: 844235dd70ac9374e856c99764e80227,
+        type: 3}
+      propertyPath: VisiblePortals.Array.data[1]
       value: 
       objectReference: {fileID: 1140843008}
     - target: {fileID: 6848584269252315126, guid: 844235dd70ac9374e856c99764e80227,
@@ -1234,6 +1269,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28d1185d09ed86f46b3aff2e03e1d768, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!23 &253579339 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 2055994112196873424, guid: 844235dd70ac9374e856c99764e80227,
+    type: 3}
+  m_PrefabInstance: {fileID: 171071959}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &283039027 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2751768646696100652, guid: 844235dd70ac9374e856c99764e80227,
+    type: 3}
+  m_PrefabInstance: {fileID: 775251949}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &334282946
 GameObject:
   m_ObjectHideFlags: 0
@@ -1439,9 +1486,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cad859d0eef8bf4783e2c8b8bdef429, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  portalCamera: {fileID: 787577791}
-  maxRecursions: 1
-  debugTotalRenderCount: 0
+  PortalCamera: {fileID: 787577791}
+  MaxRecursions: 2
+  DebugTotalRenderCount: 0
 --- !u!1001 &344731325
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1546,6 +1593,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8081113406540410103, guid: 7f5af8f55b0e1364fae376a2f660651a,
         type: 3}
+      propertyPath: Portals.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8081113406540410103, guid: 7f5af8f55b0e1364fae376a2f660651a,
+        type: 3}
       propertyPath: portals.Array.data[0]
       value: 
       objectReference: {fileID: 185155122}
@@ -1559,8 +1611,29 @@ PrefabInstance:
       propertyPath: portals.Array.data[2]
       value: 
       objectReference: {fileID: 1242817513}
+    - target: {fileID: 8081113406540410103, guid: 7f5af8f55b0e1364fae376a2f660651a,
+        type: 3}
+      propertyPath: Portals.Array.data[0]
+      value: 
+      objectReference: {fileID: 185155122}
+    - target: {fileID: 8081113406540410103, guid: 7f5af8f55b0e1364fae376a2f660651a,
+        type: 3}
+      propertyPath: Portals.Array.data[1]
+      value: 
+      objectReference: {fileID: 1140843008}
+    - target: {fileID: 8081113406540410103, guid: 7f5af8f55b0e1364fae376a2f660651a,
+        type: 3}
+      propertyPath: Portals.Array.data[2]
+      value: 
+      objectReference: {fileID: 1242817513}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7f5af8f55b0e1364fae376a2f660651a, type: 3}
+--- !u!4 &348593394 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2751768646696100652, guid: 844235dd70ac9374e856c99764e80227,
+    type: 3}
+  m_PrefabInstance: {fileID: 387393413}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &370120067
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1580,6 +1653,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 615613874717672484, guid: 844235dd70ac9374e856c99764e80227,
         type: 3}
+      propertyPath: VisiblePortals.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 615613874717672484, guid: 844235dd70ac9374e856c99764e80227,
+        type: 3}
       propertyPath: targetPortal
       value: 
       objectReference: {fileID: 987303539}
@@ -1593,6 +1671,36 @@ PrefabInstance:
       propertyPath: maxRecursionsOverride
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 615613874717672484, guid: 844235dd70ac9374e856c99764e80227,
+        type: 3}
+      propertyPath: NormalVisible
+      value: 
+      objectReference: {fileID: 1106556657}
+    - target: {fileID: 615613874717672484, guid: 844235dd70ac9374e856c99764e80227,
+        type: 3}
+      propertyPath: NormalInvisible
+      value: 
+      objectReference: {fileID: 1063663486}
+    - target: {fileID: 615613874717672484, guid: 844235dd70ac9374e856c99764e80227,
+        type: 3}
+      propertyPath: ViewthroughRenderer
+      value: 
+      objectReference: {fileID: 1196543502}
+    - target: {fileID: 615613874717672484, guid: 844235dd70ac9374e856c99764e80227,
+        type: 3}
+      propertyPath: TargetPortal
+      value: 
+      objectReference: {fileID: 987303539}
+    - target: {fileID: 615613874717672484, guid: 844235dd70ac9374e856c99764e80227,
+        type: 3}
+      propertyPath: MaxRecursionsOverride
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 615613874717672484, guid: 844235dd70ac9374e856c99764e80227,
+        type: 3}
+      propertyPath: VisiblePortals.Array.data[0]
+      value: 
+      objectReference: {fileID: 2006752327}
     - target: {fileID: 6848584269252315126, guid: 844235dd70ac9374e856c99764e80227,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1679,6 +1787,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 615613874717672484, guid: 844235dd70ac9374e856c99764e80227,
         type: 3}
+      propertyPath: VisiblePortals.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 615613874717672484, guid: 844235dd70ac9374e856c99764e80227,
+        type: 3}
       propertyPath: targetPortal
       value: 
       objectReference: {fileID: 1140843008}
@@ -1692,6 +1805,36 @@ PrefabInstance:
       propertyPath: maxRecursionsOverride
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 615613874717672484, guid: 844235dd70ac9374e856c99764e80227,
+        type: 3}
+      propertyPath: TargetPortal
+      value: 
+      objectReference: {fileID: 1140843008}
+    - target: {fileID: 615613874717672484, guid: 844235dd70ac9374e856c99764e80227,
+        type: 3}
+      propertyPath: NormalVisible
+      value: 
+      objectReference: {fileID: 425171681}
+    - target: {fileID: 615613874717672484, guid: 844235dd70ac9374e856c99764e80227,
+        type: 3}
+      propertyPath: NormalInvisible
+      value: 
+      objectReference: {fileID: 348593394}
+    - target: {fileID: 615613874717672484, guid: 844235dd70ac9374e856c99764e80227,
+        type: 3}
+      propertyPath: ViewthroughRenderer
+      value: 
+      objectReference: {fileID: 1196662676}
+    - target: {fileID: 615613874717672484, guid: 844235dd70ac9374e856c99764e80227,
+        type: 3}
+      propertyPath: MaxRecursionsOverride
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 615613874717672484, guid: 844235dd70ac9374e856c99764e80227,
+        type: 3}
+      propertyPath: VisiblePortals.Array.data[0]
+      value: 
+      objectReference: {fileID: 1972679788}
     - target: {fileID: 6848584269252315126, guid: 844235dd70ac9374e856c99764e80227,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2279,6 +2422,18 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!4 &425171681 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3126344792764004115, guid: 844235dd70ac9374e856c99764e80227,
+    type: 3}
+  m_PrefabInstance: {fileID: 387393413}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &478872382 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3126344792764004115, guid: 844235dd70ac9374e856c99764e80227,
+    type: 3}
+  m_PrefabInstance: {fileID: 775251949}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &512189278
 GameObject:
   m_ObjectHideFlags: 0
@@ -2327,6 +2482,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &544180028 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3126344792764004115, guid: 844235dd70ac9374e856c99764e80227,
+    type: 3}
+  m_PrefabInstance: {fileID: 171071959}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &571677830 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2751768646696100652, guid: 844235dd70ac9374e856c99764e80227,
+    type: 3}
+  m_PrefabInstance: {fileID: 171071959}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &656409057 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6848584269252315126, guid: 844235dd70ac9374e856c99764e80227,
@@ -2352,6 +2519,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 615613874717672484, guid: 844235dd70ac9374e856c99764e80227,
         type: 3}
+      propertyPath: VisiblePortals.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 615613874717672484, guid: 844235dd70ac9374e856c99764e80227,
+        type: 3}
       propertyPath: targetPortal
       value: 
       objectReference: {fileID: 987303539}
@@ -2365,6 +2537,36 @@ PrefabInstance:
       propertyPath: visiblePortals.Array.data[1]
       value: 
       objectReference: {fileID: 1140843008}
+    - target: {fileID: 615613874717672484, guid: 844235dd70ac9374e856c99764e80227,
+        type: 3}
+      propertyPath: NormalVisible
+      value: 
+      objectReference: {fileID: 478872382}
+    - target: {fileID: 615613874717672484, guid: 844235dd70ac9374e856c99764e80227,
+        type: 3}
+      propertyPath: NormalInvisible
+      value: 
+      objectReference: {fileID: 283039027}
+    - target: {fileID: 615613874717672484, guid: 844235dd70ac9374e856c99764e80227,
+        type: 3}
+      propertyPath: ViewthroughRenderer
+      value: 
+      objectReference: {fileID: 2066570639}
+    - target: {fileID: 615613874717672484, guid: 844235dd70ac9374e856c99764e80227,
+        type: 3}
+      propertyPath: TargetPortal
+      value: 
+      objectReference: {fileID: 987303539}
+    - target: {fileID: 615613874717672484, guid: 844235dd70ac9374e856c99764e80227,
+        type: 3}
+      propertyPath: VisiblePortals.Array.data[0]
+      value: 
+      objectReference: {fileID: 1140843008}
+    - target: {fileID: 615613874717672484, guid: 844235dd70ac9374e856c99764e80227,
+        type: 3}
+      propertyPath: VisiblePortals.Array.data[1]
+      value: 
+      objectReference: {fileID: 185155122}
     - target: {fileID: 6848584269252315126, guid: 844235dd70ac9374e856c99764e80227,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2608,7 +2810,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fee8c1f0f174e8d4dbe23849ef58daf1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSize: 150
+  MaxSize: 100
 --- !u!1 &898407300
 GameObject:
   m_ObjectHideFlags: 0
@@ -4129,6 +4331,11 @@ PrefabInstance:
       propertyPath: targetPortal
       value: 
       objectReference: {fileID: 185155122}
+    - target: {fileID: 615613874717672484, guid: 844235dd70ac9374e856c99764e80227,
+        type: 3}
+      propertyPath: TargetPortal
+      value: 
+      objectReference: {fileID: 185155122}
     - target: {fileID: 6848584269252315126, guid: 844235dd70ac9374e856c99764e80227,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4377,6 +4584,18 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!4 &1063663486 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2751768646696100652, guid: 844235dd70ac9374e856c99764e80227,
+    type: 3}
+  m_PrefabInstance: {fileID: 370120067}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1106556657 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3126344792764004115, guid: 844235dd70ac9374e856c99764e80227,
+    type: 3}
+  m_PrefabInstance: {fileID: 370120067}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1108518951
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4481,12 +4700,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8081113406540410103, guid: 7f5af8f55b0e1364fae376a2f660651a,
         type: 3}
+      propertyPath: Portals.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8081113406540410103, guid: 7f5af8f55b0e1364fae376a2f660651a,
+        type: 3}
       propertyPath: portals.Array.data[0]
       value: 
       objectReference: {fileID: 1972679788}
     - target: {fileID: 8081113406540410103, guid: 7f5af8f55b0e1364fae376a2f660651a,
         type: 3}
       propertyPath: portals.Array.data[1]
+      value: 
+      objectReference: {fileID: 2006752327}
+    - target: {fileID: 8081113406540410103, guid: 7f5af8f55b0e1364fae376a2f660651a,
+        type: 3}
+      propertyPath: Portals.Array.data[0]
+      value: 
+      objectReference: {fileID: 1972679788}
+    - target: {fileID: 8081113406540410103, guid: 7f5af8f55b0e1364fae376a2f660651a,
+        type: 3}
+      propertyPath: Portals.Array.data[1]
       value: 
       objectReference: {fileID: 2006752327}
     m_RemovedComponents: []
@@ -4699,6 +4933,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28d1185d09ed86f46b3aff2e03e1d768, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &1153199678 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3126344792764004115, guid: 844235dd70ac9374e856c99764e80227,
+    type: 3}
+  m_PrefabInstance: {fileID: 1980529955}
+  m_PrefabAsset: {fileID: 0}
 --- !u!43 &1171413279
 Mesh:
   m_ObjectHideFlags: 0
@@ -4966,6 +5206,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8081113406540410103, guid: 7f5af8f55b0e1364fae376a2f660651a,
         type: 3}
+      propertyPath: Portals.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8081113406540410103, guid: 7f5af8f55b0e1364fae376a2f660651a,
+        type: 3}
       propertyPath: portals.Array.data[0]
       value: 
       objectReference: {fileID: 1730038780}
@@ -4974,8 +5219,30 @@ PrefabInstance:
       propertyPath: portals.Array.data[1]
       value: 
       objectReference: {fileID: 987303539}
+    - target: {fileID: 8081113406540410103, guid: 7f5af8f55b0e1364fae376a2f660651a,
+        type: 3}
+      propertyPath: Portals.Array.data[0]
+      value: 
+      objectReference: {fileID: 987303539}
+    - target: {fileID: 8081113406540410103, guid: 7f5af8f55b0e1364fae376a2f660651a,
+        type: 3}
+      propertyPath: Portals.Array.data[1]
+      value: 
+      objectReference: {fileID: 1730038780}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7f5af8f55b0e1364fae376a2f660651a, type: 3}
+--- !u!23 &1196543502 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 2055994112196873424, guid: 844235dd70ac9374e856c99764e80227,
+    type: 3}
+  m_PrefabInstance: {fileID: 370120067}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &1196662676 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 2055994112196873424, guid: 844235dd70ac9374e856c99764e80227,
+    type: 3}
+  m_PrefabInstance: {fileID: 387393413}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1212631546
 GameObject:
   m_ObjectHideFlags: 0
@@ -5297,6 +5564,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28d1185d09ed86f46b3aff2e03e1d768, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!23 &1247463755 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 2055994112196873424, guid: 844235dd70ac9374e856c99764e80227,
+    type: 3}
+  m_PrefabInstance: {fileID: 1980529955}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1252759577 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6848584269252315126, guid: 844235dd70ac9374e856c99764e80227,
@@ -7558,6 +7831,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &1545301122 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2751768646696100652, guid: 844235dd70ac9374e856c99764e80227,
+    type: 3}
+  m_PrefabInstance: {fileID: 1980529955}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1577153787
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7577,6 +7856,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 615613874717672484, guid: 844235dd70ac9374e856c99764e80227,
         type: 3}
+      propertyPath: VisiblePortals.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 615613874717672484, guid: 844235dd70ac9374e856c99764e80227,
+        type: 3}
       propertyPath: targetPortal
       value: 
       objectReference: {fileID: 1242817513}
@@ -7590,6 +7874,16 @@ PrefabInstance:
       propertyPath: maxRecursionsOverride
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 615613874717672484, guid: 844235dd70ac9374e856c99764e80227,
+        type: 3}
+      propertyPath: TargetPortal
+      value: 
+      objectReference: {fileID: 1242817513}
+    - target: {fileID: 615613874717672484, guid: 844235dd70ac9374e856c99764e80227,
+        type: 3}
+      propertyPath: VisiblePortals.Array.data[0]
+      value: 
+      objectReference: {fileID: 1730038780}
     - target: {fileID: 6848584269252315126, guid: 844235dd70ac9374e856c99764e80227,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -7723,6 +8017,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 615613874717672484, guid: 844235dd70ac9374e856c99764e80227,
         type: 3}
+      propertyPath: VisiblePortals.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 615613874717672484, guid: 844235dd70ac9374e856c99764e80227,
+        type: 3}
       propertyPath: targetPortal
       value: 
       objectReference: {fileID: 2006752327}
@@ -7736,6 +8035,16 @@ PrefabInstance:
       propertyPath: maxRecursionsOverride
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 615613874717672484, guid: 844235dd70ac9374e856c99764e80227,
+        type: 3}
+      propertyPath: TargetPortal
+      value: 
+      objectReference: {fileID: 2006752327}
+    - target: {fileID: 615613874717672484, guid: 844235dd70ac9374e856c99764e80227,
+        type: 3}
+      propertyPath: VisiblePortals.Array.data[0]
+      value: 
+      objectReference: {fileID: 987303539}
     - target: {fileID: 6848584269252315126, guid: 844235dd70ac9374e856c99764e80227,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -7902,7 +8211,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8081113406540410103, guid: 7f5af8f55b0e1364fae376a2f660651a,
         type: 3}
+      propertyPath: Portals.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8081113406540410103, guid: 7f5af8f55b0e1364fae376a2f660651a,
+        type: 3}
       propertyPath: portals.Array.data[0]
+      value: 
+      objectReference: {fileID: 94001853}
+    - target: {fileID: 8081113406540410103, guid: 7f5af8f55b0e1364fae376a2f660651a,
+        type: 3}
+      propertyPath: Portals.Array.data[0]
       value: 
       objectReference: {fileID: 94001853}
     m_RemovedComponents: []
@@ -7950,6 +8269,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 615613874717672484, guid: 844235dd70ac9374e856c99764e80227,
         type: 3}
+      propertyPath: VisiblePortals.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 615613874717672484, guid: 844235dd70ac9374e856c99764e80227,
+        type: 3}
       propertyPath: targetPortal
       value: 
       objectReference: {fileID: 2006752327}
@@ -7961,6 +8285,36 @@ PrefabInstance:
     - target: {fileID: 615613874717672484, guid: 844235dd70ac9374e856c99764e80227,
         type: 3}
       propertyPath: visiblePortals.Array.data[1]
+      value: 
+      objectReference: {fileID: 185155122}
+    - target: {fileID: 615613874717672484, guid: 844235dd70ac9374e856c99764e80227,
+        type: 3}
+      propertyPath: NormalVisible
+      value: 
+      objectReference: {fileID: 1153199678}
+    - target: {fileID: 615613874717672484, guid: 844235dd70ac9374e856c99764e80227,
+        type: 3}
+      propertyPath: NormalInvisible
+      value: 
+      objectReference: {fileID: 1545301122}
+    - target: {fileID: 615613874717672484, guid: 844235dd70ac9374e856c99764e80227,
+        type: 3}
+      propertyPath: ViewthroughRenderer
+      value: 
+      objectReference: {fileID: 1247463755}
+    - target: {fileID: 615613874717672484, guid: 844235dd70ac9374e856c99764e80227,
+        type: 3}
+      propertyPath: TargetPortal
+      value: 
+      objectReference: {fileID: 2006752327}
+    - target: {fileID: 615613874717672484, guid: 844235dd70ac9374e856c99764e80227,
+        type: 3}
+      propertyPath: VisiblePortals.Array.data[0]
+      value: 
+      objectReference: {fileID: 1242817513}
+    - target: {fileID: 615613874717672484, guid: 844235dd70ac9374e856c99764e80227,
+        type: 3}
+      propertyPath: VisiblePortals.Array.data[1]
       value: 
       objectReference: {fileID: 185155122}
     - target: {fileID: 6848584269252315126, guid: 844235dd70ac9374e856c99764e80227,
@@ -8042,6 +8396,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28d1185d09ed86f46b3aff2e03e1d768, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!23 &2066570639 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 2055994112196873424, guid: 844235dd70ac9374e856c99764e80227,
+    type: 3}
+  m_PrefabInstance: {fileID: 775251949}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2086977433 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3999263167855122352, guid: 7f5af8f55b0e1364fae376a2f660651a,

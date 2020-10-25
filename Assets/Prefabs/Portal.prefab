@@ -93,12 +93,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28d1185d09ed86f46b3aff2e03e1d768, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetPortal: {fileID: 0}
-  normalVisible: {fileID: 3126344792764004115}
-  normalInvisible: {fileID: 2751768646696100652}
-  viewthroughRenderer: {fileID: 2055994112196873424}
-  viewthroughDefaultTexture: {fileID: 0}
-  visiblePortals: []
+  TargetPortal: {fileID: 0}
+  NormalVisible: {fileID: 3126344792764004115}
+  NormalInvisible: {fileID: 2751768646696100652}
+  ViewthroughRenderer: {fileID: 2055994112196873424}
+  ViewthroughDefaultTexture: {fileID: 0}
+  VisiblePortals: []
+  MaxRecursionsOverride: -1
 --- !u!65 &5669568010683736576
 BoxCollider:
   m_ObjectHideFlags: 0

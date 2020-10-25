@@ -6,7 +6,7 @@ public class RenderTexturePool : MonoBehaviour
 {
     public static RenderTexturePool Instance;
 
-    public int maxSize = 100;
+    public int MaxSize = 100;
 
     private List<PoolItem> pool = new List<PoolItem>();
 
@@ -32,7 +32,7 @@ public class RenderTexturePool : MonoBehaviour
 
         // Are none of them unused? Time to expand!
 
-        if (pool.Count >= maxSize)
+        if (pool.Count >= MaxSize)
         {
             Debug.LogError("Pool is full!");
             throw new OverflowException();

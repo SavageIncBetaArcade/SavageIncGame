@@ -6,19 +6,19 @@ using UnityEngine;
 
 public class Portal : MonoBehaviour
 {
-    public Portal targetPortal;
+    public Portal TargetPortal;
 
-    public Transform normalVisible;
+    public Transform NormalVisible;
 
-    public Transform normalInvisible;
+    public Transform NormalInvisible;
 
-    public Renderer viewthroughRenderer;
+    public Renderer ViewthroughRenderer;
 
-    public Texture viewthroughDefaultTexture;
+    public Texture ViewthroughDefaultTexture;
 
-    public Portal[] visiblePortals;
+    public Portal[] VisiblePortals;
 
-    public int maxRecursionsOverride = -1;
+    public int MaxRecursionsOverride = -1;
 
     private Material viewthroughMaterial;
 
@@ -26,13 +26,13 @@ public class Portal : MonoBehaviour
 
     private Vector4 vectorPlane;
 
-    private HashSet<PortalableObject> objectsInPortal = new HashSet<PortalableObject>();
-    private HashSet<PortalableObject> objectsInPortalToRemove = new HashSet<PortalableObject>();
+    private readonly HashSet<PortalableObject> objectsInPortal = new HashSet<PortalableObject>();
+    private readonly HashSet<PortalableObject> objectsInPortalToRemove = new HashSet<PortalableObject>();
 
     public bool ShouldRender(Plane[] cameraPlanes) =>
-    viewthroughRenderer.isVisible &&
+    ViewthroughRenderer.isVisible &&
     GeometryUtility.TestPlanesAABB(cameraPlanes,
-        viewthroughRenderer.bounds);
+        ViewthroughRenderer.bounds);
 
     private struct VisiblePortalResources
     {
@@ -45,15 +45,15 @@ public class Portal : MonoBehaviour
     {
         // Linked portals
 
-        if (targetPortal != null)
+        if (TargetPortal != null)
         {
             Gizmos.color = Color.red;
-            Gizmos.DrawLine(transform.position, targetPortal.transform.position);
+            Gizmos.DrawLine(transform.position, TargetPortal.transform.position);
         }
 
         // Visible portals
         Gizmos.color = Color.blue;
-        foreach (var visiblePortal in visiblePortals)
+        foreach (var visiblePortal in VisiblePortals)
         {
             Gizmos.DrawLine(transform.position, visiblePortal.transform.position);
         }
@@ -62,27 +62,27 @@ public class Portal : MonoBehaviour
     public static Vector3 TransformPositionBetweenPortals(Portal sender, Portal target, Vector3 position)
     {
         return
-            target.normalInvisible.TransformPoint(
-                sender.normalVisible.InverseTransformPoint(position));
+            target.NormalInvisible.TransformPoint(
+                sender.NormalVisible.InverseTransformPoint(position));
     }
 
     public static Quaternion TransformRotationBetweenPortals(Portal sender, Portal target, Quaternion rotation)
     {
         return
-            target.normalInvisible.rotation *
-            Quaternion.Inverse(sender.normalVisible.rotation) *
+            target.NormalInvisible.rotation *
+            Quaternion.Inverse(sender.NormalVisible.rotation) *
             rotation;
     }
 
     private void Start()
     {
-        viewthroughMaterial = viewthroughRenderer.material;
+        viewthroughMaterial = ViewthroughRenderer.material;
 
         mainCamera = Camera.main;
 
         // Generate bounding plane
 
-        var plane = new Plane(normalVisible.forward, transform.position + normalInvisible.forward * 0.01f);
+        var plane = new Plane(NormalVisible.forward, transform.position + NormalInvisible.forward * 0.01f);
         vectorPlane = new Vector4(plane.normal.x, plane.normal.y, plane.normal.z, plane.distance);
 
         StartCoroutine(WaitForFixedUpdateLoop());
@@ -120,8 +120,8 @@ public class Portal : MonoBehaviour
 
         // Calculate virtual camera position and rotation
 
-        var virtualPosition = TransformPositionBetweenPortals(this, targetPortal, refPosition);
-        var virtualRotation = TransformRotationBetweenPortals(this, targetPortal, refRotation);
+        var virtualPosition = TransformPositionBetweenPortals(this, TargetPortal, refPosition);
+        var virtualRotation = TransformRotationBetweenPortals(this, TargetPortal, refRotation);
 
 
         portalCamera.transform.SetPositionAndRotation(virtualPosition, virtualRotation);
@@ -130,7 +130,7 @@ public class Portal : MonoBehaviour
 
         var targetViewThroughPlaneCameraSpace =
             Matrix4x4.Transpose(Matrix4x4.Inverse(portalCamera.worldToCameraMatrix))
-            * targetPortal.vectorPlane;
+            * TargetPortal.vectorPlane;
 
         // Set portal camera projection matrix to clip walls between target portal and target camera
         // Inherits main camera near/far clip plane and FOV settings
@@ -144,13 +144,13 @@ public class Portal : MonoBehaviour
 
         var cameraPlanes = GeometryUtility.CalculateFrustumPlanes(portalCamera);
 
-        var actualMaxRecursions = targetPortal.maxRecursionsOverride >= 0
-        ? targetPortal.maxRecursionsOverride
+        var actualMaxRecursions = TargetPortal.MaxRecursionsOverride >= 0
+        ? TargetPortal.MaxRecursionsOverride
         : maxRecursions;
 
         if (currentRecursion < actualMaxRecursions)
         {
-            foreach (var visiblePortal in targetPortal.visiblePortals)
+            foreach (var visiblePortal in TargetPortal.VisiblePortals)
             {
                 //only render for portals which are visible
                 if (!visiblePortal.ShouldRender(cameraPlanes)) continue;
@@ -177,7 +177,7 @@ public class Portal : MonoBehaviour
         }
         else
         {
-            foreach (var visiblePortal in targetPortal.visiblePortals)
+            foreach (var visiblePortal in TargetPortal.VisiblePortals)
             {
                 visiblePortal.ShowViewthroughDefaultTexture(out var visiblePortalOriginalTexture);
 
@@ -230,7 +230,7 @@ public class Portal : MonoBehaviour
     private void ShowViewthroughDefaultTexture(out Texture originalTexture)
     {
         originalTexture = viewthroughMaterial.mainTexture;
-        viewthroughMaterial.mainTexture = viewthroughDefaultTexture;
+        viewthroughMaterial.mainTexture = ViewthroughDefaultTexture;
     }
 
     private void CheckForPortalCrossing()
@@ -257,15 +257,15 @@ public class Portal : MonoBehaviour
             var pivot = portalableObject.transform;
             var directionToPivotFromTransform = pivot.position - transform.position;
             directionToPivotFromTransform.Normalize();
-            var pivotToNormalDotProduct = Vector3.Dot(directionToPivotFromTransform, normalVisible.forward);
+            var pivotToNormalDotProduct = Vector3.Dot(directionToPivotFromTransform, NormalVisible.forward);
             if (pivotToNormalDotProduct > 0) continue;
 
             // Warp object
 
-            var newPosition = TransformPositionBetweenPortals(this, targetPortal, portalableObject.transform.position);
-            var newRotation = TransformRotationBetweenPortals(this, targetPortal, portalableObject.transform.rotation);
+            var newPosition = TransformPositionBetweenPortals(this, TargetPortal, portalableObject.transform.position);
+            var newRotation = TransformRotationBetweenPortals(this, TargetPortal, portalableObject.transform.rotation);
             portalableObject.transform.SetPositionAndRotation(newPosition, newRotation);
-            portalableObject.OnHasTeleported(this, targetPortal, newPosition, newRotation);
+            portalableObject.OnHasTeleported(this, TargetPortal, newPosition, newRotation);
 
             // Object is no longer touching this side of the portal
 

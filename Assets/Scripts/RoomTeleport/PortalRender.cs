@@ -5,11 +5,10 @@ using UnityEngine.Rendering;
 
 public class PortalRender : MonoBehaviour
 {
+    public Camera PortalCamera;
+    public int MaxRecursions = 2;
 
-    public Camera portalCamera;
-    public int maxRecursions = 2;
-
-    public int debugTotalRenderCount;
+    public int DebugTotalRenderCount;
 
     private Camera mainCamera;
     private PortalOcclusionVolume[] occlusionVolumes;
@@ -39,12 +38,12 @@ public class PortalRender : MonoBehaviour
 
     private void OnPreRender()
     {
-        debugTotalRenderCount = 0;
+        DebugTotalRenderCount = 0;
 
         PortalOcclusionVolume currentOcclusionVolume = null;
         foreach (var occlusionVolume in occlusionVolumes)
         {
-            if (occlusionVolume.collider.bounds.Contains(mainCamera.transform.position))
+            if (occlusionVolume.Collider.bounds.Contains(mainCamera.transform.position))
             {
                 currentOcclusionVolume = occlusionVolume;
                 break;
@@ -55,7 +54,7 @@ public class PortalRender : MonoBehaviour
         {
             var cameraPlanes = GeometryUtility.CalculateFrustumPlanes(mainCamera);
 
-            foreach (var portal in currentOcclusionVolume.portals)
+            foreach (var portal in currentOcclusionVolume.Portals)
             {
                 if (!portal.ShouldRender(cameraPlanes)) continue;
                 
@@ -65,11 +64,11 @@ public class PortalRender : MonoBehaviour
                     out _,
                     out _,
                     out var renderCount,
-                    portalCamera,
+                    PortalCamera,
                     0,
-                    maxRecursions);
+                    MaxRecursions);
 
-                debugTotalRenderCount += renderCount;
+                DebugTotalRenderCount += renderCount;
             }
         }
     }

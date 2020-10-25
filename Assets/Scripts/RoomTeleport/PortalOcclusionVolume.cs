@@ -2,14 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(BoxCollider))]
 public class PortalOcclusionVolume : MonoBehaviour
 {
+    public Portal[] Portals;
+    private Collider collider;
 
-    public new Collider collider;
-    public Portal[] portals;
+    public Collider Collider => collider;
 
-    // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         if (collider == null)
         {
@@ -33,12 +34,6 @@ public class PortalOcclusionVolume : MonoBehaviour
             }
         }
 
-        portals = portalBuilder.ToArray();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        Portals = portalBuilder.ToArray();
     }
 }
