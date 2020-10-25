@@ -19,11 +19,12 @@ public class AIBase : CharacterBase
     private NavMeshAgent navAgent;
     private StackFSM stackOfStates;
     private GameObject player;
+    public Vector3? currentDestination;
     #endregion
 
     #region Properties
-    public NavMeshAgent NavAgent    =>  navAgent;
-    public GameObject   Player      =>  player;
+    public NavMeshAgent NavAgent => navAgent;
+    public GameObject Player => player;
     #endregion
 
     protected override void Awake()
@@ -51,7 +52,7 @@ public class AIBase : CharacterBase
 
     private void Update()
     {
-        if(PotentialStates.Length > 0 && stackOfStates.GetCurrentState() == null)
+        if (PotentialStates.Length > 0 && stackOfStates.GetCurrentState() == null)
         {
             State idle = PotentialStates.FirstOrDefault(x => x.StateName == StateNames.IdleState);
             if (idle)
@@ -73,10 +74,10 @@ public class AIBase : CharacterBase
 
     public bool PlayerInFieldOfVision()
     {
-        if(player)
+        if (player)
         {
             Vector3 vectorBetweenThisAndPlayer = player.transform.position - transform.position;
-            if(vectorBetweenThisAndPlayer.magnitude <= SenseRange && Vector3.Angle(vectorBetweenThisAndPlayer, transform.forward) <= AngleOfVision)
+            if (vectorBetweenThisAndPlayer.magnitude <= SenseRange && Vector3.Angle(vectorBetweenThisAndPlayer, transform.forward) <= AngleOfVision)
             {
                 return true;
             }
@@ -87,5 +88,29 @@ public class AIBase : CharacterBase
     public void GetPlayer()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+    }
+
+    public override void PortalableObjectOnHasTeleported(Portal sender, Portal destination, Vector3 newPosition, Quaternion newRotation)
+    {
+        if (!navAgent.Warp(newPosition))
+            Debug.LogWarning($"Warp failed for {gameObject.name} NavMeshAgent.");
+
+        if (currentDestination != null)
+        {
+            var path = new NavMeshPath();
+            navAgent.CalculatePath(currentDestination.Value, path);
+            navAgent.SetPath(path);
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        if (navAgent.isOnOffMeshLink)
+        {
+            // Move character towards OffMeshLink start point
+            // Should only really be used if the AI reaches the link without finishing going through the portal.
+
+            transform.Translate(Vector3.ProjectOnPlane(navAgent.currentOffMeshLinkData.startPos - transform.position, Vector3.up).normalized * (navAgent.speed * Time.fixedDeltaTime));
+        }
     }
 }
