@@ -45,7 +45,8 @@ public class Portal : MonoBehaviour
         var directionToRef2 = OffMeshLinkRef2.position - OffMeshLinkRef1.position;
         var distanceToGenerate = directionToRef2.magnitude;
         directionToRef2.Normalize();
-        for (var currentDistance = 0f; currentDistance <= distanceToGenerate; currentDistance += OffMeshLinkResolution)
+        var roundedDistanceToGenerate = Math.Round(distanceToGenerate, 1);
+        for (var currentDistance = 0f; currentDistance <= roundedDistanceToGenerate; currentDistance += OffMeshLinkResolution)
         {
             var newPosition = OffMeshLinkRef1.position + directionToRef2 * currentDistance;
             var newTransform = new GameObject("[AUTO] OffMeshLink Transform").transform;
@@ -110,14 +111,13 @@ public class Portal : MonoBehaviour
     private void Start()
     {
         // Finish OffMeshLink generation
-
         for (var i = 0; i < offMeshLinks.Count; i++)
         {
             var offMeshLink = offMeshLinks[i];
 
             var newLink = offMeshLink.RefTransform.gameObject.AddComponent<OffMeshLink>();
             newLink.startTransform = offMeshLink.RefTransform;
-            newLink.endTransform = TargetPortal.offMeshLinks[offMeshLinks.Count - 1 - i].RefTransform;
+            newLink.endTransform = TargetPortal.offMeshLinks[TargetPortal.offMeshLinks.Count - 1 - i].RefTransform;
             newLink.biDirectional = false;
             newLink.costOverride = -1;
             newLink.autoUpdatePositions = false;
