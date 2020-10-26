@@ -126,6 +126,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1630639711}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &26394940 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8787592050270038784, guid: 844235dd70ac9374e856c99764e80227,
+    type: 3}
+  m_PrefabInstance: {fileID: 1115581412}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &39497924 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 615613874717672484, guid: 844235dd70ac9374e856c99764e80227,
@@ -316,6 +322,31 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 8081113406540410103, guid: 7f5af8f55b0e1364fae376a2f660651a,
+        type: 3}
+      propertyPath: Portals.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8081113406540410103, guid: 7f5af8f55b0e1364fae376a2f660651a,
+        type: 3}
+      propertyPath: Portals.Array.data[0]
+      value: 
+      objectReference: {fileID: 39497924}
+    - target: {fileID: 8081113406540410103, guid: 7f5af8f55b0e1364fae376a2f660651a,
+        type: 3}
+      propertyPath: Portals.Array.data[1]
+      value: 
+      objectReference: {fileID: 222484535}
+    - target: {fileID: 8081113406540410103, guid: 7f5af8f55b0e1364fae376a2f660651a,
+        type: 3}
+      propertyPath: Portals.Array.data[2]
+      value: 
+      objectReference: {fileID: 1028421897}
+    - target: {fileID: 8081113406540410103, guid: 7f5af8f55b0e1364fae376a2f660651a,
+        type: 3}
+      propertyPath: Portals.Array.data[3]
+      value: 
+      objectReference: {fileID: 1186850869}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7f5af8f55b0e1364fae376a2f660651a, type: 3}
 --- !u!4 &424757668 stripped
@@ -360,9 +391,29 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 615613874717672484, guid: 844235dd70ac9374e856c99764e80227,
         type: 3}
+      propertyPath: VisiblePortals.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 615613874717672484, guid: 844235dd70ac9374e856c99764e80227,
+        type: 3}
       propertyPath: TargetPortal
       value: 
       objectReference: {fileID: 1186850869}
+    - target: {fileID: 615613874717672484, guid: 844235dd70ac9374e856c99764e80227,
+        type: 3}
+      propertyPath: VisiblePortals.Array.data[0]
+      value: 
+      objectReference: {fileID: 102365902}
+    - target: {fileID: 615613874717672484, guid: 844235dd70ac9374e856c99764e80227,
+        type: 3}
+      propertyPath: VisiblePortals.Array.data[1]
+      value: 
+      objectReference: {fileID: 709210413}
+    - target: {fileID: 615613874717672484, guid: 844235dd70ac9374e856c99764e80227,
+        type: 3}
+      propertyPath: VisiblePortals.Array.data[2]
+      value: 
+      objectReference: {fileID: 2074656443}
     - target: {fileID: 6848584269252315126, guid: 844235dd70ac9374e856c99764e80227,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -527,7 +578,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh35240
+  m_Name: pb_Mesh18206
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -4932,7 +4983,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh35156
+  m_Name: pb_Mesh18146
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -5235,9 +5286,29 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 615613874717672484, guid: 844235dd70ac9374e856c99764e80227,
         type: 3}
+      propertyPath: VisiblePortals.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 615613874717672484, guid: 844235dd70ac9374e856c99764e80227,
+        type: 3}
       propertyPath: TargetPortal
       value: 
       objectReference: {fileID: 102365902}
+    - target: {fileID: 615613874717672484, guid: 844235dd70ac9374e856c99764e80227,
+        type: 3}
+      propertyPath: VisiblePortals.Array.data[0]
+      value: 
+      objectReference: {fileID: 222484535}
+    - target: {fileID: 615613874717672484, guid: 844235dd70ac9374e856c99764e80227,
+        type: 3}
+      propertyPath: VisiblePortals.Array.data[1]
+      value: 
+      objectReference: {fileID: 1186850869}
+    - target: {fileID: 615613874717672484, guid: 844235dd70ac9374e856c99764e80227,
+        type: 3}
+      propertyPath: VisiblePortals.Array.data[2]
+      value: 
+      objectReference: {fileID: 1028421897}
     - target: {fileID: 6848584269252315126, guid: 844235dd70ac9374e856c99764e80227,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5309,9 +5380,39 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 615613874717672484, guid: 844235dd70ac9374e856c99764e80227,
         type: 3}
+      propertyPath: VisiblePortals.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 615613874717672484, guid: 844235dd70ac9374e856c99764e80227,
+        type: 3}
       propertyPath: TargetPortal
       value: 
       objectReference: {fileID: 39497924}
+    - target: {fileID: 615613874717672484, guid: 844235dd70ac9374e856c99764e80227,
+        type: 3}
+      propertyPath: OffMeshLinkRef1
+      value: 
+      objectReference: {fileID: 26394940}
+    - target: {fileID: 615613874717672484, guid: 844235dd70ac9374e856c99764e80227,
+        type: 3}
+      propertyPath: OffMeshLinkRef2
+      value: 
+      objectReference: {fileID: 1237870279}
+    - target: {fileID: 615613874717672484, guid: 844235dd70ac9374e856c99764e80227,
+        type: 3}
+      propertyPath: VisiblePortals.Array.data[0]
+      value: 
+      objectReference: {fileID: 709210413}
+    - target: {fileID: 615613874717672484, guid: 844235dd70ac9374e856c99764e80227,
+        type: 3}
+      propertyPath: VisiblePortals.Array.data[1]
+      value: 
+      objectReference: {fileID: 424757670}
+    - target: {fileID: 615613874717672484, guid: 844235dd70ac9374e856c99764e80227,
+        type: 3}
+      propertyPath: VisiblePortals.Array.data[2]
+      value: 
+      objectReference: {fileID: 2074656443}
     - target: {fileID: 6848584269252315126, guid: 844235dd70ac9374e856c99764e80227,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5387,6 +5488,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1480964404}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &1237870279 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8986586778514394610, guid: 844235dd70ac9374e856c99764e80227,
+    type: 3}
+  m_PrefabInstance: {fileID: 1115581412}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1374284532
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5411,9 +5518,29 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 615613874717672484, guid: 844235dd70ac9374e856c99764e80227,
         type: 3}
+      propertyPath: VisiblePortals.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 615613874717672484, guid: 844235dd70ac9374e856c99764e80227,
+        type: 3}
       propertyPath: TargetPortal
       value: 
       objectReference: {fileID: 1028421897}
+    - target: {fileID: 615613874717672484, guid: 844235dd70ac9374e856c99764e80227,
+        type: 3}
+      propertyPath: VisiblePortals.Array.data[0]
+      value: 
+      objectReference: {fileID: 102365902}
+    - target: {fileID: 615613874717672484, guid: 844235dd70ac9374e856c99764e80227,
+        type: 3}
+      propertyPath: VisiblePortals.Array.data[1]
+      value: 
+      objectReference: {fileID: 709210413}
+    - target: {fileID: 615613874717672484, guid: 844235dd70ac9374e856c99764e80227,
+        type: 3}
+      propertyPath: VisiblePortals.Array.data[2]
+      value: 
+      objectReference: {fileID: 424757670}
     - target: {fileID: 6848584269252315126, guid: 844235dd70ac9374e856c99764e80227,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5500,9 +5627,29 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 615613874717672484, guid: 844235dd70ac9374e856c99764e80227,
         type: 3}
+      propertyPath: VisiblePortals.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 615613874717672484, guid: 844235dd70ac9374e856c99764e80227,
+        type: 3}
       propertyPath: TargetPortal
       value: 
       objectReference: {fileID: 709210413}
+    - target: {fileID: 615613874717672484, guid: 844235dd70ac9374e856c99764e80227,
+        type: 3}
+      propertyPath: VisiblePortals.Array.data[0]
+      value: 
+      objectReference: {fileID: 39497924}
+    - target: {fileID: 615613874717672484, guid: 844235dd70ac9374e856c99764e80227,
+        type: 3}
+      propertyPath: VisiblePortals.Array.data[1]
+      value: 
+      objectReference: {fileID: 1186850869}
+    - target: {fileID: 615613874717672484, guid: 844235dd70ac9374e856c99764e80227,
+        type: 3}
+      propertyPath: VisiblePortals.Array.data[2]
+      value: 
+      objectReference: {fileID: 1028421897}
     - target: {fileID: 6848584269252315126, guid: 844235dd70ac9374e856c99764e80227,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5785,9 +5932,29 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 615613874717672484, guid: 844235dd70ac9374e856c99764e80227,
         type: 3}
+      propertyPath: VisiblePortals.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 615613874717672484, guid: 844235dd70ac9374e856c99764e80227,
+        type: 3}
       propertyPath: TargetPortal
       value: 
       objectReference: {fileID: 424757670}
+    - target: {fileID: 615613874717672484, guid: 844235dd70ac9374e856c99764e80227,
+        type: 3}
+      propertyPath: VisiblePortals.Array.data[0]
+      value: 
+      objectReference: {fileID: 39497924}
+    - target: {fileID: 615613874717672484, guid: 844235dd70ac9374e856c99764e80227,
+        type: 3}
+      propertyPath: VisiblePortals.Array.data[1]
+      value: 
+      objectReference: {fileID: 222484535}
+    - target: {fileID: 615613874717672484, guid: 844235dd70ac9374e856c99764e80227,
+        type: 3}
+      propertyPath: VisiblePortals.Array.data[2]
+      value: 
+      objectReference: {fileID: 1028421897}
     - target: {fileID: 6848584269252315126, guid: 844235dd70ac9374e856c99764e80227,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6109,6 +6276,31 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 8081113406540410103, guid: 7f5af8f55b0e1364fae376a2f660651a,
+        type: 3}
+      propertyPath: Portals.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8081113406540410103, guid: 7f5af8f55b0e1364fae376a2f660651a,
+        type: 3}
+      propertyPath: Portals.Array.data[0]
+      value: 
+      objectReference: {fileID: 102365902}
+    - target: {fileID: 8081113406540410103, guid: 7f5af8f55b0e1364fae376a2f660651a,
+        type: 3}
+      propertyPath: Portals.Array.data[1]
+      value: 
+      objectReference: {fileID: 424757670}
+    - target: {fileID: 8081113406540410103, guid: 7f5af8f55b0e1364fae376a2f660651a,
+        type: 3}
+      propertyPath: Portals.Array.data[2]
+      value: 
+      objectReference: {fileID: 709210413}
+    - target: {fileID: 8081113406540410103, guid: 7f5af8f55b0e1364fae376a2f660651a,
+        type: 3}
+      propertyPath: Portals.Array.data[3]
+      value: 
+      objectReference: {fileID: 2074656443}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7f5af8f55b0e1364fae376a2f660651a, type: 3}
 --- !u!1 &1734710915
@@ -10526,9 +10718,29 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 615613874717672484, guid: 844235dd70ac9374e856c99764e80227,
         type: 3}
+      propertyPath: VisiblePortals.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 615613874717672484, guid: 844235dd70ac9374e856c99764e80227,
+        type: 3}
       propertyPath: TargetPortal
       value: 
       objectReference: {fileID: 2074656443}
+    - target: {fileID: 615613874717672484, guid: 844235dd70ac9374e856c99764e80227,
+        type: 3}
+      propertyPath: VisiblePortals.Array.data[0]
+      value: 
+      objectReference: {fileID: 39497924}
+    - target: {fileID: 615613874717672484, guid: 844235dd70ac9374e856c99764e80227,
+        type: 3}
+      propertyPath: VisiblePortals.Array.data[1]
+      value: 
+      objectReference: {fileID: 222484535}
+    - target: {fileID: 615613874717672484, guid: 844235dd70ac9374e856c99764e80227,
+        type: 3}
+      propertyPath: VisiblePortals.Array.data[2]
+      value: 
+      objectReference: {fileID: 1186850869}
     - target: {fileID: 6848584269252315126, guid: 844235dd70ac9374e856c99764e80227,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -10615,9 +10827,29 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 615613874717672484, guid: 844235dd70ac9374e856c99764e80227,
         type: 3}
+      propertyPath: VisiblePortals.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 615613874717672484, guid: 844235dd70ac9374e856c99764e80227,
+        type: 3}
       propertyPath: TargetPortal
       value: 
       objectReference: {fileID: 222484535}
+    - target: {fileID: 615613874717672484, guid: 844235dd70ac9374e856c99764e80227,
+        type: 3}
+      propertyPath: VisiblePortals.Array.data[0]
+      value: 
+      objectReference: {fileID: 102365902}
+    - target: {fileID: 615613874717672484, guid: 844235dd70ac9374e856c99764e80227,
+        type: 3}
+      propertyPath: VisiblePortals.Array.data[1]
+      value: 
+      objectReference: {fileID: 424757670}
+    - target: {fileID: 615613874717672484, guid: 844235dd70ac9374e856c99764e80227,
+        type: 3}
+      propertyPath: VisiblePortals.Array.data[2]
+      value: 
+      objectReference: {fileID: 2074656443}
     - target: {fileID: 6848584269252315126, guid: 844235dd70ac9374e856c99764e80227,
         type: 3}
       propertyPath: m_LocalPosition.x
