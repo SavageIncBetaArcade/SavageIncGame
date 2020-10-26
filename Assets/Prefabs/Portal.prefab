@@ -132,10 +132,10 @@ MonoBehaviour:
   ViewthroughDefaultTexture: {fileID: 0}
   VisiblePortals: []
   MaxRecursionsOverride: -1
-  offMeshLinkResolution: 0.2
-  offMeshLinkRef1: {fileID: 8787592050270038784}
-  offMeshLinkRef2: {fileID: 8986586778514394610}
-  offMeshLinkArea: 3
+  OffMeshLinkResolution: 0.2
+  OffMeshLinkRef1: {fileID: 8787592050270038784}
+  OffMeshLinkRef2: {fileID: 8986586778514394610}
+  OffMeshLinkArea: 3
 --- !u!65 &5669568010683736576
 BoxCollider:
   m_ObjectHideFlags: 0
