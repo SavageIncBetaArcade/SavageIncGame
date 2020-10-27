@@ -16,8 +16,22 @@ public class PlayerCamera : MonoBehaviour
 
     void Update()
     {
-        float mouseX = Input.GetAxis("Mouse X") * LookSensitivity * Time.deltaTime;
-        float mouseY = Input.GetAxis("Mouse Y") * LookSensitivity * Time.deltaTime;
+        float mouseX = Input.GetAxis("Mouse X");
+        float mouseY = Input.GetAxis("Mouse Y");
+
+        // Dead zone for controller
+        if (mouseX > -0.1 && mouseX < 0.1)
+        {
+            mouseX = 0;
+        }
+
+        if (mouseY > -0.1 && mouseY < 0.1)
+        {
+            mouseY = 0;
+        }
+
+        mouseX = mouseX * LookSensitivity * Time.deltaTime;
+        mouseY = mouseY * LookSensitivity * Time.deltaTime;
 
         xRotation -= mouseY;
         xRotation = Mathf.Clamp(xRotation, -90, 90f);
