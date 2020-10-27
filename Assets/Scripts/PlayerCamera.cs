@@ -40,4 +40,25 @@ public class PlayerCamera : MonoBehaviour
 
         PlayerBody.Rotate(Vector3.up * mouseX);
     }
+
+    public IEnumerator Shake(float duration, float magnitude)
+    {
+        Vector3 originalPos = transform.localPosition;
+
+        float elapsed = 0.0f;
+
+        while (elapsed < duration)
+        {
+            float x = Random.Range(-1.0f, 1.0f) * magnitude;
+            float y = Random.Range(-1.0f, 1.0f) * magnitude;
+
+            transform.localPosition = new Vector3(x, y, originalPos.z);
+
+            elapsed += Time.deltaTime;
+
+            yield return null;
+        }
+
+        transform.localPosition = originalPos;
+    }
 }
