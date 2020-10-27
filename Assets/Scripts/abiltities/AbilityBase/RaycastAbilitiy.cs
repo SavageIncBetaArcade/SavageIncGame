@@ -24,7 +24,7 @@ public class RaycastAbilitiy : AttackAbility
         }
 
         RaycastHit hitInfo;
-        if (Physics.Raycast(useableAbility.Origin.position, useableAbility.Origin.forward, out hitInfo, ((ScriptableRaycastAbility)Ability).Range))
+        if (Portal.RaycastRecursive(useableAbility.Origin.position, useableAbility.Origin.forward, 8, out hitInfo, ((ScriptableRaycastAbility)Ability).Range))
         {
             fireBolt(raycastAbility, useableAbility.Origin.position, hitInfo.point);
 
