@@ -44,12 +44,20 @@ public abstract class ScriptableModifier : ScriptableObject
     [SerializeField]
     protected GameObject[] tickEffectGameObjects;
 
+    //Have a dictionary to hold per character instance data
+    protected Dictionary<CharacterBase, object> characterInstanceData;
+
     #region properties
     public string ModifierName => modifierName;
     public string ModifierDescription => modifierDescription;
     public float ActivePeriod => activePeriod;
     public float ApplyFrequency => applyFrequency;
     #endregion
+
+    protected ScriptableModifier()
+    {
+        characterInstanceData = new Dictionary<CharacterBase, object>();
+    }
 
     public abstract void OnHit(CharacterBase ownerCharacter, Vector3 hitPosition,
         Vector3 hitDirection, Vector3 hitSurfaceNormal,

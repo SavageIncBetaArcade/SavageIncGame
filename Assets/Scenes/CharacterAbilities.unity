@@ -1255,7 +1255,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackModifier: 0
-  defenseModifier: 0
+  defenseModifier: 100
   maxHealth: 100
   maxEnergy: 0
   speed: 6
@@ -4327,32 +4327,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3287459474639506986, guid: 6977d88c4b1ceec4c96e0ab898b9402d,
-        type: 3}
-      propertyPath: StartingPassiveModifiers.Array.data[0]
-      value: 
-      objectReference: {fileID: 11400000, guid: dfc778a0d9eb9dd45b24495ed0159ecc,
-        type: 2}
-    - target: {fileID: 3287459474639506984, guid: 6977d88c4b1ceec4c96e0ab898b9402d,
-        type: 3}
-      propertyPath: maxHealth
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 3287459474639506984, guid: 6977d88c4b1ceec4c96e0ab898b9402d,
-        type: 3}
-      propertyPath: maxEnergy
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 3287459474639506984, guid: 6977d88c4b1ceec4c96e0ab898b9402d,
-        type: 3}
-      propertyPath: attackModifier
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3287459474639506984, guid: 6977d88c4b1ceec4c96e0ab898b9402d,
-        type: 3}
-      propertyPath: defenseModifier
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3287459473354534074, guid: 6977d88c4b1ceec4c96e0ab898b9402d,
         type: 3}
       propertyPath: m_LocalPosition.z
@@ -4378,13 +4352,13 @@ PrefabInstance:
         type: 3}
       propertyPath: Modifiers.Array.data[0].Modifier
       value: 
-      objectReference: {fileID: 11400000, guid: edc71b7981ade0541bfe62f17a9c2ad1,
+      objectReference: {fileID: 11400000, guid: 35f3d896f8a2f2e4eba6524589acd781,
         type: 2}
     - target: {fileID: 3287459473351049832, guid: 6977d88c4b1ceec4c96e0ab898b9402d,
         type: 3}
       propertyPath: Modifiers.Array.data[1].Modifier
       value: 
-      objectReference: {fileID: 11400000, guid: 9f62b78a07408c44697f3fdf45438e99,
+      objectReference: {fileID: 11400000, guid: edc71b7981ade0541bfe62f17a9c2ad1,
         type: 2}
     - target: {fileID: 3287459473351049832, guid: 6977d88c4b1ceec4c96e0ab898b9402d,
         type: 3}
@@ -4431,12 +4405,12 @@ PrefabInstance:
     - target: {fileID: 3287459473351049832, guid: 6977d88c4b1ceec4c96e0ab898b9402d,
         type: 3}
       propertyPath: Modifiers.Array.data[0].Stage
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3287459473351049832, guid: 6977d88c4b1ceec4c96e0ab898b9402d,
         type: 3}
       propertyPath: Modifiers.Array.data[0].Target
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3287459473709432247, guid: 6977d88c4b1ceec4c96e0ab898b9402d,
         type: 3}
@@ -4447,6 +4421,32 @@ PrefabInstance:
         type: 3}
       propertyPath: UseButton
       value: Fire2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3287459474639506986, guid: 6977d88c4b1ceec4c96e0ab898b9402d,
+        type: 3}
+      propertyPath: StartingPassiveModifiers.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: dfc778a0d9eb9dd45b24495ed0159ecc,
+        type: 2}
+    - target: {fileID: 3287459474639506984, guid: 6977d88c4b1ceec4c96e0ab898b9402d,
+        type: 3}
+      propertyPath: maxHealth
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3287459474639506984, guid: 6977d88c4b1ceec4c96e0ab898b9402d,
+        type: 3}
+      propertyPath: maxEnergy
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3287459474639506984, guid: 6977d88c4b1ceec4c96e0ab898b9402d,
+        type: 3}
+      propertyPath: attackModifier
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3287459474639506984, guid: 6977d88c4b1ceec4c96e0ab898b9402d,
+        type: 3}
+      propertyPath: defenseModifier
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6977d88c4b1ceec4c96e0ab898b9402d, type: 3}

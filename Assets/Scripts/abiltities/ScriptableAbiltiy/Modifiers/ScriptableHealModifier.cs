@@ -24,6 +24,7 @@ public class ScriptableHealModifier : ScriptableModifier
     {
         CharacterBase target = HealOwner ? ownerCharacter : targetCharacter;
         float amount = Percentage ? target.MaxHealth * Amount : Amount;
+
         target.Heal(amount);
         ApplyEffects(target);
     }

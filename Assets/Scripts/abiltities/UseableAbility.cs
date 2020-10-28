@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 /// <summary>
 /// This is the script that allows the character to use abilities
@@ -85,7 +86,7 @@ public class UseableAbility : MonoBehaviour
 
     private void ExecuteUse()
     {
-        modifierHandler.ApplyPreActionModifiers(CharacterBase,null);
+        modifierHandler.ApplyPreActionModifiers(CharacterBase, CharacterBase);
 
         OnUse?.Invoke();
 
@@ -96,7 +97,7 @@ public class UseableAbility : MonoBehaviour
 
         ability.Use();
 
-        modifierHandler.ApplyPostActionModifiers(CharacterBase, null);
+        modifierHandler.ApplyPostActionModifiers(CharacterBase, CharacterBase);
     }
 
     public GameObject InstantiateObject(GameObject gameObject, Transform transform)
@@ -107,6 +108,7 @@ public class UseableAbility : MonoBehaviour
     private void HitAction(CharacterBase attackingcharacter, GameObject targetObject, Vector3 hitPoint, Vector3 hitDirection,
         Vector3 hitSurfaceNormal)
     {
-        modifierHandler.ApplyActionModifiers(attackingcharacter, targetObject, hitPoint, hitDirection, hitSurfaceNormal);
+        if(ScriptableAbility.HitModifierApplyPercentage >= Random.Range(0.0f,1.0f))
+            modifierHandler.ApplyActionModifiers(attackingcharacter, targetObject, hitPoint, hitDirection, hitSurfaceNormal);
     }
 }

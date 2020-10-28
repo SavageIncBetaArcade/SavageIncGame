@@ -18,20 +18,21 @@ public class ScriptableStatModifier : ScriptableModifier
         GameObject hitObject,
         ref List<CharacterBase> affectedCharacters)
     {
-        throw new NotImplementedException();
+
     }
 
     public override void OnApply(CharacterBase ownerCharacter, CharacterBase targetCharacter,
         ref List<CharacterBase> affectedCharacters)
     {
-        if(!Percentage)
-            targetCharacter.ApplyStatModifier(Type, Amount);
-        else
+        float appliedAmount = Amount;
+
+        if(Percentage)
         {
-            float percentageAmount = targetCharacter.GetStatModifier(Type) * Amount;
-            targetCharacter.StartCoroutine(
-                targetCharacter.ApplyStatsModifierOverPeriod(Type, percentageAmount, ActivePeriod));
+            appliedAmount = targetCharacter.GetStatModifier(Type) * Amount;
         }
+
+        characterInstanceData[targetCharacter] = appliedAmount;
+        targetCharacter.ApplyStatModifier(Type,appliedAmount);
 
         ApplyEffects(targetCharacter);
     }
@@ -39,9 +40,13 @@ public class ScriptableStatModifier : ScriptableModifier
     public override void OnRemove(CharacterBase ownerCharacter, CharacterBase targetCharacter,
         ref List<CharacterBase> affectedCharacters)
     {
-        if (!Percentage)
-            targetCharacter.ApplyStatModifier(Type, -Amount);
+        if (characterInstanceData.ContainsKey(targetCharacter))
+        {
+            float appliedAmount = (float) characterInstanceData[targetCharacter];
+            characterInstanceData.Remove(targetCharacter);
 
+            targetCharacter.ApplyStatModifier(Type, -appliedAmount);
+        }
     }
 
     public override void OnTick(CharacterBase ownerCharacter, CharacterBase targetCharacter,

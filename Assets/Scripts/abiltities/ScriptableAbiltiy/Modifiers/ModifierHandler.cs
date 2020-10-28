@@ -14,12 +14,15 @@ public class ModifierHandler
     private List<AbilityModifier> actionModifiers;
     private List<AbilityModifier> postModifiers;
 
+    private List<Tuple<Modifier,CharacterBase>> appliedInstantModifiers;
+
     public ModifierHandler(List<AbilityModifier> modifiers)
     {
         allModifiers = modifiers;
         preModifiers = new List<AbilityModifier>();
         actionModifiers = new List<AbilityModifier>();
         postModifiers = new List<AbilityModifier>();
+        appliedInstantModifiers = new List<Tuple<Modifier, CharacterBase>>();
 
         foreach (var modifier in modifiers)
         {
@@ -46,6 +49,8 @@ public class ModifierHandler
         {
             applyModifier(abilityModifier,characterBase,targetCharacterBase);
         }
+
+        RemoveInstantModifiers();
     }
 
     public void ApplyActionModifiers(CharacterBase characterBase, GameObject targetObject, Vector3 hitPoint,
@@ -62,15 +67,19 @@ public class ModifierHandler
 
         Modifier mod = new Modifier(actionModifiers[0].Modifier, characterBase);
         mod.Hit(hitPoint, hitDirection, hitSurfaceNormal, targetObject);
-        if(targetcharacter != null)
+        if (targetcharacter != null)
+        {
             mod.Apply(targetcharacter);
+
+            if (mod.ActivePeriod <= 0.0f)
+                appliedInstantModifiers.Add(Tuple.Create(mod, targetcharacter));
+        }
+
 
         foreach (var character in mod.AffectedCharacters)
         {
             affectedCharacters.Add(character);
         }
-
-
 
         for (var modifierIndex = 1; modifierIndex < actionModifiers.Count; modifierIndex++)
         {
@@ -86,6 +95,9 @@ public class ModifierHandler
                 }
             }
         }
+
+        //go through and remove any modifier that has a period of zero
+        RemoveInstantModifiers();
     }
 
     public void ApplyPostActionModifiers(CharacterBase characterBase, CharacterBase targetCharacterBase)
@@ -94,6 +106,17 @@ public class ModifierHandler
         {
             applyModifier(abilityModifier, characterBase, targetCharacterBase);
         }
+
+        RemoveInstantModifiers();
+    }
+
+    private void RemoveInstantModifiers()
+    {
+        foreach (var instantModifier in appliedInstantModifiers)
+        {
+            instantModifier.Item1.Remove(instantModifier.Item2);
+        }
+        appliedInstantModifiers.Clear();
     }
 
     private Modifier applyModifier(AbilityModifier abilityModifier, CharacterBase ownerCharacter,
@@ -104,18 +127,11 @@ public class ModifierHandler
 
         //create a new instance of the modifier
         Modifier modifier = new Modifier(abilityModifier.Modifier, ownerCharacter);
+        modifier.Apply(targetCharacter);
 
-        switch (abilityModifier.Target)
-        {
-            case ModifierTarget.CASTER:
-                modifier.Apply(ownerCharacter);
-                break;
-            case ModifierTarget.TARGET:
-                modifier.Apply(targetCharacter);
-                break;
-            default:
-                throw new ArgumentOutOfRangeException();
-        }
+
+        if (abilityModifier.Modifier.ActivePeriod <= 0.0f)
+            appliedInstantModifiers.Add(Tuple.Create(modifier, targetCharacter));
 
         return modifier;
     }

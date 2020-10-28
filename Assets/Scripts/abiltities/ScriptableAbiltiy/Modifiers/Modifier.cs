@@ -61,7 +61,8 @@ public class Modifier
         {
             scriptableModifier.OnApply(ownerCharacter, targetCharacter, ref affectedCharacters);
             scriptableModifier.OnTick(ownerCharacter, targetCharacter, ref affectedCharacters);
-            Remove(targetCharacter);
+            targetCharacter.AppliedModifiers.Add(this);
+            //Remove(targetCharacter);
             return;
         }
 

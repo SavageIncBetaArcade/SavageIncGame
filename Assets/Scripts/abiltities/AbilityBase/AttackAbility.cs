@@ -22,9 +22,9 @@ public abstract class AttackAbility : BaseAbility
         if(hitObject == OwnerCharacter.gameObject)
             return;
 
-        hitObject.GetComponent<CharacterBase>()?.TakeDamage(damage);
-
         OnHit?.Invoke(useableAbility.CharacterBase,hitObject, hitPoint, hitDirection, surfaceNormal);
+
+        hitObject.GetComponent<CharacterBase>()?.TakeDamage(damage);
 
         foreach (var hitEffect in Ability.HitEffects)
         {
