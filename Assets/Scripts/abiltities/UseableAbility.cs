@@ -37,7 +37,8 @@ public class UseableAbility : MonoBehaviour
 
     void Initilise()
     {
-        ability = AbilityFactory.Create(this, ScriptableAbility, CharacterBase, worldGameObject, HitAction);
+        ability = AbilityFactory.Create(this, ScriptableAbility, CharacterBase, worldGameObject, HitAction,
+            AttackEnded);
 
         //Create a copy of the Modifiers so this ability has its own instance
         modifierHandler = new ModifierHandler(Modifiers);
@@ -110,5 +111,10 @@ public class UseableAbility : MonoBehaviour
     {
         if(ScriptableAbility.HitModifierApplyPercentage >= Random.Range(0.0f,1.0f))
             modifierHandler.ApplyActionModifiers(attackingcharacter, targetObject, hitPoint, hitDirection, hitSurfaceNormal);
+    }
+
+    private void AttackEnded(CharacterBase attackingCharacter)
+    {
+        modifierHandler.RemoveInstantModifiers();
     }
 }

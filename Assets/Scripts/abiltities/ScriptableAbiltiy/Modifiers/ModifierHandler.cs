@@ -96,8 +96,6 @@ public class ModifierHandler
             }
         }
 
-        //go through and remove any modifier that has a period of zero
-        RemoveInstantModifiers();
     }
 
     public void ApplyPostActionModifiers(CharacterBase characterBase, CharacterBase targetCharacterBase)
@@ -110,7 +108,7 @@ public class ModifierHandler
         RemoveInstantModifiers();
     }
 
-    private void RemoveInstantModifiers()
+    public void RemoveInstantModifiers()
     {
         foreach (var instantModifier in appliedInstantModifiers)
         {

@@ -11,6 +11,9 @@ public abstract class AttackAbility : BaseAbility
     public delegate void HitAction(CharacterBase attackingCharacter, GameObject targetObject, Vector3 hitPoint, Vector3 hitDirection, Vector3 hitSurfaceNormal);
     public event HitAction OnHit;
 
+    public delegate void EndAttackAction(CharacterBase targetCharacter);
+    public event EndAttackAction OnEndAttack;
+
     protected AttackAbility(UseableAbility useableAbility, CharacterBase ownerCharacter) : base(useableAbility, ownerCharacter)
     {
 
@@ -22,14 +25,19 @@ public abstract class AttackAbility : BaseAbility
         if(hitObject == OwnerCharacter.gameObject)
             return;
 
+        CharacterBase hitCharacter = hitObject.GetComponent<CharacterBase>();
+
         OnHit?.Invoke(useableAbility.CharacterBase,hitObject, hitPoint, hitDirection, surfaceNormal);
 
-        hitObject.GetComponent<CharacterBase>()?.TakeDamage(damage);
+        hitCharacter?.TakeDamage(damage);
 
         foreach (var hitEffect in Ability.HitEffects)
         {
             useableAbility.InstantiateObject(hitEffect, hitObject.transform);
         }
+
+        if(hitCharacter != null)
+            OnEndAttack?.Invoke(hitCharacter);
     }
 
 }
