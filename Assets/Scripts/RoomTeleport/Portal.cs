@@ -108,6 +108,11 @@ public class Portal : MonoBehaviour
             rotation;
     }
 
+    public static Vector3 TransformDirectionBetweenPortals(Portal sender, Portal target, Vector3 position)
+    {
+        return target.NormalInvisible.TransformDirection(sender.NormalVisible.InverseTransformDirection(position));
+    }
+
     private void Start()
     {
         // Finish OffMeshLink generation
@@ -152,6 +157,85 @@ public class Portal : MonoBehaviour
                 Debug.LogException(e);
             }
         }
+    }
+
+    private static bool RaycastRecursiveInternal(
+    Vector3 position,
+    Vector3 direction,
+    int maxRecursions,
+    out RaycastHit hitInfo,
+    float range,
+    int currentRecursion,
+    GameObject ignoreObject)
+    {
+        //Onjects to ignore when RayCasting 
+        var ignoreObjectOriginalLayer = 0;
+        if (ignoreObject)
+        {
+            ignoreObjectOriginalLayer = ignoreObject.layer;
+            ignoreObject.layer = 2; // Ignore raycast
+        }
+
+        var raycastHitSomething = Physics.Raycast(
+        position,
+        direction,
+        out var hit,
+        range); // Clamp to max array length
+
+        // If no objects are hit, the recursion ends here, with no effect
+
+        if (!raycastHitSomething)
+        {
+            hitInfo = new RaycastHit(); 
+            return false;
+        }
+
+        // If the object hit is a portal, recurse, unless we are already at max recursions
+
+        var portal = hit.collider.GetComponent<Portal>();
+        if (portal)
+        {
+            Debug.Log("Hit Portal");
+
+            if (currentRecursion >= maxRecursions)
+            {
+                hitInfo = new RaycastHit(); 
+                return false;
+            }
+
+            // Just keep recusing
+
+            return RaycastRecursiveInternal(
+                TransformPositionBetweenPortals(portal, portal.TargetPortal, hit.point),
+                TransformDirectionBetweenPortals(portal, portal.TargetPortal, direction),
+                maxRecursions,
+                out hitInfo,
+                range,
+                currentRecursion + 1,
+                portal.TargetPortal.gameObject);
+        }
+
+        // If the object hit is not a portal, then congrats! We stop here and report back that we hit something.
+        Debug.Log("Hit");
+        hitInfo = hit;
+        return true;
+    }
+
+
+    public static bool RaycastRecursive(
+    Vector3 position,
+    Vector3 direction,
+    int maxRecursions,
+    out RaycastHit hitInfo,
+    float range)
+    {
+        return RaycastRecursiveInternal(position,
+            direction,
+            maxRecursions,
+            out hitInfo,
+            range,
+            0,
+            null);
     }
 
 
