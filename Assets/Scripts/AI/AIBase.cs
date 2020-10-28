@@ -64,7 +64,8 @@ public class AIBase : CharacterBase
     {
         if (player && PlayerInFieldOfVision())
         {
-            if (Physics.Raycast(transform.position, transform.forward, SenseRange))
+            RaycastHit HitSomething = new RaycastHit();           
+            if (Portal.RaycastRecursive(transform.position, transform.forward, 1, out HitSomething, SenseRange))
             {
                 return true;
             }
