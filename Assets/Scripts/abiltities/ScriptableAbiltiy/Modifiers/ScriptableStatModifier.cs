@@ -13,32 +13,45 @@ public class ScriptableStatModifier : ScriptableModifier
     public float Amount;
     public bool Percentage;
 
+    public override void OnHit(CharacterBase ownerCharacter, Vector3 hitPosition, Vector3 hitDirection,
+        Vector3 hitSurfaceNormal,
+        GameObject hitObject,
+        ref List<CharacterBase> affectedCharacters)
+    {
+
+    }
+
     public override void OnApply(CharacterBase ownerCharacter, CharacterBase targetCharacter,
         ref List<CharacterBase> affectedCharacters)
     {
-        affectedCharacters.Add(targetCharacter);
-        if(!Percentage)
-            targetCharacter.ApplyStatModifier(Type, Amount);
-        else
+        float appliedAmount = Amount;
+
+        if(Percentage)
         {
-            float percentageAmount = targetCharacter.GetStatModifier(Type) * Amount;
-            targetCharacter.StartCoroutine(
-                targetCharacter.ApplyStatsModifierOverPeriod(Type, percentageAmount, ActivePeriod));
+            appliedAmount = targetCharacter.GetStatModifier(Type) * Amount;
         }
+
+        characterInstanceData[targetCharacter] = appliedAmount;
+        targetCharacter.ApplyStatModifier(Type,appliedAmount);
+
+        ApplyEffects(targetCharacter);
     }
 
     public override void OnRemove(CharacterBase ownerCharacter, CharacterBase targetCharacter,
         ref List<CharacterBase> affectedCharacters)
     {
-        affectedCharacters.Clear();
-        if (!Percentage)
-            targetCharacter.ApplyStatModifier(Type, -Amount);
+        if (characterInstanceData.ContainsKey(targetCharacter))
+        {
+            float appliedAmount = (float) characterInstanceData[targetCharacter];
+            characterInstanceData.Remove(targetCharacter);
 
+            targetCharacter.ApplyStatModifier(Type, -appliedAmount);
+        }
     }
 
     public override void OnTick(CharacterBase ownerCharacter, CharacterBase targetCharacter,
         ref List<CharacterBase> affectedCharacters)
     {
-        ApplyEffects(targetCharacter);
+
     }
 }

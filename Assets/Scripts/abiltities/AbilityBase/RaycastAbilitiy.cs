@@ -26,32 +26,30 @@ public class RaycastAbilitiy : AttackAbility
         RaycastHit hitInfo;
         if (Portal.RaycastRecursive(useableAbility.Origin.position, useableAbility.Origin.forward, 8, out hitInfo, ((ScriptableRaycastAbility)Ability).Range))
         {
-            fireBolt(raycastAbility, useableAbility.Origin.position, hitInfo.point);
+            shootBolt(raycastAbility, useableAbility.Origin.position, hitInfo.point);
 
-            CharacterBase hitCharacter = hitInfo.transform.GetComponent<CharacterBase>();
-            if (hitCharacter != null && hitCharacter != OwnerCharacter)
-            {
-                Hit(hitCharacter, raycastAbility.Damage);
-            }
+            //CharacterBase hitObject = hitInfo.transform.GetComponent<CharacterBase>();
+            Hit(hitInfo.transform.gameObject, raycastAbility.Damage, hitInfo.point, useableAbility.Origin.forward, hitInfo.normal);
         }
         else
         {
             Vector3 target = useableAbility.Origin.position + (useableAbility.Origin.forward * raycastAbility.Range);
-            fireBolt(raycastAbility, useableAbility.Origin.position, target);
+            shootBolt(raycastAbility, useableAbility.Origin.position, target);
         }
 
 
         Debug.Log("Firing Raycast");
     }
 
-    public override void Hit(CharacterBase hitCharacter, float damage)
+    public override void Hit(GameObject hitObject, float damage, Vector3 hitPoint, Vector3 hitDirection,
+        Vector3 surfaceNormal)
     {
         Debug.Log("Hit");
 
-        base.Hit(hitCharacter, damage);
+        base.Hit(hitObject, damage, hitPoint, hitDirection, surfaceNormal);
     }
 
-    private void fireBolt(ScriptableRaycastAbility raycastAbility, Vector3 start, Vector3 end)
+    private void shootBolt(ScriptableRaycastAbility raycastAbility, Vector3 start, Vector3 end)
     {
         if (raycastAbility.RaycastBolt != null)
         {

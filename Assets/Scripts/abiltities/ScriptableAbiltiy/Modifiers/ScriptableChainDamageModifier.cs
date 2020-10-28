@@ -8,31 +8,41 @@ public class ScriptableChainDamageModifier : ScriptableDamageModifier
 {
     public int MaxTarget = 3;
     public float Range = 5.0f;
-    public float Delay = 0.0f;
+    public float Delay = 0.025f;
+    public float LifeTime = 0.5f;
 
     public Material ElectricMaterial;
     public GameObject LineGameObject;
     private CharacterBase[] allCharacters;
 
+    public override void OnHit(CharacterBase ownerCharacter, Vector3 hitPosition, Vector3 hitDirection,
+        Vector3 hitSurfaceNormal,
+        GameObject hitObject,
+        ref List<CharacterBase> affectedCharacters)
+    {
+        
+    }
+
     public override void OnApply(CharacterBase ownerCharacter, CharacterBase targetCharacter,
         ref List<CharacterBase> affectedCharacters)
     {
-        allCharacters = GetOrderedCharactersByPosition(targetCharacter);
+        allCharacters = GetOrderedCharactersByPosition(targetCharacter.transform.position);
         affectedCharacters.Add(targetCharacter);
         AddClosestCharacters(ownerCharacter,targetCharacter, ref affectedCharacters);
+        targetCharacter.StartCoroutine(ChainAttack(affectedCharacters));
     }
 
 
     public override void OnRemove(CharacterBase ownerCharacter, CharacterBase targetCharacter,
         ref List<CharacterBase> affectedCharacters)
     {
-        //affectedCharacters.Clear();
+
     }
 
     public override void OnTick(CharacterBase ownerCharacter, CharacterBase targetCharacter,
         ref List<CharacterBase> affectedCharacters)
     {
-        targetCharacter.StartCoroutine(ChainAttack(affectedCharacters));
+
     }
 
     private void AddClosestCharacters(CharacterBase owner, CharacterBase targetCharacter, ref List<CharacterBase> affectedCharacters)
@@ -40,7 +50,7 @@ public class ScriptableChainDamageModifier : ScriptableDamageModifier
         if (affectedCharacters.Count >= MaxTarget)
             return;
         
-        var orderedCharacters = GetOrderedCharactersByPosition(targetCharacter);
+        var orderedCharacters = GetOrderedCharactersByPosition(targetCharacter.transform.position);
 
         foreach (var orderedCharacter in orderedCharacters)
         {
@@ -75,7 +85,7 @@ public class ScriptableChainDamageModifier : ScriptableDamageModifier
                 RaycastBolt raycastBolt = gameObject.GetComponent<RaycastBolt>();
                 raycastBolt.LifeTime = -1.0f;
                 raycastBolt.TimeToTarget = Delay;
-                raycastBolt.SetPoints(start.position , end.position);
+                raycastBolt.SetPoints(start , end);
             }
 
 
@@ -84,6 +94,8 @@ public class ScriptableChainDamageModifier : ScriptableDamageModifier
             yield return new WaitForSeconds(Delay);
         }
 
+
+        yield return new WaitForSeconds(LifeTime);
         foreach (var affectedCharacter in affectedCharacters)
         {
             if (ElectricMaterial != null)

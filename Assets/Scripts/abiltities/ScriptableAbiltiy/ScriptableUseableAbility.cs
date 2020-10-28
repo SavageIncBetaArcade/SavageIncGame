@@ -4,7 +4,10 @@
 [CreateAssetMenu(menuName = "Abilities/UseableAbility")]
 public class ScriptableUseableAbility : Item
 {
+    public float EnergyCost;
     public float Cooldown;
+    [Range(0,1)]
+    public float HitModifierApplyPercentage = 1.0f;
     public bool UseAnimationCooldown;
     public GameObject AbilityPrefab;
     public AbilityModifier[] StartingModifiers;

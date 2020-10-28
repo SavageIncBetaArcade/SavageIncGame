@@ -45,7 +45,7 @@ public abstract class BaseAbility
 public static class AbilityFactory
 {
     public static BaseAbility Create(UseableAbility useableAbility, Item scriptableAbility, CharacterBase ownerCharacter,
-        GameObject worldGameObject, AttackAbility.HitAction hitAction = null)
+        GameObject worldGameObject, AttackAbility.HitAction hitAction = null, AttackAbility.EndAttackAction endAttackAction = null)
     {
         Func<BaseAbility> abilityFunc = () =>
         {
@@ -58,6 +58,8 @@ public static class AbilityFactory
                     MeleeAbility meleeAbility = new MeleeAbility(useableAbility, forwardTrigger, ownerCharacter);
                     if (hitAction != null)
                         meleeAbility.OnHit += hitAction;
+                    if (endAttackAction != null)
+                        meleeAbility.OnEndAttack += endAttackAction;
 
                     return meleeAbility;
                 }
@@ -65,11 +67,15 @@ public static class AbilityFactory
                     RaycastAbilitiy raycastAbility = new RaycastAbilitiy(useableAbility, ownerCharacter);
                     if (hitAction != null)
                         raycastAbility.OnHit += hitAction;
+                    if (endAttackAction != null)
+                        raycastAbility.OnEndAttack += endAttackAction;
                     return raycastAbility;
                 case ScriptableProjectileAbility _:
                     ProjectileAbility projectileAbility = new ProjectileAbility(useableAbility, ownerCharacter);
                     if (hitAction != null)
                         projectileAbility.OnHit += hitAction;
+                    if (endAttackAction != null)
+                        projectileAbility.OnEndAttack += endAttackAction;
                     return projectileAbility;
                 case ScriptableUseableAbility _:
                     return new ModifierAbility(useableAbility, ownerCharacter);
