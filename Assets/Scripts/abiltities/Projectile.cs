@@ -20,7 +20,7 @@ public class Projectile : MonoBehaviour
     private Rigidbody projectileRigidbody;
 
     //The ProjectileAbility that was used to cast this project (null of none)
-    private ProjectileAbility _castersProjectileAbility;
+    private ProjectileAbility castersProjectileAbility;
 
     void Awake()
     {
@@ -48,28 +48,24 @@ public class Projectile : MonoBehaviour
         //First check if it has a health component
         //TODO add health component and pass into hit
 
-        CharacterBase hitCharacter = collision.gameObject.GetComponent<CharacterBase>();
-        if (hitCharacter != null)
-        {
-            Impact(hitCharacter);
-        }
-
-        Destroy(gameObject);
+        Impact(collision.gameObject, collision.GetContact(0).point, collision.GetContact(0).normal);
     }
 
-    void Impact(CharacterBase characterBase)
+    void Impact(GameObject hitGameObject, Vector3 hitPoint, Vector3 hitNormal)
     {
-        //First check if it has a health component
-        Debug.Log("Projectile Hit");
-
-        if (_castersProjectileAbility != null && characterBase != _castersProjectileAbility.OwnerCharacter)
+        if (castersProjectileAbility != null)
         {
-            ScriptableProjectileAbility projectileAbility = _castersProjectileAbility.Ability as ScriptableProjectileAbility;
-        
+            //First check if it has a health component
+            Debug.Log("Projectile Hit");
+
+            ScriptableProjectileAbility projectileAbility =
+                castersProjectileAbility.Ability as ScriptableProjectileAbility;
+
             if (projectileAbility == null)
                 Debug.LogError("Projectile: ScriptableAbility is not of type ScriptableProjectileAbility");
 
-            _castersProjectileAbility.Hit(characterBase, projectileAbility != null ? projectileAbility.Damage : 0.0f);
+            castersProjectileAbility.Hit(hitGameObject, projectileAbility != null ? projectileAbility.Damage : 0.0f,
+                hitPoint, transform.forward, hitNormal);
         }
 
         Destroy(gameObject);
@@ -77,7 +73,7 @@ public class Projectile : MonoBehaviour
 
     public void SetCastersProjectileAbilty(ProjectileAbility projectileAbility)
     {
-        _castersProjectileAbility = projectileAbility;
+        castersProjectileAbility = projectileAbility;
 
         ScriptableProjectileAbility scriptableProjectile = (ScriptableProjectileAbility)projectileAbility.Ability;
         damage = scriptableProjectile.Damage;

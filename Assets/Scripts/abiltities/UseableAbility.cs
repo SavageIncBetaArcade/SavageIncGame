@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 /// <summary>
 /// This is the script that allows the character to use abilities
@@ -13,6 +14,7 @@ public class UseableAbility : MonoBehaviour
 {
     //Abilities that use mono behavior are all useable I.E (Weapons, Buffs) - Passive abilities work in a different way
     public ScriptableUseableAbility ScriptableAbility;
+    public string UseButton = "Fire1";
     public string AnimationUseBoolName;
     public Animator UseAnimator;
 
@@ -35,7 +37,8 @@ public class UseableAbility : MonoBehaviour
 
     void Initilise()
     {
-        ability = AbilityFactory.Create(this, ScriptableAbility, CharacterBase, worldGameObject, HitAction);
+        ability = AbilityFactory.Create(this, ScriptableAbility, CharacterBase, worldGameObject, HitAction,
+            AttackEnded);
 
         //Create a copy of the Modifiers so this ability has its own instance
         modifierHandler = new ModifierHandler(Modifiers);
@@ -62,7 +65,7 @@ public class UseableAbility : MonoBehaviour
     protected virtual void Update()
     {
         //TODO check if the current CharacterBase is the player, only attack on left click if player
-        if (!OnCooldown() && Input.GetButtonDown("Fire1"))
+        if (!OnCooldown() && Input.GetButtonDown(UseButton))
         {
             ExecuteUse();
             _lastUseTime = Time.time;
@@ -71,6 +74,9 @@ public class UseableAbility : MonoBehaviour
 
     protected bool OnCooldown()
     {
+        if (_lastUseTime == 0.0f)
+            return false;
+
         if (ScriptableAbility.UseAnimationCooldown && UseAnimator != null && !string.IsNullOrWhiteSpace(AnimationUseBoolName))
         {
             return UseAnimator.GetBool(AnimationUseBoolName);
@@ -81,7 +87,7 @@ public class UseableAbility : MonoBehaviour
 
     private void ExecuteUse()
     {
-        modifierHandler.ApplyPreActionModifiers(CharacterBase,null);
+        modifierHandler.ApplyPreActionModifiers(CharacterBase, CharacterBase);
 
         OnUse?.Invoke();
 
@@ -92,7 +98,7 @@ public class UseableAbility : MonoBehaviour
 
         ability.Use();
 
-        modifierHandler.ApplyPostActionModifiers(CharacterBase, null);
+        modifierHandler.ApplyPostActionModifiers(CharacterBase, CharacterBase);
     }
 
     public GameObject InstantiateObject(GameObject gameObject, Transform transform)
@@ -100,8 +106,15 @@ public class UseableAbility : MonoBehaviour
         return Instantiate(gameObject, transform.position, transform.rotation);
     }
 
-    private void HitAction(CharacterBase attackingcharacter, CharacterBase targetcharacter)
+    private void HitAction(CharacterBase attackingcharacter, GameObject targetObject, Vector3 hitPoint, Vector3 hitDirection,
+        Vector3 hitSurfaceNormal)
     {
-        modifierHandler.ApplyActionModifiers(attackingcharacter, targetcharacter);
+        if(ScriptableAbility.HitModifierApplyPercentage >= Random.Range(0.0f,1.0f))
+            modifierHandler.ApplyActionModifiers(attackingcharacter, targetObject, hitPoint, hitDirection, hitSurfaceNormal);
+    }
+
+    private void AttackEnded(CharacterBase attackingCharacter)
+    {
+        modifierHandler.RemoveInstantModifiers();
     }
 }

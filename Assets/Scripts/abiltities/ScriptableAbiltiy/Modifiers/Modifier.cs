@@ -27,6 +27,7 @@ public class Modifier
     public string ModifierDescription => scriptableModifier.ModifierDescription;
     public float ActivePeriod => scriptableModifier.ActivePeriod;
     public float ApplyFrequency => scriptableModifier.ApplyFrequency;
+    public List<CharacterBase> AffectedCharacters => affectedCharacters;
 
     public bool IsPassive
     {
@@ -43,16 +44,25 @@ public class Modifier
         affectedCharacters = new List<CharacterBase>();
     }
 
-    public void Apply(CharacterBase owner, CharacterBase targetCharacter)
+    public void Hit(Vector3 hitPoint, Vector3 hitDirection, Vector3 hitSurfaceNormal, GameObject hitObject)
+    {
+        if(scriptableModifier == null)
+            return;
+
+        scriptableModifier.OnHit(ownerCharacter, hitPoint, hitDirection, hitSurfaceNormal, hitObject, ref affectedCharacters);
+    }
+
+    public void Apply(CharacterBase targetCharacter)
     {
         if (affectedCharacters == null)
             affectedCharacters = new List<CharacterBase>();
 
         if (!isPassive && scriptableModifier.ActivePeriod <= 0.0f)
         {
-            scriptableModifier.OnApply(owner, targetCharacter, ref affectedCharacters);
-            scriptableModifier.OnTick(owner, targetCharacter, ref affectedCharacters);
-            Remove(owner, targetCharacter);
+            scriptableModifier.OnApply(ownerCharacter, targetCharacter, ref affectedCharacters);
+            scriptableModifier.OnTick(ownerCharacter, targetCharacter, ref affectedCharacters);
+            targetCharacter.AppliedModifiers.Add(this);
+            //Remove(targetCharacter);
             return;
         }
 
@@ -61,27 +71,27 @@ public class Modifier
             //Check if the modifier is not already applied, if so renew it
             if (targetCharacter.AppliedModifiers.All(x => x.ScriptableModifier != scriptableModifier))
             {
-                scriptableModifier.OnApply(owner, targetCharacter, ref affectedCharacters);
-                coroutine = targetCharacter.StartCoroutine(tickCoroutine(owner, targetCharacter));
+                scriptableModifier.OnApply(ownerCharacter, targetCharacter, ref affectedCharacters);
+                coroutine = targetCharacter.StartCoroutine(tickCoroutine(targetCharacter));
                 targetCharacter.AppliedModifiers.Add(this);
             }
             else
             {
-                Renew(owner, targetCharacter);
+                Renew(targetCharacter);
             }
         }
         else
         {
-            scriptableModifier.OnApply(owner, targetCharacter, ref affectedCharacters);
+            scriptableModifier.OnApply(ownerCharacter, targetCharacter, ref affectedCharacters);
             if(coroutine == null)
-                coroutine = targetCharacter.StartCoroutine(tickCoroutine(owner, targetCharacter));
+                coroutine = targetCharacter.StartCoroutine(tickCoroutine(targetCharacter));
         }
     }
 
 
-    public void Remove(CharacterBase owner, CharacterBase targetCharacter)
+    public void Remove(CharacterBase targetCharacter)
     {
-        scriptableModifier.OnRemove(owner, targetCharacter, ref affectedCharacters);
+        scriptableModifier.OnRemove(ownerCharacter, targetCharacter, ref affectedCharacters);
         if (!isPassive)
             targetCharacter.AppliedModifiers.Remove(this);
 
@@ -89,7 +99,7 @@ public class Modifier
             targetCharacter.StopCoroutine(coroutine);
     }
 
-    private void Renew(CharacterBase owner, CharacterBase targetCharacter)
+    private void Renew(CharacterBase targetCharacter)
     {
         //get the currently applies modifier on the character
         var appliedModifier = targetCharacter.AppliedModifiers.FirstOrDefault(x => x.ScriptableModifier == scriptableModifier);
@@ -101,11 +111,11 @@ public class Modifier
             targetCharacter.AppliedModifiers.Remove(appliedModifier);
         }
         //Start a new coroutine and add the new modifier to the applied set replacing the old one
-        coroutine = targetCharacter.StartCoroutine(tickCoroutine(owner, targetCharacter));
+        coroutine = targetCharacter.StartCoroutine(tickCoroutine(targetCharacter));
         targetCharacter.AppliedModifiers.Add(this);
     }
 
-    private IEnumerator tickCoroutine(CharacterBase owner, CharacterBase targetCharacter)
+    private IEnumerator tickCoroutine(CharacterBase targetCharacter)
     {
         float currentActiveTime = 0.0f;
 
@@ -114,7 +124,7 @@ public class Modifier
             while (currentActiveTime <= scriptableModifier.ActivePeriod)
             {
                 UnityEngine.Debug.Log(currentActiveTime);
-                scriptableModifier.OnTick(owner, targetCharacter, ref affectedCharacters);
+                scriptableModifier.OnTick(ownerCharacter, targetCharacter, ref affectedCharacters);
 
                 //Only update current active time if the ability is not passive as passive abilites will continuously tick
                 if(!isPassive)
@@ -125,11 +135,11 @@ public class Modifier
         }
         else
         {
-            scriptableModifier.OnTick(owner, targetCharacter, ref affectedCharacters);
+            scriptableModifier.OnTick(ownerCharacter, targetCharacter, ref affectedCharacters);
             yield return new WaitForSeconds(scriptableModifier.ActivePeriod);
         }
 
         if (!isPassive)
-            Remove(owner, targetCharacter);
+            Remove(targetCharacter);
     }
 }

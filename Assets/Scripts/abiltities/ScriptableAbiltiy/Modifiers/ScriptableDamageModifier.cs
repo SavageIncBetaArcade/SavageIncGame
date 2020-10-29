@@ -11,16 +11,24 @@ public class ScriptableDamageModifier : ScriptableModifier
 {
     public float Damage;
 
+    public override void OnHit(CharacterBase ownerCharacter, Vector3 hitPosition, Vector3 hitDirection,
+        Vector3 hitSurfaceNormal,
+        GameObject hitObject,
+        ref List<CharacterBase> affectedCharacters)
+    {
+
+    }
+
     public override void OnApply(CharacterBase ownerCharacter, CharacterBase targetCharacter,
         ref List<CharacterBase> affectedCharacters)
     {
-        affectedCharacters.Add(targetCharacter);
+
     }
 
     public override void OnRemove(CharacterBase ownerCharacter, CharacterBase targetCharacter,
         ref List<CharacterBase> affectedCharacters)
     {
-        affectedCharacters.Clear();
+
     }
 
     public override void OnTick(CharacterBase ownerCharacter, CharacterBase targetCharacter,

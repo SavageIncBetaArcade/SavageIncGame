@@ -23,6 +23,8 @@ public abstract class ScriptableModifier : ScriptableObject
     protected string modifierName;
     [SerializeField]
     protected string modifierDescription;
+    [SerializeField] 
+    protected int modifierLevel;
 
     /// <summary>
     /// How Long is the modifier active for till it gets removed from the target?
@@ -42,6 +44,9 @@ public abstract class ScriptableModifier : ScriptableObject
     [SerializeField]
     protected GameObject[] tickEffectGameObjects;
 
+    //Have a dictionary to hold per character instance data
+    protected Dictionary<CharacterBase, object> characterInstanceData;
+
     #region properties
     public string ModifierName => modifierName;
     public string ModifierDescription => modifierDescription;
@@ -49,6 +54,15 @@ public abstract class ScriptableModifier : ScriptableObject
     public float ApplyFrequency => applyFrequency;
     #endregion
 
+    protected ScriptableModifier()
+    {
+        characterInstanceData = new Dictionary<CharacterBase, object>();
+    }
+
+    public abstract void OnHit(CharacterBase ownerCharacter, Vector3 hitPosition,
+        Vector3 hitDirection, Vector3 hitSurfaceNormal,
+        GameObject hitObject,
+        ref List<CharacterBase> affectedCharacters);
     public abstract void OnApply(CharacterBase ownerCharacter, CharacterBase targetCharacter,
         ref List<CharacterBase> affectedCharacters);
     public abstract void OnRemove(CharacterBase ownerCharacter, CharacterBase targetCharacter,
@@ -70,9 +84,9 @@ public abstract class ScriptableModifier : ScriptableObject
         return FindObjectsOfType<CharacterBase>();
     }
 
-    protected CharacterBase[] GetOrderedCharactersByPosition(CharacterBase characterBase)
+    protected CharacterBase[] GetOrderedCharactersByPosition(Vector3 position)
     {
-        return GetAllCharacters().OrderBy(x => Vector3.Distance(characterBase.transform.position,x.transform.position)).ToArray();
+        return GetAllCharacters().OrderBy(x => Vector3.Distance(position,x.transform.position)).ToArray();
     }
 }
 

@@ -34,7 +34,7 @@ public class PassiveAbilityContainer : MonoBehaviour
         {
             Modifier passive = new Modifier(passiveModifier, characterBase);
             passive.IsPassive = true;
-            passive.Apply(characterBase, characterBase);
+            passive.Apply(characterBase);
             activePassiveModifiers.Add(passiveModifier,passive);
         }
     }
@@ -43,7 +43,7 @@ public class PassiveAbilityContainer : MonoBehaviour
     {
         if (activePassiveModifiers.ContainsKey(passiveModifier))
         {
-            activePassiveModifiers[passiveModifier].Remove(characterBase, characterBase);
+            activePassiveModifiers[passiveModifier].Remove(characterBase);
             activePassiveModifiers.Remove(passiveModifier);
             return true;
         }
@@ -58,7 +58,7 @@ public class PassiveAbilityContainer : MonoBehaviour
         {
             if (passiveModifier.Key.ModifierName == passiveName)
             {
-                passiveModifier.Value.Remove(characterBase, characterBase);
+                passiveModifier.Value.Remove(characterBase);
                 modifierToRemove = passiveModifier.Key;
                 break;
             }
@@ -76,7 +76,7 @@ public class PassiveAbilityContainer : MonoBehaviour
     {
         foreach (var passiveModifier in activePassiveModifiers)
         {
-            passiveModifier.Value.Remove(characterBase, characterBase);
+            passiveModifier.Value.Remove(characterBase);
         }
         activePassiveModifiers.Clear();
     }

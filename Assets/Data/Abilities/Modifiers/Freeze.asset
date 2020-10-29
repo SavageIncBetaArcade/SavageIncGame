@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   modifierName: Freeze
   modifierDescription: 
+  modifierLevel: 0
   activePeriod: 2
   applyFrequency: 0
   tickEffectGameObjects: []

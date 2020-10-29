@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cbd4e7ba6e50e8478399ffd9d34c209, type: 3}
+  m_Name: HealOwnerModifier
+  m_EditorClassIdentifier: 
+  modifierName: Test Heal
+  modifierDescription: 
+  activePeriod: 0
+  applyFrequency: 0
+  tickEffectGameObjects: []
+  Amount: 0.025
+  Percentage: 1
+  HealOwner: 1
