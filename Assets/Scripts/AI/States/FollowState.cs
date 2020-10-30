@@ -12,8 +12,8 @@ public class FollowState : State
         NavMeshAgent navAgent = aiBase.NavAgent;
         Transform player = aiBase.Player.transform;
 
-        float distanceToPlayer = Vector3.Distance(aiBase.transform.position, player.position);
         //when the enemy is closer than 20 follow the player
+        float distanceToPlayer = Vector3.Distance(aiBase.transform.position, player.position);
         if (distanceToPlayer < aiBase.SenseRange)
         {
             if (distanceToPlayer > aiBase.AttackDistance)
@@ -28,6 +28,11 @@ public class FollowState : State
             }
 
             //TODO:: when get close enough attack the player.
+            //if (distanceToPlayer <= 1.5f)
+            //{
+            //    aiBase.RightAbilitiy.Attack();
+            //    aiBase.LeftAbility.Attack();
+            //}
         }
         else
         {
