@@ -41,22 +41,18 @@ public class PlayerCamera : MonoBehaviour
         PlayerBody.Rotate(Vector3.up * mouseX);
     }
 
-    public IEnumerator Shake(float duration, float magnitude)
+    public IEnumerator ShakePosition(float duration, float magnitude, float minDeviation, float maxDeviation)
     {
         Vector3 originalPos = transform.localPosition;
-        Quaternion originalRotation = transform.localRotation;
 
         float elapsed = 0.0f;
 
         while (elapsed < duration)
         {
-            float x = Random.Range(-1.0f, 1.0f) * magnitude;
-            float y = Random.Range(-1.0f, 1.0f) * magnitude;
-            float z = Random.Range(-1.0f, 1.0f) * magnitude;
+            float x = Random.Range(minDeviation, maxDeviation) * magnitude;
+            float y = Random.Range(minDeviation, maxDeviation) * magnitude;
 
             transform.localPosition = new Vector3(x, y, originalPos.z);
-
-            transform.localRotation = new Quaternion(originalRotation.x, y, z, originalRotation.w);
 
             elapsed += Time.deltaTime;
 
@@ -64,6 +60,22 @@ public class PlayerCamera : MonoBehaviour
         }
 
         transform.localPosition = originalPos;
-        transform.localRotation = originalRotation;
+    }
+
+    public IEnumerator ShakeRotation(float duration, float magnitude, float minDeviation, float maxDeviation)
+    {
+        float elapsed = 0.0f;
+
+        while (elapsed < duration)
+        {
+            float y = Random.Range(minDeviation, maxDeviation) * magnitude;
+            float z = Random.Range(minDeviation, maxDeviation) * magnitude;
+
+            transform.localRotation = new Quaternion(transform.localRotation.x, y, z, transform.localRotation.w);
+
+            elapsed += Time.deltaTime;
+
+            yield return null;
+        }
     }
 }
