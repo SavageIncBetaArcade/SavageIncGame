@@ -16,6 +16,9 @@ public class AIBase : CharacterBase
     public int NextPatrolPoint = 1;
     public State[] PotentialStates;
 
+    public AIUseableAbilitiy LeftAbility;
+    public AIUseableAbilitiy RightAbilitiy;
+
     private NavMeshAgent navAgent;
     private StackFSM stackOfStates;
     private GameObject player;
