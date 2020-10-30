@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09c8a2fa3c2f409b9e1a37ecb6f62dd1, type: 3}
   m_Name: Weapon
   m_EditorClassIdentifier: 
-  sprite: {fileID: 10915, guid: 0000000000000000f000000000000000, type: 0}
+  Name: 
+  Description: 
+  Sprite: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
   attack: 0
   defense: 0
   health: 0
