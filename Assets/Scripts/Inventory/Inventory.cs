@@ -109,7 +109,7 @@ public class Inventory : MonoBehaviour
         weaponSlot.EquipItem(weaponToEquip);
         return true;
     }
-
+    
     private IEnumerator ShowWarningText()
     {
         warningText.enabled = true;
