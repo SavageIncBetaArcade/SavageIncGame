@@ -10,6 +10,7 @@ public class AIBase : CharacterBase
     public float SenseRange = 60.0f;
     public float AngleOfVision = 45.0f;
     public float WalkDistance = 50.0f;
+    public float AttackDistance = 2.0f;
 
     public Transform[] PatrolPoints;
     public int CurrentPatrolPoint = 0;
