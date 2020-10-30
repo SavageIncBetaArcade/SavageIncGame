@@ -49,6 +49,16 @@ public class Inventory : MonoBehaviour
         items[position].Quantity.enabled = true;
     }
 
+    public int FindItemIndex(Item item)
+    {
+        for (var i = 0; i < ItemSlotsAmount; i++)
+        {
+            if (!InventorySlotIs(i, item)) continue;
+            return i;
+        }
+        return -1;
+    }
+    
     public void RemoveItem(Item itemToRemove)
     {
         for (var i = 0; i < ItemSlotsAmount; i++)
