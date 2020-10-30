@@ -44,6 +44,7 @@ public class PlayerCamera : MonoBehaviour
     public IEnumerator Shake(float duration, float magnitude)
     {
         Vector3 originalPos = transform.localPosition;
+        Quaternion originalRotation = transform.localRotation;
 
         float elapsed = 0.0f;
 
@@ -51,8 +52,11 @@ public class PlayerCamera : MonoBehaviour
         {
             float x = Random.Range(-1.0f, 1.0f) * magnitude;
             float y = Random.Range(-1.0f, 1.0f) * magnitude;
+            float z = Random.Range(-1.0f, 1.0f) * magnitude;
 
             transform.localPosition = new Vector3(x, y, originalPos.z);
+
+            transform.localRotation = new Quaternion(originalRotation.x, y, z, originalRotation.w);
 
             elapsed += Time.deltaTime;
 
@@ -60,5 +64,6 @@ public class PlayerCamera : MonoBehaviour
         }
 
         transform.localPosition = originalPos;
+        transform.localRotation = originalRotation;
     }
 }
