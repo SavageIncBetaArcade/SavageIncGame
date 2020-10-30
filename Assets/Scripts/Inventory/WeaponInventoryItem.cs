@@ -5,7 +5,7 @@
         inventory.EquipWeaponInLeftHand(this);
     }
 
-    public override void RightClick(Inventory inventory)
+    public override void RightClick(Inventory inventory, CharacterBase characterBase)
     {
         inventory.EquipWeaponInRightHand(this);
     }

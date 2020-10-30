@@ -4,5 +4,5 @@
     public int Quantity = 1;
 
     public abstract void LeftClick(Inventory inventory, CharacterBase character);
-    public abstract void RightClick(Inventory inventory);
+    public abstract void RightClick(Inventory inventory, CharacterBase characterBase);
 }

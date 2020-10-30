@@ -6,7 +6,7 @@
         inventory.armourSlot.EquipItem(this);
     }
 
-    public override void RightClick(Inventory inventory)
+    public override void RightClick(Inventory inventory, CharacterBase characterBase)
     {
         LeftClick(inventory, null);
     }
