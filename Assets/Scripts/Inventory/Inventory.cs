@@ -102,18 +102,12 @@ public class Inventory : MonoBehaviour
             items[position].InventoryItem.RightClick(this, character);
     }
     
-    public void EquipWeaponInLeftHand(WeaponInventoryItem weaponToEquip)
+    public void Equip(InventoryItem itemToEquip, EquipSlot slotToEquip)
     {
-        RemoveItem(weaponToEquip.Item);
-        leftWeaponSlot.EquipItem(weaponToEquip);
+        RemoveItem(itemToEquip.Item);
+        slotToEquip.EquipItem(itemToEquip);
     }
     
-    public void EquipWeaponInRightHand(WeaponInventoryItem weaponToEquip)
-    {
-        RemoveItem(weaponToEquip.Item);
-        rightWeaponSlot.EquipItem(weaponToEquip);
-    }
-
     public void EquipAbilityInLeftHand(AbilityInventoryItem abilityToEquip)
     {
         if (!leftHand.Any(abilitySlot => EquipAbilityInSlot(abilityToEquip, abilitySlot)))
@@ -132,12 +126,6 @@ public class Inventory : MonoBehaviour
         RemoveItem(abilityToEquip.Item);
         abilitySlot.EquipItem(abilityToEquip);
         return true;
-    }
-    
-    public void EquipArmour(ArmourInventoryItem armourToEquip)
-    {
-        RemoveItem(armourToEquip.Item);
-        armourSlot.EquipItem(armourToEquip);
     }
     
     private IEnumerator ShowWarningText()
