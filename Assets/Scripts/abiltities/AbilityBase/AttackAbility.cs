@@ -29,7 +29,10 @@ public abstract class AttackAbility : BaseAbility
 
         OnHit?.Invoke(useableAbility.CharacterBase,hitObject, hitPoint, hitDirection, surfaceNormal);
 
-        hitCharacter?.TakeDamage(damage);
+        if(hitCharacter != null)
+            Debug.Log($"Character:{OwnerCharacter.name} hit character:{hitCharacter.name} dealing:{damage + OwnerCharacter.AttackModifier}, target def:{hitCharacter.DefenseModifier}");
+        hitCharacter?.TakeDamage(damage + OwnerCharacter.AttackModifier);
+
 
         foreach (var hitEffect in Ability.HitEffects)
         {

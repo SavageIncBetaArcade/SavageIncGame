@@ -845,10 +845,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5ca00a9fdc186b4f847d6f0dabd5955, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackModifier: 0
-  defenseModifier: 0
-  maxHealth: 0
-  maxEnergy: 0
+  attackModifier: 10
+  defenseModifier: 1
+  maxHealth: 100
+  maxEnergy: 100
   speed: 6
   jumpHeight: 1
   currentHealth: 0

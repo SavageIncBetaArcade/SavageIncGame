@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -33,6 +34,7 @@ public abstract class UseableAbility : MonoBehaviour
     private GameObject worldGameObject;
 
     private ModifierHandler modifierHandler;
+    private Coroutine useCoroutine;
 
     void Initilise()
     {
@@ -76,20 +78,39 @@ public abstract class UseableAbility : MonoBehaviour
 
     protected void ExecuteUse()
     {
-        modifierHandler.ApplyPreActionModifiers(CharacterBase, CharacterBase);
-
-        OnUse?.Invoke();
-
-        if (UseAnimator != null)
-        {
-            UseAnimator.SetBool(AnimationUseBoolName, true);
-        }
-
-        ability.Use();
-
-        modifierHandler.ApplyPostActionModifiers(CharacterBase, CharacterBase);
+        if(useCoroutine != null)
+            StopCoroutine(useCoroutine);
+        useCoroutine = StartCoroutine(UseCoroutine());
 
         _lastUseTime = Time.time;
+    }
+
+    private IEnumerator UseCoroutine()
+    {
+        float currentActiveTime = 0.0f;
+
+  
+        modifierHandler.ApplyPreActionModifiers(CharacterBase, CharacterBase);
+
+        //check if the ability has a period, if so use the use frequency to use the ability multiple times till the period is over
+
+        do
+        {
+            OnUse?.Invoke();
+
+            if (UseAnimator != null)
+            {
+                UseAnimator.SetBool(AnimationUseBoolName, true);
+            }
+
+            ability.Use();
+
+            yield return new WaitForSeconds(ability.Ability.UseFrequency);
+            currentActiveTime += ability.Ability.UseFrequency;
+        }
+        while (currentActiveTime < ability.Ability.ActivePeriod);
+
+        modifierHandler.ApplyPostActionModifiers(CharacterBase, CharacterBase);
     }
 
     public GameObject InstantiateObject(GameObject gameObject, Transform transform)
