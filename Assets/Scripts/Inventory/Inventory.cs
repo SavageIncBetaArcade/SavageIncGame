@@ -10,6 +10,8 @@ public class Inventory : MonoBehaviour
     public EquipSlot[] leftHand = new EquipSlot[4]; 
     public EquipSlot[] rightHand = new EquipSlot[4];
     public EquipSlot armourSlot;
+    public EquipSlot leftWeaponSlot;
+    public EquipSlot rightWeaponSlot;
     public const int ItemSlotsAmount = 16;
     public Text warningText;
     public CharacterBase character;
@@ -102,22 +104,40 @@ public class Inventory : MonoBehaviour
     
     public void EquipWeaponInLeftHand(WeaponInventoryItem weaponToEquip)
     {
-        if (!leftHand.Any(weaponSlot => EquipWeapon(weaponToEquip, weaponSlot)))
-            StartCoroutine(ShowWarningText());
+        RemoveItem(weaponToEquip.Item);
+        leftWeaponSlot.EquipItem(weaponToEquip);
     }
     
     public void EquipWeaponInRightHand(WeaponInventoryItem weaponToEquip)
     {
-        if (!rightHand.Any(weaponSlot => EquipWeapon(weaponToEquip, weaponSlot)))
+        RemoveItem(weaponToEquip.Item);
+        rightWeaponSlot.EquipItem(weaponToEquip);
+    }
+
+    public void EquipAbilityInLeftHand(AbilityInventoryItem abilityToEquip)
+    {
+        if (!leftHand.Any(abilitySlot => EquipAbilityInSlot(abilityToEquip, abilitySlot)))
+            StartCoroutine(ShowWarningText());
+    }
+
+    public void EquipAbilityInRightHand(AbilityInventoryItem abilityToEquip)
+    {
+        if (!rightHand.Any(abilitySlot => EquipAbilityInSlot(abilityToEquip, abilitySlot)))
             StartCoroutine(ShowWarningText());
     }
     
-    private bool EquipWeapon(WeaponInventoryItem weaponToEquip, EquipSlot weaponSlot)
+    private bool EquipAbilityInSlot(AbilityInventoryItem abilityToEquip, EquipSlot abilitySlot)
     {
-        if (weaponSlot.equippedSlot.InventoryItem != null) return false;
-        RemoveItem(weaponToEquip.Item);
-        weaponSlot.EquipItem(weaponToEquip);
+        if (abilitySlot.equippedSlot.InventoryItem != null) return false;
+        RemoveItem(abilityToEquip.Item);
+        abilitySlot.EquipItem(abilityToEquip);
         return true;
+    }
+    
+    public void EquipArmour(ArmourInventoryItem armourToEquip)
+    {
+        RemoveItem(armourToEquip.Item);
+        armourSlot.EquipItem(armourToEquip);
     }
     
     private IEnumerator ShowWarningText()
