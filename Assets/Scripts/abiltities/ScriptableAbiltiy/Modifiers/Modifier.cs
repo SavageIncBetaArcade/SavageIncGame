@@ -121,7 +121,7 @@ public class Modifier
 
         if (ApplyFrequency > 0.0f)
         {
-            while (currentActiveTime <= scriptableModifier.ActivePeriod)
+            while (isPassive || (currentActiveTime <= scriptableModifier.ActivePeriod))
             {
                 UnityEngine.Debug.Log(currentActiveTime);
                 scriptableModifier.OnTick(ownerCharacter, targetCharacter, ref affectedCharacters);

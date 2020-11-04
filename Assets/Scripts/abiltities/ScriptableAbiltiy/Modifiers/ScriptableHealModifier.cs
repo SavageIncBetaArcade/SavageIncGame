@@ -36,7 +36,11 @@ public class ScriptableHealModifier : ScriptableModifier
 
     public override void OnTick(CharacterBase ownerCharacter, CharacterBase targetCharacter, ref List<CharacterBase> affectedCharacters)
     {
+        CharacterBase target = HealOwner ? ownerCharacter : targetCharacter;
+        float amount = Percentage ? target.MaxHealth * Amount : Amount;
 
+        target.Heal(amount);
+        ApplyEffects(target);
     }
 }
 

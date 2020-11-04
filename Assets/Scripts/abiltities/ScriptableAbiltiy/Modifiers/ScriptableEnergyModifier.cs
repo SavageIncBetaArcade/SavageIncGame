@@ -35,7 +35,10 @@ public class ScriptableEnergyModifier : ScriptableModifier
 
     public override void OnTick(CharacterBase ownerCharacter, CharacterBase targetCharacter, ref List<CharacterBase> affectedCharacters)
     {
-
+        CharacterBase target = ReplenishOwner ? ownerCharacter : targetCharacter;
+        float amount = Percentage ? target.MaxEnergy * Amount : Amount;
+        target.ReplenishEnergy(amount);
+        ApplyEffects(target);
     }
 }
 
