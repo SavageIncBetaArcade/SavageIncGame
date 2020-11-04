@@ -10,11 +10,10 @@ using Random = UnityEngine.Random;
 /// This is the script that allows the character to use abilities
 /// The ScriptableUseableAbility that is attached to the ScriptableAbility is the ability that would get called
 /// </summary>
-public class UseableAbility : MonoBehaviour
+public abstract class UseableAbility : MonoBehaviour
 {
     //Abilities that use mono behavior are all useable I.E (Weapons, Buffs) - Passive abilities work in a different way
     public ScriptableUseableAbility ScriptableAbility;
-    public string UseButton = "Fire1";
     public string AnimationUseBoolName;
     public Animator UseAnimator;
 
@@ -62,16 +61,6 @@ public class UseableAbility : MonoBehaviour
 
     }
 
-    protected virtual void Update()
-    {
-        //TODO check if the current CharacterBase is the player, only attack on left click if player
-        if (!OnCooldown() && Input.GetButtonDown(UseButton))
-        {
-            ExecuteUse();
-            _lastUseTime = Time.time;
-        }
-    }
-
     protected bool OnCooldown()
     {
         if (_lastUseTime == 0.0f)
@@ -85,7 +74,7 @@ public class UseableAbility : MonoBehaviour
         return !(Time.time >= _lastUseTime + ScriptableAbility.Cooldown);
     }
 
-    private void ExecuteUse()
+    protected void ExecuteUse()
     {
         modifierHandler.ApplyPreActionModifiers(CharacterBase, CharacterBase);
 
@@ -99,6 +88,8 @@ public class UseableAbility : MonoBehaviour
         ability.Use();
 
         modifierHandler.ApplyPostActionModifiers(CharacterBase, CharacterBase);
+
+        _lastUseTime = Time.time;
     }
 
     public GameObject InstantiateObject(GameObject gameObject, Transform transform)

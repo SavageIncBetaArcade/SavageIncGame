@@ -13,12 +13,26 @@ public class FollowState : State
         Transform player = aiBase.Player.transform;
 
         //when the enemy is closer than 20 follow the player
-        if (Vector3.Distance(aiBase.transform.position, player.position) < aiBase.SenseRange)
+        float distanceToPlayer = Vector3.Distance(aiBase.transform.position, player.position);
+        if (distanceToPlayer < aiBase.SenseRange)
         {
-            aiBase.currentDestination = player.position;
-            navAgent.SetDestination(player.position);// set the enemys destination to the players position
+            if (distanceToPlayer > aiBase.AttackDistance)
+            {
+                aiBase.currentDestination = player.position;
+                navAgent.SetDestination(player.position);// set the enemys destination to the players position
+            }
+            else
+            {
+                aiBase.currentDestination = navAgent.transform.position;
+                navAgent.SetDestination(navAgent.transform.position);
+            }
 
             //TODO:: when get close enough attack the player.
+            //if (distanceToPlayer <= 1.5f)
+            //{
+            //    aiBase.RightAbilitiy.Attack();
+            //    aiBase.LeftAbility.Attack();
+            //}
         }
         else
         {

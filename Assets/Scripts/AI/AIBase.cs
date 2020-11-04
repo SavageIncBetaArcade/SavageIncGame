@@ -10,11 +10,15 @@ public class AIBase : CharacterBase
     public float SenseRange = 60.0f;
     public float AngleOfVision = 45.0f;
     public float WalkDistance = 50.0f;
+    public float AttackDistance = 2.0f;
 
     public Transform[] PatrolPoints;
     public int CurrentPatrolPoint = 0;
     public int NextPatrolPoint = 1;
     public State[] PotentialStates;
+
+    public AIUseableAbilitiy LeftAbility;
+    public AIUseableAbilitiy RightAbilitiy;
 
     private NavMeshAgent navAgent;
     private StackFSM stackOfStates;
