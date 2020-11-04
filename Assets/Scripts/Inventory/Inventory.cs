@@ -7,15 +7,15 @@ public class Inventory : MonoBehaviour
 {
     [SerializeField]
     public InventorySlot[] items = new InventorySlot[ItemSlotsAmount];
+    public const int ItemSlotsAmount = 16;
     public EquipSlot[] leftHand = new EquipSlot[4]; 
     public EquipSlot[] rightHand = new EquipSlot[4];
     public EquipSlot armourSlot;
     public EquipSlot leftWeaponSlot;
     public EquipSlot rightWeaponSlot;
-    public const int ItemSlotsAmount = 16;
     public Text warningText;
     public CharacterBase character;
-    
+
     public void AddItem(Item itemToAdd)
     {
         var emptySlotPosition = -1;
@@ -134,4 +134,8 @@ public class Inventory : MonoBehaviour
         yield return new WaitForSeconds(3);
         warningText.enabled = false;
     }
+
+    public Item getItemAt(int position) { return items[position].InventoryItem.Item; }
+
+    public bool hasItemAt(int position) { return items[position].InventoryItem != null; }
 }

@@ -12,4 +12,11 @@ public class ScriptableUseableAbility : Item
     public GameObject AbilityPrefab;
     public AbilityModifier[] StartingModifiers;
     public GameObject[] HitEffects;
+    
+    public override string GetInfoDescription()
+    {
+        return getEnergyCostString() + Description;
+    }
+
+    private string getEnergyCostString() { return EnergyCost != 0 ? $"Cost: {EnergyCost} energy \n" : ""; }
 }
