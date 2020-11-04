@@ -89,13 +89,11 @@ public abstract class UseableAbility : MonoBehaviour
     {
         float currentActiveTime = 0.0f;
 
-  
-        modifierHandler.ApplyPreActionModifiers(CharacterBase, CharacterBase);
-
         //check if the ability has a period, if so use the use frequency to use the ability multiple times till the period is over
-
         do
         {
+            modifierHandler.ApplyPreActionModifiers(CharacterBase, CharacterBase);
+
             OnUse?.Invoke();
 
             if (UseAnimator != null)
@@ -105,12 +103,12 @@ public abstract class UseableAbility : MonoBehaviour
 
             ability.Use();
 
+            modifierHandler.ApplyPostActionModifiers(CharacterBase, CharacterBase);
+
             yield return new WaitForSeconds(ability.Ability.UseFrequency);
             currentActiveTime += ability.Ability.UseFrequency;
         }
         while (currentActiveTime < ability.Ability.ActivePeriod);
-
-        modifierHandler.ApplyPostActionModifiers(CharacterBase, CharacterBase);
     }
 
     public GameObject InstantiateObject(GameObject gameObject, Transform transform)

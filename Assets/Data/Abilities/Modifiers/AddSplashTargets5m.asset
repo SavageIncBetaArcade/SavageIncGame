@@ -17,6 +17,7 @@ MonoBehaviour:
   modifierLevel: 0
   activePeriod: 0
   applyFrequency: 0
-  tickEffectGameObjects: []
-  Damage: 0
+  tickEffectGameObjects:
+  - {fileID: 3966173770737333436, guid: ef64ab604ff1bfd4191862dc59f2b9a1, type: 3}
+  Damage: 5
   Radius: 5

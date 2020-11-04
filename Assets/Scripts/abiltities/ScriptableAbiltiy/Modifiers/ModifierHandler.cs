@@ -16,6 +16,8 @@ public class ModifierHandler
 
     private List<Tuple<Modifier,CharacterBase>> appliedInstantModifiers;
 
+    private HashSet<CharacterBase> affectedCharacters = new HashSet<CharacterBase>();
+
     public ModifierHandler(List<AbilityModifier> modifiers)
     {
         allModifiers = modifiers;
@@ -23,6 +25,7 @@ public class ModifierHandler
         actionModifiers = new List<AbilityModifier>();
         postModifiers = new List<AbilityModifier>();
         appliedInstantModifiers = new List<Tuple<Modifier, CharacterBase>>();
+        affectedCharacters = new HashSet<CharacterBase>();
 
         foreach (var modifier in modifiers)
         {
@@ -47,7 +50,13 @@ public class ModifierHandler
     {
         foreach (var abilityModifier in preModifiers)
         {
-            applyModifier(abilityModifier,characterBase,targetCharacterBase);
+            Modifier modifier = applyModifier(abilityModifier, characterBase, targetCharacterBase);
+
+            //add applied characters
+            foreach (var character in modifier.AffectedCharacters)
+            {
+                affectedCharacters.Add(character);
+            }
         }
 
         RemoveInstantModifiers();
@@ -60,7 +69,6 @@ public class ModifierHandler
             return;
 
         CharacterBase targetcharacter = targetObject.GetComponent<CharacterBase>();
-        HashSet<CharacterBase> affectedCharacters = new HashSet<CharacterBase>();
 
         if (targetcharacter)
             affectedCharacters.Add(targetcharacter);
@@ -102,10 +110,18 @@ public class ModifierHandler
     {
         foreach (var abilityModifier in postModifiers)
         {
-            applyModifier(abilityModifier, characterBase, targetCharacterBase);
+            Modifier modifier = applyModifier(abilityModifier, characterBase, targetCharacterBase);
+
+            //add applied characters
+            foreach (var character in modifier.AffectedCharacters)
+            {
+                affectedCharacters.Add(character);
+            }
         }
 
         RemoveInstantModifiers();
+
+        affectedCharacters.Clear();
     }
 
     public void RemoveInstantModifiers()

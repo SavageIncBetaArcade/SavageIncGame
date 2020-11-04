@@ -11,6 +11,9 @@ public class ScriptableDamageModifier : ScriptableModifier
 {
     public float Damage;
 
+    //TODO get the equiped base weapon in hand damage
+    public bool AddBaseWeaponDamage = true;
+
     public override void OnHit(CharacterBase ownerCharacter, Vector3 hitPosition, Vector3 hitDirection,
         Vector3 hitSurfaceNormal,
         GameObject hitObject,
