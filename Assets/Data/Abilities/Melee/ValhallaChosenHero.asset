@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: ValhallaChosenHero
   m_EditorClassIdentifier: 
   Name: Valhalla Chosen Hero
-  Description: Ah shall be dining wi&#39; mah pals in valhalla soon enough. Juist
-    nae richt noo.
+  Description: 
+  Quote: Ah shall be dining wi' mah pals in valhalla soon enough. Juist nae richt
+    noo.
   Sprite: {fileID: 0}
   EnergyCost: 35
   Cooldown: 40
+  HitModifierApplyPercentage: 1
   UseAnimationCooldown: 0
   AbilityPrefab: {fileID: 6413331160640061430, guid: 58134d6b7489999438bb17f5140de9c1,
     type: 3}

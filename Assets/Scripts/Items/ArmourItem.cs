@@ -15,9 +15,9 @@ public class ArmourItem : Item
         return getStatString(attack, "Attack") +
                getStatString(defense, "Defense") +
                getStatString(health, "Health") +
-               getStatString(energy, "Energy)" +
+               getStatString(energy, "Energy") +
                getRegenString(healthRegen, "Health") + 
-               getRegenString(energyRegen, "Energy"));
+               getRegenString(energyRegen, "Energy");
     }
 
     private string getStatString(int stat, string statName) { return stat != 0 ? $"+ {stat} {statName}\n" : ""; }

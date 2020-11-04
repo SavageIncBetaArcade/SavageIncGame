@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d51fb4b034bc4d3ba73761b53cb8897b, type: 3}
   m_Name: EnergyPotion
   m_EditorClassIdentifier: 
-  Name: EnergyPotion
+  Name: Energy Potion
+  Description: 
+  Quote: 
   Sprite: {fileID: 10915, guid: 0000000000000000f000000000000000, type: 0}
-  modifier: {fileID: 11400000, guid: 52d17cf59c2b3544b983da539100d1a1, type: 2}
+  modifier: {fileID: 11400000, guid: 75d5d2c2c7c1fa84c9c7b5fc6cdc758c, type: 2}

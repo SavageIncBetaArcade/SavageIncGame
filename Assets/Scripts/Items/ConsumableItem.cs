@@ -6,6 +6,6 @@ public class ConsumableItem : Item
     public ScriptableModifier modifier;
     public override string GetInfoDescription()
     {
-        throw new System.NotImplementedException();
+        return "I'm a consumable item!";
     }
 }
