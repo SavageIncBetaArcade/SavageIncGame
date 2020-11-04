@@ -60,7 +60,7 @@ public class Modifier
         if (!isPassive && scriptableModifier.ActivePeriod <= 0.0f)
         {
             scriptableModifier.OnApply(ownerCharacter, targetCharacter, ref affectedCharacters);
-            scriptableModifier.OnTick(ownerCharacter, targetCharacter, ref affectedCharacters);
+            //scriptableModifier.OnTick(ownerCharacter, targetCharacter, ref affectedCharacters);
             targetCharacter.AppliedModifiers.Add(this);
             //Remove(targetCharacter);
             return;

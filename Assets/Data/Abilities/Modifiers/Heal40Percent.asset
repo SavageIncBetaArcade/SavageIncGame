@@ -10,13 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0cbd4e7ba6e50e8478399ffd9d34c209, type: 3}
-  m_Name: HealOwnerModifier
+  m_Name: Heal40Percent
   m_EditorClassIdentifier: 
-  modifierName: Test Heal
-  modifierDescription: 
+  modifierName: Heal40Percent
+  modifierDescription: Heal the character for 40 percent
+  modifierLevel: 0
   activePeriod: 0
   applyFrequency: 0
   tickEffectGameObjects: []
-  Amount: 0.025
+  Amount: 0.4
   Percentage: 1
-  HealOwner: 1
+  HealOwner: 0
