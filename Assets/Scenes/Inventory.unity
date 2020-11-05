@@ -180,10 +180,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2691b69d83ee4b11941ca6212f7e5c30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemInfoPrefab: {fileID: 7471001997405675313, guid: ae7f58f8923a35743a3f97c2dae9120f,
+    type: 3}
   inventorySectionHandler: {fileID: 2027906597}
   position: 13
-  itemInfo: {fileID: 7471001997405675313, guid: ae7f58f8923a35743a3f97c2dae9120f,
-    type: 3}
 --- !u!1 &13702634
 GameObject:
   m_ObjectHideFlags: 0
@@ -244,10 +244,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2691b69d83ee4b11941ca6212f7e5c30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemInfoPrefab: {fileID: 7471001997405675313, guid: ae7f58f8923a35743a3f97c2dae9120f,
+    type: 3}
   inventorySectionHandler: {fileID: 2027906597}
   position: 14
-  itemInfo: {fileID: 7471001997405675313, guid: ae7f58f8923a35743a3f97c2dae9120f,
-    type: 3}
 --- !u!1 &18190726
 GameObject:
   m_ObjectHideFlags: 0
@@ -1791,10 +1791,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2691b69d83ee4b11941ca6212f7e5c30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemInfoPrefab: {fileID: 7471001997405675313, guid: ae7f58f8923a35743a3f97c2dae9120f,
+    type: 3}
   inventorySectionHandler: {fileID: 2027906597}
   position: 15
-  itemInfo: {fileID: 7471001997405675313, guid: ae7f58f8923a35743a3f97c2dae9120f,
-    type: 3}
 --- !u!1 &238609950
 GameObject:
   m_ObjectHideFlags: 0
@@ -2588,10 +2588,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2691b69d83ee4b11941ca6212f7e5c30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemInfoPrefab: {fileID: 7471001997405675313, guid: ae7f58f8923a35743a3f97c2dae9120f,
+    type: 3}
   inventorySectionHandler: {fileID: 2027906597}
   position: 13
-  itemInfo: {fileID: 7471001997405675313, guid: ae7f58f8923a35743a3f97c2dae9120f,
-    type: 3}
 --- !u!222 &340905060
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2845,6 +2845,7 @@ GameObject:
   - component: {fileID: 365390781}
   - component: {fileID: 365390783}
   - component: {fileID: 365390782}
+  - component: {fileID: 365390784}
   m_Layer: 5
   m_Name: ArmourSlot
   m_TagString: WeaponSlot
@@ -2944,6 +2945,20 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &365390784
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 365390780}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d53951ad1ee746d990cad2065f5fdc65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemInfoPrefab: {fileID: 7471001997405675313, guid: ae7f58f8923a35743a3f97c2dae9120f,
+    type: 3}
 --- !u!1 &373052085
 GameObject:
   m_ObjectHideFlags: 0
@@ -2955,6 +2970,7 @@ GameObject:
   - component: {fileID: 373052086}
   - component: {fileID: 373052088}
   - component: {fileID: 373052087}
+  - component: {fileID: 373052089}
   m_Layer: 5
   m_Name: RightWeaponSlot
   m_TagString: WeaponSlot
@@ -3054,6 +3070,20 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &373052089
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 373052085}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d53951ad1ee746d990cad2065f5fdc65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemInfoPrefab: {fileID: 7471001997405675313, guid: ae7f58f8923a35743a3f97c2dae9120f,
+    type: 3}
 --- !u!1 &379882208
 GameObject:
   m_ObjectHideFlags: 0
@@ -3164,10 +3194,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2691b69d83ee4b11941ca6212f7e5c30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemInfoPrefab: {fileID: 7471001997405675313, guid: ae7f58f8923a35743a3f97c2dae9120f,
+    type: 3}
   inventorySectionHandler: {fileID: 2027906597}
   position: 12
-  itemInfo: {fileID: 7471001997405675313, guid: ae7f58f8923a35743a3f97c2dae9120f,
-    type: 3}
 --- !u!222 &383358148
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3316,10 +3346,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2691b69d83ee4b11941ca6212f7e5c30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemInfoPrefab: {fileID: 7471001997405675313, guid: ae7f58f8923a35743a3f97c2dae9120f,
+    type: 3}
   inventorySectionHandler: {fileID: 2027906597}
   position: 15
-  itemInfo: {fileID: 7471001997405675313, guid: ae7f58f8923a35743a3f97c2dae9120f,
-    type: 3}
 --- !u!222 &401649591
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3413,6 +3443,7 @@ GameObject:
   - component: {fileID: 440059303}
   - component: {fileID: 440059305}
   - component: {fileID: 440059304}
+  - component: {fileID: 440059306}
   m_Layer: 5
   m_Name: RightAbilitySlot3
   m_TagString: WeaponSlot
@@ -3512,6 +3543,20 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &440059306
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 440059302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d53951ad1ee746d990cad2065f5fdc65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemInfoPrefab: {fileID: 7471001997405675313, guid: ae7f58f8923a35743a3f97c2dae9120f,
+    type: 3}
 --- !u!114 &457538460
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3710,6 +3755,7 @@ GameObject:
   - component: {fileID: 509390580}
   - component: {fileID: 509390582}
   - component: {fileID: 509390581}
+  - component: {fileID: 509390583}
   m_Layer: 5
   m_Name: LeftAbilitySlot1
   m_TagString: WeaponSlot
@@ -3809,6 +3855,20 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &509390583
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 509390579}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d53951ad1ee746d990cad2065f5fdc65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemInfoPrefab: {fileID: 7471001997405675313, guid: ae7f58f8923a35743a3f97c2dae9120f,
+    type: 3}
 --- !u!1 &517143313
 GameObject:
   m_ObjectHideFlags: 0
@@ -3988,10 +4048,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2691b69d83ee4b11941ca6212f7e5c30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemInfoPrefab: {fileID: 7471001997405675313, guid: ae7f58f8923a35743a3f97c2dae9120f,
+    type: 3}
   inventorySectionHandler: {fileID: 2027906597}
   position: 2
-  itemInfo: {fileID: 7471001997405675313, guid: ae7f58f8923a35743a3f97c2dae9120f,
-    type: 3}
 --- !u!222 &528299585
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4011,6 +4071,7 @@ GameObject:
   - component: {fileID: 542798584}
   - component: {fileID: 542798586}
   - component: {fileID: 542798585}
+  - component: {fileID: 542798587}
   m_Layer: 5
   m_Name: LeftAbilitySlot3
   m_TagString: WeaponSlot
@@ -4110,6 +4171,20 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &542798587
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 542798583}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d53951ad1ee746d990cad2065f5fdc65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemInfoPrefab: {fileID: 7471001997405675313, guid: ae7f58f8923a35743a3f97c2dae9120f,
+    type: 3}
 --- !u!114 &548067031 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5806522622368546790, guid: 5b5e40fddbe18b643b04772947f58c37,
@@ -4207,6 +4282,7 @@ GameObject:
   - component: {fileID: 548519255}
   - component: {fileID: 548519257}
   - component: {fileID: 548519256}
+  - component: {fileID: 548519258}
   m_Layer: 5
   m_Name: RightAbilitySlot1
   m_TagString: WeaponSlot
@@ -4306,6 +4382,20 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &548519258
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 548519254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d53951ad1ee746d990cad2065f5fdc65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemInfoPrefab: {fileID: 7471001997405675313, guid: ae7f58f8923a35743a3f97c2dae9120f,
+    type: 3}
 --- !u!1 &558953166
 GameObject:
   m_ObjectHideFlags: 0
@@ -5019,6 +5109,7 @@ GameObject:
   - component: {fileID: 654334850}
   - component: {fileID: 654334851}
   - component: {fileID: 654334852}
+  - component: {fileID: 654334853}
   m_Layer: 5
   m_Name: LeftAbilitySlot0
   m_TagString: WeaponSlot
@@ -5118,6 +5209,20 @@ MonoBehaviour:
   equippedSlot:
     Image: {fileID: 1220936365}
     Quantity: {fileID: 0}
+--- !u!114 &654334853
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 654334849}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d53951ad1ee746d990cad2065f5fdc65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemInfoPrefab: {fileID: 7471001997405675313, guid: ae7f58f8923a35743a3f97c2dae9120f,
+    type: 3}
 --- !u!1 &661402621
 GameObject:
   m_ObjectHideFlags: 0
@@ -5129,6 +5234,7 @@ GameObject:
   - component: {fileID: 661402622}
   - component: {fileID: 661402623}
   - component: {fileID: 661402624}
+  - component: {fileID: 661402625}
   m_Layer: 5
   m_Name: RightAbilitySlot0
   m_TagString: WeaponSlot
@@ -5228,6 +5334,20 @@ MonoBehaviour:
   equippedSlot:
     Image: {fileID: 1813691476}
     Quantity: {fileID: 0}
+--- !u!114 &661402625
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 661402621}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d53951ad1ee746d990cad2065f5fdc65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemInfoPrefab: {fileID: 7471001997405675313, guid: ae7f58f8923a35743a3f97c2dae9120f,
+    type: 3}
 --- !u!1 &669008572
 GameObject:
   m_ObjectHideFlags: 0
@@ -5889,10 +6009,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2691b69d83ee4b11941ca6212f7e5c30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemInfoPrefab: {fileID: 7471001997405675313, guid: ae7f58f8923a35743a3f97c2dae9120f,
+    type: 3}
   inventorySectionHandler: {fileID: 2027906597}
   position: 8
-  itemInfo: {fileID: 7471001997405675313, guid: ae7f58f8923a35743a3f97c2dae9120f,
-    type: 3}
 --- !u!222 &725392617
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5961,10 +6081,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2691b69d83ee4b11941ca6212f7e5c30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemInfoPrefab: {fileID: 7471001997405675313, guid: ae7f58f8923a35743a3f97c2dae9120f,
+    type: 3}
   inventorySectionHandler: {fileID: 2027906597}
   position: 1
-  itemInfo: {fileID: 7471001997405675313, guid: ae7f58f8923a35743a3f97c2dae9120f,
-    type: 3}
 --- !u!114 &738945679 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5806522622368546790, guid: 5b5e40fddbe18b643b04772947f58c37,
@@ -6147,7 +6267,7 @@ GameObject:
   - component: {fileID: 758843340}
   - component: {fileID: 758843339}
   m_Layer: 5
-  m_Name: LeftWeaponEquipment
+  m_Name: LeftAbilities
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6619,10 +6739,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2691b69d83ee4b11941ca6212f7e5c30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemInfoPrefab: {fileID: 7471001997405675313, guid: ae7f58f8923a35743a3f97c2dae9120f,
+    type: 3}
   inventorySectionHandler: {fileID: 2027906597}
   position: 11
-  itemInfo: {fileID: 7471001997405675313, guid: ae7f58f8923a35743a3f97c2dae9120f,
-    type: 3}
 --- !u!222 &854090926
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7193,6 +7313,7 @@ GameObject:
   - component: {fileID: 955038219}
   - component: {fileID: 955038221}
   - component: {fileID: 955038220}
+  - component: {fileID: 955038222}
   m_Layer: 5
   m_Name: LeftWeaponSlot
   m_TagString: WeaponSlot
@@ -7292,6 +7413,20 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &955038222
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 955038218}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d53951ad1ee746d990cad2065f5fdc65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemInfoPrefab: {fileID: 7471001997405675313, guid: ae7f58f8923a35743a3f97c2dae9120f,
+    type: 3}
 --- !u!1 &959138532
 GameObject:
   m_ObjectHideFlags: 0
@@ -8635,10 +8770,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2691b69d83ee4b11941ca6212f7e5c30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemInfoPrefab: {fileID: 7471001997405675313, guid: ae7f58f8923a35743a3f97c2dae9120f,
+    type: 3}
   inventorySectionHandler: {fileID: 2027906597}
   position: 9
-  itemInfo: {fileID: 7471001997405675313, guid: ae7f58f8923a35743a3f97c2dae9120f,
-    type: 3}
 --- !u!1 &1116080135
 GameObject:
   m_ObjectHideFlags: 0
@@ -9296,6 +9431,7 @@ GameObject:
   - component: {fileID: 1174455819}
   - component: {fileID: 1174455821}
   - component: {fileID: 1174455820}
+  - component: {fileID: 1174455822}
   m_Layer: 5
   m_Name: RightAbilitySlot2
   m_TagString: WeaponSlot
@@ -9395,6 +9531,20 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &1174455822
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1174455818}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d53951ad1ee746d990cad2065f5fdc65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemInfoPrefab: {fileID: 7471001997405675313, guid: ae7f58f8923a35743a3f97c2dae9120f,
+    type: 3}
 --- !u!1 &1189957725
 GameObject:
   m_ObjectHideFlags: 0
@@ -9945,10 +10095,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2691b69d83ee4b11941ca6212f7e5c30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemInfoPrefab: {fileID: 7471001997405675313, guid: ae7f58f8923a35743a3f97c2dae9120f,
+    type: 3}
   inventorySectionHandler: {fileID: 2027906597}
   position: 6
-  itemInfo: {fileID: 7471001997405675313, guid: ae7f58f8923a35743a3f97c2dae9120f,
-    type: 3}
 --- !u!222 &1276704183
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -10275,10 +10425,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2691b69d83ee4b11941ca6212f7e5c30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemInfoPrefab: {fileID: 7471001997405675313, guid: ae7f58f8923a35743a3f97c2dae9120f,
+    type: 3}
   inventorySectionHandler: {fileID: 2027906597}
   position: 4
-  itemInfo: {fileID: 7471001997405675313, guid: ae7f58f8923a35743a3f97c2dae9120f,
-    type: 3}
 --- !u!1 &1316873353
 GameObject:
   m_ObjectHideFlags: 0
@@ -10713,10 +10863,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2691b69d83ee4b11941ca6212f7e5c30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemInfoPrefab: {fileID: 7471001997405675313, guid: ae7f58f8923a35743a3f97c2dae9120f,
+    type: 3}
   inventorySectionHandler: {fileID: 2027906597}
   position: 4
-  itemInfo: {fileID: 7471001997405675313, guid: ae7f58f8923a35743a3f97c2dae9120f,
-    type: 3}
 --- !u!222 &1339123054
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -11145,10 +11295,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2691b69d83ee4b11941ca6212f7e5c30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemInfoPrefab: {fileID: 7471001997405675313, guid: ae7f58f8923a35743a3f97c2dae9120f,
+    type: 3}
   inventorySectionHandler: {fileID: 2027906597}
   position: 7
-  itemInfo: {fileID: 7471001997405675313, guid: ae7f58f8923a35743a3f97c2dae9120f,
-    type: 3}
 --- !u!222 &1432945804
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -11217,10 +11367,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2691b69d83ee4b11941ca6212f7e5c30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemInfoPrefab: {fileID: 7471001997405675313, guid: ae7f58f8923a35743a3f97c2dae9120f,
+    type: 3}
   inventorySectionHandler: {fileID: 2027906597}
   position: 8
-  itemInfo: {fileID: 7471001997405675313, guid: ae7f58f8923a35743a3f97c2dae9120f,
-    type: 3}
 --- !u!114 &1447817480
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11533,10 +11683,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2691b69d83ee4b11941ca6212f7e5c30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemInfoPrefab: {fileID: 7471001997405675313, guid: ae7f58f8923a35743a3f97c2dae9120f,
+    type: 3}
   inventorySectionHandler: {fileID: 2027906597}
   position: 7
-  itemInfo: {fileID: 7471001997405675313, guid: ae7f58f8923a35743a3f97c2dae9120f,
-    type: 3}
 --- !u!1 &1494443948
 GameObject:
   m_ObjectHideFlags: 0
@@ -11642,10 +11792,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2691b69d83ee4b11941ca6212f7e5c30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemInfoPrefab: {fileID: 7471001997405675313, guid: ae7f58f8923a35743a3f97c2dae9120f,
+    type: 3}
   inventorySectionHandler: {fileID: 2027906597}
   position: 9
-  itemInfo: {fileID: 7471001997405675313, guid: ae7f58f8923a35743a3f97c2dae9120f,
-    type: 3}
 --- !u!222 &1510488819
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -11714,10 +11864,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2691b69d83ee4b11941ca6212f7e5c30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemInfoPrefab: {fileID: 7471001997405675313, guid: ae7f58f8923a35743a3f97c2dae9120f,
+    type: 3}
   inventorySectionHandler: {fileID: 2027906597}
   position: 10
-  itemInfo: {fileID: 7471001997405675313, guid: ae7f58f8923a35743a3f97c2dae9120f,
-    type: 3}
 --- !u!1 &1515274070
 GameObject:
   m_ObjectHideFlags: 0
@@ -11749,10 +11899,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2691b69d83ee4b11941ca6212f7e5c30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemInfoPrefab: {fileID: 7471001997405675313, guid: ae7f58f8923a35743a3f97c2dae9120f,
+    type: 3}
   inventorySectionHandler: {fileID: 2027906597}
   position: 14
-  itemInfo: {fileID: 7471001997405675313, guid: ae7f58f8923a35743a3f97c2dae9120f,
-    type: 3}
 --- !u!222 &1515274072
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -12492,10 +12642,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2691b69d83ee4b11941ca6212f7e5c30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemInfoPrefab: {fileID: 7471001997405675313, guid: ae7f58f8923a35743a3f97c2dae9120f,
+    type: 3}
   inventorySectionHandler: {fileID: 2027906597}
   position: 10
-  itemInfo: {fileID: 7471001997405675313, guid: ae7f58f8923a35743a3f97c2dae9120f,
-    type: 3}
 --- !u!222 &1571429329
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -12823,10 +12973,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2691b69d83ee4b11941ca6212f7e5c30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemInfoPrefab: {fileID: 7471001997405675313, guid: ae7f58f8923a35743a3f97c2dae9120f,
+    type: 3}
   inventorySectionHandler: {fileID: 2027906597}
   position: 3
-  itemInfo: {fileID: 7471001997405675313, guid: ae7f58f8923a35743a3f97c2dae9120f,
-    type: 3}
 --- !u!222 &1604302695
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -12847,7 +12997,7 @@ GameObject:
   - component: {fileID: 1605968695}
   - component: {fileID: 1605968694}
   m_Layer: 5
-  m_Name: RightWeaponEquipment
+  m_Name: RightAbilities
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12975,6 +13125,7 @@ GameObject:
   - component: {fileID: 1636603672}
   - component: {fileID: 1636603674}
   - component: {fileID: 1636603673}
+  - component: {fileID: 1636603675}
   m_Layer: 5
   m_Name: LeftAbilitySlot2
   m_TagString: WeaponSlot
@@ -13074,6 +13225,20 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &1636603675
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1636603671}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d53951ad1ee746d990cad2065f5fdc65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemInfoPrefab: {fileID: 7471001997405675313, guid: ae7f58f8923a35743a3f97c2dae9120f,
+    type: 3}
 --- !u!1001 &1646404981
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13419,10 +13584,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2691b69d83ee4b11941ca6212f7e5c30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemInfoPrefab: {fileID: 7471001997405675313, guid: ae7f58f8923a35743a3f97c2dae9120f,
+    type: 3}
   inventorySectionHandler: {fileID: 2027906597}
   position: 11
-  itemInfo: {fileID: 7471001997405675313, guid: ae7f58f8923a35743a3f97c2dae9120f,
-    type: 3}
 --- !u!1 &1689014583
 GameObject:
   m_ObjectHideFlags: 0
@@ -13917,10 +14082,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2691b69d83ee4b11941ca6212f7e5c30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemInfoPrefab: {fileID: 7471001997405675313, guid: ae7f58f8923a35743a3f97c2dae9120f,
+    type: 3}
   inventorySectionHandler: {fileID: 2027906597}
   position: 6
-  itemInfo: {fileID: 7471001997405675313, guid: ae7f58f8923a35743a3f97c2dae9120f,
-    type: 3}
 --- !u!1001 &1705805514
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14100,6 +14265,12 @@ PrefabInstance:
       propertyPath: infoShower
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 2785495750413569633, guid: 5b5e40fddbe18b643b04772947f58c37,
+        type: 3}
+      propertyPath: itemInfoPrefab
+      value: 
+      objectReference: {fileID: 7471001997405675313, guid: ae7f58f8923a35743a3f97c2dae9120f,
+        type: 3}
     - target: {fileID: 7618485021008792114, guid: 5b5e40fddbe18b643b04772947f58c37,
         type: 3}
       propertyPath: m_Sprite
@@ -14396,10 +14567,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2691b69d83ee4b11941ca6212f7e5c30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemInfoPrefab: {fileID: 7471001997405675313, guid: ae7f58f8923a35743a3f97c2dae9120f,
+    type: 3}
   inventorySectionHandler: {fileID: 2027906597}
   position: 1
-  itemInfo: {fileID: 7471001997405675313, guid: ae7f58f8923a35743a3f97c2dae9120f,
-    type: 3}
 --- !u!222 &1715286583
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -14952,10 +15123,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2691b69d83ee4b11941ca6212f7e5c30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemInfoPrefab: {fileID: 7471001997405675313, guid: ae7f58f8923a35743a3f97c2dae9120f,
+    type: 3}
   inventorySectionHandler: {fileID: 2027906597}
   position: 5
-  itemInfo: {fileID: 7471001997405675313, guid: ae7f58f8923a35743a3f97c2dae9120f,
-    type: 3}
 --- !u!222 &1759928859
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -15254,10 +15425,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2691b69d83ee4b11941ca6212f7e5c30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemInfoPrefab: {fileID: 7471001997405675313, guid: ae7f58f8923a35743a3f97c2dae9120f,
+    type: 3}
   inventorySectionHandler: {fileID: 2027906597}
   position: 12
-  itemInfo: {fileID: 7471001997405675313, guid: ae7f58f8923a35743a3f97c2dae9120f,
-    type: 3}
 --- !u!1 &1813691474
 GameObject:
   m_ObjectHideFlags: 0
@@ -16161,10 +16332,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2691b69d83ee4b11941ca6212f7e5c30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemInfoPrefab: {fileID: 7471001997405675313, guid: ae7f58f8923a35743a3f97c2dae9120f,
+    type: 3}
   inventorySectionHandler: {fileID: 2027906597}
   position: 5
-  itemInfo: {fileID: 7471001997405675313, guid: ae7f58f8923a35743a3f97c2dae9120f,
-    type: 3}
 --- !u!1 &1941709567
 GameObject:
   m_ObjectHideFlags: 0
@@ -16704,10 +16875,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2691b69d83ee4b11941ca6212f7e5c30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemInfoPrefab: {fileID: 7471001997405675313, guid: ae7f58f8923a35743a3f97c2dae9120f,
+    type: 3}
   inventorySectionHandler: {fileID: 2027906597}
   position: 3
-  itemInfo: {fileID: 7471001997405675313, guid: ae7f58f8923a35743a3f97c2dae9120f,
-    type: 3}
 --- !u!1 &2072238841
 GameObject:
   m_ObjectHideFlags: 0
@@ -16880,10 +17051,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2691b69d83ee4b11941ca6212f7e5c30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemInfoPrefab: {fileID: 7471001997405675313, guid: ae7f58f8923a35743a3f97c2dae9120f,
+    type: 3}
   inventorySectionHandler: {fileID: 2027906597}
   position: 2
-  itemInfo: {fileID: 7471001997405675313, guid: ae7f58f8923a35743a3f97c2dae9120f,
-    type: 3}
 --- !u!1 &2131560083
 GameObject:
   m_ObjectHideFlags: 0
@@ -17191,6 +17362,12 @@ PrefabInstance:
       propertyPath: infoShower
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 2785495750413569633, guid: 5b5e40fddbe18b643b04772947f58c37,
+        type: 3}
+      propertyPath: itemInfoPrefab
+      value: 
+      objectReference: {fileID: 7471001997405675313, guid: ae7f58f8923a35743a3f97c2dae9120f,
+        type: 3}
     - target: {fileID: 7618485021008792114, guid: 5b5e40fddbe18b643b04772947f58c37,
         type: 3}
       propertyPath: m_Sprite
