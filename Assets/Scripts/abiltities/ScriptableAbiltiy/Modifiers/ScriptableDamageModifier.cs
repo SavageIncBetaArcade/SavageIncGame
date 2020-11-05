@@ -10,6 +10,7 @@ using UnityEngine;
 public class ScriptableDamageModifier : ScriptableModifier
 {
     public float Damage;
+    public bool Percentage = false;
 
     //TODO get the equiped base weapon in hand damage
     public bool AddBaseWeaponDamage = true;
@@ -25,7 +26,7 @@ public class ScriptableDamageModifier : ScriptableModifier
     public override void OnApply(CharacterBase ownerCharacter, CharacterBase targetCharacter,
         ref List<CharacterBase> affectedCharacters)
     {
-
+        damage(targetCharacter);
     }
 
     public override void OnRemove(CharacterBase ownerCharacter, CharacterBase targetCharacter,
@@ -37,9 +38,15 @@ public class ScriptableDamageModifier : ScriptableModifier
     public override void OnTick(CharacterBase ownerCharacter, CharacterBase targetCharacter,
         ref List<CharacterBase> affectedCharacters)
     {
+        damage(targetCharacter);
+    }
+
+    private void damage(CharacterBase targetCharacter)
+    {
         ApplyEffects(targetCharacter);
 
-        targetCharacter.TakeDamage(Damage);
-        Debug.Log($"ScriptableDamageModifier: {ModifierName} applied {Damage} damage");
+        float damage = Percentage ? targetCharacter.MaxHealth * Damage : Damage;
+        targetCharacter.TakeDamage(damage);
+        Debug.Log($"ScriptableDamageModifier: {ModifierName} applied {damage} damage");
     }
 }

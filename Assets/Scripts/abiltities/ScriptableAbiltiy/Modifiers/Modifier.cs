@@ -123,7 +123,6 @@ public class Modifier
         {
             while (isPassive || (currentActiveTime <= scriptableModifier.ActivePeriod))
             {
-                UnityEngine.Debug.Log(currentActiveTime);
                 scriptableModifier.OnTick(ownerCharacter, targetCharacter, ref affectedCharacters);
 
                 //Only update current active time if the ability is not passive as passive abilites will continuously tick
