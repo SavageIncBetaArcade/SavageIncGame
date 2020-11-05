@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 6.1889234, g: 8.754123, b: 13.834803, a: 1}
+  m_IndirectSpecularColor: {r: 6.2856374, g: 8.875686, b: 13.942993, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -260,6 +260,7 @@ MonoBehaviour:
   jumpHeight: 1
   currentHealth: 0
   currentEnergy: 0
+  currentStunTime: 0
 --- !u!54 &263912852
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -402,6 +403,7 @@ MonoBehaviour:
   jumpHeight: 1
   currentHealth: 0
   currentEnergy: 0
+  currentStunTime: 0
 --- !u!54 &293615422
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -544,6 +546,7 @@ MonoBehaviour:
   jumpHeight: 1
   currentHealth: 0
   currentEnergy: 0
+  currentStunTime: 0
 --- !u!54 &296301438
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -686,6 +689,7 @@ MonoBehaviour:
   jumpHeight: 1
   currentHealth: 0
   currentEnergy: 0
+  currentStunTime: 0
 --- !u!54 &363091551
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -828,6 +832,7 @@ MonoBehaviour:
   jumpHeight: 1
   currentHealth: 0
   currentEnergy: 0
+  currentStunTime: 0
 --- !u!54 &388060330
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1214,6 +1219,7 @@ MonoBehaviour:
   jumpHeight: 1
   currentHealth: 0
   currentEnergy: 0
+  currentStunTime: 0
 --- !u!114 &686181628
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1268,6 +1274,7 @@ MonoBehaviour:
   jumpHeight: 1
   currentHealth: 0
   currentEnergy: 0
+  currentStunTime: 0
 --- !u!54 &761123564
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3031,6 +3038,7 @@ MonoBehaviour:
   jumpHeight: 1
   currentHealth: 0
   currentEnergy: 0
+  currentStunTime: 0
 --- !u!54 &1078661398
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3173,6 +3181,7 @@ MonoBehaviour:
   jumpHeight: 1
   currentHealth: 0
   currentEnergy: 0
+  currentStunTime: 0
 --- !u!54 &1116903246
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3315,6 +3324,7 @@ MonoBehaviour:
   jumpHeight: 1
   currentHealth: 0
   currentEnergy: 0
+  currentStunTime: 0
 --- !u!54 &1163539376
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3957,6 +3967,7 @@ MonoBehaviour:
   jumpHeight: 1
   currentHealth: 0
   currentEnergy: 0
+  currentStunTime: 0
 --- !u!54 &1392345443
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4099,6 +4110,7 @@ MonoBehaviour:
   jumpHeight: 1
   currentHealth: 0
   currentEnergy: 0
+  currentStunTime: 0
 --- !u!54 &1462699320
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4371,6 +4383,7 @@ MonoBehaviour:
   jumpHeight: 1
   currentHealth: 0
   currentEnergy: 0
+  currentStunTime: 0
 --- !u!54 &1612793844
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4713,6 +4726,7 @@ MonoBehaviour:
   jumpHeight: 1
   currentHealth: 0
   currentEnergy: 0
+  currentStunTime: 0
 --- !u!54 &1708350948
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4855,6 +4869,7 @@ MonoBehaviour:
   jumpHeight: 1
   currentHealth: 0
   currentEnergy: 0
+  currentStunTime: 0
 --- !u!54 &1870697067
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5011,6 +5026,7 @@ MonoBehaviour:
   jumpHeight: 1
   currentHealth: 0
   currentEnergy: 0
+  currentStunTime: 0
 --- !u!54 &1936702607
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5139,6 +5155,7 @@ MonoBehaviour:
   jumpHeight: 1
   currentHealth: 0
   currentEnergy: 0
+  currentStunTime: 0
 --- !u!54 &1954069686
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5281,6 +5298,7 @@ MonoBehaviour:
   jumpHeight: 1
   currentHealth: 0
   currentEnergy: 0
+  currentStunTime: 0
 --- !u!54 &2036382519
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5423,6 +5441,7 @@ MonoBehaviour:
   jumpHeight: 1
   currentHealth: 0
   currentEnergy: 0
+  currentStunTime: 0
 --- !u!54 &2084476993
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5615,7 +5634,7 @@ PrefabInstance:
         type: 3}
       propertyPath: ScriptableAbility
       value: 
-      objectReference: {fileID: 11400000, guid: 7852f5a50f918d5459b02454623b7b5e,
+      objectReference: {fileID: 11400000, guid: abec69ad03a739b459e188b003eca61e,
         type: 2}
     - target: {fileID: 3287459473351049832, guid: 6977d88c4b1ceec4c96e0ab898b9402d,
         type: 3}

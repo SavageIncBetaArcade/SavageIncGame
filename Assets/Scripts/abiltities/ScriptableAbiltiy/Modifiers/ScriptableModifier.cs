@@ -24,7 +24,7 @@ public abstract class ScriptableModifier : ScriptableObject
     [SerializeField]
     protected string modifierDescription;
     [SerializeField] 
-    protected int modifierLevel;
+    protected int modifierLevel = 1;
 
     /// <summary>
     /// How Long is the modifier active for till it gets removed from the target?
