@@ -1,12 +1,9 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class InventorySlotMouseHandler : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
+public class EquipSlotInfoHandler : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-    public InventorySectionHandler inventorySectionHandler;
-    private Inventory Inventory => inventorySectionHandler.currentInventory;
-    public int position;
-    private Item Item => Inventory.getItemAt(position);
+    private Item Item => GetComponent<EquipSlot>().equippedSlot.InventoryItem.Item;
     public GameObject itemInfoPrefab;
     private Popup popup;
     private Canvas canvas;
@@ -16,22 +13,9 @@ public class InventorySlotMouseHandler : MonoBehaviour, IPointerClickHandler, IP
         canvas = FindObjectOfType<Canvas>();
     }
 
-    public void OnPointerClick(PointerEventData eventData)
-    {
-        switch (eventData.button)
-        {
-            case PointerEventData.InputButton.Left:
-                Inventory.LeftClickItem(position);
-                break;
-            case PointerEventData.InputButton.Right:
-                Inventory.RightClickItem(position);
-                break;
-        }
-    }
-
     public void OnPointerEnter(PointerEventData data)
     {
-        if(Inventory.hasItemAt(position)) ShowItemInfo();
+        if(GetComponent<EquipSlot>().equippedSlot.InventoryItem != null) ShowItemInfo();
     }
 
     public void OnPointerExit(PointerEventData data)
