@@ -2,11 +2,11 @@
 {
     public override void LeftClick(Inventory inventory, CharacterBase character)
     {
-        inventory.EquipAbilityInLeftHand(this);
+        inventory.EquipLeftHand(this);
     }
 
     public override void RightClick(Inventory inventory, CharacterBase characterBase)
     {
-        inventory.EquipAbilityInRightHand(this);
+        inventory.EquipRightHand(this);
     }
 }

@@ -1,20 +1,16 @@
-﻿using System.Collections;
-using System.Linq;
-using UnityEngine;
-using UnityEngine.UI;
+﻿using UnityEngine;
 
-public class Inventory : MonoBehaviour
+public abstract class Inventory : MonoBehaviour
 {
     [SerializeField]
     public InventorySlot[] items = new InventorySlot[ItemSlotsAmount];
     public const int ItemSlotsAmount = 16;
-    public EquipSlot[] leftHand = new EquipSlot[4]; 
-    public EquipSlot[] rightHand = new EquipSlot[4];
-    public EquipSlot armourSlot;
-    public EquipSlot leftWeaponSlot;
-    public EquipSlot rightWeaponSlot;
-    public Text warningText;
     public CharacterBase character;
+    public abstract string Title { get; }
+
+    public abstract void EquipLeftHand(InventoryItem itemToEquip);
+    public abstract void EquipRightHand(InventoryItem itemToEquip);
+    public abstract void EquipCenter(InventoryItem itemToEquip);
 
     public void AddItem(Item itemToAdd)
     {
@@ -100,39 +96,6 @@ public class Inventory : MonoBehaviour
     {
         if (items[position].InventoryItem != null)
             items[position].InventoryItem.RightClick(this, character);
-    }
-    
-    public void Equip(InventoryItem itemToEquip, EquipSlot slotToEquip)
-    {
-        RemoveItem(itemToEquip.Item);
-        slotToEquip.EquipItem(itemToEquip);
-    }
-    
-    public void EquipAbilityInLeftHand(AbilityInventoryItem abilityToEquip)
-    {
-        if (!leftHand.Any(abilitySlot => EquipAbilityInSlot(abilityToEquip, abilitySlot)))
-            StartCoroutine(ShowWarningText());
-    }
-
-    public void EquipAbilityInRightHand(AbilityInventoryItem abilityToEquip)
-    {
-        if (!rightHand.Any(abilitySlot => EquipAbilityInSlot(abilityToEquip, abilitySlot)))
-            StartCoroutine(ShowWarningText());
-    }
-    
-    private bool EquipAbilityInSlot(AbilityInventoryItem abilityToEquip, EquipSlot abilitySlot)
-    {
-        if (abilitySlot.equippedSlot.InventoryItem != null) return false;
-        RemoveItem(abilityToEquip.Item);
-        abilitySlot.EquipItem(abilityToEquip);
-        return true;
-    }
-    
-    private IEnumerator ShowWarningText()
-    {
-        warningText.enabled = true;
-        yield return new WaitForSeconds(3);
-        warningText.enabled = false;
     }
 
     public Item getItemAt(int position) { return items[position].InventoryItem.Item; }

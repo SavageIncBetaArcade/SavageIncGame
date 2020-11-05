@@ -4,10 +4,11 @@ using UnityEngine.UI;
 
 public class InventorySlotMouseHandler : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
-    public Inventory inventory;
+    public InventorySectionHandler inventorySectionHandler;
+    private Inventory Inventory => inventorySectionHandler.currentInventory;
     public int position;
     private bool showInfo;
-    private Item item => inventory.getItemAt(position);
+    private Item Item => Inventory.getItemAt(position);
     public Text itemName;
     public Text itemQuote;
     public Text itemDescription;
@@ -18,10 +19,10 @@ public class InventorySlotMouseHandler : MonoBehaviour, IPointerClickHandler, IP
         switch (eventData.button)
         {
             case PointerEventData.InputButton.Left:
-                inventory.LeftClickItem(position);
+                Inventory.LeftClickItem(position);
                 break;
             case PointerEventData.InputButton.Right:
-                inventory.RightClickItem(position);
+                Inventory.RightClickItem(position);
                 break;
         }
     }
@@ -32,7 +33,7 @@ public class InventorySlotMouseHandler : MonoBehaviour, IPointerClickHandler, IP
 
     private void OnGUI()
     {
-        if (showInfo && inventory.hasItemAt(position))
+        if (showInfo && Inventory.hasItemAt(position))
             ShowItemInfo();
         else
             HideItemInfo();
@@ -40,9 +41,9 @@ public class InventorySlotMouseHandler : MonoBehaviour, IPointerClickHandler, IP
 
     private void ShowItemInfo()
     {
-        itemName.text = item.Name;
-        itemQuote.text = item.Quote;
-        itemDescription.text = item.GetInfoDescription();
+        itemName.text = Item.Name;
+        itemQuote.text = Item.Quote;
+        itemDescription.text = Item.GetInfoDescription();
         itemInfo.SetActive(true);
     }
     
