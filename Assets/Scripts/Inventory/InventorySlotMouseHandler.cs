@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class InventorySlotMouseHandler : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
@@ -52,11 +51,15 @@ public class InventorySlotMouseHandler : MonoBehaviour, IPointerClickHandler, IP
 
     private float GetPopupXOffset()
     {
-        var popupWidth = GetComponent<RectTransform>().rect.width;
-        var corners = new Vector3[4];
-        GetComponent<RectTransform>().GetWorldCorners(corners);
-        if (corners[2].x + popupWidth > canvas.GetComponent<RectTransform>().rect.width)
-            return -popupWidth;
-        return popupWidth * 0.5f;
+        var slotWidth = GetComponent<RectTransform>().rect.width;
+        var popupWidth = popup.GetComponent<RectTransform>().rect.width - slotWidth * 0.2f;
+        if (CanvasContainsPopup(popupWidth))
+            return popupWidth;
+        return -popupWidth;
+    }
+
+    private bool CanvasContainsPopup(float popupWidth)
+    {
+        return canvas.GetComponent<RectTransform>().rect.Contains(new Vector2(transform.position.x + popupWidth, transform.position.y));
     }
 }
