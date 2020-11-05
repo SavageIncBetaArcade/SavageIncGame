@@ -25,8 +25,8 @@ MonoBehaviour:
     type: 3}
   StartingModifiers:
   - Modifier: {fileID: 11400000, guid: d55157589adea474280d10147bee3bc8, type: 2}
-    Stage: 1
-    Target: 1
+    Stage: 0
+    Target: 0
   HitEffects:
   - {fileID: 3966173770737333436, guid: ef64ab604ff1bfd4191862dc59f2b9a1, type: 3}
   ProjectileGameObject: {fileID: 6167524000098639644, guid: 9c2e1c1ac5f187d4789ac656af43d0b4,

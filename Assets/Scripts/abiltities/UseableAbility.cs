@@ -78,6 +78,9 @@ public abstract class UseableAbility : MonoBehaviour
 
     protected void ExecuteUse()
     {
+        if (CharacterBase.IsStunned)
+            return;
+
         if(useCoroutine != null)
             StopCoroutine(useCoroutine);
         useCoroutine = StartCoroutine(UseCoroutine());

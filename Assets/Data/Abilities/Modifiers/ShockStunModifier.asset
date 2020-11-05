@@ -9,15 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c30af5eca9b45541b88baef8a4a0c7f, type: 3}
+  m_Script: {fileID: 11500000, guid: 35f509ec98d35a748b2755e76becb509, type: 3}
   m_Name: ShockStunModifier
   m_EditorClassIdentifier: 
   modifierName: Shock Stun
-  modifierDescription: Stun target for 1.5 seconds
-  modifierLevel: 1
+  modifierDescription: Stun modifier for shock ability
+  modifierLevel: 0
   activePeriod: 0
   applyFrequency: 0
   tickEffectGameObjects: []
-  Type: 4
-  Amount: -1
-  Percentage: 1
+  StunTime: 1.5

@@ -24,6 +24,8 @@ public class CharacterBase : MonoBehaviour, IDamageTaker
     private float jumpHeight = 1.0f;
     [SerializeField]
     private float currentHealth, currentEnergy;
+    [SerializeField] 
+    private float currentStunTime = 0.0f;
     
     public delegate void DeathAction();
     public event DeathAction OnDeath;
@@ -79,6 +81,13 @@ public class CharacterBase : MonoBehaviour, IDamageTaker
         set => jumpHeight = value;
     }
 
+    public float CurrentStunTime
+    {
+        get => currentStunTime;
+        set => currentStunTime = value;
+    }
+
+    public bool IsStunned => currentStunTime > 0.0f;
     public bool IsAlive => currentHealth >= 0.0f;
 
     #endregion
@@ -90,6 +99,11 @@ public class CharacterBase : MonoBehaviour, IDamageTaker
         portalableObject.HasTeleported += PortalableObjectOnHasTeleported;
         currentHealth = maxHealth;
         currentEnergy = maxEnergy;
+    }
+
+    protected virtual void Update()
+    {
+        CurrentStunTime = Mathf.Max(currentStunTime -= Time.deltaTime, 0);
     }
 
     public virtual void PortalableObjectOnHasTeleported(Portal startPortal, Portal endPortal, Vector3 newposition, Quaternion newrotation)
