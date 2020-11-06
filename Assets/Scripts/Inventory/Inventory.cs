@@ -98,7 +98,7 @@ public abstract class Inventory : MonoBehaviour
             items[position].InventoryItem.RightClick(this, character);
     }
 
-    public Item getItemAt(int position) { return items[position].InventoryItem.Item; }
+    public Item getItemAt(int position) { return items[position].InventoryItem?.Item; }
 
     public bool hasItemAt(int position) { return items[position].InventoryItem != null; }
 }

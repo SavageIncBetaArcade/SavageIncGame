@@ -3,7 +3,7 @@ using UnityEngine.EventSystems;
 
 public abstract class InfoPopupHandler : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-    protected abstract Item Item { get; }
+    protected virtual Item Item => null;
     public GameObject itemInfoPrefab;
     private Popup popup;
     private Canvas canvas;
@@ -30,7 +30,7 @@ public abstract class InfoPopupHandler : MonoBehaviour, IPointerEnterHandler, IP
         popup.quote.text = Item.Quote;
         popup.description.text = Item.GetInfoDescription();
         popup.transform.position = new Vector3(transform.position.x + GetPopupXOffset(), transform.position.y, 0);
-        popup.transform.parent = canvas.transform;
+        popup.transform.SetParent(canvas.transform);
     }
 
     private float GetPopupXOffset()

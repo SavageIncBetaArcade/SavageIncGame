@@ -12840,7 +12840,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 902.0801}
+  m_SizeDelta: {x: 0, y: 902.0802}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1598034944
 MonoBehaviour:
@@ -15832,7 +15832,7 @@ MonoBehaviour:
   fitType: 2
   Rows: 4
   Columns: 4
-  CellSize: {x: 209.52002, y: 209.52002}
+  CellSize: {x: 209.52005, y: 209.52005}
   Spacing: {x: 8, y: 8}
   FitX: 1
   FitY: 1
