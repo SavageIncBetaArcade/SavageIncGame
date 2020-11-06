@@ -19,9 +19,12 @@ public class PlayerBase : CharacterBase
         Controller = GetComponent<CharacterController>();
     }
 
-    void Update()
+    protected override void Update()
     {
-        MovePlayer();
+        base.Update();
+
+        if(!IsStunned)
+            MovePlayer();
     }
 
     void MovePlayer()

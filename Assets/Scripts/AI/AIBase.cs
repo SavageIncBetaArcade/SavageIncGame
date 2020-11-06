@@ -54,8 +54,10 @@ public class AIBase : CharacterBase
         navAgent.speed = Speed;
     }
 
-    private void Update()
+    protected override void Update()
     {
+        base.Update();
+
         if (PotentialStates.Length > 0 && stackOfStates.GetCurrentState() == null)
         {
             State idle = PotentialStates.FirstOrDefault(x => x.StateName == StateNames.IdleState);

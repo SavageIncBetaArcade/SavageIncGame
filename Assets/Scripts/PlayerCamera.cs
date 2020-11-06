@@ -8,6 +8,13 @@ public class PlayerCamera : MonoBehaviour
     public Transform PlayerBody;
 
     private float xRotation = 0f;
+    private CharacterBase playerCharacterBase;
+
+    void Awake()
+    {
+        if (PlayerBody != null)
+            playerCharacterBase = PlayerBody.GetComponent<CharacterBase>();
+    }
 
     void Start()
     {
@@ -16,6 +23,10 @@ public class PlayerCamera : MonoBehaviour
 
     void Update()
     {
+        //If the player is stunned then stop player from looking around
+        if(playerCharacterBase!= null && playerCharacterBase.IsStunned)
+            return;
+        
         float mouseX = Input.GetAxis("Mouse X");
         float mouseY = Input.GetAxis("Mouse Y");
 
