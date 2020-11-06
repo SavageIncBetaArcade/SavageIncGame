@@ -12,6 +12,8 @@ public static class InventoryItemFactory
                 return new WeaponInventoryItem();
             case ConsumableItem _:
                 return new ConsumableInventoryItem();
+            case ScriptableUseableAbility _:
+                return new AbilityInventoryItem();
         }
         throw new Exception("Item not of any type");
     }

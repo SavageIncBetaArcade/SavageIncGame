@@ -1,19 +1,17 @@
-﻿using System.Collections;
-using System.Linq;
-using UnityEngine;
-using UnityEngine.UI;
+﻿using UnityEngine;
 
-public class Inventory : MonoBehaviour
+public abstract class Inventory : MonoBehaviour
 {
     [SerializeField]
     public InventorySlot[] items = new InventorySlot[ItemSlotsAmount];
-    public EquipSlot[] leftHand = new EquipSlot[4]; 
-    public EquipSlot[] rightHand = new EquipSlot[4];
-    public EquipSlot armourSlot;
     public const int ItemSlotsAmount = 16;
-    public Text warningText;
     public CharacterBase character;
-    
+    public abstract string Title { get; }
+
+    public abstract void EquipLeftHand(InventoryItem itemToEquip);
+    public abstract void EquipRightHand(InventoryItem itemToEquip);
+    public abstract void EquipCenter(InventoryItem itemToEquip);
+
     public void AddItem(Item itemToAdd)
     {
         var emptySlotPosition = -1;
@@ -49,6 +47,16 @@ public class Inventory : MonoBehaviour
         items[position].Quantity.enabled = true;
     }
 
+    public int FindItemIndex(Item item)
+    {
+        for (var i = 0; i < ItemSlotsAmount; i++)
+        {
+            if (!InventorySlotIs(i, item)) continue;
+            return i;
+        }
+        return -1;
+    }
+    
     public void RemoveItem(Item itemToRemove)
     {
         for (var i = 0; i < ItemSlotsAmount; i++)
@@ -89,31 +97,8 @@ public class Inventory : MonoBehaviour
         if (items[position].InventoryItem != null)
             items[position].InventoryItem.RightClick(this, character);
     }
-    
-    public void EquipWeaponInLeftHand(WeaponInventoryItem weaponToEquip)
-    {
-        if (!leftHand.Any(weaponSlot => EquipWeapon(weaponToEquip, weaponSlot)))
-            StartCoroutine(ShowWarningText());
-    }
-    
-    public void EquipWeaponInRightHand(WeaponInventoryItem weaponToEquip)
-    {
-        if (!rightHand.Any(weaponSlot => EquipWeapon(weaponToEquip, weaponSlot)))
-            StartCoroutine(ShowWarningText());
-    }
-    
-    private bool EquipWeapon(WeaponInventoryItem weaponToEquip, EquipSlot weaponSlot)
-    {
-        if (weaponSlot.equippedSlot.InventoryItem != null) return false;
-        RemoveItem(weaponToEquip.Item);
-        weaponSlot.EquipItem(weaponToEquip);
-        return true;
-    }
-    
-    private IEnumerator ShowWarningText()
-    {
-        warningText.enabled = true;
-        yield return new WaitForSeconds(3);
-        warningText.enabled = false;
-    }
+
+    public Item getItemAt(int position) { return items[position].InventoryItem?.Item; }
+
+    public bool hasItemAt(int position) { return items[position].InventoryItem != null; }
 }

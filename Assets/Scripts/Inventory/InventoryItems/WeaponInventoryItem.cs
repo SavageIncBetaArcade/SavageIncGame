@@ -1,13 +1,12 @@
-﻿public class ArmourInventoryItem : InventoryItem
+﻿public class WeaponInventoryItem : InventoryItem
 {
     public override void LeftClick(Inventory inventory, CharacterBase character)
     {
-        inventory.RemoveItem(Item);
-        inventory.armourSlot.EquipItem(this);
+        inventory.EquipLeftHand(this);
     }
 
     public override void RightClick(Inventory inventory, CharacterBase characterBase)
     {
-        LeftClick(inventory, null);
+        inventory.EquipRightHand(this);
     }
 }

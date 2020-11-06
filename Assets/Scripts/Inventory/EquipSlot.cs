@@ -21,9 +21,7 @@ public class EquipSlot : MonoBehaviour
 
     public void UnequipItem()
     {
-        if (equippedSlot.InventoryItem == null || equippedSlot.InventoryItem.Item == null)
-            return;
-
+        if (equippedSlot.InventoryItem == null || equippedSlot.InventoryItem.Item == null) return;
         var inventory = FindObjectOfType<Inventory>();
         inventory.AddItem(equippedSlot.InventoryItem.Item);
         RemoveItem();

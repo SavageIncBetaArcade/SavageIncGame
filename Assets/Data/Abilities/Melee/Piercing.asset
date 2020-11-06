@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: Piercing
   m_EditorClassIdentifier: 
   Name: Piercing
-  Description: Ye think armour kin stoap me? Bah!
-  Sprite: {fileID: 0}
+  Description: 
+  Quote: Ye think armour kin stoap me? Bah!
+  Sprite: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
   EnergyCost: 10
   Cooldown: 0
   HitModifierApplyPercentage: 0.5

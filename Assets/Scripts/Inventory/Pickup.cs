@@ -2,24 +2,28 @@
 
 public class Pickup : MonoBehaviour
 {
-    public Inventory inventory;
+    public ItemInventory itemInventory;
+    public AbilityInventory abilityInventory;
     public Item armourItem;
     public Item armourItem2;
     public Item weaponItem;
     public Item weaponItem2;
     public ConsumableItem healthPotion;
+    public ScriptableUseableAbility ability;
 
     public void Update()
     {
         if (Input.GetKeyDown(KeyCode.E))
-            inventory.AddItem(armourItem);
+            itemInventory.AddItem(armourItem);
         else if (Input.GetKeyDown(KeyCode.R))
-            inventory.AddItem(armourItem2);
+            itemInventory.AddItem(armourItem2);
         else if(Input.GetKeyDown(KeyCode.T))
-            inventory.AddItem(weaponItem);
+            itemInventory.AddItem(weaponItem);
         else if(Input.GetKeyDown(KeyCode.Y))
-            inventory.AddItem(weaponItem2);
+            itemInventory.AddItem(weaponItem2);
         else if(Input.GetKeyDown(KeyCode.U))
-            inventory.AddItem(healthPotion);
+            itemInventory.AddItem(healthPotion);
+        else if(Input.GetKeyDown(KeyCode.I))
+            abilityInventory.AddItem(ability);
     }
 }
