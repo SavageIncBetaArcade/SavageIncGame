@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 6.2856374, g: 8.875686, b: 13.942993, a: 1}
+  m_IndirectSpecularColor: {r: 6.3402147, g: 8.930163, b: 13.926308, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3431,7 +3431,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh16962
+  m_Name: pb_Mesh44236
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -5609,12 +5609,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3287459474639506986, guid: 6977d88c4b1ceec4c96e0ab898b9402d,
-        type: 3}
-      propertyPath: StartingPassiveModifiers.Array.data[0]
-      value: 
-      objectReference: {fileID: 11400000, guid: 437082d363693c644889b5860ac30849,
-        type: 2}
     - target: {fileID: 3287459473354534074, guid: 6977d88c4b1ceec4c96e0ab898b9402d,
         type: 3}
       propertyPath: m_LocalPosition.z
@@ -5634,7 +5628,7 @@ PrefabInstance:
         type: 3}
       propertyPath: ScriptableAbility
       value: 
-      objectReference: {fileID: 11400000, guid: abec69ad03a739b459e188b003eca61e,
+      objectReference: {fileID: 11400000, guid: 693020afcc8249546a1cd6d729d92a2a,
         type: 2}
     - target: {fileID: 3287459473351049832, guid: 6977d88c4b1ceec4c96e0ab898b9402d,
         type: 3}
@@ -5705,17 +5699,39 @@ PrefabInstance:
       propertyPath: UseAnimator
       value: 
       objectReference: {fileID: 7698281}
-    - target: {fileID: 5236182066954507820, guid: 6977d88c4b1ceec4c96e0ab898b9402d,
-        type: 3}
-      propertyPath: UseAnimator
-      value: 
-      objectReference: {fileID: 1480037999}
     - target: {fileID: 3287459473709432247, guid: 6977d88c4b1ceec4c96e0ab898b9402d,
         type: 3}
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3287459473709432247, guid: 6977d88c4b1ceec4c96e0ab898b9402d,
+        type: 3}
+      propertyPath: UseButton
+      value: Fire2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3287459474639506986, guid: 6977d88c4b1ceec4c96e0ab898b9402d,
+        type: 3}
+      propertyPath: StartingPassiveModifiers.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 437082d363693c644889b5860ac30849,
+        type: 2}
+    - target: {fileID: 3287459474639506986, guid: 6977d88c4b1ceec4c96e0ab898b9402d,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5236182066954507820, guid: 6977d88c4b1ceec4c96e0ab898b9402d,
+        type: 3}
+      propertyPath: UseAnimator
+      value: 
+      objectReference: {fileID: 1480037999}
+    - target: {fileID: 5236182066954507820, guid: 6977d88c4b1ceec4c96e0ab898b9402d,
+        type: 3}
+      propertyPath: ScriptableAbility
+      value: 
+      objectReference: {fileID: 11400000, guid: 8573e2e531a8bc649b5bad5d1b378bb1,
+        type: 2}
+    - target: {fileID: 5236182066954507820, guid: 6977d88c4b1ceec4c96e0ab898b9402d,
         type: 3}
       propertyPath: UseButton
       value: Fire2

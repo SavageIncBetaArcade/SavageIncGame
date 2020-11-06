@@ -46,10 +46,7 @@ public class ScriptableSplashDamageModifier : ScriptableDamageModifier
 
         foreach (var character in affectedCharacters)
         {
-            targetCharacter.TakeDamage(Damage);
-            Debug.Log($"Applied '{ModifierName}' dealing: {Damage} splash damage to {character.gameObject.name}");
-
-            ApplyEffects(character);
+            damage(ownerCharacter,targetCharacter);
         }
     }
 

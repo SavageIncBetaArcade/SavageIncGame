@@ -30,7 +30,8 @@ MonoBehaviour:
     Target: 1
   HitEffects:
   - {fileID: 3966173770737333436, guid: ef64ab604ff1bfd4191862dc59f2b9a1, type: 3}
-  Damage: 5
+  Damage: 0
+  AddOwnerBaseAttack: 0
   Range: 25
   RaycastBolt: {fileID: 5732481325394797837, guid: adb2ae7871f4e444b9c69df35f447929,
     type: 3}

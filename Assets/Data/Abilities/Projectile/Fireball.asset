@@ -15,6 +15,7 @@ MonoBehaviour:
   Name: Fireball
   Description: Need a light?
   Sprite: {fileID: 0}
+  AbilityLevel: 1
   EnergyCost: 5
   Cooldown: 1.5
   ActivePeriod: 0
@@ -32,5 +33,5 @@ MonoBehaviour:
     type: 3}
   GravityAffected: 0
   InitialForce: 20
-  Damage: 10
+  Damage: 0
   Range: 25

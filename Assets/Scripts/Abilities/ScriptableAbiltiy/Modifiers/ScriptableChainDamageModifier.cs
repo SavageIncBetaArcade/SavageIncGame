@@ -29,7 +29,7 @@ public class ScriptableChainDamageModifier : ScriptableDamageModifier
         allCharacters = GetOrderedCharactersByPosition(targetCharacter.transform.position);
         affectedCharacters.Add(targetCharacter);
         AddClosestCharacters(ownerCharacter,targetCharacter, ref affectedCharacters);
-        targetCharacter.StartCoroutine(ChainAttack(affectedCharacters));
+        targetCharacter.StartCoroutine(ChainAttack(ownerCharacter,affectedCharacters));
     }
 
 
@@ -69,7 +69,7 @@ public class ScriptableChainDamageModifier : ScriptableDamageModifier
         }
     }
 
-    private IEnumerator ChainAttack(List<CharacterBase> affectedCharacters)
+    private IEnumerator ChainAttack(CharacterBase ownerCharacter, List<CharacterBase> affectedCharacters)
     {
         List<GameObject> bolts = new List<GameObject>();
         for (var i = 0; i < affectedCharacters.Count; i++)
@@ -88,9 +88,7 @@ public class ScriptableChainDamageModifier : ScriptableDamageModifier
                 raycastBolt.SetPoints(start , end);
             }
 
-
-            affectedCharacters[i].TakeDamage(Damage);
-            ApplyEffects(affectedCharacters[i]);
+            damage(ownerCharacter, affectedCharacters[i]);
             yield return new WaitForSeconds(Delay);
         }
 

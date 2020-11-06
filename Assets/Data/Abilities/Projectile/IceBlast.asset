@@ -9,29 +9,32 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a87e9127438067c439470e2d5b99d130, type: 3}
-  m_Name: ElectroBuzz2
+  m_Script: {fileID: 11500000, guid: 1946523be425dc64b9fc3b21908dc550, type: 3}
+  m_Name: IceBlast
   m_EditorClassIdentifier: 
-  Name: Electro Buzz
-  Description: Aff tae catch ye a'
+  Name: Ice Blast
+  Description: A'm getting a brainfreeze awready.
   Sprite: {fileID: 0}
-  AbilityLevel: 2
-  EnergyCost: 25
-  Cooldown: 0
+  AbilityLevel: 1
+  EnergyCost: 5
+  Cooldown: 1.5
   ActivePeriod: 0
   UseFrequency: 0
+  AddOwnerBaseAttack: 1
+  OwnerBaseAttackScalar: 1
   HitModifierApplyPercentage: 1
   UseAnimationCooldown: 0
   AbilityPrefab: {fileID: 6413331160640061430, guid: 3b4ac081e3ee33f4197fd33032e62454,
     type: 3}
   StartingModifiers:
-  - Modifier: {fileID: 11400000, guid: 60e76cdc8bb2b7f4b8d37b3bb6538d57, type: 2}
+  - Modifier: {fileID: 11400000, guid: 361591a8829e1df49b99565ed0154152, type: 2}
     Stage: 1
     Target: 1
   HitEffects:
   - {fileID: 3966173770737333436, guid: ef64ab604ff1bfd4191862dc59f2b9a1, type: 3}
-  Damage: 0
-  AddOwnerBaseAttack: 0
-  Range: 25
-  RaycastBolt: {fileID: 5732481325394797837, guid: adb2ae7871f4e444b9c69df35f447929,
+  ProjectileGameObject: {fileID: 6167524000098639644, guid: 9c2e1c1ac5f187d4789ac656af43d0b4,
     type: 3}
+  GravityAffected: 0
+  InitialForce: 20
+  Damage: 0
+  Range: 25

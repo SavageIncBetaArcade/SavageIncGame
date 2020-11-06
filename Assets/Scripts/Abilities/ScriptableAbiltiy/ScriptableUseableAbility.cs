@@ -20,6 +20,9 @@ public class ScriptableUseableAbility : Item
     /// </summary>
     public float UseFrequency = 0.0f;
 
+    public bool AddOwnerBaseAttack = true;
+    public float OwnerBaseAttackScalar = 1.0f;
+
     [Range(0,1)]
     public float HitModifierApplyPercentage = 1.0f;
     public bool UseAnimationCooldown;

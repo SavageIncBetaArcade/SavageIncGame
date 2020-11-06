@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4902bd0987ba29a4e8c4b65f834cbc7a, type: 3}
-  m_Name: FireballModifier
+  m_Name: HotStufflModifier
   m_EditorClassIdentifier: 
-  modifierName: modifier for fireball
-  modifierDescription: 5% damage for 3 secons
+  modifierName: modifier for hotstuff
+  modifierDescription: 10% damage for 4 seconds
   modifierLevel: 0
-  activePeriod: 3
+  activePeriod: 4
   applyFrequency: 1
   tickEffectGameObjects:
   - {fileID: 3966173770737333436, guid: ef64ab604ff1bfd4191862dc59f2b9a1, type: 3}
-  Damage: 0.05
+  Damage: 0.1
   Percentage: 1
   AddOwnerBaseAttack: 0
   DamageOnApply: 0

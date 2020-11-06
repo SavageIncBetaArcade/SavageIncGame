@@ -117,7 +117,8 @@ public class Modifier
 
     private IEnumerator tickCoroutine(CharacterBase targetCharacter)
     {
-        float currentActiveTime = 0.0f;
+        float currentActiveTime = scriptableModifier.ApplyFrequency;
+        yield return new WaitForSeconds(scriptableModifier.ApplyFrequency);
 
         if (ApplyFrequency > 0.0f)
         {

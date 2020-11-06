@@ -65,7 +65,7 @@ public class Projectile : MonoBehaviour
                 Debug.LogError("Projectile: ScriptableAbility is not of type ScriptableProjectileAbility");
 
             castersProjectileAbility.Hit(hitGameObject, projectileAbility != null ? projectileAbility.Damage : 0.0f,
-                hitPoint, transform.forward, hitNormal);
+                hitPoint, transform.forward, hitNormal, projectileAbility.AddOwnerBaseAttack);
         }
 
         Destroy(gameObject);

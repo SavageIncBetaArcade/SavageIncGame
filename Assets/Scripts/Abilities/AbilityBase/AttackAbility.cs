@@ -20,7 +20,7 @@ public abstract class AttackAbility : BaseAbility
     }
 
     public virtual void Hit(GameObject hitObject, float damage, Vector3 hitPoint, Vector3 hitDirection,
-        Vector3 surfaceNormal)
+        Vector3 surfaceNormal, bool addOwnerAttack)
     {
         if(hitObject == OwnerCharacter.gameObject)
             return;
@@ -29,9 +29,12 @@ public abstract class AttackAbility : BaseAbility
 
         OnHit?.Invoke(useableAbility.CharacterBase,hitObject, hitPoint, hitDirection, surfaceNormal);
 
-        if(hitCharacter != null)
-            Debug.Log($"Character:{OwnerCharacter.name} hit character:{hitCharacter.name} dealing:{damage + OwnerCharacter.AttackModifier}, target def:{hitCharacter.DefenseModifier}");
-        hitCharacter?.TakeDamage(damage + OwnerCharacter.AttackModifier);
+        float damageDealt = addOwnerAttack ? damage + (OwnerCharacter.AttackModifier * Ability.OwnerBaseAttackScalar) : damage;
+        if (hitCharacter != null)
+            Debug.Log($"Character:{OwnerCharacter.name} hit character:{hitCharacter.name} with:{Ability.Name} dealing:{damageDealt}, target def:{hitCharacter.DefenseModifier}");
+
+        hitCharacter?.TakeDamage(damageDealt);
+        
 
 
         foreach (var hitEffect in Ability.HitEffects)
