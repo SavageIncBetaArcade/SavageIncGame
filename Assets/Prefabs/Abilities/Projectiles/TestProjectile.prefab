@@ -149,6 +149,7 @@ GameObject:
   - component: {fileID: 6167524000098639646}
   - component: {fileID: 6167524000098639647}
   - component: {fileID: 6167524000098639644}
+  - component: {fileID: 8994638248093448249}
   m_Layer: 0
   m_Name: TestProjectile
   m_TagString: Untagged
@@ -257,7 +258,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38518fe9720ea0546abed1ac84829e76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Damage: 10
-  InitialForce: 20
-  GravityAffected: 1
-  LifeSpan: 2.5
+  damage: 0
+  initialForce: 0
+  gravityAffected: 1
+  lifeSpan: 2.5
+  RangeCutoff: 100
+--- !u!114 &8994638248093448249
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6167524000098639645}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33def953cfc25a34bbb7c0bf5fb12ec3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

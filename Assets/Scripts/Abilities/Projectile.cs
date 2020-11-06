@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(PortalableObject))]
 [RequireComponent(typeof(Rigidbody))]
 public class Projectile : MonoBehaviour
 {
@@ -18,6 +19,7 @@ public class Projectile : MonoBehaviour
 
     private Vector3 startPosition;
     private Rigidbody projectileRigidbody;
+    private PortalableObject portalableObject;
 
     //The ProjectileAbility that was used to cast this project (null of none)
     private ProjectileAbility castersProjectileAbility;
@@ -26,6 +28,8 @@ public class Projectile : MonoBehaviour
     {
         projectileRigidbody = GetComponent<Rigidbody>();
         projectileRigidbody.useGravity = gravityAffected;
+        portalableObject = GetComponent<PortalableObject>();
+        portalableObject.HasTeleported += PortalableObjectOnHasTeleported;
     }
 
     void Start()
@@ -65,7 +69,7 @@ public class Projectile : MonoBehaviour
                 Debug.LogError("Projectile: ScriptableAbility is not of type ScriptableProjectileAbility");
 
             castersProjectileAbility.Hit(hitGameObject, projectileAbility != null ? projectileAbility.Damage : 0.0f,
-                hitPoint, transform.forward, hitNormal, projectileAbility.AddOwnerBaseAttack);
+                hitPoint, transform.forward, hitNormal);
         }
 
         Destroy(gameObject);
@@ -83,5 +87,14 @@ public class Projectile : MonoBehaviour
         RangeCutoff = scriptableProjectile.Range;
     }
 
-    
+    public virtual void PortalableObjectOnHasTeleported(Portal startPortal, Portal endPortal, Vector3 newposition, Quaternion newrotation)
+    {
+        projectileRigidbody.velocity = Vector3.zero;
+        projectileRigidbody.AddForce(initialForce * transform.forward, ForceMode.Impulse);
+    }
+
+    private void OnDestroy()
+    {
+        portalableObject.HasTeleported -= PortalableObjectOnHasTeleported;
+    }
 }
