@@ -13,12 +13,16 @@ MonoBehaviour:
   m_Name: MillingTime
   m_EditorClassIdentifier: 
   Name: Milling Time
-  Description: Ey, how dae ye lik' that? Th' auld twurly wurlies.
-  Sprite: {fileID: 0}
+  Description: 
+  Quote: Ey, how dae ye lik' that? Th' auld twurly wurlies.
+  Sprite: {fileID: 21300000, guid: ec4c8a4e978bfef45b7ce05da08a6ec7, type: 3}
+  AbilityLevel: 1
   EnergyCost: 20
   Cooldown: 20
   ActivePeriod: 3
   UseFrequency: 0.25
+  AddOwnerBaseAttack: 1
+  OwnerBaseAttackScalar: 1
   HitModifierApplyPercentage: 1
   UseAnimationCooldown: 0
   AbilityPrefab: {fileID: 6413331160640061430, guid: 58134d6b7489999438bb17f5140de9c1,

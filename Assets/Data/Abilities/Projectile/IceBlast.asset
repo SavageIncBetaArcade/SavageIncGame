@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: IceBlast
   m_EditorClassIdentifier: 
   Name: Ice Blast
-  Description: A'm getting a brainfreeze awready.
-  Sprite: {fileID: 0}
+  Description: 
+  Quote: A'm getting a brainfreeze awready.
+  Sprite: {fileID: 21300000, guid: 7119c8c9e666bd545b3eb5a945f80405, type: 3}
   AbilityLevel: 1
   EnergyCost: 5
   Cooldown: 1.5

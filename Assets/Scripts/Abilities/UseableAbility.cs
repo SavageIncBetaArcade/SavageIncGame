@@ -29,13 +29,13 @@ public abstract class UseableAbility : MonoBehaviour
 
     public List<AbilityModifier> Modifiers;
 
-    private float _lastUseTime;
-
     private BaseAbility ability;
     private GameObject worldGameObject;
 
     private ModifierHandler modifierHandler;
     private Coroutine useCoroutine;
+
+    private Dictionary<ScriptableUseableAbility, float> lastUseDictionary;
 
     void Initilise()
     {
@@ -55,8 +55,10 @@ public abstract class UseableAbility : MonoBehaviour
     public void SetAbility(ScriptableUseableAbility newAbility)
     {
         ScriptableAbility = newAbility;
-        
-        if(worldGameObject)
+        Modifiers.Clear();
+
+
+        if (worldGameObject)
             Destroy(worldGameObject);
 
         Initilise();
@@ -64,6 +66,7 @@ public abstract class UseableAbility : MonoBehaviour
 
     protected virtual void Awake()
     {
+        lastUseDictionary = new Dictionary<ScriptableUseableAbility, float>();
         if (ScriptableAbility != null && ScriptableAbility.AbilityPrefab != null)
         {
             Initilise();
@@ -80,15 +83,18 @@ public abstract class UseableAbility : MonoBehaviour
 
     protected bool OnCooldown()
     {
-        if (_lastUseTime == 0.0f)
-            return false;
-
         if (ScriptableAbility.UseAnimationCooldown && UseAnimator != null && !string.IsNullOrWhiteSpace(AnimationUseBoolName))
         {
             return UseAnimator.GetBool(AnimationUseBoolName);
         }
 
-        return !(Time.time >= _lastUseTime + ScriptableAbility.Cooldown);
+        if (lastUseDictionary.ContainsKey(ScriptableAbility))
+        {
+            float lastUseTime = lastUseDictionary[ScriptableAbility];
+            return !(Time.time >= lastUseTime + ScriptableAbility.Cooldown);
+        }
+
+        return false;
     }
 
     protected void ExecuteUse()
@@ -100,7 +106,7 @@ public abstract class UseableAbility : MonoBehaviour
             StopCoroutine(useCoroutine);
         useCoroutine = StartCoroutine(UseCoroutine());
 
-        _lastUseTime = Time.time;
+        lastUseDictionary[ScriptableAbility] = Time.time;
     }
 
     private IEnumerator UseCoroutine()

@@ -13,21 +13,24 @@ MonoBehaviour:
   m_Name: Shock
   m_EditorClassIdentifier: 
   Name: Shock
-  Description: Ah knew Thor wouldn' let me doon.
-  Sprite: {fileID: 0}
+  Description: 
+  Quote: Ah knew Thor wouldn' let me doon.
+  Sprite: {fileID: 21300000, guid: d1a17b5d5d3a39b468721fe13acbf1e5, type: 3}
   AbilityLevel: 1
   EnergyCost: 5
   Cooldown: 1.5
   ActivePeriod: 0
   UseFrequency: 0
+  AddOwnerBaseAttack: 1
+  OwnerBaseAttackScalar: 1
   HitModifierApplyPercentage: 0.05
   UseAnimationCooldown: 0
   AbilityPrefab: {fileID: 6413331160640061430, guid: 3b4ac081e3ee33f4197fd33032e62454,
     type: 3}
   StartingModifiers:
   - Modifier: {fileID: 11400000, guid: d55157589adea474280d10147bee3bc8, type: 2}
-    Stage: 0
-    Target: 0
+    Stage: 1
+    Target: 1
   HitEffects:
   - {fileID: 3966173770737333436, guid: ef64ab604ff1bfd4191862dc59f2b9a1, type: 3}
   ProjectileGameObject: {fileID: 6167524000098639644, guid: 9c2e1c1ac5f187d4789ac656af43d0b4,

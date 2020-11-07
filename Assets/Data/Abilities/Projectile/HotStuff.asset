@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: HotStuff
   m_EditorClassIdentifier: 
   Name: Hot Stuff
-  Description: Outch!!! A'm pure burnin' mah hauns!
-  Sprite: {fileID: 0}
+  Description: 
+  Quote: Outch!!! A'm pure burnin' mah hauns!
+  Sprite: {fileID: 21300000, guid: 296fa29bb9e4f9a429e44d5976065380, type: 3}
   AbilityLevel: 1
   EnergyCost: 15
   Cooldown: 15

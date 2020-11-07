@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: RainingLava
   m_EditorClassIdentifier: 
   Name: Raining Lava
-  Description: Och by Odin's fluff is it summer awready?
-  Sprite: {fileID: 0}
+  Description: 
+  Quote: Och by Odin's fluff is it summer awready?
+  Sprite: {fileID: 21300000, guid: 6864d909bd444a64ea5ca430ea37f6f3, type: 3}
   AbilityLevel: 1
   EnergyCost: 35
   Cooldown: 0

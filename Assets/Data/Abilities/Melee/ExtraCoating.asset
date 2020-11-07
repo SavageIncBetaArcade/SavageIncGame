@@ -13,13 +13,17 @@ MonoBehaviour:
   m_Name: ExtraCoating
   m_EditorClassIdentifier: 
   Name: ExtraCoating
-  Description: A' mah enemies' blood mak's a crakin' protection jaiket. Whit a bunch
-    o' crakin' guys!
+  Description: 
+  Quote: A' mah enemies' blood mak's a crakin' protection jaiket. Whit a bunch o'
+    crakin' guys!
   Sprite: {fileID: 0}
+  AbilityLevel: 1
   EnergyCost: 10
   Cooldown: 15
   ActivePeriod: 0
   UseFrequency: 0
+  AddOwnerBaseAttack: 1
+  OwnerBaseAttackScalar: 1
   HitModifierApplyPercentage: 1
   UseAnimationCooldown: 0
   AbilityPrefab: {fileID: 6413331160640061430, guid: 58134d6b7489999438bb17f5140de9c1,

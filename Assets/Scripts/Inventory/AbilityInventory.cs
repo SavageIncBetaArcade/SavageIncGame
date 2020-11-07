@@ -7,8 +7,17 @@ public class AbilityInventory : Inventory
 {
     public EquipSlot[] leftHand = new EquipSlot[4]; 
     public EquipSlot[] rightHand = new EquipSlot[4];
+    public ScriptableUseableAbility[] StartingAbilities;
     public Text warningText;
     public override string Title => "Abilities";
+    
+    void Start()
+    {
+        foreach (var ability in StartingAbilities)
+        {
+            AddItem(ability);
+        }
+    }
 
     public override void EquipLeftHand(InventoryItem abilityToEquip)
     {

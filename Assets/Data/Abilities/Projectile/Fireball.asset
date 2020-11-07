@@ -13,13 +13,16 @@ MonoBehaviour:
   m_Name: Fireball
   m_EditorClassIdentifier: 
   Name: Fireball
-  Description: Need a light?
-  Sprite: {fileID: 0}
+  Description: 
+  Quote: Need a light?
+  Sprite: {fileID: 21300000, guid: 91c748f5adc774d468b5dcdbcdc5966b, type: 3}
   AbilityLevel: 1
   EnergyCost: 5
   Cooldown: 1.5
   ActivePeriod: 0
   UseFrequency: 0
+  AddOwnerBaseAttack: 1
+  OwnerBaseAttackScalar: 1
   HitModifierApplyPercentage: 1
   UseAnimationCooldown: 0
   AbilityPrefab: {fileID: 6413331160640061430, guid: 3b4ac081e3ee33f4197fd33032e62454,
