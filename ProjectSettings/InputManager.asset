@@ -549,3 +549,51 @@ InputManager:
     type: 2
     axis: 3
     joyNum: 0
+  - serializedVersion: 3
+    m_Name: ToggleInventory
+    descriptiveName: Show/hide player inventory
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: tab
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 0
+    dead: 0
+    sensitivity: 1
+    snap: 0
+    invert: 0
+    type: 0
+    axis: 0
+    joyNum: 0
+  - serializedVersion: 3
+    m_Name: CycleLeftHand
+    descriptiveName: Cycles left hand abilities
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: 1
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 0
+    dead: 0
+    sensitivity: 1
+    snap: 0
+    invert: 0
+    type: 0
+    axis: 0
+    joyNum: 0
+  - serializedVersion: 3
+    m_Name: CycleRightHand
+    descriptiveName: Cycles right hand abilities
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: 2
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 0
+    dead: 0
+    sensitivity: 1
+    snap: 0
+    invert: 0
+    type: 0
+    axis: 0
+    joyNum: 0

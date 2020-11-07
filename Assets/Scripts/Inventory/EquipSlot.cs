@@ -5,8 +5,13 @@ public class EquipSlot : MonoBehaviour
     public InventorySlot equippedSlot;
     public Inventory inventorySection;
 
+    public delegate void OnItemChange(InventoryItem inventoryItem, InventoryItem oldItem, EquipSlot slot);
+    public event OnItemChange ItemChangedEvent;
+
     public void EquipItem(InventoryItem inventoryItem)
     {
+        ItemChangedEvent?.Invoke(inventoryItem, equippedSlot.InventoryItem, this);
+
         if (equippedSlot.InventoryItem != null) UnequipItem();
         equippedSlot.Image.sprite = inventoryItem.Item.Sprite;
         equippedSlot.Image.enabled = true;
@@ -15,6 +20,8 @@ public class EquipSlot : MonoBehaviour
 
     private void RemoveItem()
     {
+        ItemChangedEvent?.Invoke(null, equippedSlot.InventoryItem, this);
+
         equippedSlot.Image.sprite = null;
         equippedSlot.Image.enabled = false;
         equippedSlot.InventoryItem = null;

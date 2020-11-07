@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
@@ -38,19 +39,33 @@ public abstract class UseableAbility : MonoBehaviour
 
     void Initilise()
     {
-        ability = AbilityFactory.Create(this, ScriptableAbility, CharacterBase, worldGameObject, HitAction,
-            AttackEnded);
+        if (ScriptableAbility)
+        {
+            worldGameObject = Instantiate(ScriptableAbility.AbilityPrefab, transform.position, transform.rotation,
+                transform);
 
-        //Create a copy of the Modifiers so this ability has its own instance
-        modifierHandler = new ModifierHandler(Modifiers);
+            ability = AbilityFactory.Create(this, ScriptableAbility, CharacterBase, worldGameObject, HitAction,
+                AttackEnded);
+
+            //Create a copy of the Modifiers so this ability has its own instance
+            modifierHandler = new ModifierHandler(Modifiers);
+        }
+    }
+
+    public void SetAbility(ScriptableUseableAbility newAbility)
+    {
+        ScriptableAbility = newAbility;
+        
+        if(worldGameObject)
+            Destroy(worldGameObject);
+
+        Initilise();
     }
 
     protected virtual void Awake()
     {
         if (ScriptableAbility != null && ScriptableAbility.AbilityPrefab != null)
         {
-            worldGameObject = Instantiate(ScriptableAbility.AbilityPrefab, transform.position, transform.rotation,
-                transform);
             Initilise();
         }
         else
@@ -78,7 +93,7 @@ public abstract class UseableAbility : MonoBehaviour
 
     protected void ExecuteUse()
     {
-        if (CharacterBase.IsStunned)
+        if (!IsValid())
             return;
 
         if(useCoroutine != null)
@@ -129,5 +144,10 @@ public abstract class UseableAbility : MonoBehaviour
     private void AttackEnded(CharacterBase attackingCharacter)
     {
         modifierHandler.RemoveInstantModifiers();
+    }
+
+    private bool IsValid()
+    {
+        return ability != null && ScriptableAbility && !CharacterBase.IsStunned;
     }
 }
