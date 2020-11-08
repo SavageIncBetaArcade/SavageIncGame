@@ -7,7 +7,8 @@ public abstract class InfoPopupHandler : MonoBehaviour, IPointerEnterHandler, IP
     public GameObject itemInfoPrefab;
     private Popup popup;
     private Canvas canvas;
-    
+    private Rect slotRect;
+
     private void Awake()
     {
         canvas = FindObjectOfType<Canvas>();
@@ -36,10 +37,10 @@ public abstract class InfoPopupHandler : MonoBehaviour, IPointerEnterHandler, IP
     private float GetPopupXOffset()
     {
         var slotWidth = GetComponent<RectTransform>().rect.width;
-        var popupWidth = popup.GetComponent<RectTransform>().rect.width - slotWidth * 0.2f;
-        if (CanvasContainsPopup(popupWidth))
-            return popupWidth;
-        return -popupWidth;
+        var popupWidth = popup.GetComponent<RectTransform>().rect.width;
+        if (!CanvasContainsPopup(popupWidth))
+            return - popupWidth - slotWidth / 2;
+        return 0;
     }
 
     private bool CanvasContainsPopup(float popupWidth)

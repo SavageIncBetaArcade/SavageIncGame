@@ -1,10 +1,10 @@
-﻿using UnityEngine;
-using UnityEngine.UI;
+﻿using TMPro;
+using UnityEngine;
 
 public class Popup : MonoBehaviour
 {
-    public Text title;
-    public Text quote;
-    public Text description;
+    public TextMeshProUGUI title;
+    public TextMeshProUGUI quote;
+    public TextMeshProUGUI description;
 
 }
