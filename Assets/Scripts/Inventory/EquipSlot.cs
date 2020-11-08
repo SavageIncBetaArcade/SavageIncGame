@@ -3,6 +3,7 @@
 public class EquipSlot : MonoBehaviour
 {
     public InventorySlot equippedSlot;
+    public Inventory inventorySection;
 
     public void EquipItem(InventoryItem inventoryItem)
     {
@@ -22,8 +23,7 @@ public class EquipSlot : MonoBehaviour
     public void UnequipItem()
     {
         if (equippedSlot.InventoryItem == null || equippedSlot.InventoryItem.Item == null) return;
-        var inventory = FindObjectOfType<Inventory>();
-        inventory.AddItem(equippedSlot.InventoryItem.Item);
+        inventorySection.AddItem(equippedSlot.InventoryItem.Item);
         RemoveItem();
     }
 }

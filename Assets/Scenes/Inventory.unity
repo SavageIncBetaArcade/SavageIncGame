@@ -2889,6 +2889,7 @@ MonoBehaviour:
   equippedSlot:
     Image: {fileID: 339493649}
     Quantity: {fileID: 0}
+  inventorySection: {fileID: 1598034947}
 --- !u!114 &365390783
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3014,6 +3015,7 @@ MonoBehaviour:
   equippedSlot:
     Image: {fileID: 1770721135}
     Quantity: {fileID: 0}
+  inventorySection: {fileID: 1598034947}
 --- !u!114 &373052088
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3487,6 +3489,7 @@ MonoBehaviour:
   equippedSlot:
     Image: {fileID: 1494443950}
     Quantity: {fileID: 0}
+  inventorySection: {fileID: 2010077867}
 --- !u!114 &440059305
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3799,6 +3802,7 @@ MonoBehaviour:
   equippedSlot:
     Image: {fileID: 139282787}
     Quantity: {fileID: 0}
+  inventorySection: {fileID: 2010077867}
 --- !u!114 &509390582
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4115,6 +4119,7 @@ MonoBehaviour:
   equippedSlot:
     Image: {fileID: 439938751}
     Quantity: {fileID: 0}
+  inventorySection: {fileID: 2010077867}
 --- !u!114 &542798586
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4326,6 +4331,7 @@ MonoBehaviour:
   equippedSlot:
     Image: {fileID: 2065526421}
     Quantity: {fileID: 0}
+  inventorySection: {fileID: 2010077867}
 --- !u!114 &548519257
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5209,6 +5215,7 @@ MonoBehaviour:
   equippedSlot:
     Image: {fileID: 1220936365}
     Quantity: {fileID: 0}
+  inventorySection: {fileID: 2010077867}
 --- !u!114 &654334853
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5334,6 +5341,7 @@ MonoBehaviour:
   equippedSlot:
     Image: {fileID: 1813691476}
     Quantity: {fileID: 0}
+  inventorySection: {fileID: 2010077867}
 --- !u!114 &661402625
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7357,6 +7365,7 @@ MonoBehaviour:
   equippedSlot:
     Image: {fileID: 197351599}
     Quantity: {fileID: 0}
+  inventorySection: {fileID: 1598034947}
 --- !u!114 &955038221
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9475,6 +9484,7 @@ MonoBehaviour:
   equippedSlot:
     Image: {fileID: 959138534}
     Quantity: {fileID: 0}
+  inventorySection: {fileID: 2010077867}
 --- !u!114 &1174455821
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12840,7 +12850,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 902.0802}
+  m_SizeDelta: {x: 0, y: 902.0801}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1598034944
 MonoBehaviour:
@@ -13169,6 +13179,7 @@ MonoBehaviour:
   equippedSlot:
     Image: {fileID: 1252138000}
     Quantity: {fileID: 0}
+  inventorySection: {fileID: 2010077867}
 --- !u!114 &1636603674
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15832,7 +15843,7 @@ MonoBehaviour:
   fitType: 2
   Rows: 4
   Columns: 4
-  CellSize: {x: 209.52005, y: 209.52005}
+  CellSize: {x: 209.52002, y: 209.52002}
   Spacing: {x: 8, y: 8}
   FitX: 1
   FitY: 1
