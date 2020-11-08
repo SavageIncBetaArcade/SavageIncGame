@@ -16,13 +16,11 @@ public class AbilityHandSwitch : MonoBehaviour
     public Image[] CoolDownImages = new Image[4];
 
     public InventorySectionHandler inventoryHandler;
-    public HandType HandTye;
+    public HandType Hand;
     public UseableAbility PlayerAbility;
 
     private EquipSlot[] handSlots;
-
     private ScriptableUseableAbility[] AbilitySlots = new ScriptableUseableAbility[4];
-
     private Sprite baseSprite;
     private string cycleHandButtonName;
 
@@ -31,12 +29,19 @@ public class AbilityHandSwitch : MonoBehaviour
         if (!inventoryHandler)
         {
             Debug.LogError("Inventory Handler not sent in AbilityHandSwitch");
+            enabled = false;
+            return;
+        }
+        if (!PlayerAbility)
+        {
+            Debug.LogError("Player useable ability not sent in AbilityHandSwitch");
+            enabled = false;
             return;
         }
 
         baseSprite = AbilityImages[0]?.sprite;
 
-        switch (HandTye)
+        switch (Hand)
         {
             case HandType.LEFT:
                 handSlots = inventoryHandler.abilityInventory.leftHand;
@@ -76,7 +81,6 @@ public class AbilityHandSwitch : MonoBehaviour
             equipSlot.ItemChangedEvent -= EquipSlot_ItemChangedEvent;
         }
     }
-
 
     private void EquipSlot_ItemChangedEvent(InventoryItem inventoryItem, InventoryItem oldItem, EquipSlot slot)
     {
