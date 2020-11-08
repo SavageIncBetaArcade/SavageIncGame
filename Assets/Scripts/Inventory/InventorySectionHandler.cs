@@ -1,12 +1,12 @@
-﻿using UnityEngine;
-using UnityEngine.UI;
+﻿using TMPro;
+using UnityEngine;
 
 public class InventorySectionHandler : MonoBehaviour
 {
     public ItemInventory itemInventory;
     public AbilityInventory abilityInventory;
     public Inventory currentInventory;
-    public Text inventoryTitle;
+    public TextMeshProUGUI inventoryTitle;
 
     private void Start()
     {

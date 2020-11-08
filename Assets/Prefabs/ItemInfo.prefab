@@ -103,7 +103,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: Milling Time
+  m_text: "Hugin and Munin\u2019s Heavenly Blessing"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 59aaf15833e81c842bf5b470d12bb69e, type: 2}
   m_sharedMaterial: {fileID: 1123123916631019881, guid: 59aaf15833e81c842bf5b470d12bb69e,
@@ -170,15 +170,15 @@ MonoBehaviour:
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 10.864151}
+  m_margin: {x: 0, y: 0, z: 0, w: 6.4665985}
   m_textInfo:
     textComponent: {fileID: 8752778572309773244}
-    characterCount: 12
+    characterCount: 35
     spriteCount: 0
-    spaceCount: 1
-    wordCount: 2
+    spaceCount: 5
+    wordCount: 6
     linkCount: 0
-    lineCount: 1
+    lineCount: 2
     pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
@@ -328,8 +328,8 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 8
-  m_fontSizeBase: 8
+  m_fontSize: 9
+  m_fontSizeBase: 9
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -366,7 +366,7 @@ MonoBehaviour:
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: -5.79422, z: 0, w: 36.213898}
+  m_margin: {x: 0, y: 0.06915283, z: 0, w: 12.7604065}
   m_textInfo:
     textComponent: {fileID: 6085631641034708131}
     characterCount: 49
@@ -432,7 +432,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 838, y: -685.5}
-  m_SizeDelta: {x: 200, y: 125}
+  m_SizeDelta: {x: 200, y: 150}
   m_Pivot: {x: 0, y: 1}
 --- !u!222 &7471001997405675309
 CanvasRenderer:
@@ -614,11 +614,8 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: '+ 1 Attack
-
-    +1 Defense
-
-    +1 Blah'
+  m_text: "Attack 1\r\nDefence 2\r\nHealth 10\r\nEnergy 5\r\nHealth Regeneration +1/second\r\nEnergy
+    Regeneration +1/second"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7b1c753f10c320c439c4158aad6eeb58, type: 2}
   m_sharedMaterial: {fileID: -1754911982707822081, guid: 7b1c753f10c320c439c4158aad6eeb58,
@@ -685,15 +682,15 @@ MonoBehaviour:
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: -37.662445, z: 0, w: 0}
+  m_margin: {x: 0, y: -3.215149, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 6333962391105163161}
-    characterCount: 29
+    characterCount: 102
     spriteCount: 0
-    spaceCount: 6
-    wordCount: 7
+    spaceCount: 13
+    wordCount: 16
     linkCount: 0
-    lineCount: 3
+    lineCount: 6
     pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
