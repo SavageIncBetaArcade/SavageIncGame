@@ -12,21 +12,16 @@ public class AbilityHandSwitch : MonoBehaviour
         RIGHT   
     }
 
-    public Image CurrentAbilityImage;
-    public Image AbilityImage1;
-    public Image AbilityImage2;
-    public Image AbilityImage3;
-
-    public ScriptableUseableAbility AbilitySlot1;
-    public ScriptableUseableAbility AbilitySlot2;
-    public ScriptableUseableAbility AbilitySlot3;
-    public ScriptableUseableAbility AbilitySlot4;
+    public Image[] AbilityImages = new Image[4];
+    public Image[] CoolDownImages = new Image[4];
 
     public InventorySectionHandler inventoryHandler;
     public HandType HandTye;
     public UseableAbility PlayerAbility;
 
     private EquipSlot[] handSlots;
+
+    private ScriptableUseableAbility[] AbilitySlots = new ScriptableUseableAbility[4];
 
     private Sprite baseSprite;
     private string cycleHandButtonName;
@@ -39,7 +34,7 @@ public class AbilityHandSwitch : MonoBehaviour
             return;
         }
 
-        baseSprite = CurrentAbilityImage.sprite;
+        baseSprite = AbilityImages[0]?.sprite;
 
         switch (HandTye)
         {
@@ -62,6 +57,8 @@ public class AbilityHandSwitch : MonoBehaviour
         {
             shiftHand();
         }
+
+        updateCooldowns();
     }
 
     private void setupHand()
@@ -94,28 +91,11 @@ public class AbilityHandSwitch : MonoBehaviour
         ScriptableUseableAbility ability = inventoryItem?.Item as ScriptableUseableAbility;
         Sprite slotSprite = ability ? ability.Sprite : baseSprite;
 
-        switch (index)
-        {
-            case 0:
-                AbilitySlot1 = ability;
-                CurrentAbilityImage.sprite = slotSprite;
+        AbilitySlots[index] = ability;
+        AbilityImages[index].sprite = slotSprite;
 
-                //also set the players ability
-                PlayerAbility?.SetAbility(ability);
-                break;
-            case 1:
-                AbilitySlot2 = ability;
-                AbilityImage1.sprite = slotSprite;
-                break;
-            case 2:
-                AbilitySlot3 = ability;
-                AbilityImage2.sprite = slotSprite;
-                break;
-            case 3:
-                AbilitySlot4 = ability;
-                AbilityImage3.sprite = slotSprite;
-                break;
-        }
+        if(index == 0)
+            PlayerAbility?.SetAbility(ability); //also set the players ability
     }
 
     private void shiftHand()
@@ -129,5 +109,37 @@ public class AbilityHandSwitch : MonoBehaviour
         }
 
         handSlots = temp;
+    }
+
+    private void updateCooldowns()
+    {
+        for (int i = 0; i < CoolDownImages.Length; i++)
+        {
+            if(!CoolDownImages[i])
+                continue;
+            
+            //get the ability for the cooldown
+            ScriptableUseableAbility ability = handSlots[i].equippedSlot.InventoryItem?.Item as ScriptableUseableAbility;
+
+            if (!ability)
+            {
+                CoolDownImages[i].enabled = false;
+                continue;
+            }
+
+            //check the last use time for the ability in the players useable ability hand
+            float lastUseTime = 0.0f;
+            if (PlayerAbility.LastUseDictionary.ContainsKey(ability))
+                lastUseTime = PlayerAbility.LastUseDictionary[ability];
+
+            float cooldownTime = Mathf.Min((Time.time - lastUseTime) / ability.Cooldown, 1);
+
+            if (cooldownTime >= 1.0f && CoolDownImages[i].IsActive())
+                CoolDownImages[i].enabled = false;
+            else if (cooldownTime < 1.0f && !CoolDownImages[i].IsActive())
+                CoolDownImages[i].enabled = true;
+
+            CoolDownImages[i].fillAmount = cooldownTime;
+        }
     }
 }

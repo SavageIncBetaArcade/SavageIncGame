@@ -28,7 +28,12 @@ public abstract class InfoPopupHandler : MonoBehaviour, IPointerEnterHandler, IP
     {
         if(popup) Destroy(popup.gameObject);
     }
-    
+
+    void OnDisable()
+    {
+        if (popup) Destroy(popup.gameObject);
+    }
+
     private void ShowItemInfo()
     {
         popup = Instantiate(itemInfoPrefab).GetComponent<Popup>();

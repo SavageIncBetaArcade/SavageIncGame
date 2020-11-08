@@ -37,6 +37,9 @@ public abstract class UseableAbility : MonoBehaviour
 
     private Dictionary<ScriptableUseableAbility, float> lastUseDictionary;
 
+    public Dictionary<ScriptableUseableAbility, float> LastUseDictionary => lastUseDictionary;
+
+
     void Initilise()
     {
         if (ScriptableAbility)
