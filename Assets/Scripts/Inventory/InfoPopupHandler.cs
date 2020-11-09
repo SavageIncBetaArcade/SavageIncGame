@@ -7,10 +7,16 @@ public abstract class InfoPopupHandler : MonoBehaviour, IPointerEnterHandler, IP
     public GameObject itemInfoPrefab;
     private Popup popup;
     private Canvas canvas;
-    
+    private Rect canvasRect;
+
     private void Awake()
     {
         canvas = FindObjectOfType<Canvas>();
+    }
+
+    private void Start()
+    {
+        canvasRect = canvas.GetComponent<RectTransform>().rect;
     }
     
     public void OnPointerEnter(PointerEventData data)
@@ -29,21 +35,21 @@ public abstract class InfoPopupHandler : MonoBehaviour, IPointerEnterHandler, IP
         popup.title.text = Item.Name;
         popup.quote.text = Item.Quote;
         popup.description.text = Item.GetInfoDescription();
-        popup.transform.position = new Vector3(transform.position.x + GetPopupXOffset(), transform.position.y, 0);
+        popup.transform.position = new Vector3(PopupXPosition(), transform.position.y, 0);
         popup.transform.SetParent(canvas.transform);
     }
 
-    private float GetPopupXOffset()
+    private float PopupXPosition()
     {
         var slotWidth = GetComponent<RectTransform>().rect.width;
-        var popupWidth = popup.GetComponent<RectTransform>().rect.width - slotWidth * 0.2f;
-        if (CanvasContainsPopup(popupWidth))
-            return popupWidth;
-        return -popupWidth;
+        var popupWidth = popup.GetComponent<RectTransform>().rect.width;
+        return CanvasContainsPopupWidth(popupWidth)
+            ? transform.position.x
+            : transform.position.x - popupWidth - slotWidth / 1.85f;
     }
-
-    private bool CanvasContainsPopup(float popupWidth)
+    
+    private bool CanvasContainsPopupWidth(float popupWidth)
     {
-        return canvas.GetComponent<RectTransform>().rect.Contains(new Vector2(transform.position.x + popupWidth, transform.position.y));
+        return canvasRect.Contains(new Vector2(transform.position.x + popupWidth, transform.position.y));
     }
 }
