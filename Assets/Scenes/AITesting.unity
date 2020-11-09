@@ -603,29 +603,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &578804602 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5227494470786299111, guid: a5d8c0bdc58a00146b8216b86df7dd63,
-    type: 3}
-  m_PrefabInstance: {fileID: 1049753973}
-  m_PrefabAsset: {fileID: 0}
---- !u!191 &578804612
-OffMeshLink:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 578804602}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_AreaIndex: 0
-  m_AgentTypeID: 0
-  m_Start: {fileID: 0}
-  m_End: {fileID: 0}
-  m_CostOverride: -1
-  m_BiDirectional: 1
-  m_Activated: 1
-  m_AutoUpdatePositions: 0
 --- !u!4 &643692118 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8790792232536113454, guid: 1767395a0ec2daf4a9e9c6998096e269,
@@ -5112,11 +5089,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5227494470786299033, guid: a5d8c0bdc58a00146b8216b86df7dd63,
-        type: 3}
-      propertyPath: PatrolPoints.Array.size
-      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5227494470786299033, guid: a5d8c0bdc58a00146b8216b86df7dd63,
         type: 3}
