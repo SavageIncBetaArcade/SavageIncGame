@@ -157,6 +157,6 @@ public abstract class UseableAbility : MonoBehaviour
 
     private bool IsValid()
     {
-        return ability != null && ScriptableAbility && !CharacterBase.IsStunned;
+        return ability != null && ScriptableAbility && !CharacterBase.IsStunned && Time.timeScale > 0.0f;
     }
 }

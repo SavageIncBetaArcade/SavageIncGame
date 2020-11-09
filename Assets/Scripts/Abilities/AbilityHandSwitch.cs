@@ -132,7 +132,7 @@ public class AbilityHandSwitch : MonoBehaviour
             }
 
             //check the last use time for the ability in the players useable ability hand
-            float lastUseTime = 0.0f;
+            float lastUseTime = Time.time;
             if (PlayerAbility.LastUseDictionary.ContainsKey(ability))
                 lastUseTime = PlayerAbility.LastUseDictionary[ability];
 
