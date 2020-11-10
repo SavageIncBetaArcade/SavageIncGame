@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -16,23 +17,17 @@ public class FollowState : State
         float distanceToPlayer = Vector3.Distance(aiBase.transform.position, player.position);
         if (distanceToPlayer < aiBase.SenseRange)
         {
-            if (distanceToPlayer > aiBase.AttackDistance)
+            if (distanceToPlayer < aiBase.AttackDistance)
+            {
+                State attack = aiBase.PotentialStates.FirstOrDefault(x => x.StateName == StateNames.BaseAttackState);
+                if (attack)
+                    stackStates.PushState(attack);
+            }
+            else
             {
                 aiBase.currentDestination = player.position;
                 navAgent.SetDestination(player.position);// set the enemys destination to the players position
             }
-            else
-            {
-                aiBase.currentDestination = navAgent.transform.position;
-                navAgent.SetDestination(navAgent.transform.position);
-            }
-
-            //TODO:: when get close enough attack the player.
-            //if (distanceToPlayer <= 1.5f)
-            //{
-            //    aiBase.RightAbilitiy.Attack();
-            //    aiBase.LeftAbility.Attack();
-            //}
         }
         else
         {

@@ -7,6 +7,7 @@ public enum StateNames
     IdleState,
     PatrolState,
     FollowState,
+    BaseAttackState,
     NumStates
 }
 

@@ -281,6 +281,7 @@ GameObject:
   - component: {fileID: 5227494470786299033}
   - component: {fileID: 5227494470786299039}
   - component: {fileID: 1496293386}
+  - component: {fileID: 578804612}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -421,13 +422,17 @@ MonoBehaviour:
   SenseRange: 60
   AngleOfVision: 45
   WalkDistance: 25
-  PatrolPoints: []
+  AttackDistance: 2
+  PatrolPoints:
+  - {fileID: 0}
+  - {fileID: 0}
   CurrentPatrolPoint: 0
   NextPatrolPoint: 1
   PotentialStates:
   - {fileID: 11400000, guid: 848f97773e962304a865562377e82769, type: 2}
   - {fileID: 11400000, guid: 281664a7cb7e76e4f8a900fb10c767cd, type: 2}
   - {fileID: 11400000, guid: d4bc6a6975d0580418bf3b97e5618493, type: 2}
+  - {fileID: 11400000, guid: 3a65c85fbdc83b349a7ff1965ea68807, type: 2}
   LeftAbility: {fileID: 2814292696255349303}
   RightAbilitiy: {fileID: 1597093902022731646}
 --- !u!114 &5227494470786299039
@@ -458,6 +463,23 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!191 &578804612
+OffMeshLink:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5227494470786299111}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_AreaIndex: 0
+  m_AgentTypeID: 0
+  m_Start: {fileID: 0}
+  m_End: {fileID: 0}
+  m_CostOverride: -1
+  m_BiDirectional: 1
+  m_Activated: 1
+  m_AutoUpdatePositions: 0
 --- !u!1 &5227494471289806261
 GameObject:
   m_ObjectHideFlags: 0
