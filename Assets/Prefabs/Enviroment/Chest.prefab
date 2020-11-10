@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: 2889252016040593777}
   - component: {fileID: 2858279345584388031}
   - component: {fileID: 5502644504009533432}
+  - component: {fileID: 6041527634260517734}
   m_Layer: 0
   m_Name: Chest_top_wood_LP
   m_TagString: Untagged
@@ -110,6 +111,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &6041527634260517734
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4383545120249466822}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_Mesh: {fileID: -4246832638699516428, guid: b724dee2b7e6ce24aab3f83bb64baf90, type: 3}
 --- !u!1 &5573008171507671036
 GameObject:
   m_ObjectHideFlags: 0
@@ -121,6 +136,7 @@ GameObject:
   - component: {fileID: 2923450247263225406}
   - component: {fileID: 2812513644543949022}
   - component: {fileID: 3343655823988992330}
+  - component: {fileID: 5008196718612873581}
   m_Layer: 0
   m_Name: Chest_top_metal_LP
   m_TagString: Untagged
@@ -187,6 +203,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &5008196718612873581
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5573008171507671036}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 1504580737793802462, guid: b724dee2b7e6ce24aab3f83bb64baf90, type: 3}
 --- !u!1 &5970367033246358939
 GameObject:
   m_ObjectHideFlags: 0
@@ -198,6 +228,7 @@ GameObject:
   - component: {fileID: 6566410214597449207}
   - component: {fileID: 3686681204184779583}
   - component: {fileID: 8551634288785299421}
+  - component: {fileID: 1124184738976562262}
   m_Layer: 0
   m_Name: Chest_bot_wood_LP
   m_TagString: Untagged
@@ -264,6 +295,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &1124184738976562262
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5970367033246358939}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 2373143760270818353, guid: b724dee2b7e6ce24aab3f83bb64baf90, type: 3}
 --- !u!1 &6739616389394535174
 GameObject:
   m_ObjectHideFlags: 0
@@ -338,6 +383,7 @@ GameObject:
   - component: {fileID: 1570730062165375693}
   - component: {fileID: 9033483684334083341}
   - component: {fileID: 1216742234453376804}
+  - component: {fileID: 8939169336651255843}
   m_Layer: 0
   m_Name: Chest_bot_metal_LP
   m_TagString: Untagged
@@ -404,6 +450,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &8939169336651255843
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7360324517663187809}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_Mesh: {fileID: -5206637556932457618, guid: b724dee2b7e6ce24aab3f83bb64baf90, type: 3}
 --- !u!1 &7937216588807418144
 GameObject:
   m_ObjectHideFlags: 0
@@ -429,7 +489,7 @@ Transform:
   m_GameObject: {fileID: 7937216588807418144}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2.25, y: 2.25, z: 2.25}
   m_Children:
   - {fileID: 2563838248112112844}
   - {fileID: 1108233075998887495}

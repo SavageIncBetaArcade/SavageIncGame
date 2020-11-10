@@ -120,6 +120,7 @@ GameObject:
   - component: {fileID: 4741995881786173046}
   - component: {fileID: 595913658407466223}
   - component: {fileID: 3018049246554981333}
+  - component: {fileID: 3866436493566955074}
   m_Layer: 0
   m_Name: Crate_metal_LP
   m_TagString: Untagged
@@ -186,6 +187,19 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &3866436493566955074
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3724087773296383931}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.055082183, y: 0.055999998, z: 0.055517275}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7758136740590197895
 GameObject:
   m_ObjectHideFlags: 0
@@ -211,7 +225,7 @@ Transform:
   m_GameObject: {fileID: 7758136740590197895}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 5105904215750338726}
   m_Father: {fileID: 0}
