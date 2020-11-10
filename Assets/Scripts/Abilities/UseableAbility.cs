@@ -138,9 +138,9 @@ public abstract class UseableAbility : MonoBehaviour
         while (currentActiveTime < ability.Ability.ActivePeriod);
     }
 
-    public GameObject InstantiateObject(GameObject gameObject, Transform transform)
+    public GameObject InstantiateObject(GameObject gameObject, Vector3 positon)
     {
-        return Instantiate(gameObject, transform.position, transform.rotation);
+        return Instantiate(gameObject, positon, Quaternion.identity);
     }
 
     private void HitAction(CharacterBase attackingcharacter, GameObject targetObject, Vector3 hitPoint, Vector3 hitDirection,

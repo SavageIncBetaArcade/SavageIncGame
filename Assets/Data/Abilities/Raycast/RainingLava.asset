@@ -34,7 +34,8 @@ MonoBehaviour:
   - Modifier: {fileID: 11400000, guid: dc559b466641377469de5c9cdba2e7b1, type: 2}
     Stage: 1
     Target: 1
-  HitEffects: []
+  HitEffects:
+  - {fileID: 1144160514348560004, guid: d19153c65e6c0b74da6d6be52c80ff48, type: 3}
   Damage: 0
   Range: 25
   RaycastBolt: {fileID: 0}

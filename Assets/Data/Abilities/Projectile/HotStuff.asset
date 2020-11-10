@@ -33,7 +33,7 @@ MonoBehaviour:
     Target: 1
   HitEffects:
   - {fileID: 3966173770737333436, guid: ef64ab604ff1bfd4191862dc59f2b9a1, type: 3}
-  ProjectileGameObject: {fileID: 6167524000098639644, guid: 9c2e1c1ac5f187d4789ac656af43d0b4,
+  ProjectileGameObject: {fileID: 6167524000098639644, guid: 82cdf75442519444ba4c9fd81cacc52b,
     type: 3}
   GravityAffected: 0
   InitialForce: 20

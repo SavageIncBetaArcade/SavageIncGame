@@ -32,7 +32,7 @@ MonoBehaviour:
     Stage: 1
     Target: 1
   HitEffects: []
-  ProjectileGameObject: {fileID: 6167524000098639644, guid: 9c2e1c1ac5f187d4789ac656af43d0b4,
+  ProjectileGameObject: {fileID: 6167524000098639644, guid: 97eaaf95480123a4eb0b9ad4649d45cd,
     type: 3}
   GravityAffected: 0
   InitialForce: 20
