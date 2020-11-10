@@ -24,7 +24,7 @@ MonoBehaviour:
   AddOwnerBaseAttack: 1
   OwnerBaseAttackScalar: 1
   HitModifierApplyPercentage: 1
-  UseAnimationCooldown: 0
+  UseAnimationCooldown: 1
   AbilityPrefab: {fileID: 6413331160640061430, guid: 58134d6b7489999438bb17f5140de9c1,
     type: 3}
   StartingModifiers: []

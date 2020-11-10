@@ -398,7 +398,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8690cf0bc995ffb43b250ebc4cdac4b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  aiBase: {fileID: 0}
+  aiBase: {fileID: 5227494470786299033}
 --- !u!114 &5227494470786299033
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -419,6 +419,7 @@ MonoBehaviour:
   jumpHeight: 1
   currentHealth: 0
   currentEnergy: 0
+  currentStunTime: 0
   SenseRange: 60
   AngleOfVision: 45
   WalkDistance: 25
@@ -606,6 +607,7 @@ MonoBehaviour:
   CharacterBase: {fileID: 5227494470786299033}
   Origin: {fileID: 7936562119242135389}
   Modifiers: []
+  IgnoreCooldown: 0
 --- !u!1 &6430954551146499047
 GameObject:
   m_ObjectHideFlags: 0
@@ -707,6 +709,7 @@ MonoBehaviour:
   CharacterBase: {fileID: 5227494470786299033}
   Origin: {fileID: 7936562119242135389}
   Modifiers: []
+  IgnoreCooldown: 0
 --- !u!1 &9090117237952289585
 GameObject:
   m_ObjectHideFlags: 0

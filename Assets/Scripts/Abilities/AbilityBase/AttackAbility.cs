@@ -25,7 +25,7 @@ public abstract class AttackAbility : BaseAbility
         if(hitObject == OwnerCharacter.gameObject)
             return;
 
-        CharacterBase hitCharacter = hitObject.GetComponent<CharacterBase>();
+        CharacterBase hitCharacter = GetParentCharacterBase(hitObject.transform);
 
         OnHit?.Invoke(useableAbility.CharacterBase,hitObject, hitPoint, hitDirection, surfaceNormal);
 
@@ -46,4 +46,15 @@ public abstract class AttackAbility : BaseAbility
             OnEndAttack?.Invoke(hitCharacter);
     }
 
+    private CharacterBase GetParentCharacterBase(Transform currentTransform)
+    {
+        CharacterBase characterBase = currentTransform.GetComponent<CharacterBase>();
+        if (characterBase)
+            return characterBase;
+
+        if (!currentTransform.parent)
+            return null;
+
+        return GetParentCharacterBase(currentTransform.parent);
+    }
 }

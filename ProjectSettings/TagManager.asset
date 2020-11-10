@@ -7,6 +7,7 @@ TagManager:
   - ArmourSlot
   - WeaponSlot
   - InventorySlot
+  - PlayerCollider
   layers:
   - Default
   - TransparentFX

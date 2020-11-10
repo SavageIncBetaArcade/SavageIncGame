@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEditor.UIElements;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(CharacterController))]
 public class PlayerBase : CharacterBase
@@ -15,7 +16,7 @@ public class PlayerBase : CharacterBase
     protected override void Awake()
     {
         base.Awake();
-
+        OnDeath += onDeath;
         Controller = GetComponent<CharacterController>();
     }
 
@@ -25,6 +26,12 @@ public class PlayerBase : CharacterBase
 
         if(!IsStunned)
             MovePlayer();
+
+        //temp kill player
+        if (Input.GetKeyDown(KeyCode.F5))
+        {
+            TakeDamage(float.MaxValue);
+        }
     }
 
     void MovePlayer()
@@ -77,5 +84,17 @@ public class PlayerBase : CharacterBase
         //Apply gravity
         playerVelocity.y += Gravity * Time.deltaTime;
         Controller.Move(playerVelocity * Time.deltaTime);
+    }
+
+    private void onDeath()
+    {
+        //Temp, if the player dies just reload the scene
+        Scene scene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(scene.name);
+    }
+
+    private void OnDestroy()
+    {
+        OnDeath -= onDeath;
     }
 }

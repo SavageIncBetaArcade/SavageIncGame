@@ -7,7 +7,7 @@ public abstract class MovingState : State
 {
     public override void OnUpdate(ref StackFSM stackStates)
     {
-        if(stackStates.aiBase.PlayerInFieldOfVision())
+        if(stackStates.aiBase.LineSightToPlayer())
         {
             State follow = stackStates.aiBase.PotentialStates.FirstOrDefault(x => x.StateName == StateNames.FollowState);
             if (follow)

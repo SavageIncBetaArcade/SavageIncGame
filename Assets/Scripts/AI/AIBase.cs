@@ -34,6 +34,7 @@ public class AIBase : CharacterBase
     protected override void Awake()
     {
         base.Awake();
+        OnDeath += onDeath;
 
         navAgent = GetComponent<NavMeshAgent>();
         stackOfStates = GetComponent<StackFSM>();
@@ -70,13 +71,29 @@ public class AIBase : CharacterBase
     {
         if (player && PlayerInFieldOfVision())
         {
-            RaycastHit HitSomething = new RaycastHit();           
-            if (Portal.RaycastRecursive(transform.position, transform.forward, 1, out HitSomething, SenseRange))
+            RaycastHit HitSomething;
+
+            //get direction to player
+            Vector3 playerDirection = (player.transform.position - transform.position).normalized;
+            if (Portal.RaycastRecursive(transform.position, playerDirection, 1, out HitSomething, SenseRange))
             {
-                return true;
+                //traverse up the parents to see if any object was the player
+                if(HitSomething.collider)
+                    return ParentHasPlayerTag(HitSomething.collider.transform);
             }
         }
         return false;
+    }
+
+    private bool ParentHasPlayerTag(Transform currentTransform)
+    {
+        if (currentTransform.tag == "Player")
+            return true;
+
+        if (!currentTransform.parent)
+            return false;
+
+        return ParentHasPlayerTag(currentTransform.parent);
     }
 
     public bool PlayerInFieldOfVision()
@@ -119,5 +136,15 @@ public class AIBase : CharacterBase
 
             transform.Translate(Vector3.ProjectOnPlane(navAgent.currentOffMeshLinkData.startPos - transform.position, Vector3.up).normalized * (navAgent.speed * Time.fixedDeltaTime));
         }
+    }
+
+    private void onDeath()
+    {
+        Destroy(gameObject);
+    }
+
+    private void OnDestroy()
+    {
+        OnDeath -= onDeath;
     }
 }
