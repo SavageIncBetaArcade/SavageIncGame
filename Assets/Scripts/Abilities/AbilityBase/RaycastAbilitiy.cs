@@ -54,7 +54,7 @@ public class RaycastAbilitiy : AttackAbility
         if (raycastAbility.RaycastBolt != null)
         {
             RaycastBolt bolt = useableAbility.InstantiateObject(raycastAbility.RaycastBolt.gameObject,
-                useableAbility.Origin.position).GetComponent<RaycastBolt>();
+                useableAbility.Origin.position, useableAbility.Origin.rotation).GetComponent<RaycastBolt>();
 
             bolt.SetPoints(start, end);
         }

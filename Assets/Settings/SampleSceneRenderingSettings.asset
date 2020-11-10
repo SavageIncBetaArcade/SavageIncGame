@@ -56,7 +56,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29b00527f85bb3346a4d2cb710971587, type: 3}
   m_Name: VolumetricFog
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   m_AdvancedMode: 0
   colorMode:
     m_OverrideState: 0
@@ -74,7 +74,7 @@ MonoBehaviour:
     max: 1
   maxFogDistance:
     m_OverrideState: 0
-    m_Value: 5000
+    m_Value: 1000
     min: 0
   mipFogMaxMip:
     m_OverrideState: 0
@@ -97,7 +97,7 @@ MonoBehaviour:
     showEyeDropper: 1
   meanFreePath:
     m_OverrideState: 1
-    m_Value: 1000
+    m_Value: 500
     min: 1
   baseHeight:
     m_OverrideState: 0
@@ -149,7 +149,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d7593b3a9277ac4696b20006c21dde2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   m_AdvancedMode: 0
   skyType:
     m_OverrideState: 0

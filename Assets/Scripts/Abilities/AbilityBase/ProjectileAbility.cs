@@ -25,7 +25,7 @@ public class ProjectileAbility : AttackAbility
         if (projectileAbility.ProjectileGameObject == null)
             return;
 
-        GameObject projectileObject = useableAbility.InstantiateObject(projectileAbility.ProjectileGameObject.gameObject, useableAbility.Origin.position);
+        GameObject projectileObject = useableAbility.InstantiateObject(projectileAbility.ProjectileGameObject.gameObject, useableAbility.Origin.position, useableAbility.Origin.rotation);
         Projectile projectile = projectileObject.GetComponent<Projectile>();
 
         //Set the projectiles caster ability to this

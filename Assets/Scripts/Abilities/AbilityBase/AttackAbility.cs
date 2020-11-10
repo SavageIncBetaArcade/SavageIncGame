@@ -39,7 +39,7 @@ public abstract class AttackAbility : BaseAbility
 
         foreach (var hitEffect in Ability.HitEffects)
         {
-            useableAbility.InstantiateObject(hitEffect, hitPoint);
+            useableAbility.InstantiateObject(hitEffect, hitPoint, Quaternion.identity);
         }
 
         if(hitCharacter != null)
