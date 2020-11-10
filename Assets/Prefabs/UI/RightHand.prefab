@@ -363,7 +363,7 @@ MonoBehaviour:
   - {fileID: 8946811505693202872}
   - {fileID: 8946811506932999143}
   inventoryHandler: {fileID: 0}
-  HandTye: 1
+  Hand: 1
   PlayerAbility: {fileID: 0}
 --- !u!1 &8946811506459031609
 GameObject:
