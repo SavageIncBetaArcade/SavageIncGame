@@ -18,6 +18,7 @@ public abstract class InteractionTrigger : MonoBehaviour, IInteractable
     public string PopupText;
     public TextMeshProUGUI textMesh;
     private bool triggered = false;
+    public bool Triggered => triggered;
 
     public virtual void Interact()
     {
