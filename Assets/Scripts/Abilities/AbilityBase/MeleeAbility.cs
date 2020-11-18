@@ -30,7 +30,7 @@ public class MeleeAbility : AttackAbility
             if (meleeAbility == null)
                 Debug.LogError("MeleeAbility: ScriptableAbility is not of type ScriptableMeleeAbility");
 
-            //TODO get hit normal from trigger enter
+            //TODO get hit normal from InteractionTrigger enter
             Hit(collider.gameObject, meleeAbility != null ? meleeAbility.Damage : 0.0f, collider.ClosestPoint(collider.transform.position), OwnerCharacter.transform.forward, Vector3.zero);
             _hasHit = true;
         }

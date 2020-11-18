@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 
 [RequireComponent(typeof(BoxCollider))]
-public class RaycastTrigger : Trigger
+public class RaycastInteractionTrigger : InteractionTrigger
 {
     public float Range = 2.0f;
 
@@ -22,6 +22,8 @@ public class RaycastTrigger : Trigger
 
     void FixedUpdate()
     {
+        ShowPopupText(false);
+
         //raycast from center of camera and see if it hits this object
         RaycastHit hitInfo;
 
@@ -33,7 +35,8 @@ public class RaycastTrigger : Trigger
             if(hitInfo.collider.gameObject != gameObject)
                 return;
 
-            if(Input.GetButtonDown("Interact"))
+            ShowPopupText(true);
+            if (Input.GetButtonDown("Interact"))
                 Interact();
         }
 

@@ -14,7 +14,7 @@ public class Puzzle : MonoBehaviour
         Order
     }
 
-    public Trigger[] Triggers;
+    public InteractionTrigger[] Triggers;
     public float AlertAmount = 0.0f;
     public PuzzleType Type;
 

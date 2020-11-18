@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 
 [RequireComponent(typeof(BoxCollider))]
-public class TriggerVolume : Trigger
+public class VolumeInteractionTrigger : InteractionTrigger
 {
     public LayerMask mask = 1024;
 
@@ -20,7 +20,7 @@ public class TriggerVolume : Trigger
     {
         //For some reason character controllers don't work well with OnTriggerEnter
         //To overcome this issue you need to attach a rigidbody that is kinematic on the character controller object
-        //Then have a collider that is trigger only on the character controller 
+        //Then have a collider that is InteractionTrigger only on the character controller 
         if (((1 << collider.gameObject.layer) & mask) == 0)
             return;
         

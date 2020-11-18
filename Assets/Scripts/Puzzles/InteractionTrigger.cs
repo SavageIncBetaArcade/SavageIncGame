@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TMPro;
 using UnityEngine;
 
-public abstract class Trigger : MonoBehaviour, IInteractable
+public abstract class InteractionTrigger : MonoBehaviour, IInteractable
 {
     public delegate void TriggerDelegate(bool triggered);
     public event TriggerDelegate OnTrigger;
@@ -14,6 +15,8 @@ public abstract class Trigger : MonoBehaviour, IInteractable
     public bool Toggle = false;
     public Animator TriggerAnimator;
     public string OnTriggerAnimation;
+    public string PopupText;
+    public TextMeshProUGUI textMesh;
     private bool triggered = false;
 
     public virtual void Interact()
@@ -51,5 +54,17 @@ public abstract class Trigger : MonoBehaviour, IInteractable
         }
 
         OnTrigger?.Invoke(triggered);
+    }
+
+    public void ShowPopupText(bool active)
+    {
+        if (active && !string.IsNullOrWhiteSpace(PopupText) && textMesh)
+        {
+            textMesh.text = PopupText;
+        }
+        else if (!active && !string.IsNullOrWhiteSpace(PopupText) && textMesh)
+        {
+            textMesh.text = "";
+        }
     }
 }

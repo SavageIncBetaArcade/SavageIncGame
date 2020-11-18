@@ -7,23 +7,23 @@ using UnityEngine;
 
 public class ProjectileTrap : MonoBehaviour
 {
-    public Trigger trigger;
+    public InteractionTrigger InteractionTrigger;
     public Projectile Projectile;
     public Transform Origin;
 
     private void Awake()
     {
-        if (trigger)
+        if (InteractionTrigger)
         {
-            trigger.OnTrigger += fire;
+            InteractionTrigger.OnTrigger += fire;
         }
     }
 
     private void Destroy()
     {
-        if (trigger)
+        if (InteractionTrigger)
         {
-            trigger.OnTrigger -= fire;
+            InteractionTrigger.OnTrigger -= fire;
         }
     }
 
