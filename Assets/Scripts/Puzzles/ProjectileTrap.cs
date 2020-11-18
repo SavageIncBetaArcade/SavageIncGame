@@ -27,9 +27,9 @@ public class ProjectileTrap : MonoBehaviour
         }
     }
 
-    private void fire()
+    private void fire(bool triggered)
     {
-        if(!Projectile || !Origin)
+        if(!triggered || !Projectile || !Origin)
             return;
 
         GameObject projectileObject = Instantiate(Projectile.gameObject, Origin.position, Origin.rotation);

@@ -27,4 +27,12 @@ public class TriggerVolume : Trigger
 
         Interact();
     }
+
+    void OnTriggerExit(Collider collider)
+    {
+        if (((1 << collider.gameObject.layer) & mask) == 0)
+            return;
+
+        Reset();
+    }
 }

@@ -7,20 +7,28 @@ using UnityEngine;
 
 public abstract class Trigger : MonoBehaviour, IInteractable
 {
-    public delegate void TriggerDelegate();
+    public delegate void TriggerDelegate(bool triggered);
     public event TriggerDelegate OnTrigger;
 
     public bool IsInteractable = false;
-    public bool SingleTrigger = false;
+    public bool Toggle = false;
+    public Animator TriggerAnimator;
+    public string OnTriggerAnimation;
     private bool triggered = false;
 
     public virtual void Interact()
     {
-        if (SingleTrigger && triggered)
+        if (!Toggle && triggered)
             return;
 
-        OnTrigger?.Invoke();
-        triggered = true;
+        triggered = !triggered;
+
+        if (TriggerAnimator != null)
+        {
+            TriggerAnimator.SetBool(OnTriggerAnimation, triggered);
+        }
+
+        OnTrigger?.Invoke(triggered);
     }
 
     public bool Interactable()
@@ -31,5 +39,17 @@ public abstract class Trigger : MonoBehaviour, IInteractable
     public bool InteractionComplete()
     {
         return triggered;
+    }
+
+    public void Reset()
+    {
+        triggered = false;
+
+        if (TriggerAnimator != null)
+        {
+            TriggerAnimator.SetBool(OnTriggerAnimation, triggered);
+        }
+
+        OnTrigger?.Invoke(triggered);
     }
 }
