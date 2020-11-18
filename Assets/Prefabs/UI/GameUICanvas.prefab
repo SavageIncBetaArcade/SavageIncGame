@@ -2373,7 +2373,7 @@ GameObject:
   - component: {fileID: 426910924570783316}
   m_Layer: 5
   m_Name: InteractionText
-  m_TagString: Untagged
+  m_TagString: InteractionText
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

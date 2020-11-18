@@ -11,8 +11,10 @@ public class VolumeInteractionTrigger : InteractionTrigger
 {
     public LayerMask mask = 1024;
 
-    void Awake()
+    protected override void Awake()
     {
+        base.Awake();
+
         GetComponent<BoxCollider>().isTrigger = true;
     }
 

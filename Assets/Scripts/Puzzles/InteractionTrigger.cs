@@ -16,9 +16,14 @@ public abstract class InteractionTrigger : MonoBehaviour, IInteractable
     public Animator TriggerAnimator;
     public string OnTriggerAnimation;
     public string PopupText;
-    public TextMeshProUGUI textMesh;
+    private TextMeshProUGUI textMesh;
     private bool triggered = false;
     public bool Triggered => triggered;
+
+    protected virtual void Awake()
+    {
+        textMesh = GameObject.FindGameObjectWithTag("InteractionText")?.GetComponent<TextMeshProUGUI>();
+    }
 
     public virtual void Interact()
     {

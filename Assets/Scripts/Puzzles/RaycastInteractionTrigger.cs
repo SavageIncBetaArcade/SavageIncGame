@@ -13,8 +13,10 @@ public class RaycastInteractionTrigger : InteractionTrigger
     private Camera playerCamera;
     private BoxCollider boxCollider;
 
-    void Awake()
+    protected override void Awake()
     {
+        base.Awake();
+
         playerCamera = FindObjectOfType<PlayerCamera>().GetComponent<Camera>();
         boxCollider = GetComponent<BoxCollider>();
         boxCollider.isTrigger = true;
