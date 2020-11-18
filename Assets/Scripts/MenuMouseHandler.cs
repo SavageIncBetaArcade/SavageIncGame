@@ -29,6 +29,6 @@ public class MenuMouseHandler : MonoBehaviour
     
     public void OnExitClicked()
     {
-        
+        Application.Quit();
     }
 }
