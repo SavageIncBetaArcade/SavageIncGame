@@ -27,6 +27,10 @@ public class MovingPlatform : MonoBehaviour
         transform.position = StartTransform.position;
         targetPosition = EndTransform.position;
         isMoving = StartByDefault;
+
+        var collider = gameObject.AddComponent<BoxCollider>();
+        collider.isTrigger = true;
+        collider.size += Vector3.one * .25f;
     }
 
     public void OnDestroy()
@@ -70,5 +74,34 @@ public class MovingPlatform : MonoBehaviour
             else
                 targetPosition = StartTransform.position;
         }
+    }
+
+    private void OnTriggerStay(Collider collision)
+    {
+        var playerTransform = GetPlayerTransformFromParent(collision.gameObject.transform);
+        if (playerTransform)
+        {
+            playerTransform.SetParent(transform);
+        }
+    }
+
+    private void OnTriggerExit(Collider collision)
+    {
+        var playerTransform = GetPlayerTransformFromParent(collision.gameObject.transform);
+        if (playerTransform)
+        {
+            playerTransform.SetParent(null);
+        }
+    }
+
+    private Transform GetPlayerTransformFromParent(Transform currentTransform)
+    {
+        if (currentTransform.tag == "Player")
+            return currentTransform;
+
+        if (!currentTransform.parent)
+            return null;
+
+        return GetPlayerTransformFromParent(currentTransform.parent);
     }
 }
