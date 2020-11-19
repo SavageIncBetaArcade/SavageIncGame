@@ -1,0 +1,32 @@
+
+//Test dialogue, recommend keeping to reference how to format dialogue
+
+{
+    "entities": 
+    [
+        {
+            "name": "Gertrude",
+            "dialogue": [
+	            "Areet mate, me names Gertrude."
+			]
+        },
+        {
+            "name": "UHFGYEG",
+            "dialogue": [
+	            "Ama get ye!",
+				"C'mere ya git!'"
+			]
+        },
+		{
+			"name":  "Table",
+			"dialogue":  "A place to sit"
+		},
+		{
+			"name":  "Door",
+			"dialogue":  [
+				"A mysteriously large piece of wood",
+				"Maybe you can open it?"
+			]
+		}
+	]
+}

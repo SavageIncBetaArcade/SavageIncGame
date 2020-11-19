@@ -39,6 +39,12 @@ public class PlayerCamera : MonoBehaviour
         transform.localRotation = Quaternion.Euler(xRotation, 0, 0);
 
         PlayerBody.Rotate(Vector3.up * mouseX);
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            StartCoroutine((ShakePosition(0.5f, new Vector2(1.0f, 1.0f), -1.0f, 1.0f)));
+            StartCoroutine((ShakeRotation(1.0f, new Vector3(1.0f, 1.0f, 1.0f), -1.0f, 1.0f)));
+        }
     }
 
     public IEnumerator ShakePosition(float duration, Vector2 magnitude, float minDeviation, float maxDeviation)
@@ -68,11 +74,10 @@ public class PlayerCamera : MonoBehaviour
 
         while (elapsed < duration)
         {
-            float x = Random.Range(minDeviation, maxDeviation) * (magnitude.x / 100);
             float y = Random.Range(minDeviation, maxDeviation) * (magnitude.y / 100);
             float z = Random.Range(minDeviation, maxDeviation) * (magnitude.z / 100);
 
-            transform.localRotation = new Quaternion(x, y, z, transform.localRotation.w);
+            transform.localRotation = new Quaternion(transform.localRotation.x, y, z, transform.localRotation.w);
 
             elapsed += Time.deltaTime;
 
