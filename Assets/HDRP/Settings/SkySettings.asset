@@ -62,7 +62,7 @@ MonoBehaviour:
     m_Value: 0
   exposure:
     m_OverrideState: 1
-    m_Value: -3.48
+    m_Value: -4.41
   multiplier:
     m_OverrideState: 0
     m_Value: 1
@@ -106,5 +106,5 @@ MonoBehaviour:
     showAlpha: 0
     showEyeDropper: 1
   gradientDiffusion:
-    m_OverrideState: 0
-    m_Value: 1
+    m_OverrideState: 1
+    m_Value: 5

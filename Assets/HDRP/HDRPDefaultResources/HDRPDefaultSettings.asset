@@ -164,8 +164,8 @@ MonoBehaviour:
   active: 1
   m_AdvancedMode: 0
   quality:
-    m_OverrideState: 0
-    m_Value: 1
+    m_OverrideState: 1
+    m_Value: 0
   enable:
     m_OverrideState: 1
     m_Value: 1
@@ -382,8 +382,8 @@ MonoBehaviour:
   active: 1
   m_AdvancedMode: 0
   quality:
-    m_OverrideState: 0
-    m_Value: 1
+    m_OverrideState: 1
+    m_Value: 0
   rayTracing:
     m_OverrideState: 0
     m_Value: 0
@@ -475,7 +475,7 @@ MonoBehaviour:
   m_AdvancedMode: 0
   mode:
     m_OverrideState: 1
-    m_Value: 2
+    m_Value: 4
   toeStrength:
     m_OverrideState: 0
     m_Value: 0
@@ -505,10 +505,11 @@ MonoBehaviour:
     m_Value: 1
     min: 0.001
   lutTexture:
-    m_OverrideState: 0
-    m_Value: {fileID: 0}
+    m_OverrideState: 1
+    m_Value: {fileID: 8534537815417165676, guid: 0bc0d8678038be34484f4f2e26375c97,
+      type: 3}
   lutContribution:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: 1
     min: 0
     max: 1
