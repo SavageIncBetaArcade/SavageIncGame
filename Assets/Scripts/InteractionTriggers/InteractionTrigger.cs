@@ -16,6 +16,9 @@ public abstract class InteractionTrigger : MonoBehaviour, IInteractable
     public Animator TriggerAnimator;
     public string OnTriggerAnimation;
     public string PopupText;
+    public InventorySectionHandler InventorySection;
+    public Item[] RequiredItems;
+
     private TextMeshProUGUI textMesh;
     private bool triggered = false;
     public bool Triggered => triggered;
@@ -37,7 +40,7 @@ public abstract class InteractionTrigger : MonoBehaviour, IInteractable
 
     public virtual void Interact()
     {
-        if (!IsInteractable || (!Toggle && triggered))
+        if (!IsInteractable || !HasRequiredItems() || (!Toggle && triggered))
             return;
 
         triggered = !triggered;
@@ -79,9 +82,17 @@ public abstract class InteractionTrigger : MonoBehaviour, IInteractable
 
         popupDisplayed[this] = active;
 
-        if (active && !string.IsNullOrWhiteSpace(PopupText) && textMesh)
+        if (active && !string.IsNullOrWhiteSpace(PopupText) && textMesh && HasRequiredItems())
         {
             textMesh.text = PopupText;
         }
+    }
+
+    private bool HasRequiredItems()
+    {
+        if (!InventorySection || RequiredItems.Length == 0)
+            return true;
+
+        return RequiredItems.All(requiredItem => InventorySection.itemInventory.FindItemIndex(requiredItem) >= 0);
     }
 }
