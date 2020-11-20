@@ -20,14 +20,24 @@ public abstract class InteractionTrigger : MonoBehaviour, IInteractable
     private bool triggered = false;
     public bool Triggered => triggered;
 
+    private static Dictionary<InteractionTrigger, bool> popupDisplayed = new Dictionary<InteractionTrigger, bool>();
+
     protected virtual void Awake()
     {
         textMesh = GameObject.FindGameObjectWithTag("InteractionText")?.GetComponent<TextMeshProUGUI>();
     }
 
+    void LateUpdate()
+    {
+        //if any all popups are not active set the text to empty (Hides the popup text)
+        //Reason for using a static dictionary is to prevent other triggers hiding the popup when it need to be shown
+        if(popupDisplayed.All(x => !x.Value))
+            textMesh.text = "";
+    }
+
     public virtual void Interact()
     {
-        if (!Toggle && triggered)
+        if (!IsInteractable || (!Toggle && triggered))
             return;
 
         triggered = !triggered;
@@ -64,13 +74,14 @@ public abstract class InteractionTrigger : MonoBehaviour, IInteractable
 
     public void ShowPopupText(bool active)
     {
+        if (!IsInteractable)
+            return;
+
+        popupDisplayed[this] = active;
+
         if (active && !string.IsNullOrWhiteSpace(PopupText) && textMesh)
         {
             textMesh.text = PopupText;
-        }
-        else if (!active && !string.IsNullOrWhiteSpace(PopupText) && textMesh)
-        {
-            textMesh.text = "";
         }
     }
 }

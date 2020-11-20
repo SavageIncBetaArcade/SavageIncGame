@@ -21,7 +21,7 @@ public class DamageVolume : MonoBehaviour
         if (!damagedTaken && nextDamageTimer >= Timer)
         {
             CharacterBase character = GetCharacterFromParent(gameObject.transform);
-            character.TakeDamage(DamageAmount);
+            character?.TakeDamage(DamageAmount);
             damagedTaken = true;
             if(ContinuousDamage)
                 StartCoroutine(resetDamage());
