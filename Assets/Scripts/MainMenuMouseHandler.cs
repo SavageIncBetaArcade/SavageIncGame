@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class MenuMouseHandler : MonoBehaviour
+public class MainMenuMouseHandler : MonoBehaviour
 {
     public void OnPlayClicked()
     {
