@@ -2,7 +2,7 @@
 {
     public override void LeftClick(Inventory inventory, CharacterBase character)
     {
-        new Modifier((Item as ConsumableItem)?.modifier, character).Apply(character);
+        ApplyModifiers(character);
         inventory.RemoveItem(Item);
     }
 
