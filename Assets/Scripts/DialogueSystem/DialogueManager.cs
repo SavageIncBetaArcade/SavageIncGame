@@ -7,6 +7,7 @@ public class DialogueManager : MonoBehaviour
 {
     public Text nameText;
     public Text dialogueText;
+    public Text controlText;
 
     private Queue<string> dialogue;
     private float fadeDuration = 0.5f;
@@ -16,19 +17,15 @@ public class DialogueManager : MonoBehaviour
     {
         dialogue = new Queue<string>();
 
-        GetComponent<CanvasGroup>().alpha = 0f;
+        GameObject.Find("DialogueBox").GetComponent<CanvasGroup>().alpha = 0f;
+        GameObject.Find("ControlBox").GetComponent<CanvasGroup>().alpha = 0f;
     }
 
-    void Update()
+    public void StartDialogue(string name, string[] sentences, string textType)
     {
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            DisplayNextSentence();
-        }
-    }
+        GameObject.Find("DialogueBox").GetComponent<CanvasGroup>().alpha = 0f;
+        GameObject.Find("ControlBox").GetComponent<CanvasGroup>().alpha = 0f;
 
-    public void StartDialogue(string name, string[] sentences)
-    {
         nameText.text = name;
 
         dialogue.Clear();
@@ -38,60 +35,135 @@ public class DialogueManager : MonoBehaviour
             dialogue.Enqueue(sentence);
         }
 
-        DisplayNextSentence();
+        DisplayDialogueSentence(textType);
     }
 
-    public void DisplayNextSentence()
+    public void DisplayControls(string name, string[] sentences, string textType)
+    {
+        GameObject.Find("DialogueBox").GetComponent<CanvasGroup>().alpha = 0f;
+        GameObject.Find("ControlBox").GetComponent<CanvasGroup>().alpha = 0f;
+
+        dialogue.Clear();
+
+        foreach (string sentence in sentences)
+        {
+            dialogue.Enqueue(sentence);
+        }
+
+        DisplayControlSentence(textType);
+    }
+
+    public void DisplayDialogueSentence(string textType)
     {
         if (dialogue.Count == 0)
         {
-            EndDialogue();
+            StartCoroutine(EndDialogue(textType));
             return;
         }
 
         string sentence = dialogue.Dequeue();
-        StopAllCoroutines();
 
-        if (GetComponent<CanvasGroup>().alpha < 1f)
-        {
-            StartCoroutine(Fade(0f, 1f, fadeDuration));
-        }
-
-        StartCoroutine(TypeSentence(sentence));
-        StartCoroutine(DialogueDelay());
+        StartCoroutine(Fade(0f, 1f, fadeDuration, textType));
+        StartCoroutine(TypeSentence(sentence, textType));
+        StartCoroutine(DialogueDelay(textType));
     }
 
-    IEnumerator TypeSentence(string sentence)
+    public void DisplayControlSentence(string textType)
     {
-        dialogueText.text = "";
-
-        foreach (char letter in sentence.ToCharArray())
+        if (dialogue.Count == 0)
         {
-            dialogueText.text += letter;
+            StartCoroutine(EndDialogue(textType));
+            return;
+        }
 
-            yield return null;
+        string sentence = dialogue.Dequeue();
+
+        StartCoroutine(Fade(0f, 1f, fadeDuration, textType));
+        StartCoroutine(TypeSentence(sentence, textType));
+        StartCoroutine(DialogueDelay(textType));
+    }
+
+    IEnumerator TypeSentence(string sentence, string textType)
+    {
+        if (textType == "dialogue")
+        {
+            dialogueText.text = "";
+
+            foreach (char letter in sentence.ToCharArray())
+            {
+                dialogueText.text += letter;
+
+                yield return null;
+            }
+        }
+        else if (textType == "control")
+        {
+            controlText.text = "";
+
+            foreach (char letter in sentence.ToCharArray())
+            {
+                controlText.text += letter;
+
+                yield return null;
+            }
         }
     }
 
-    IEnumerator Fade(float start, float end, float duration)
+    IEnumerator Fade(float start, float end, float duration, string textType)
     {
         for (float i = 0f; i < duration; i += Time.deltaTime)
         {
-            GetComponent<CanvasGroup>().alpha = Mathf.Lerp(start, end, i / duration);
+            if (textType == "dialogue")
+            {
+                GameObject.Find("DialogueBox").GetComponent<CanvasGroup>().alpha = Mathf.Lerp(start, end, i / duration);
+            }
+            else if (textType == "control")
+            {
+                GameObject.Find("ControlBox").GetComponent<CanvasGroup>().alpha = Mathf.Lerp(start, end, i / duration);
+            }
+
             yield return null;
         }
 
-        GetComponent<CanvasGroup>().alpha = end;
+        if (textType == "dialogue")
+        {
+            GameObject.Find("DialogueBox").GetComponent<CanvasGroup>().alpha = end;
+        }
+        else if (textType == "control")
+        {
+            GameObject.Find("ControlBox").GetComponent<CanvasGroup>().alpha = end;
+        }
     }
 
-    IEnumerator DialogueDelay()
+    IEnumerator DialogueDelay(string textType)
     {
         yield return new WaitForSeconds(5);
-        DisplayNextSentence();
+
+        if (textType == "dialogue")
+        {
+            DisplayDialogueSentence(textType);
+        }
+        else if (textType == "control")
+        {
+            DisplayControlSentence(textType);
+        }
     }
 
-    void EndDialogue()
+    IEnumerator EndDialogue(string textType)
     {
-        StartCoroutine(Fade(1f, 0f, fadeDuration));
+        float currentAlpha = 0f;
+
+        if (textType == "dialogue")
+        {
+            currentAlpha = GameObject.Find("DialogueBox").GetComponent<CanvasGroup>().alpha;
+        }
+        else if (textType == "control")
+        {
+            currentAlpha = GameObject.Find("ControlBox").GetComponent<CanvasGroup>().alpha;
+        }
+
+        StartCoroutine(Fade(currentAlpha, 0f, fadeDuration, textType));
+
+        yield return null;
     }
 }

@@ -1,32 +1,82 @@
-
-//Test dialogue, recommend keeping to reference how to format dialogue
-
 {
     "entities": 
     [
         {
-            "name": "Gertrude",
+			"name": "Gertrude1",
             "dialogue": [
-	            "Areet mate, me names Gertrude."
-			]
-        },
+	            "So this be the lich's home? Cannae wait tae git mah hands on his prized ale!"
+			],
+			"textType": "dialogue"
+		},
         {
-            "name": "UHFGYEG",
+			"name": "Gertrude2",
             "dialogue": [
-	            "Ama get ye!",
-				"C'mere ya git!'"
-			]
-        },
-		{
-			"name":  "Table",
-			"dialogue":  "A place to sit"
+	            "Getting tae old fur this adventuring."
+			],
+			"textType": "dialogue"
+		},
+        {
+			"name": "Gertrude3",
+            "dialogue": [
+	            "Dae you want a piece o' me? Come and git me!"
+			],
+			"textType": "dialogue"
+		},
+        {
+			"name": "Gertrude4",
+            "dialogue": [
+	            "Who's there?!"
+			],
+			"textType": "dialogue"
+		},
+        {
+			"name": "Gertrude5",
+            "dialogue": [
+	            "Woww!!! That didnae feel right!"
+			],
+			"textType": "dialogue"
 		},
 		{
+			"name":  "Chest",
+			"dialogue":  [
+			"Whit's this? Twa chests as soon as ah enter his lair? This is a guid omen surely!"
+			],
+			"textType": "dialogue"
+        },
+        {
+			"name": "Key",
+            "dialogue": [
+	            "Tis pure dark in here... Is that a key? A'm sure nothing bad wull happen if ah juist pick it up."
+			],
+			"textType": "dialogue"
+        },
+        {
 			"name":  "Door",
 			"dialogue":  [
-				"A mysteriously large piece of wood",
-				"Maybe you can open it?"
-			]
+				"Locked?! Ye cannae lock me oot! Ah wull just burst though!!! Or... Ah kin find a key. "
+			],
+			"textType": "dialogue"
+		},
+        {
+			"name":  "Symbols",
+			"dialogue":  [
+				"This feels important."
+			],
+			"textType": "dialogue"
+		},
+        {
+			"name":  "Torch",
+			"dialogue":  [
+				"Maybe ah kin light that torch up with fireball... Or maybe that's what th' lich wants me tae dae!!! "
+			],
+			"textType": "dialogue"
+		},
+		{
+			"name": "Pull Lever",
+			"dialogue": [
+				"Press 'E' to Pull"
+			],
+			"textType": "control"
 		}
 	]
 }
