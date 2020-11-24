@@ -850,7 +850,7 @@ MonoBehaviour:
   armourItem2: {fileID: 11400000, guid: 48e5833b3a65f1c449dc7155d651e064, type: 2}
   weaponItem: {fileID: 11400000, guid: ba164802c3956fc4e97b0a4ce425211a, type: 2}
   weaponItem2: {fileID: 11400000, guid: 355f91b6b6cf78844b9b6d92b64ee22a, type: 2}
-  healthPotion: {fileID: 11400000, guid: f3eced1f746f8ad46a76fb928f1d4d55, type: 2}
+  healthPotion: {fileID: 0}
   ability: {fileID: 11400000, guid: 980375fe8496d3047958938c1ffcbdbf, type: 2}
 --- !u!1 &125118580
 GameObject:
@@ -2890,6 +2890,7 @@ MonoBehaviour:
     Image: {fileID: 339493649}
     Quantity: {fileID: 0}
   inventorySection: {fileID: 1598034947}
+  character: {fileID: 1130789341}
 --- !u!114 &365390783
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3016,6 +3017,7 @@ MonoBehaviour:
     Image: {fileID: 1770721135}
     Quantity: {fileID: 0}
   inventorySection: {fileID: 1598034947}
+  character: {fileID: 1130789341}
 --- !u!114 &373052088
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3490,6 +3492,7 @@ MonoBehaviour:
     Image: {fileID: 1494443950}
     Quantity: {fileID: 0}
   inventorySection: {fileID: 2010077867}
+  character: {fileID: 0}
 --- !u!114 &440059305
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3803,6 +3806,7 @@ MonoBehaviour:
     Image: {fileID: 139282787}
     Quantity: {fileID: 0}
   inventorySection: {fileID: 2010077867}
+  character: {fileID: 0}
 --- !u!114 &509390582
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4120,6 +4124,7 @@ MonoBehaviour:
     Image: {fileID: 439938751}
     Quantity: {fileID: 0}
   inventorySection: {fileID: 2010077867}
+  character: {fileID: 0}
 --- !u!114 &542798586
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4332,6 +4337,7 @@ MonoBehaviour:
     Image: {fileID: 2065526421}
     Quantity: {fileID: 0}
   inventorySection: {fileID: 2010077867}
+  character: {fileID: 0}
 --- !u!114 &548519257
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5216,6 +5222,7 @@ MonoBehaviour:
     Image: {fileID: 1220936365}
     Quantity: {fileID: 0}
   inventorySection: {fileID: 2010077867}
+  character: {fileID: 0}
 --- !u!114 &654334853
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5342,6 +5349,7 @@ MonoBehaviour:
     Image: {fileID: 1813691476}
     Quantity: {fileID: 0}
   inventorySection: {fileID: 2010077867}
+  character: {fileID: 0}
 --- !u!114 &661402625
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7445,6 +7453,7 @@ MonoBehaviour:
     Image: {fileID: 197351599}
     Quantity: {fileID: 0}
   inventorySection: {fileID: 1598034947}
+  character: {fileID: 1130789341}
 --- !u!114 &955038221
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9105,6 +9114,7 @@ MonoBehaviour:
   jumpHeight: 1
   currentHealth: 0
   currentEnergy: 0
+  currentStunTime: 0
 --- !u!4 &1130789342
 Transform:
   m_ObjectHideFlags: 0
@@ -9564,6 +9574,7 @@ MonoBehaviour:
     Image: {fileID: 959138534}
     Quantity: {fileID: 0}
   inventorySection: {fileID: 2010077867}
+  character: {fileID: 0}
 --- !u!114 &1174455821
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13259,6 +13270,7 @@ MonoBehaviour:
     Image: {fileID: 1252138000}
     Quantity: {fileID: 0}
   inventorySection: {fileID: 2010077867}
+  character: {fileID: 0}
 --- !u!114 &1636603674
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16674,6 +16686,7 @@ MonoBehaviour:
   - {fileID: 548519256}
   - {fileID: 1174455820}
   - {fileID: 440059304}
+  StartingAbilities: []
   warningText: {fileID: 1710603799}
 --- !u!114 &2010077868
 MonoBehaviour:
