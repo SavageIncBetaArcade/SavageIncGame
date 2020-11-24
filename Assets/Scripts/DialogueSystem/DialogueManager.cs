@@ -5,12 +5,13 @@ using UnityEngine.UI;
 
 public class DialogueManager : MonoBehaviour
 {
-    public Text nameText;
-    public Text dialogueText;
-    public Text controlText;
+    public Text NameText;
+    public Text DialogueText;
+    public Text ControlText;
 
     private Queue<string> dialogue;
     private float fadeDuration = 0.5f;
+    private bool running = false;
 
     // Start is called before the first frame update
     void Start()
@@ -21,12 +22,12 @@ public class DialogueManager : MonoBehaviour
         GameObject.Find("ControlBox").GetComponent<CanvasGroup>().alpha = 0f;
     }
 
-    public void StartDialogue(string name, string[] sentences, string textType)
+    public void DisplayDialogue(string name, string[] sentences, string textType)
     {
         GameObject.Find("DialogueBox").GetComponent<CanvasGroup>().alpha = 0f;
         GameObject.Find("ControlBox").GetComponent<CanvasGroup>().alpha = 0f;
 
-        nameText.text = name;
+        NameText.text = name;
 
         dialogue.Clear();
 
@@ -35,7 +36,7 @@ public class DialogueManager : MonoBehaviour
             dialogue.Enqueue(sentence);
         }
 
-        DisplayDialogueSentence(textType);
+        StartCoroutine(DisplaySentence(textType));
     }
 
     public void DisplayControls(string name, string[] sentences, string textType)
@@ -50,62 +51,27 @@ public class DialogueManager : MonoBehaviour
             dialogue.Enqueue(sentence);
         }
 
-        DisplayControlSentence(textType);
+        StartCoroutine(DisplaySentence(textType));
     }
 
-    public void DisplayDialogueSentence(string textType)
+    IEnumerator DisplaySentence(string textType)
     {
+        running = true;
+
         if (dialogue.Count == 0)
         {
             StartCoroutine(EndDialogue(textType));
-            return;
+            running = false;
+            yield return null;
         }
 
-        string sentence = dialogue.Dequeue();
-
-        StartCoroutine(Fade(0f, 1f, fadeDuration, textType));
-        StartCoroutine(TypeSentence(sentence, textType));
-        StartCoroutine(DialogueDelay(textType));
-    }
-
-    public void DisplayControlSentence(string textType)
-    {
-        if (dialogue.Count == 0)
+        if (dialogue.Count > 0)
         {
-            StartCoroutine(EndDialogue(textType));
-            return;
-        }
+            string sentence = dialogue.Dequeue();
 
-        string sentence = dialogue.Dequeue();
-
-        StartCoroutine(Fade(0f, 1f, fadeDuration, textType));
-        StartCoroutine(TypeSentence(sentence, textType));
-        StartCoroutine(DialogueDelay(textType));
-    }
-
-    IEnumerator TypeSentence(string sentence, string textType)
-    {
-        if (textType == "dialogue")
-        {
-            dialogueText.text = "";
-
-            foreach (char letter in sentence.ToCharArray())
-            {
-                dialogueText.text += letter;
-
-                yield return null;
-            }
-        }
-        else if (textType == "control")
-        {
-            controlText.text = "";
-
-            foreach (char letter in sentence.ToCharArray())
-            {
-                controlText.text += letter;
-
-                yield return null;
-            }
+            StartCoroutine(Fade(0f, 1f, fadeDuration, textType));
+            StartCoroutine(TypeSentence(sentence, textType));
+            StartCoroutine(DialogueDelay(textType));
         }
     }
 
@@ -135,18 +101,37 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
+    IEnumerator TypeSentence(string sentence, string textType)
+    {
+        if (textType == "dialogue")
+        {
+            DialogueText.text = "";
+
+            foreach (char letter in sentence.ToCharArray())
+            {
+                DialogueText.text += letter;
+
+                yield return null;
+            }
+        }
+        else if (textType == "control")
+        {
+            ControlText.text = "";
+
+            foreach (char letter in sentence.ToCharArray())
+            {
+                ControlText.text += letter;
+
+                yield return null;
+            }
+        }
+    }
+
     IEnumerator DialogueDelay(string textType)
     {
         yield return new WaitForSeconds(5);
 
-        if (textType == "dialogue")
-        {
-            DisplayDialogueSentence(textType);
-        }
-        else if (textType == "control")
-        {
-            DisplayControlSentence(textType);
-        }
+        StartCoroutine(DisplaySentence(textType));
     }
 
     IEnumerator EndDialogue(string textType)

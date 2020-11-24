@@ -2,81 +2,81 @@
     "entities": 
     [
         {
-			"name": "Gertrude1",
-            "dialogue": [
+			"Name": "Gertrude1",
+            "Dialogue": [
 	            "So this be the lich's home? Cannae wait tae git mah hands on his prized ale!"
 			],
-			"textType": "dialogue"
+			"TextType": "dialogue"
 		},
         {
-			"name": "Gertrude2",
-            "dialogue": [
+			"Name": "Gertrude2",
+            "Dialogue": [
 	            "Getting tae old fur this adventuring."
 			],
-			"textType": "dialogue"
+			"TextType": "dialogue"
 		},
         {
-			"name": "Gertrude3",
-            "dialogue": [
+			"Name": "Gertrude3",
+            "Dialogue": [
 	            "Dae you want a piece o' me? Come and git me!"
 			],
-			"textType": "dialogue"
+			"TextType": "dialogue"
 		},
         {
-			"name": "Gertrude4",
-            "dialogue": [
+			"Name": "Gertrude4",
+            "Dialogue": [
 	            "Who's there?!"
 			],
-			"textType": "dialogue"
+			"TextType": "dialogue"
 		},
         {
-			"name": "Gertrude5",
-            "dialogue": [
+			"Name": "Gertrude5",
+            "Dialogue": [
 	            "Woww!!! That didnae feel right!"
 			],
-			"textType": "dialogue"
+			"TextType": "dialogue"
 		},
 		{
-			"name":  "Chest",
-			"dialogue":  [
+			"Name":  "Chest",
+			"Dialogue":  [
 			"Whit's this? Twa chests as soon as ah enter his lair? This is a guid omen surely!"
 			],
-			"textType": "dialogue"
+			"TextType": "dialogue"
         },
         {
-			"name": "Key",
-            "dialogue": [
+			"Name": "Key",
+            "Dialogue": [
 	            "Tis pure dark in here... Is that a key? A'm sure nothing bad wull happen if ah juist pick it up."
 			],
-			"textType": "dialogue"
+			"TextType": "dialogue"
         },
         {
-			"name":  "Door",
-			"dialogue":  [
+			"Name":  "Door",
+			"Dialogue":  [
 				"Locked?! Ye cannae lock me oot! Ah wull just burst though!!! Or... Ah kin find a key. "
 			],
-			"textType": "dialogue"
+			"TextType": "dialogue"
 		},
         {
-			"name":  "Symbols",
-			"dialogue":  [
+			"Name":  "Symbols",
+			"Dialogue":  [
 				"This feels important."
 			],
-			"textType": "dialogue"
+			"TextType": "dialogue"
 		},
         {
-			"name":  "Torch",
-			"dialogue":  [
+			"Name":  "Torch",
+			"Dialogue":  [
 				"Maybe ah kin light that torch up with fireball... Or maybe that's what th' lich wants me tae dae!!! "
 			],
-			"textType": "dialogue"
+			"TextType": "dialogue"
 		},
 		{
-			"name": "Pull Lever",
-			"dialogue": [
+			"Name": "Pull Lever",
+			"Dialogue": [
 				"Press 'E' to Pull"
 			],
-			"textType": "control"
+			"TextType": "control"
 		}
 	]
 }

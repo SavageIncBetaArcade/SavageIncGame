@@ -1,7 +1,7 @@
 ﻿[System.Serializable]
 public class Entity
 {
-    public string name;
-    public string[] dialogue;
-    public string textType;
+    public string Name;
+    public string[] Dialogue;
+    public string TextType;
 }

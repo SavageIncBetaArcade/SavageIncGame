@@ -22,13 +22,13 @@ public class DialogueTrigger : MonoBehaviour
         {
             foreach (Entity entity in entitiesInJson.entities)
             {
-                if (entity.name == EntityName && entity.textType == "dialogue")
+                if (entity.Name == EntityName && entity.TextType == "dialogue")
                 {
-                    FindObjectOfType<DialogueManager>().StartDialogue(entity.name, entity.dialogue, entity.textType);
+                    FindObjectOfType<DialogueManager>().DisplayDialogue(entity.Name, entity.Dialogue, entity.TextType);
                 }
-                else if (entity.name == EntityName && entity.textType == "control")
+                else if (entity.Name == EntityName && entity.TextType == "control")
                 {
-                    FindObjectOfType<DialogueManager>().DisplayControls(entity.name, entity.dialogue, entity.textType);
+                    FindObjectOfType<DialogueManager>().DisplayControls(entity.Name, entity.Dialogue, entity.TextType);
                 }
             }
 
