@@ -34,7 +34,7 @@ public class TriggeredTranslate : MonoBehaviour
     private void translate(bool triggered)
     {
         //check if all triggers are met
-        if (Triggers.Any(x => !x.Triggered))
+        if (InteractionTrigger.AnyFalse(Triggers))
         {
             targetPosition = origin;
             return;

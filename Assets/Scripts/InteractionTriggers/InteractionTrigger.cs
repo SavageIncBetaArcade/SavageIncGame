@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 
-public abstract class InteractionTrigger : MonoBehaviour, IInteractable
+public class InteractionTrigger : MonoBehaviour, IInteractable
 {
     public delegate void TriggerDelegate(bool triggered);
     public event TriggerDelegate OnTrigger;
@@ -94,5 +91,25 @@ public abstract class InteractionTrigger : MonoBehaviour, IInteractable
             return true;
 
         return RequiredItems.All(requiredItem => InventorySection.itemInventory.FindItemIndex(requiredItem) >= 0);
+    }
+
+    public static bool AllTrue(IList<InteractionTrigger> triggers)
+    {
+        return triggers.All(trigger => trigger.Triggered);
+    }
+
+    public static bool AllFalse(IList<InteractionTrigger> triggers)
+    {
+        return triggers.All(trigger => !trigger.Triggered);
+    }
+
+    public static bool AnyTrue(IList<InteractionTrigger> triggers)
+    {
+        return triggers.Any(trigger => trigger.Triggered);
+    }
+
+    public static bool AnyFalse(IList<InteractionTrigger> triggers)
+    {
+        return triggers.Any(trigger => !trigger.Triggered);
     }
 }

@@ -142,9 +142,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IsInteractable: 1
   Toggle: 1
-  TriggerAnimator: {fileID: 292116054}
-  OnTriggerAnimation: Triggered
+  TriggerAnimator: {fileID: 0}
+  OnTriggerAnimation: 
   PopupText: Press F to use door.
+  InventorySection: {fileID: 0}
+  RequiredItems: []
   Range: 5
 --- !u!1 &942072912106560334
 GameObject:
@@ -452,6 +454,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 83253791372317315}
+  - component: {fileID: 532623835}
   m_Layer: 0
   m_Name: Door
   m_TagString: Untagged
@@ -474,6 +477,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &532623835
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3998245637356609680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24fd2feeaab6d484fa02475befaf9179, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  InteractTriggers:
+  - {fileID: 1497034072}
+  LockTriggers: []
+  UnlockTriggers: []
+  Animator: {fileID: 292116054}
+  OnTriggerAnimation: Triggered
+  IsLocked: 0
 --- !u!1 &4387062836330719943
 GameObject:
   m_ObjectHideFlags: 0

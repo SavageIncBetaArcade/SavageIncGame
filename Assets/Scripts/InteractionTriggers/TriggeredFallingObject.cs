@@ -38,7 +38,7 @@ public class TriggeredFallingObject : MonoBehaviour
 
     private void Trigger(bool triggered)
     {
-        if (Triggers.All(x => x.Triggered))
+        if (InteractionTrigger.AllTrue(Triggers))
         {
             StartCoroutine(Fall());
         }

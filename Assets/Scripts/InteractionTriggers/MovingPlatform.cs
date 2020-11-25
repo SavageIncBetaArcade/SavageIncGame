@@ -45,8 +45,8 @@ public class MovingPlatform : MonoBehaviour
     void togglePlatforms(bool triggered)
     {
         //check if all triggers are met
-        isMoving = InverseTriggers ? Triggers.All(x => !x.Triggered) :
-            Triggers.All(x => x.Triggered);
+        isMoving = InverseTriggers ? InteractionTrigger.AllFalse(Triggers) :
+            InteractionTrigger.AllTrue(Triggers);
 
         if (!isMoving)
         {
