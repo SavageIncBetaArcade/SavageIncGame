@@ -16,6 +16,9 @@ MonoBehaviour:
   Description: 
   Quote: 
   Sprite: {fileID: 0}
+  modifiers:
+  - {fileID: 11400000, guid: c23e0031aac6a7344b571c5902c1e1a6, type: 2}
+  - {fileID: 11400000, guid: 47fabc1f55d937c49ba79dee48c08abc, type: 2}
   attack: 2
   defense: 0
   health: 5

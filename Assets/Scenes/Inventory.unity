@@ -2890,7 +2890,7 @@ MonoBehaviour:
     Image: {fileID: 339493649}
     Quantity: {fileID: 0}
   inventorySection: {fileID: 1598034947}
-  character: {fileID: 1130789341}
+  character: {fileID: 0}
 --- !u!114 &365390783
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3017,7 +3017,7 @@ MonoBehaviour:
     Image: {fileID: 1770721135}
     Quantity: {fileID: 0}
   inventorySection: {fileID: 1598034947}
-  character: {fileID: 1130789341}
+  character: {fileID: 0}
 --- !u!114 &373052088
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7453,7 +7453,7 @@ MonoBehaviour:
     Image: {fileID: 197351599}
     Quantity: {fileID: 0}
   inventorySection: {fileID: 1598034947}
-  character: {fileID: 1130789341}
+  character: {fileID: 0}
 --- !u!114 &955038221
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9085,8 +9085,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1130789342}
-  - component: {fileID: 1130789341}
   - component: {fileID: 1130789343}
+  - component: {fileID: 1130789344}
+  - component: {fileID: 1130789341}
   m_Layer: 0
   m_Name: CharacterBase
   m_TagString: Untagged
@@ -9103,18 +9104,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 1130789340}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea3bc292eff0e714e812ea36bc78471b, type: 3}
+  m_Script: {fileID: 11500000, guid: b5ca00a9fdc186b4f847d6f0dabd5955, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   attackModifier: 0
   defenseModifier: 0
-  maxHealth: 0
-  maxEnergy: 0
+  maxHealth: 100
+  maxEnergy: 100
   speed: 6
   jumpHeight: 1
   currentHealth: 0
   currentEnergy: 0
   currentStunTime: 0
+  Controller: {fileID: 0}
 --- !u!4 &1130789342
 Transform:
   m_ObjectHideFlags: 0
@@ -9141,6 +9143,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33def953cfc25a34bbb7c0bf5fb12ec3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!143 &1130789344
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1130789340}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Height: 2
+  m_Radius: 0.5
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1143409099 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3224182148480280314, guid: 5b5e40fddbe18b643b04772947f58c37,
@@ -12940,7 +12960,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 902.0801}
+  m_SizeDelta: {x: 0, y: 902.0802}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1598034944
 MonoBehaviour:
@@ -13038,7 +13058,7 @@ MonoBehaviour:
     Quantity: {fileID: 968750632}
   - Image: {fileID: 278745595}
     Quantity: {fileID: 751296794}
-  character: {fileID: 1130789341}
+  character: {fileID: 0}
   armourSlot: {fileID: 365390782}
   leftWeaponSlot: {fileID: 955038220}
   rightWeaponSlot: {fileID: 373052087}
@@ -15934,7 +15954,7 @@ MonoBehaviour:
   fitType: 2
   Rows: 4
   Columns: 4
-  CellSize: {x: 209.52002, y: 209.52002}
+  CellSize: {x: 209.52005, y: 209.52005}
   Spacing: {x: 8, y: 8}
   FitX: 1
   FitY: 1
@@ -16675,7 +16695,7 @@ MonoBehaviour:
     Quantity: {fileID: 1189957727}
   - Image: {fileID: 584708939}
     Quantity: {fileID: 598515534}
-  character: {fileID: 1130789341}
+  character: {fileID: 0}
   leftHand:
   - {fileID: 654334852}
   - {fileID: 509390581}

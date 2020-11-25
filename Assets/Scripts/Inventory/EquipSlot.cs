@@ -9,6 +9,11 @@ public class EquipSlot : MonoBehaviour
     public delegate void OnItemChange(InventoryItem inventoryItem, InventoryItem oldItem, EquipSlot slot);
     public event OnItemChange ItemChangedEvent;
 
+    void Awake()
+    {
+        character = FindObjectOfType<PlayerBase>();
+    }
+
     public void EquipItem(InventoryItem inventoryItem)
     {
         ItemChangedEvent?.Invoke(inventoryItem, equippedSlot.InventoryItem, this);
@@ -17,6 +22,8 @@ public class EquipSlot : MonoBehaviour
         equippedSlot.Image.sprite = inventoryItem.Item.Sprite;
         equippedSlot.Image.enabled = true;
         equippedSlot.InventoryItem = inventoryItem;
+
+        inventoryItem.ApplyModifiers(character, true);
     }
 
     public void UnequipItem()

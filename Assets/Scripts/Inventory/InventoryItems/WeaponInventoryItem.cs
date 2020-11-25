@@ -2,7 +2,6 @@
 {
     public override void LeftClick(Inventory inventory, CharacterBase character)
     {
-        ApplyModifiers(character);
         inventory.EquipLeftHand(this);
     }
 
