@@ -33,6 +33,11 @@ public class Portal : MonoBehaviour
     public int OffMeshLinkArea;
     private readonly List<PortalOffMeshLink> offMeshLinks = new List<PortalOffMeshLink>();
 
+    public void  SetTargetPortal(ref Portal portal)
+    {
+        TargetPortal = portal;
+    }
+
     private struct PortalOffMeshLink
     {
         public Transform RefTransform;
@@ -95,14 +100,14 @@ public class Portal : MonoBehaviour
 
     public static Vector3 TransformPositionBetweenPortals(Portal sender, Portal target, Vector3 position)
     {
-        return
+        return target == null ? new Vector3() :
             target.NormalInvisible.TransformPoint(
                 sender.NormalVisible.InverseTransformPoint(position));
     }
 
     public static Quaternion TransformRotationBetweenPortals(Portal sender, Portal target, Quaternion rotation)
     {
-        return
+        return target == null ? new Quaternion() :
             target.NormalInvisible.rotation *
             Quaternion.Inverse(sender.NormalVisible.rotation) *
             rotation;
@@ -116,18 +121,22 @@ public class Portal : MonoBehaviour
     private void Start()
     {
         // Finish OffMeshLink generation
-        for (var i = 0; i < offMeshLinks.Count; i++)
-        {
-            var offMeshLink = offMeshLinks[i];
 
-            var newLink = offMeshLink.RefTransform.gameObject.AddComponent<OffMeshLink>();
-            newLink.startTransform = offMeshLink.RefTransform;
-            newLink.endTransform = TargetPortal.offMeshLinks[TargetPortal.offMeshLinks.Count - 1 - i].RefTransform;
-            newLink.biDirectional = false;
-            newLink.costOverride = -1;
-            newLink.autoUpdatePositions = false;
-            newLink.activated = true;
-            newLink.area = OffMeshLinkArea;
+        if(TargetPortal != null)
+        {
+            for (var i = 0; i < offMeshLinks.Count; i++)
+            {
+                var offMeshLink = offMeshLinks[i];
+
+                var newLink = offMeshLink.RefTransform.gameObject.AddComponent<OffMeshLink>();
+                newLink.startTransform = offMeshLink.RefTransform;
+                newLink.endTransform = TargetPortal.offMeshLinks[TargetPortal.offMeshLinks.Count - 1 - i].RefTransform;
+                newLink.biDirectional = false;
+                newLink.costOverride = -1;
+                newLink.autoUpdatePositions = false;
+                newLink.activated = true;
+                newLink.area = OffMeshLinkArea;
+            }
         }
 
         viewthroughMaterial = ViewthroughRenderer.material;
@@ -263,7 +272,7 @@ public class Portal : MonoBehaviour
 
         var targetViewThroughPlaneCameraSpace =
             Matrix4x4.Transpose(Matrix4x4.Inverse(portalCamera.worldToCameraMatrix))
-            * TargetPortal.vectorPlane;
+            * (TargetPortal != null ? TargetPortal.vectorPlane : new Vector4());
 
         // Set portal camera projection matrix to clip walls between target portal and target camera
         // Inherits main camera near/far clip plane and FOV settings
@@ -288,7 +297,9 @@ public class Portal : MonoBehaviour
                 //only render for portals which are visible
                 if (!visiblePortal.ShouldRender(cameraPlanes)) continue;
 
-                visiblePortal.RenderViewthroughRecursive(
+                if(TargetPortal != null)
+                {
+                    visiblePortal.RenderViewthroughRecursive(
                     virtualPosition,
                     virtualRotation,
                     out var visiblePortalTemporaryPoolItem,
@@ -298,14 +309,16 @@ public class Portal : MonoBehaviour
                     currentRecursion + 1,
                     maxRecursions);
 
-                visiblePortalResourcesList.Add(new VisiblePortalResources()
-                {
-                    OriginalTexture = visiblePortalOriginalTexture,
-                    PoolItem = visiblePortalTemporaryPoolItem,
-                    VisiblePortal = visiblePortal
-                });
+                    visiblePortalResourcesList.Add(new VisiblePortalResources()
+                    {
+                        OriginalTexture = visiblePortalOriginalTexture,
+                        PoolItem = visiblePortalTemporaryPoolItem,
+                        VisiblePortal = visiblePortal
+                    });
 
-                debugRenderCount += visiblePortalRenderCount;
+                    debugRenderCount += visiblePortalRenderCount;
+                }
+                
             }
         }
         else

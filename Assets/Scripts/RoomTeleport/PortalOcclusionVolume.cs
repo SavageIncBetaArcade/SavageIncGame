@@ -36,4 +36,18 @@ public class PortalOcclusionVolume : MonoBehaviour
 
         Portals = portalBuilder.ToArray();
     }
+
+
+    public bool IsPlayerInRoom()
+    {
+        var col = GetComponent<Collider>();
+        var player = FindObjectOfType<PlayerBase>();
+
+        if(col.bounds.Contains(player.transform.position))
+        {
+            return true;
+        }
+
+        return false;
+    }
 }

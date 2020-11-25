@@ -57,8 +57,10 @@ public class PortalRender : MonoBehaviour
             foreach (var portal in currentOcclusionVolume.Portals)
             {
                 if (!portal.ShouldRender(cameraPlanes)) continue;
-                
-                portal.RenderViewthroughRecursive(
+
+                if(portal.TargetPortal != null)
+                {
+                    portal.RenderViewthroughRecursive(
                     mainCamera.transform.position,
                     mainCamera.transform.rotation,
                     out _,
@@ -68,7 +70,9 @@ public class PortalRender : MonoBehaviour
                     0,
                     MaxRecursions);
 
-                DebugTotalRenderCount += renderCount;
+                    DebugTotalRenderCount += renderCount;
+                }
+                
             }
         }
     }
