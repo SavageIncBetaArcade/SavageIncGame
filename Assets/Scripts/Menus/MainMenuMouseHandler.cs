@@ -2,6 +2,9 @@
 
 public class MainMenuMouseHandler : MonoBehaviour
 {
+    public GameObject InstructionsPanel;
+    public GameObject OptionsPanel;
+    
     public void OnPlayClicked()
     {
         
@@ -9,17 +12,12 @@ public class MainMenuMouseHandler : MonoBehaviour
     
     public void OnInstructionsClicked()
     {
-        
-    }
-    
-    public void OnKeyBindingsClicked()
-    {
-        
+        InstructionsPanel.SetActive(true);
     }
     
     public void OnOptionsClicked()
     {
-        
+        OptionsPanel.SetActive(true);
     }
     
     public void OnCreditsClicked()

@@ -6,7 +6,6 @@ public class ButtonMouseHandler : MonoBehaviour, IPointerEnterHandler, IPointerE
     public void OnPointerEnter(PointerEventData eventData)
     {
         transform.localScale = new Vector3(0.9f, 0.9f, 0.9f);
-
     }
 
     public void OnPointerExit(PointerEventData eventData)
