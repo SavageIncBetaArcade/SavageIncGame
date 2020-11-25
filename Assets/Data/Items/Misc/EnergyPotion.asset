@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: EnergyPotion
   m_EditorClassIdentifier: 
   Name: Energy Potion
-  Description: 
+  Description: Gain 20 energy points
   Quote: 
-  Sprite: {fileID: 10915, guid: 0000000000000000f000000000000000, type: 0}
-  modifier: {fileID: 11400000, guid: 75d5d2c2c7c1fa84c9c7b5fc6cdc758c, type: 2}
+  Sprite: {fileID: 0}
+  modifiers:
+  - {fileID: 11400000, guid: aa55f59336440f741a34929733fe9cc8, type: 2}

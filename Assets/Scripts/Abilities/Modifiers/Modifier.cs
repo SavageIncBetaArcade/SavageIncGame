@@ -82,17 +82,19 @@ public class Modifier
         }
         else
         {
-            scriptableModifier.OnApply(ownerCharacter, targetCharacter, ref affectedCharacters);
+
+            //passive don't need to apply as they work on ticks
+            //scriptableModifier.OnApply(ownerCharacter, targetCharacter, ref affectedCharacters);
             if(coroutine == null)
                 coroutine = targetCharacter.StartCoroutine(tickCoroutine(targetCharacter));
         }
     }
 
 
-    public void Remove(CharacterBase targetCharacter)
+    public void Remove(CharacterBase targetCharacter, bool forceRemove = false)
     {
         scriptableModifier.OnRemove(ownerCharacter, targetCharacter, ref affectedCharacters);
-        if (!isPassive)
+        if (forceRemove || !isPassive)
             targetCharacter.AppliedModifiers.Remove(this);
 
         if (coroutine != null)

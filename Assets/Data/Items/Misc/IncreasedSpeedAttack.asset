@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d51fb4b034bc4d3ba73761b53cb8897b, type: 3}
+  m_Name: IncreasedSpeedAttack
+  m_EditorClassIdentifier: 
+  Name: Increased Speed and Attack
+  Description: Gains +40% speed for 10 seconds and +7 attack for 10 seconds. After
+    10 seconds removes 40 health points.
+  Quote: 
+  Sprite: {fileID: 0}
+  modifiers:
+  - {fileID: 11400000, guid: 126c57ccd7ef3ff4da7e88c97e20ccad, type: 2}
+  - {fileID: 11400000, guid: a22a3f1838109c04cbe87d6f776d5b91, type: 2}
