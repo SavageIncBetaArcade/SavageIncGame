@@ -143,8 +143,10 @@ public class AIBase : CharacterBase
         Destroy(gameObject);
     }
 
-    private void OnDestroy()
+    protected override void OnDestroy()
     {
+        base.OnDestroy();
+
         OnDeath -= onDeath;
     }
 }

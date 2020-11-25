@@ -35,6 +35,7 @@ public class VolumeInteractionTrigger : InteractionTrigger
         if (((1 << collider.gameObject.layer) & mask) == 0)
             return;
 
-        Reset();
+        if(Toggle)
+            Reset();
     }
 }

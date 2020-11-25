@@ -57,11 +57,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a619c5d684b90d6488365da548132cad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IsInteractable: 0
+  IsInteractable: 1
   Toggle: 0
   TriggerAnimator: {fileID: 0}
   OnTriggerAnimation: 
   PopupText: 
+  InventorySection: {fileID: 0}
+  RequiredItems: []
   mask:
     serializedVersion: 2
     m_Bits: 1024
