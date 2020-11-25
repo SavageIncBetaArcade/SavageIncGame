@@ -8,6 +8,7 @@ TagManager:
   - WeaponSlot
   - InventorySlot
   - PlayerCollider
+  - InteractionText
   layers:
   - Default
   - TransparentFX
@@ -18,9 +19,9 @@ TagManager:
   - 
   - 
   - PostProcessing
-  - 
-  - 
-  - 
+  - Trigger
+  - Player
+  - Enemy
   - 
   - 
   - 

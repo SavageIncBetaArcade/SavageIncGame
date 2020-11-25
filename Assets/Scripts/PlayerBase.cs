@@ -93,8 +93,9 @@ public class PlayerBase : CharacterBase
         SceneManager.LoadScene(scene.name);
     }
 
-    private void OnDestroy()
+    protected override void OnDestroy()
     {
+        base.OnDestroy();
         OnDeath -= onDeath;
     }
 }

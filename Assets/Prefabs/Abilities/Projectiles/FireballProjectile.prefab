@@ -321,8 +321,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38518fe9720ea0546abed1ac84829e76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 0
-  initialForce: 0
+  damage: 5
+  initialForce: 5
   gravityAffected: 0
   lifeSpan: 2.5
   RangeCutoff: 100
