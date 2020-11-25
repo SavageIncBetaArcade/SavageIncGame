@@ -3,6 +3,7 @@ using System.Linq;
 using TMPro;
 using UnityEngine;
 
+[RequireComponent(typeof(AudioSource))]
 public class InteractionTrigger : MonoBehaviour, IInteractable
 {
     public delegate void TriggerDelegate(bool triggered);
@@ -20,11 +21,14 @@ public class InteractionTrigger : MonoBehaviour, IInteractable
     private bool triggered = false;
     public bool Triggered => triggered;
 
+    private AudioSource triggerSound;
+
     private static Dictionary<InteractionTrigger, bool> popupDisplayed = new Dictionary<InteractionTrigger, bool>();
 
     protected virtual void Awake()
     {
         textMesh = GameObject.FindGameObjectWithTag("InteractionText")?.GetComponent<TextMeshProUGUI>();
+        triggerSound = GetComponent<AudioSource>();
     }
 
     void LateUpdate()
@@ -48,6 +52,9 @@ public class InteractionTrigger : MonoBehaviour, IInteractable
         }
 
         OnTrigger?.Invoke(triggered);
+
+        //play sound
+        triggerSound?.Play();
     }
 
     public bool Interactable()

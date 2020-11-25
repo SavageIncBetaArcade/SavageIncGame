@@ -8,6 +8,10 @@ public class TriggeredDoorLock : MonoBehaviour
     public InteractionTrigger[] InteractTriggers;
     public InteractionTrigger[] LockTriggers;
     public InteractionTrigger[] UnlockTriggers;
+
+    public AudioSource LockSound;
+    public AudioSource UnlockSound;
+
     public Animator Animator;
     public string OnTriggerAnimation;
 
@@ -52,14 +56,23 @@ public class TriggeredDoorLock : MonoBehaviour
 
     void lockTrigger(bool triggered)
     {
-        IsLocked = true;
+        if (!IsLocked)
+        {
+            IsLocked = true;
 
-        if(IsLocked)
-            Animator.SetBool(OnTriggerAnimation, false);
+            if (IsLocked)
+                Animator.SetBool(OnTriggerAnimation, false);
+
+            LockSound?.Play();
+        }
     }
 
     void unlockTrigger(bool triggered)
     {
-        IsLocked = false;
+        if (IsLocked)
+        {
+            IsLocked = false;
+            UnlockSound?.Play();
+        }
     }
 }
