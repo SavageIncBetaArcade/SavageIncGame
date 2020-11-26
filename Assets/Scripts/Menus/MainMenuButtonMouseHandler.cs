@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class ButtonMouseHandler : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class MainMenuButtonMouseHandler : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     public void OnPointerEnter(PointerEventData eventData)
     {
