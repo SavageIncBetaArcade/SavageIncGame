@@ -4,6 +4,7 @@ public class MainMenuMouseHandler : MonoBehaviour
 {
     public GameObject instructionsPanel;
     public GameObject optionsPanel;
+    public GameObject creditsPanel;
     
     public void OnPlayClicked()
     {
@@ -22,7 +23,7 @@ public class MainMenuMouseHandler : MonoBehaviour
     
     public void OnCreditsClicked()
     {
-        
+        creditsPanel.SetActive(true);
     }
     
     public void OnExitClicked()
