@@ -112,7 +112,7 @@ public class CharacterBase : MonoBehaviour, IDamageTaker
         Physics.SyncTransforms();
     }
 
-    private void OnDestroy()
+    protected virtual void OnDestroy()
     {
         portalableObject.HasTeleported -= PortalableObjectOnHasTeleported;
     }

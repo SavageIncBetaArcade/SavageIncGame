@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 /// <summary>
@@ -24,6 +25,13 @@ public abstract class AttackAbility : BaseAbility
     {
         if(hitObject == OwnerCharacter.gameObject)
             return;
+
+        //TODO: check if the hit object was a AbilityInteractionTrigger
+        AbilityInteractionTrigger interactionTrigger = hitObject.GetComponent<AbilityInteractionTrigger>();
+        if (interactionTrigger && interactionTrigger.Abilities.Contains(Ability))
+        {
+            interactionTrigger.Interact();
+        }
 
         CharacterBase hitCharacter = GetParentCharacterBase(hitObject.transform);
 

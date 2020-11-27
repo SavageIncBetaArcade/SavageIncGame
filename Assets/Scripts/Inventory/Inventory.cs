@@ -12,6 +12,11 @@ public abstract class Inventory : MonoBehaviour
     public abstract void EquipRightHand(InventoryItem itemToEquip);
     public abstract void EquipCenter(InventoryItem itemToEquip);
 
+    void Awake()
+    {
+        character = FindObjectOfType<PlayerBase>();
+    }
+
     public void AddItem(Item itemToAdd)
     {
         var emptySlotPosition = -1;
