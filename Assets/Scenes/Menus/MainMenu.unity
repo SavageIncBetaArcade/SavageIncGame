@@ -3237,7 +3237,7 @@ MonoBehaviour:
   images:
   - {fileID: 21300000, guid: 9017488f333496f4c901d541b603bc32, type: 3}
   - {fileID: 21300000, guid: 7c888c67c632a4d4b87981345c285849, type: 3}
-  - {fileID: 21300000, guid: 87efcd448c1170740bb98aed215c5941, type: 3}
+  - {fileID: 21300000, guid: 4ca8879c2c21b5341874285eaad3e0fe, type: 3}
   leftButton: {fileID: 76001980}
   rightButton: {fileID: 610310249}
 --- !u!114 &2090837450
