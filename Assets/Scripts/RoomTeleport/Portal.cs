@@ -7,7 +7,9 @@ using UnityEngine.AI;
 
 public class Portal : MonoBehaviour
 {
-    public Portal TargetPortal;
+    public int TargetPortalIndex;
+
+    public Portal[] TargetPortal;
 
     public Transform NormalVisible;
 
@@ -33,10 +35,7 @@ public class Portal : MonoBehaviour
     public int OffMeshLinkArea;
     private readonly List<PortalOffMeshLink> offMeshLinks = new List<PortalOffMeshLink>();
 
-    public void  SetTargetPortal(ref Portal portal)
-    {
-        TargetPortal = portal;
-    }
+    
 
     private struct PortalOffMeshLink
     {
@@ -84,10 +83,10 @@ public class Portal : MonoBehaviour
     {
         // Linked portals
 
-        if (TargetPortal != null)
+        if (TargetPortal.Length > 0 && TargetPortal[TargetPortalIndex] != null)
         {
             Gizmos.color = Color.red;
-            Gizmos.DrawLine(transform.position, TargetPortal.transform.position);
+            Gizmos.DrawLine(transform.position, TargetPortal[TargetPortalIndex].transform.position);
         }
 
         // Visible portals
@@ -122,7 +121,9 @@ public class Portal : MonoBehaviour
     {
         // Finish OffMeshLink generation
 
-        if(TargetPortal != null)
+        TargetPortalIndex = 0;
+
+        if(TargetPortal.Length > 0 && TargetPortal[TargetPortalIndex] != null)
         {
             for (var i = 0; i < offMeshLinks.Count; i++)
             {
@@ -130,7 +131,7 @@ public class Portal : MonoBehaviour
 
                 var newLink = offMeshLink.RefTransform.gameObject.AddComponent<OffMeshLink>();
                 newLink.startTransform = offMeshLink.RefTransform;
-                newLink.endTransform = TargetPortal.offMeshLinks[TargetPortal.offMeshLinks.Count - 1 - i].RefTransform;
+                newLink.endTransform = TargetPortal[TargetPortalIndex].offMeshLinks[TargetPortal[TargetPortalIndex].offMeshLinks.Count - 1 - i].RefTransform;
                 newLink.biDirectional = false;
                 newLink.costOverride = -1;
                 newLink.autoUpdatePositions = false;
@@ -215,13 +216,13 @@ public class Portal : MonoBehaviour
             // Just keep recusing
 
             return RaycastRecursiveInternal(
-                TransformPositionBetweenPortals(portal, portal.TargetPortal, hit.point),
-                TransformDirectionBetweenPortals(portal, portal.TargetPortal, direction),
+                TransformPositionBetweenPortals(portal, portal.TargetPortal[portal.TargetPortalIndex], hit.point),
+                TransformDirectionBetweenPortals(portal, portal.TargetPortal[portal.TargetPortalIndex], direction),
                 maxRecursions,
                 out hitInfo,
                 range,
                 currentRecursion + 1,
-                portal.TargetPortal.gameObject);
+                portal.TargetPortal[portal.TargetPortalIndex].gameObject);
         }
 
         // If the object hit is not a portal, then congrats! We stop here and report back that we hit something.
@@ -262,8 +263,8 @@ public class Portal : MonoBehaviour
 
         // Calculate virtual camera position and rotation
 
-        var virtualPosition = TransformPositionBetweenPortals(this, TargetPortal, refPosition);
-        var virtualRotation = TransformRotationBetweenPortals(this, TargetPortal, refRotation);
+        var virtualPosition = TransformPositionBetweenPortals(this, TargetPortal[TargetPortalIndex], refPosition);
+        var virtualRotation = TransformRotationBetweenPortals(this, TargetPortal[TargetPortalIndex], refRotation);
 
 
         portalCamera.transform.SetPositionAndRotation(virtualPosition, virtualRotation);
@@ -272,7 +273,7 @@ public class Portal : MonoBehaviour
 
         var targetViewThroughPlaneCameraSpace =
             Matrix4x4.Transpose(Matrix4x4.Inverse(portalCamera.worldToCameraMatrix))
-            * (TargetPortal != null ? TargetPortal.vectorPlane : new Vector4());
+            * (TargetPortal != null ? TargetPortal[TargetPortalIndex].vectorPlane : new Vector4());
 
         // Set portal camera projection matrix to clip walls between target portal and target camera
         // Inherits main camera near/far clip plane and FOV settings
@@ -286,13 +287,13 @@ public class Portal : MonoBehaviour
 
         var cameraPlanes = GeometryUtility.CalculateFrustumPlanes(portalCamera);
 
-        var actualMaxRecursions = TargetPortal.MaxRecursionsOverride >= 0
-        ? TargetPortal.MaxRecursionsOverride
+        var actualMaxRecursions = TargetPortal[TargetPortalIndex].MaxRecursionsOverride >= 0
+        ? TargetPortal[TargetPortalIndex].MaxRecursionsOverride
         : maxRecursions;
 
         if (currentRecursion < actualMaxRecursions)
         {
-            foreach (var visiblePortal in TargetPortal.VisiblePortals)
+            foreach (var visiblePortal in TargetPortal[TargetPortalIndex].VisiblePortals)
             {
                 //only render for portals which are visible
                 if (!visiblePortal.ShouldRender(cameraPlanes)) continue;
@@ -323,7 +324,7 @@ public class Portal : MonoBehaviour
         }
         else
         {
-            foreach (var visiblePortal in TargetPortal.VisiblePortals)
+            foreach (var visiblePortal in TargetPortal[TargetPortalIndex].VisiblePortals)
             {
                 visiblePortal.ShowViewthroughDefaultTexture(out var visiblePortalOriginalTexture);
 
@@ -408,10 +409,10 @@ public class Portal : MonoBehaviour
 
             // Warp object
 
-            var newPosition = TransformPositionBetweenPortals(this, TargetPortal, portalableObject.transform.position);
-            var newRotation = TransformRotationBetweenPortals(this, TargetPortal, portalableObject.transform.rotation);
+            var newPosition = TransformPositionBetweenPortals(this, TargetPortal[TargetPortalIndex], portalableObject.transform.position);
+            var newRotation = TransformRotationBetweenPortals(this, TargetPortal[TargetPortalIndex], portalableObject.transform.rotation);
             portalableObject.transform.SetPositionAndRotation(newPosition, newRotation);
-            portalableObject.OnHasTeleported(this, TargetPortal, newPosition, newRotation);
+            portalableObject.OnHasTeleported(this, TargetPortal[TargetPortalIndex], newPosition, newRotation);
 
             // Object is no longer touching this side of the portal
 

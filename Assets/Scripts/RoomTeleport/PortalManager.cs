@@ -28,7 +28,30 @@ public class PortalManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(AlertMeter >= 100)
+        if (AlertMeter >= 100)
+        {
+            SwapPortals();
+            AlertMeter = 0;
+        }
+
+    }
+
+    void SwapPortals()
+    {
+        foreach (var room in Rooms)
+        {
+            foreach (var portal in room.portals)
+            {
+                portal.TargetPortalIndex++;
+            }
+        }
+
+        UpdateRooms();
+    }
+
+    void RandomPortals()
+    {
+        if (AlertMeter >= 100)
         {
             ClearPortalLinks();
             int randomRoomIndex;
@@ -42,19 +65,19 @@ public class PortalManager : MonoBehaviour
                     {
                         bool notLinked = true;
 
-                        
+
                         while (notLinked && Rooms.Count > 1)
                         {
                             randomRoomIndex = Random.Range(0, Rooms.Count);
 
-                            if(randomRoomIndex != previousIndex)
+                            if (randomRoomIndex != previousIndex)
                             {
                                 foreach (var p2 in Rooms[randomRoomIndex].portals)
                                 {
                                     if (p2.TargetPortal == null)
                                     {
-                                        p1.TargetPortal = p2;
-                                        p2.TargetPortal = p1;
+                                        p1.TargetPortal[p1.TargetPortalIndex] = p2;
+                                        p2.TargetPortal[p2.TargetPortalIndex] = p1;
                                         notLinked = false;
                                         previousIndex = randomRoomIndex;
                                         break;
@@ -62,13 +85,13 @@ public class PortalManager : MonoBehaviour
 
                                 }
 
-                                if(notLinked)
+                                if (notLinked)
                                 {
                                     Rooms.Remove(Rooms[randomRoomIndex]);
                                 }
                             }
                         }
-                        
+
                     }
                 }
                 Rooms.Remove(Rooms[0]);
