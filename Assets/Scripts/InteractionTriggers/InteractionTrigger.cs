@@ -35,7 +35,7 @@ public class InteractionTrigger : MonoBehaviour, IInteractable
     {
         //if any all popups are not active set the text to empty (Hides the popup text)
         //Reason for using a static dictionary is to prevent other triggers hiding the popup when it need to be shown
-        if(popupDisplayed.All(x => !x.Value))
+        if(popupDisplayed.All(x => !x.Value) && textMesh)
             textMesh.text = "";
     }
 
