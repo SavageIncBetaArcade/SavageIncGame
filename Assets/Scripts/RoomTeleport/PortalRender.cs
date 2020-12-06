@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Profiling;
 using UnityEngine.Rendering;
 
 public class PortalRender : MonoBehaviour
@@ -84,10 +85,10 @@ public class PortalRender : MonoBehaviour
 
     private void LateUpdate()
     {
-
+        Profiler.BeginSample("Portal Profile");
         //have to use the booleans as trying to run pre and post render inside the callback function causes an error
         //this is because hdrp does not support recursive rendering
-        if(onPreRender)
+        if (onPreRender)
         {
             OnPreRender();
             onPreRender = false;
@@ -98,7 +99,7 @@ public class PortalRender : MonoBehaviour
             OnPostRender();
             onPostRender = false;
         }
-        
+        Profiler.EndSample();
     }
 
 
