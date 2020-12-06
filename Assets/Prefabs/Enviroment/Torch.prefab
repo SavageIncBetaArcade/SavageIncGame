@@ -9895,6 +9895,7 @@ GameObject:
   - component: {fileID: 3975030745534425771}
   - component: {fileID: 3647311327343279378}
   - component: {fileID: 7948151498178965761}
+  - component: {fileID: 8205476659077370652}
   m_Layer: 0
   m_Name: Point Light
   m_TagString: Untagged
@@ -9910,7 +9911,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5593255707355308258}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.171, z: -0.143}
+  m_LocalPosition: {x: 0, y: 0.67, z: -0.65}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4621139569729269861}
@@ -9927,9 +9928,9 @@ Light:
   serializedVersion: 10
   m_Type: 2
   m_Shape: 0
-  m_Color: {r: 1, g: 0.50826514, b: 0.2688679, a: 1}
+  m_Color: {r: 1, g: 0.6814958, b: 0.2028302, a: 1}
   m_Intensity: 55.704227
-  m_Range: 50
+  m_Range: 7
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -9971,9 +9972,9 @@ Light:
   m_LightShadowCasterMode: 2
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
-  m_ColorTemperature: 6570
-  m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 1e-45, y: 0, z: 1e-45, w: 0}
+  m_ColorTemperature: 3940
+  m_UseColorTemperature: 1
+  m_BoundingSphereOverride: {x: 0, y: 4.4948e-41, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 1.5
   m_ShadowAngle: 0
@@ -10087,6 +10088,22 @@ MonoBehaviour:
   showAdditionalSettings: 0
   m_AreaLightEmissiveMeshShadowCastingMode: 0
   m_AreaLightEmissiveMeshMotionVectorGenerationMode: 0
+--- !u!114 &8205476659077370652
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5593255707355308258}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfa0f31ba5c596f46b366dec8016298d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  light: {fileID: 0}
+  minLumen: 300
+  maxLumen: 700
+  smoothing: 10
 --- !u!1 &8143317429640463473
 GameObject:
   m_ObjectHideFlags: 0
