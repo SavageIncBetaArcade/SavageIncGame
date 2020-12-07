@@ -55,7 +55,8 @@ public class InteractionTrigger : MonoBehaviour, IInteractable
         OnTrigger?.Invoke(triggered);
 
         //play sound
-        triggerSound?.Play();
+        if(triggerSound)
+            triggerSound.Play();
     }
 
     public bool Interactable()

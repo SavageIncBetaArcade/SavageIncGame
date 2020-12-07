@@ -89,6 +89,7 @@ public class Projectile : MonoBehaviour
 
     public virtual void PortalableObjectOnHasTeleported(Portal startPortal, Portal endPortal, Vector3 newposition, Quaternion newrotation)
     {
+        startPosition = newposition;
         projectileRigidbody.velocity = Vector3.zero;
         projectileRigidbody.AddForce(initialForce * transform.forward, ForceMode.Impulse);
     }
