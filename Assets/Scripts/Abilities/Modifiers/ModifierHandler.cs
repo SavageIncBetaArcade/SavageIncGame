@@ -68,9 +68,9 @@ public class ModifierHandler
         if(actionModifiers.Count == 0)
             return;
 
-        CharacterBase targetcharacter = targetObject.GetComponent<CharacterBase>();
+        CharacterBase targetcharacter = actionModifiers[0].Target == ModifierTarget.TARGET ? targetObject.GetComponent<CharacterBase>() : characterBase;
 
-        if (targetcharacter)
+        if (targetcharacter != characterBase)
             affectedCharacters.Add(targetcharacter);
 
         Modifier mod = new Modifier(actionModifiers[0].Modifier, characterBase);

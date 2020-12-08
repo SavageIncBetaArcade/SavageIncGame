@@ -45,8 +45,6 @@ public class MeleeAbility : AttackAbility
     public override void Use()
     {
         _hasHit = false;
-
-        Debug.Log("Attacking");
     }
 
     public override void Hit(GameObject hitObject, float damage, Vector3 hitPoint, Vector3 hitDirection,

@@ -72,6 +72,9 @@ public abstract class ScriptableModifier : ScriptableObject
 
     protected virtual void ApplyEffects(CharacterBase targetCharacter)
     {
+        if (tickEffectGameObjects == null || !tickEffectGameObjects.Any())
+            return;
+
         foreach (var effect in tickEffectGameObjects)
         {
             if(effect != null)

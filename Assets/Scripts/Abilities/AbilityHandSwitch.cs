@@ -18,6 +18,7 @@ public class AbilityHandSwitch : MonoBehaviour
     public InventorySectionHandler inventoryHandler;
     public HandType Hand;
     public UseableAbility PlayerAbility;
+    public ScriptableMeleeAbility BaseAbility;
 
     private EquipSlot[] handSlots;
     private ScriptableUseableAbility[] AbilitySlots = new ScriptableUseableAbility[4];
@@ -98,8 +99,34 @@ public class AbilityHandSwitch : MonoBehaviour
         AbilitySlots[index] = ability;
         AbilityImages[index].sprite = slotSprite;
 
-        if(index == 0)
-            PlayerAbility?.SetAbility(ability); //also set the players ability
+        if (index == 0)
+        {
+            // if the new ability is null then default to the players weapon (Base Attack)
+            if (!ability && BaseAbility)
+            {
+                WeaponItem weapon = null;
+                switch (Hand)
+                {
+                    case HandType.LEFT:
+                        weapon = inventoryHandler.itemInventory.leftWeaponSlot.equippedSlot.InventoryItem?.Item as WeaponItem;
+                        break;
+                    case HandType.RIGHT:
+                        weapon = inventoryHandler.itemInventory.rightWeaponSlot.equippedSlot.InventoryItem?.Item as WeaponItem;
+                        break;
+                    default:
+                        break;
+                }
+
+                if(weapon)
+                    PlayerAbility?.SetWeapon(weapon, BaseAbility);
+                else
+                    PlayerAbility?.SetAbility(null);
+            }
+            else
+            {
+                PlayerAbility?.SetAbility(ability); //also set the players ability
+            }
+        }
     }
 
     private void shiftHand()

@@ -38,6 +38,7 @@ public abstract class AttackAbility : BaseAbility
         OnHit?.Invoke(useableAbility.CharacterBase,hitObject, hitPoint, hitDirection, surfaceNormal);
 
         float damageDealt = Ability.AddOwnerBaseAttack ? damage + (OwnerCharacter.AttackModifier * Ability.OwnerBaseAttackScalar) : damage;
+        Debug.Log($"Character:{OwnerCharacter.name} hit with:{Ability.Name} dealing:{damageDealt}");
         if (hitCharacter != null)
             Debug.Log($"Character:{OwnerCharacter.name} hit character:{hitCharacter.name} with:{Ability.Name} dealing:{damageDealt}, target def:{hitCharacter.DefenseModifier}");
 
