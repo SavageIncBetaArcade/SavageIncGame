@@ -84,7 +84,7 @@ public class Modifier
         {
 
             //passive don't need to apply as they work on ticks
-            //scriptableModifier.OnApply(ownerCharacter, targetCharacter, ref affectedCharacters);
+            scriptableModifier.OnApply(ownerCharacter, targetCharacter, ref affectedCharacters);
             if(coroutine == null)
                 coroutine = targetCharacter.StartCoroutine(tickCoroutine(targetCharacter));
         }

@@ -23,7 +23,7 @@ public class EquipSlot : MonoBehaviour
         equippedSlot.Image.enabled = true;
         equippedSlot.InventoryItem = inventoryItem;
 
-        inventoryItem.ApplyModifiers(character, true);
+        inventoryItem.ApplyModifiers(character, inventoryItem?.Item, true);
     }
 
     public void UnequipItem()

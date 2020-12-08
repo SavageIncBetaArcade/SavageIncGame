@@ -64,6 +64,7 @@ public abstract class UseableAbility : MonoBehaviour
         {
             //override the modifiers to add the attack bonus 
             var attackModifier = ScriptableObject.CreateInstance<ScriptableStatModifier>();
+            attackModifier.Type = StatType.ATTACK;
             attackModifier.Amount = weapon.attack;
 
             var AbilityModifier = new AbilityModifier();
