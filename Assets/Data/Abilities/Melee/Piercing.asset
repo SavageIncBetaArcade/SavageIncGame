@@ -16,6 +16,7 @@ MonoBehaviour:
   Description: 
   Quote: Ye think armour kin stoap me? Bah!
   Sprite: {fileID: 21300000, guid: fe9ab7081872af644a15e3408594e890, type: 3}
+  modifiers: []
   AbilityLevel: 1
   EnergyCost: 10
   Cooldown: 40
@@ -24,7 +25,7 @@ MonoBehaviour:
   AddOwnerBaseAttack: 1
   OwnerBaseAttackScalar: 1
   HitModifierApplyPercentage: 0.5
-  UseAnimationCooldown: 1
+  UseAnimationCooldown: 0
   AbilityPrefab: {fileID: 6413331160640061430, guid: 58134d6b7489999438bb17f5140de9c1,
     type: 3}
   StartingModifiers:

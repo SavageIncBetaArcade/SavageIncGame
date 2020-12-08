@@ -133,43 +133,44 @@ public class AbilityHandSwitch : MonoBehaviour
             AbilitySlots[index] = ability;
             AbilityImages[index].sprite = slotSprite;
         }
-
-        if (index == 0)
-        {
-            // if the new ability is null then default to the players weapon (Base Attack)
-            if (!ability && BaseAbility)
-            {
-                WeaponItem weapon = inventoryItem?.Item as WeaponItem;
-                //if weapon is null try and get the weapon from the equiped slot instead
-                if(!weapon)
-                {
-                    switch (Hand)
-                    {
-                        case HandType.LEFT:
-                            weapon = inventoryHandler.itemInventory.leftWeaponSlot.equippedSlot.InventoryItem?.Item as WeaponItem;
-                            break;
-                        case HandType.RIGHT:
-                            weapon = inventoryHandler.itemInventory.rightWeaponSlot.equippedSlot.InventoryItem?.Item as WeaponItem;
-                            break;
-                        default:
-                            break;
-                    }
-                }
-
-                if(weapon)
-                    PlayerAbility?.SetWeapon(weapon, BaseAbility);
-                else
-                    PlayerAbility?.SetAbility(null);
-            }
-            else
-            {
-                PlayerAbility?.SetAbility(ability); //also set the players ability
-            }
-        }
         else
         {
             //index was -1 meaning there was no ability to be set so remove the current player ability
-            PlayerAbility?.SetAbility(null);
+            PlayerAbility?.SetAbility(null, null);
+        }
+
+        if (index == 0)
+        {
+            //get the equiped weapon
+                WeaponItem weapon = inventoryItem?.Item as WeaponItem;
+            //if weapon is null try and get the weapon from the equiped slot instead
+            if (!weapon)
+            {
+                switch (Hand)
+                {
+                    case HandType.LEFT:
+                        weapon = inventoryHandler.itemInventory.leftWeaponSlot.equippedSlot.InventoryItem?.Item as WeaponItem;
+                        break;
+                    case HandType.RIGHT:
+                        weapon = inventoryHandler.itemInventory.rightWeaponSlot.equippedSlot.InventoryItem?.Item as WeaponItem;
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+            // if the new ability is null then default to the players weapon (Base Attack)
+            if (!ability && BaseAbility)
+            {
+                if(weapon)
+                    PlayerAbility?.SetAbility(weapon, BaseAbility);
+                else
+                    PlayerAbility?.SetAbility(null, null);
+            }
+            else
+            {
+                PlayerAbility?.SetAbility(weapon,ability); //also set the players ability
+            }
         }
     }
 

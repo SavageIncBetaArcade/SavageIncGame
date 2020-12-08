@@ -55,35 +55,24 @@ public abstract class UseableAbility : MonoBehaviour
         }
     }
 
-    public void SetWeapon(WeaponItem weapon, ScriptableUseableAbility abilityBase)
-    {
-        Modifiers.Clear();
-
-        //override the modifiers to add the attack bonus 
-        var attackModifier = ScriptableObject.CreateInstance<ScriptableStatModifier>();
-        attackModifier.Amount = weapon.attack;
-
-        var AbilityModifier = new AbilityModifier();
-        AbilityModifier.Modifier = attackModifier;
-        AbilityModifier.Stage = ModifierStage.ACTION;
-        AbilityModifier.Target = ModifierTarget.CASTER;
-
-        Modifiers.Insert(0,AbilityModifier);
-        //Modifiers.Add()
-
-        ScriptableAbility = abilityBase;
-
-        if (worldGameObject)
-            Destroy(worldGameObject);
-
-        Initilise();
-    }
-
-    public void SetAbility(ScriptableUseableAbility newAbility)
+    public void SetAbility(WeaponItem weapon, ScriptableUseableAbility newAbility)
     {
         ScriptableAbility = newAbility;
         Modifiers.Clear();
 
+        if(weapon)
+        {
+            //override the modifiers to add the attack bonus 
+            var attackModifier = ScriptableObject.CreateInstance<ScriptableStatModifier>();
+            attackModifier.Amount = weapon.attack;
+
+            var AbilityModifier = new AbilityModifier();
+            AbilityModifier.Modifier = attackModifier;
+            AbilityModifier.Stage = ModifierStage.ACTION;
+            AbilityModifier.Target = ModifierTarget.CASTER;
+
+            Modifiers.Insert(0, AbilityModifier);
+        }
 
         if (worldGameObject)
             Destroy(worldGameObject);

@@ -51,8 +51,7 @@ public abstract class AttackAbility : BaseAbility
             useableAbility.InstantiateObject(hitEffect, hitPoint, Quaternion.identity);
         }
 
-        if(hitCharacter != null)
-            OnEndAttack?.Invoke(hitCharacter);
+        OnEndAttack?.Invoke(hitCharacter);
     }
 
     private CharacterBase GetParentCharacterBase(Transform currentTransform)

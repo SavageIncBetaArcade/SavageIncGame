@@ -65,7 +65,7 @@ public class ModifierHandler
     public void ApplyActionModifiers(CharacterBase characterBase, GameObject targetObject, Vector3 hitPoint,
         Vector3 hitDirection, Vector3 hitSurfaceNormal)
     {
-        if(actionModifiers.Count == 0)
+            if(actionModifiers.Count == 0)
             return;
 
         CharacterBase targetcharacter = actionModifiers[0].Target == ModifierTarget.TARGET ? targetObject.GetComponent<CharacterBase>() : characterBase;
