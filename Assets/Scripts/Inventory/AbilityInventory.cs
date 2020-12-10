@@ -9,7 +9,7 @@ public class AbilityInventory : Inventory
     public EquipSlot[] rightHand = new EquipSlot[4];
     public ScriptableUseableAbility[] StartingAbilities;
     public Text warningText;
-    public override string Title => "Abilities";
+    public override Sprite TitleImage => Resources.Load<Sprite>("Inventory/ability");
     
     void Start()
     {

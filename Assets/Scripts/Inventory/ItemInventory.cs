@@ -1,10 +1,12 @@
-﻿public class ItemInventory : Inventory
+﻿using UnityEngine;
+
+public class ItemInventory : Inventory
 {
     public EquipSlot armourSlot;
     public EquipSlot leftWeaponSlot;
     public EquipSlot rightWeaponSlot;
     public Item[] StartingItems;
-    public override string Title => "Inventory";
+    public override Sprite TitleImage => Resources.Load<Sprite>("Inventory/inventory");
 
     void Start()
     {

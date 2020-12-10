@@ -6,12 +6,12 @@ public abstract class InfoPopupHandler : MonoBehaviour, IPointerEnterHandler, IP
     protected virtual Item Item => null;
     public GameObject itemInfoPrefab;
     private Popup popup;
-    private Canvas canvas;
+    private GameObject canvas;
     private Rect canvasRect;
 
     private void Awake()
     {
-        canvas = FindObjectOfType<Canvas>();
+        canvas = FindObjectOfType<Canvas>().gameObject;
     }
 
     private void Start()
@@ -46,11 +46,13 @@ public abstract class InfoPopupHandler : MonoBehaviour, IPointerEnterHandler, IP
 
     private float PopupXPosition()
     {
-        var slotWidth = GetComponent<RectTransform>().rect.width;
-        var popupWidth = popup.GetComponent<RectTransform>().rect.width;
-        return CanvasContainsPopupWidth(popupWidth)
-            ? transform.position.x
-            : transform.position.x - popupWidth - slotWidth / 1.85f;
+        
+        var positionInRelationToCanvas = transform.position - canvas.transform.position;
+        if (positionInRelationToCanvas.x > 0) return transform.position.x - 400;
+        return transform.position.x;
+        // return CanvasContainsPopupWidth(popupWidth)
+        //     ? transform.position.x
+        //     : transform.position.x - popupWidth - slotWidth / 1.85f;
     }
     
     private bool CanvasContainsPopupWidth(float popupWidth)

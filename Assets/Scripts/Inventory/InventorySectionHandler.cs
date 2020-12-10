@@ -1,12 +1,13 @@
 ﻿using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class InventorySectionHandler : MonoBehaviour
 {
     public ItemInventory itemInventory;
     public AbilityInventory abilityInventory;
     public Inventory currentInventory;
-    public TextMeshProUGUI inventoryTitle;
+    public Image inventoryTitle;
 
     private void Start()
     {
@@ -18,7 +19,7 @@ public class InventorySectionHandler : MonoBehaviour
         currentInventory.gameObject.SetActive(false);
         SwitchTo(OtherInventory());
         currentInventory.gameObject.SetActive(true);
-        inventoryTitle.text = currentInventory.Title;
+        inventoryTitle.sprite = currentInventory.TitleImage;
     }
 
     private void SwitchTo(Inventory newInventory)

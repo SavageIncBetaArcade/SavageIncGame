@@ -6,7 +6,7 @@ public abstract class Inventory : MonoBehaviour
     public InventorySlot[] items = new InventorySlot[ItemSlotsAmount];
     public const int ItemSlotsAmount = 16;
     public CharacterBase character;
-    public abstract string Title { get; }
+    public abstract Sprite TitleImage { get; }
 
     public abstract void EquipLeftHand(InventoryItem itemToEquip);
     public abstract void EquipRightHand(InventoryItem itemToEquip);
