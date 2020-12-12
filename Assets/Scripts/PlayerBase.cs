@@ -12,25 +12,31 @@ public class PlayerBase : CharacterBase
     private bool onGround;
     private bool isCrouching;
 
+    private Vector3 lastPosition;
     protected override void Awake()
     {
         base.Awake();
         OnDeath += onDeath;
         Controller = GetComponent<CharacterController>();
+        lastPosition = transform.position;
     }
 
     protected override void Update()
     {
         base.Update();
 
-        if(!IsStunned)
+        if (!IsStunned)
             MovePlayer();
+
+        lastPosition = transform.position;
 
         //temp kill player
         if (Input.GetKeyDown(KeyCode.F5))
         {
             TakeDamage(float.MaxValue);
         }
+
+
     }
 
     void MovePlayer()
@@ -66,11 +72,11 @@ public class PlayerBase : CharacterBase
         //Check if sprinting and move
         if (Input.GetButton("Sprint") && !isCrouching)
         {
-            Controller.Move(move * (Speed * 1.5f) * Time.deltaTime);
+            Move(move * (Speed * 1.5f) * Time.deltaTime);
         }
         else
         {
-            Controller.Move(move * Speed * Time.deltaTime);
+            Move(move * Speed * Time.deltaTime);
         }
 
         //Check if jump pressed
@@ -82,7 +88,27 @@ public class PlayerBase : CharacterBase
 
         //Apply gravity
         playerVelocity.y += Gravity * Time.deltaTime;
+
         Controller.Move(playerVelocity * Time.deltaTime);
+    }
+
+    private void Move(Vector3 velocity)
+    {
+        Vector3 worldVelocity = velocity + (transform.position - lastPosition);
+        Vector3 normlisedVelocity = worldVelocity.normalized;
+
+        //check if the players velocity will result the player from going through a wall
+        RaycastHit hit;
+        Vector3 startRay = transform.position + (normlisedVelocity * Controller.radius);
+        if (Physics.Raycast(startRay, normlisedVelocity, out hit, worldVelocity.magnitude))
+        {
+            worldVelocity = normlisedVelocity * hit.distance;
+            Controller.Move(worldVelocity);
+        }
+        else
+        {
+            Controller.Move(velocity);
+        }
     }
 
     private void onDeath()
@@ -96,5 +122,12 @@ public class PlayerBase : CharacterBase
     {
         base.OnDestroy();
         OnDeath -= onDeath;
+    }
+
+    public override void PortalableObjectOnHasTeleported(Portal startPortal, Portal endPortal, Vector3 newposition, Quaternion newrotation)
+    {
+        base.PortalableObjectOnHasTeleported(startPortal, endPortal, newposition, newrotation);
+
+        lastPosition = newposition;
     }
 }
