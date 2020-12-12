@@ -17,13 +17,16 @@ public class RaycastInteractionTrigger : InteractionTrigger
     {
         base.Awake();
 
-        playerCamera = FindObjectOfType<PlayerCamera>().GetComponent<Camera>();
+        playerCamera = FindObjectOfType<PlayerCamera>()?.GetComponent<Camera>();
         boxCollider = GetComponent<BoxCollider>();
         boxCollider.isTrigger = true;
     }
 
     void Update()
     {
+        if (!playerCamera)
+            return;
+
         ShowPopupText(false);
 
         //raycast from center of camera and see if it hits this object
