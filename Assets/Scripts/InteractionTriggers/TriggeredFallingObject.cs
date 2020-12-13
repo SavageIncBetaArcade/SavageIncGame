@@ -38,7 +38,7 @@ public class TriggeredFallingObject : MonoBehaviour
         
     }
 
-    private void Trigger(bool triggered)
+    private void Trigger(bool triggered, InteractionTrigger trigger)
     {
         if (InteractionTrigger.AllTrue(Triggers))
         {

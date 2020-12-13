@@ -36,7 +36,7 @@ public class TriggeredDoorLock : MonoBehaviour
         }
     }
 
-    void onTrigger(bool triggered)
+    void onTrigger(bool triggered, InteractionTrigger trigger)
     {
         if(IsLocked)
             return;
@@ -54,7 +54,7 @@ public class TriggeredDoorLock : MonoBehaviour
         }
     }
 
-    void lockTrigger(bool triggered)
+    void lockTrigger(bool triggered, InteractionTrigger trigger)
     {
         if (!IsLocked)
         {
@@ -67,7 +67,7 @@ public class TriggeredDoorLock : MonoBehaviour
         }
     }
 
-    void unlockTrigger(bool triggered)
+    void unlockTrigger(bool triggered, InteractionTrigger trigger)
     {
         if (IsLocked)
         {
