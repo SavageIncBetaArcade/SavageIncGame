@@ -100,7 +100,7 @@ public class PlayerBase : CharacterBase
         //check if the players velocity will result the player from going through a wall
         RaycastHit hit;
         Vector3 startRay = transform.position + (normlisedVelocity * Controller.radius);
-        if (Physics.Raycast(startRay, normlisedVelocity, out hit, worldVelocity.magnitude))
+        if (Physics.Raycast(startRay, normlisedVelocity, out hit, worldVelocity.magnitude) && hit.collider.tag != "Portal")
         {
             worldVelocity = normlisedVelocity * hit.distance;
             Controller.Move(worldVelocity);
