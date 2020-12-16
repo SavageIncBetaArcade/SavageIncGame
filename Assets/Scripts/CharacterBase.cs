@@ -33,6 +33,8 @@ public class CharacterBase : MonoBehaviour, IDamageTaker
     public event DamageAction OnDamage;
     public delegate void HealAction();
     public event HealAction OnHeal;
+    public delegate void MaxHealthChange();
+    public event MaxHealthChange OnMaxHealthChange;
     public delegate void ReplenishEnergyAction();
     public event ReplenishEnergyAction OnReplenishEnergy;
 
@@ -64,6 +66,18 @@ public class CharacterBase : MonoBehaviour, IDamageTaker
     {
         get => maxEnergy;
         set => maxEnergy = value;
+    }
+    
+    public float CurrentHealth
+    {
+        get => currentHealth;
+        set => currentHealth = value;
+    }
+
+    public float CurrentEnergy
+    {
+        get => currentEnergy;
+        set => currentEnergy = value;
     }
 
 
@@ -129,6 +143,7 @@ public class CharacterBase : MonoBehaviour, IDamageTaker
                 break;
             case StatType.HEALTH:
                 MaxHealth += amount;
+                OnMaxHealthChange?.Invoke();
                 break;
             case StatType.ENERGY:
                 MaxEnergy += amount;
