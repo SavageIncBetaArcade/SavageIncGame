@@ -37,6 +37,10 @@ public class CharacterBase : MonoBehaviour, IDamageTaker
     public event MaxHealthChange OnMaxHealthChange;
     public delegate void ReplenishEnergyAction();
     public event ReplenishEnergyAction OnReplenishEnergy;
+    public delegate void LoseEnergyAction();
+    public event LoseEnergyAction OnLoseEnergy;
+    public delegate void MaxEnergyChange();
+    public event MaxEnergyChange OnMaxEnergyChange;
 
     private HashSet<Modifier> appliedModifiers;
     private PortalableObject portalableObject;
@@ -147,6 +151,7 @@ public class CharacterBase : MonoBehaviour, IDamageTaker
                 break;
             case StatType.ENERGY:
                 MaxEnergy += amount;
+            OnMaxEnergyChange?.Invoke();
                 break;
             case StatType.SPEED:
                 Speed += amount;
@@ -204,5 +209,11 @@ public class CharacterBase : MonoBehaviour, IDamageTaker
     {
         OnReplenishEnergy?.Invoke();
         currentEnergy = Mathf.Clamp(currentEnergy + amount, 0f, maxEnergy);
+    }
+    
+    public void LoseEnergy(float amount)
+    {
+        OnLoseEnergy?.Invoke();
+        currentEnergy = Mathf.Clamp(currentEnergy - amount, 0f, maxEnergy);
     }
 }
