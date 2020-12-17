@@ -6,7 +6,7 @@ using UnityEngine;
 [RequireComponent(typeof(AudioSource))]
 public class InteractionTrigger : MonoBehaviour, IInteractable
 {
-    public delegate void TriggerDelegate(bool triggered);
+    public delegate void TriggerDelegate(bool triggered, InteractionTrigger trigger);
     public event TriggerDelegate OnTrigger;
 
     public bool IsInteractable = false;
@@ -52,7 +52,7 @@ public class InteractionTrigger : MonoBehaviour, IInteractable
 
         }
 
-        OnTrigger?.Invoke(triggered);
+        OnTrigger?.Invoke(triggered, this);
 
         //play sound
         if(triggerSound)
@@ -78,7 +78,7 @@ public class InteractionTrigger : MonoBehaviour, IInteractable
             TriggerAnimator.SetBool(OnTriggerAnimation, triggered);
         }
 
-        OnTrigger?.Invoke(triggered);
+        OnTrigger?.Invoke(triggered, this);
     }
 
     public void ShowPopupText(bool active)

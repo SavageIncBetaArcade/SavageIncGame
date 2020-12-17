@@ -178,6 +178,13 @@
       },
       "url": "https://packages.unity.com"
     },
+    "li.lightingtools.lightprobesvolumes": {
+      "version": "https://github.com/laurenth-personal/LightingTools.LightProbesVolumes.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "b5914d9328d32087020d49aec462852fcb8fab26"
+    },
     "com.unity.modules.ai": {
       "version": "1.0.0",
       "depth": 0,

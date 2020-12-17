@@ -12,10 +12,12 @@ public class MovingPlatform : MonoBehaviour
     public bool InverseTriggers = true;
     public bool StartByDefault = true;
     public bool DefaultToStartPositon = true;
+    public float StartDelay = 0.0f;
 
 
     private Vector3 targetPosition;
     private bool isMoving;
+    private BoxCollider triggerCollider;
 
     public void Awake()
     {
@@ -26,11 +28,34 @@ public class MovingPlatform : MonoBehaviour
 
         transform.position = StartTransform.position;
         targetPosition = EndTransform.position;
-        isMoving = StartByDefault;
 
-        var collider = gameObject.AddComponent<BoxCollider>();
-        collider.isTrigger = true;
-        collider.size += Vector3.one * .25f;
+        triggerCollider = gameObject.AddComponent<BoxCollider>();
+        triggerCollider.isTrigger = true;
+
+        //get mesh renderer for bounds
+        MeshRenderer meshRenderer = GetComponent<MeshRenderer>();
+        const float colliderYOffset = 0.25f;
+        if (meshRenderer)
+        {
+            triggerCollider.center = new Vector3(0, meshRenderer.bounds.extents.y + (colliderYOffset*0.5f), 0);
+            triggerCollider.size = new Vector3(triggerCollider.size.x - colliderYOffset, colliderYOffset, triggerCollider.size.z - colliderYOffset);
+        }
+        else
+        {
+            triggerCollider.center = Vector3.up * colliderYOffset;
+            triggerCollider.size += new Vector3(-1, 1, -1) * colliderYOffset;
+        }
+
+        StartCoroutine(startDelay());
+    }
+
+    IEnumerator startDelay()
+    {
+        if (StartByDefault)
+        {
+            yield return new WaitForSeconds(StartDelay);
+            isMoving = true;
+        }
     }
 
     public void OnDestroy()
@@ -42,7 +67,7 @@ public class MovingPlatform : MonoBehaviour
     }
 
 
-    void togglePlatforms(bool triggered)
+    void togglePlatforms(bool triggered, InteractionTrigger trigger)
     {
         //check if all triggers are met
         isMoving = InverseTriggers ? InteractionTrigger.AllFalse(Triggers) :
@@ -65,19 +90,26 @@ public class MovingPlatform : MonoBehaviour
 
     void Update()
     {
-        transform.position = Vector3.MoveTowards(transform.position, targetPosition, Speed * Time.deltaTime);
-
-        if (isMoving && Vector3.Distance(transform.position, targetPosition) <= 0.1f)
+        if (isMoving)
         {
-            if (targetPosition == StartTransform.position)
-                targetPosition = EndTransform.position;
-            else
-                targetPosition = StartTransform.position;
+            float t = Mathf.Clamp(0.5f * (1 + Mathf.Sin(Time.time * Speed)), 0.01f, 0.99f);
+            transform.position = Vector3.Lerp(StartTransform.position, EndTransform.position, t);
+        }
+        else
+        {
+            Vector3 target = EndTransform.position;
+            if (DefaultToStartPositon)
+                target = StartTransform.position;
+
+            transform.position = Vector3.MoveTowards(transform.position, target, Speed * Time.deltaTime);
         }
     }
 
     private void OnTriggerStay(Collider collision)
     {
+        if (!triggerCollider.bounds.Intersects(collision.bounds))
+            return;
+
         var playerTransform = GetPlayerTransformFromParent(collision.gameObject.transform);
         if (playerTransform)
         {

@@ -9,6 +9,7 @@ TagManager:
   - InventorySlot
   - PlayerCollider
   - InteractionText
+  - Portal
   layers:
   - Default
   - TransparentFX
