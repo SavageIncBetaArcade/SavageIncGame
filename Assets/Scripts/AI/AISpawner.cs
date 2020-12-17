@@ -19,8 +19,8 @@ public class AISpawner : MonoBehaviour
     public AIBase SpawnAI;
     public Transform SpawnPoint;
     public bool SpawnEnemies;
-    public float SpawnFrequency = 5;
-    public int SpawnLimit = 3;
+    public float SpawnFrequency = 10.0f;
+    public int SpawnLimit = 10;
 
     [SerializeField]
     private CompleteState completeState;
