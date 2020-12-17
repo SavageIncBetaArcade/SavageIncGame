@@ -43,26 +43,26 @@ public class FaceRotationPuzzle : InteractionTrigger
             coroutine = StartCoroutine(rotate(trigger.transform));
     }
 
-    IEnumerator rotate(Transform transform)
+    IEnumerator rotate(Transform puzzleTransform)
     {
         float t = 0;
-        Quaternion startRotation = transform.rotation;
+        Quaternion startRotation = puzzleTransform.rotation;
         Quaternion endRotation = startRotation * Quaternion.Euler(RotationAxis * rotateAmount);
 
         while (t < 1.0f)
         {
-            transform.rotation = Quaternion.Slerp(startRotation, endRotation, t);
+            puzzleTransform.rotation = Quaternion.Slerp(startRotation, endRotation, t);
             t += Time.deltaTime * RotateSpeed;
             yield return new WaitForEndOfFrame();
         }
-        transform.rotation = Quaternion.Lerp(startRotation, endRotation, 1.0f);
+        puzzleTransform.rotation = Quaternion.Lerp(startRotation, endRotation, 1.0f);
 
         //check if all objects rotations meet the expected rotation
         bool completed = true;
         foreach (var puzzleObject in PuzzleObjects)
         {
             Vector3 rotation = Vector3.Scale(puzzleObject.transform.rotation.eulerAngles, RotationAxis);
-            if (rotation != ExpectedRotation)
+            if (Vector3.Distance(rotation, ExpectedRotation) > 1.0f)
             {
                 completed = false;
                 break;
