@@ -11,6 +11,10 @@ public class Portal : MonoBehaviour
 
     public Portal[] TargetPortal;
 
+    public InteractionTrigger[] Triggers;
+
+    public int TargetPortalOnTrigger;
+
     public Transform NormalVisible;
 
     public Transform NormalInvisible;
@@ -34,7 +38,7 @@ public class Portal : MonoBehaviour
     public Transform OffMeshLinkRef2;
     public int OffMeshLinkArea;
     private readonly List<PortalOffMeshLink> offMeshLinks = new List<PortalOffMeshLink>();
-
+    private int previousTargetPortal = 0; //previous target portal before the trigger was set
     
 
     private struct PortalOffMeshLink
@@ -61,6 +65,11 @@ public class Portal : MonoBehaviour
             {
                 RefTransform = newTransform
             });
+        }
+
+        foreach (var trigger in Triggers)
+        {
+            trigger.OnTrigger += checkTriggers;
         }
     }
 
@@ -447,8 +456,26 @@ public class Portal : MonoBehaviour
 
     private void OnDestroy()
     {
+        foreach (var trigger in Triggers)
+        {
+            trigger.OnTrigger -= checkTriggers;
+        }
+
         // Destroy cloned material 
         Destroy(viewthroughMaterial);
         
+    }
+
+    private void checkTriggers(bool triggered, InteractionTrigger trigger)
+    {
+        if(InteractionTrigger.AllTrue(Triggers))
+        {
+            previousTargetPortal = TargetPortalIndex;
+            TargetPortalIndex = TargetPortalOnTrigger;
+        }
+        else
+        {
+            TargetPortalIndex = previousTargetPortal;
+        }
     }
 }
