@@ -27,10 +27,21 @@ public class CharacterBase : MonoBehaviour, IDamageTaker
     [SerializeField] 
     private float currentStunTime = 0.0f;
 
+    protected bool onGround;
+
     [SerializeField]
     private AudioClip[] HitSounds;
+    [SerializeField]
+    private AudioClip[] FootstepSounds;
+
+    [SerializeField]
+    private AudioSource CharacterTravelAudioSource;
+    [SerializeField]
+    private float PlayTravelAudioDistance = 0.75f; //distance needed to travel to play travel sound (footsteps)
+    private Vector3 lastTravelSoundPlayed;
+
     protected AudioSource CharacterAudio;
-    
+
     public delegate void DeathAction();
     public event DeathAction OnDeath;
     public delegate void DamageAction();
@@ -128,6 +139,15 @@ public class CharacterBase : MonoBehaviour, IDamageTaker
     protected virtual void Update()
     {
         CurrentStunTime = Mathf.Max(currentStunTime -= Time.deltaTime, 0);
+
+        //travelSounds
+        if (CharacterTravelAudioSource && FootstepSounds != null && FootstepSounds.Length > 0
+            && onGround
+            && Vector3.Distance(lastTravelSoundPlayed,transform.position) >= PlayTravelAudioDistance)
+        {
+            CharacterTravelAudioSource.PlayOneShot(FootstepSounds[UnityEngine.Random.Range(0,FootstepSounds.Length)]);
+            lastTravelSoundPlayed = transform.position;
+        }
     }
 
     public virtual void PortalableObjectOnHasTeleported(Portal startPortal, Portal endPortal, Vector3 newposition, Quaternion newrotation)

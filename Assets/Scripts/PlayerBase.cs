@@ -7,7 +7,6 @@ public class PlayerBase : CharacterBase
     public CharacterController Controller;
 
     private Vector3 playerVelocity;
-    private bool onGround;
     private bool isCrouching;
 
     private Vector3 lastPosition;
