@@ -26,6 +26,10 @@ public class CharacterBase : MonoBehaviour, IDamageTaker
     private float currentHealth, currentEnergy;
     [SerializeField] 
     private float currentStunTime = 0.0f;
+
+    [SerializeField]
+    private AudioClip[] HitSounds;
+    protected AudioSource CharacterAudio;
     
     public delegate void DeathAction();
     public event DeathAction OnDeath;
@@ -117,6 +121,8 @@ public class CharacterBase : MonoBehaviour, IDamageTaker
         portalableObject.HasTeleported += PortalableObjectOnHasTeleported;
         currentHealth = maxHealth;
         currentEnergy = maxEnergy;
+
+        CharacterAudio = GetComponent<AudioSource>();
     }
 
     protected virtual void Update()
@@ -197,6 +203,14 @@ public class CharacterBase : MonoBehaviour, IDamageTaker
         currentHealth = Mathf.Clamp((float)(currentHealth - attackDamage * Math.Pow(0.95, defenseModifier)), 0f, maxHealth);
         OnDamage?.Invoke();
         if (currentHealth == 0) OnDeath?.Invoke();
+
+        //play hit sound
+        if (CharacterAudio != null && HitSounds != null && HitSounds.Length > 0)
+        {
+            int clipIndex = UnityEngine.Random.Range(0, HitSounds.Length);
+            CharacterAudio.clip = HitSounds[clipIndex];
+            CharacterAudio.Play();
+        }
     }
 
     public void Heal(float amount)

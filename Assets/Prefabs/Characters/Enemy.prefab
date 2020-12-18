@@ -365,6 +365,10 @@ MonoBehaviour:
   currentHealth: 0
   currentEnergy: 0
   currentStunTime: 0
+  HitSounds:
+  - {fileID: 8300000, guid: 5f33b7833cb0bf940b07f61ccd6da5a1, type: 3}
+  - {fileID: 8300000, guid: 96e3ebf3d293101429e2ef69bfc17ff8, type: 3}
+  - {fileID: 8300000, guid: 23e138c33e597824f9db144d20676cae, type: 3}
   SenseRange: 60
   AngleOfVision: 45
   WalkDistance: 25
@@ -381,7 +385,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 3a65c85fbdc83b349a7ff1965ea68807, type: 2}
   LeftAbility: {fileID: 2814292696255349303}
   RightAbilitiy: {fileID: 1597093902022731646}
-  AIAudioSource: {fileID: 6217176637668087290}
   Audio:
   - StateName: 1
     Clips:
@@ -395,6 +398,13 @@ MonoBehaviour:
     - {fileID: 8300000, guid: cd4e998ae7d4d1344a3e9a39db8ea40c, type: 3}
     MinQueueTime: 5
     MaxQueueTime: 15
+  - StateName: 2
+    Clips:
+    - {fileID: 8300000, guid: d340b4b102eb90847b426d088541c7ce, type: 3}
+    - {fileID: 8300000, guid: 114119ce84abab54a99eeaf69a26bf98, type: 3}
+    - {fileID: 8300000, guid: 7a9e3e87f0b127149854756523967748, type: 3}
+    MinQueueTime: 1
+    MaxQueueTime: 5
 --- !u!114 &5227494470786299039
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -466,8 +476,8 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.6
-  m_Pitch: 1
+  m_Volume: 0.8
+  m_Pitch: 0.95
   Loop: 0
   Mute: 0
   Spatialize: 0
@@ -475,7 +485,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 30
+  MaxDistance: 50
   Pan2D: 0
   rolloffMode: 2
   BypassEffects: 0
@@ -512,7 +522,7 @@ AudioSource:
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
-      time: 0.4
+      time: 0.3601288
       value: 0.07611084
       inSlope: -0.31262448
       outSlope: -0.31262448
@@ -521,14 +531,23 @@ AudioSource:
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
-      time: 0.7601288
-      value: 0.009780884
+      time: 0.5275696
+      value: 0.02444458
       inSlope: -0.07815612
       outSlope: -0.07815612
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
       outWeight: 0
+    - serializedVersion: 3
+      time: 0.81048626
+      value: 0.011126842
+      inSlope: -0.021586908
+      outSlope: -0.021586908
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
     - serializedVersion: 3
       time: 1
       value: 0

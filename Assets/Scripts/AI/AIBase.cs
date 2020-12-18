@@ -36,7 +36,6 @@ public class AIBase : CharacterBase
     private GameObject player;
     public Vector3? currentDestination;
 
-    public AudioSource AIAudioSource;
     public AIAudio[] Audio;
     private float audioQueueTimer = 0.0f;
     private float nextAudioQueueTime;
@@ -69,8 +68,6 @@ public class AIBase : CharacterBase
 
         //TODO when speed changes also set the navAgentSpeed
         navAgent.speed = Speed;
-
-        AIAudioSource = GetComponent<AudioSource>();
     }
 
     protected override void Update()
@@ -85,7 +82,7 @@ public class AIBase : CharacterBase
         }
 
         //audio queue
-        if (!AIAudioSource) return;
+        if (!CharacterAudio) return;
 
         var AiStateAudio = Audio.FirstOrDefault(x => x.StateName == stackOfStates.GetCurrentState().StateName);
         if (AiStateAudio.Clips != null && AiStateAudio.Clips.Length > 0)
@@ -95,12 +92,12 @@ public class AIBase : CharacterBase
                 nextAudioQueueTime = Random.Range(AiStateAudio.MinQueueTime, AiStateAudio.MaxQueueTime);
             }
 
-            if (audioQueueTimer >= nextAudioQueueTime && !AIAudioSource.isPlaying)
+            if (audioQueueTimer >= nextAudioQueueTime && !CharacterAudio.isPlaying)
             {
                 //pick random audio clip
                 int audioClipIndex = Random.Range(0, AiStateAudio.Clips.Length);
-                AIAudioSource.clip = AiStateAudio.Clips[audioClipIndex];
-                AIAudioSource.Play();
+                CharacterAudio.clip = AiStateAudio.Clips[audioClipIndex];
+                CharacterAudio.Play();
                 nextAudioQueueTime = 0.0f;
                 audioQueueTimer = 0.0f;
             }
