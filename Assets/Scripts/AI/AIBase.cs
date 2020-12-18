@@ -4,6 +4,17 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
 
+[System.Serializable]
+public struct AIAudio
+{
+    public StateNames StateName;
+    public AudioClip[] Clips;
+
+    public float MinQueueTime;
+    public float MaxQueueTime;
+}
+
+[RequireComponent(typeof(AudioSource))]
 public class AIBase : CharacterBase
 {
     #region member varibles
@@ -24,6 +35,11 @@ public class AIBase : CharacterBase
     private StackFSM stackOfStates;
     private GameObject player;
     public Vector3? currentDestination;
+
+    public AudioSource AIAudioSource;
+    public AIAudio[] Audio;
+    private float audioQueueTimer = 0.0f;
+    private float nextAudioQueueTime;
     #endregion
 
     #region Properties
@@ -53,6 +69,8 @@ public class AIBase : CharacterBase
 
         //TODO when speed changes also set the navAgentSpeed
         navAgent.speed = Speed;
+
+        AIAudioSource = GetComponent<AudioSource>();
     }
 
     protected override void Update()
@@ -64,6 +82,29 @@ public class AIBase : CharacterBase
             State idle = PotentialStates.FirstOrDefault(x => x.StateName == StateNames.IdleState);
             if (idle)
                 stackOfStates.PushState(idle);
+        }
+
+        //audio queue
+        if (!AIAudioSource) return;
+
+        var AiStateAudio = Audio.FirstOrDefault(x => x.StateName == stackOfStates.GetCurrentState().StateName);
+        if (AiStateAudio.Clips != null && AiStateAudio.Clips.Length > 0)
+        {
+            if(nextAudioQueueTime <= 0.0f)
+            {
+                nextAudioQueueTime = Random.Range(AiStateAudio.MinQueueTime, AiStateAudio.MaxQueueTime);
+            }
+
+            if (audioQueueTimer >= nextAudioQueueTime && !AIAudioSource.isPlaying)
+            {
+                //pick random audio clip
+                int audioClipIndex = Random.Range(0, AiStateAudio.Clips.Length);
+                AIAudioSource.clip = AiStateAudio.Clips[audioClipIndex];
+                AIAudioSource.Play();
+                nextAudioQueueTime = 0.0f;
+                audioQueueTimer = 0.0f;
+            }
+            audioQueueTimer += Time.deltaTime;
         }
     }
 
