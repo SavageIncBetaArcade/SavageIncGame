@@ -11,7 +11,7 @@ public abstract class InfoPopupHandler : MonoBehaviour, IPointerEnterHandler, IP
 
     private void Awake()
     {
-        canvas = FindObjectOfType<Canvas>().gameObject;
+        canvas = GameObject.FindGameObjectWithTag("UICanvas")?.GetComponent<Canvas>().gameObject;
     }
 
     private void Start()
