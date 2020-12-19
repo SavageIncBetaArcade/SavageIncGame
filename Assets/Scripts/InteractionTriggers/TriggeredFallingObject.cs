@@ -38,10 +38,11 @@ public class TriggeredFallingObject : MonoBehaviour
         
     }
 
-    private void Trigger(bool triggered)
+    private void Trigger(bool triggered, InteractionTrigger trigger)
     {
         if (InteractionTrigger.AllTrue(Triggers))
         {
+            FindObjectOfType<PlayerCamera>()?.ShakePosition(FallDelay, new Vector2(0.4f, 0.2f), -0.1f, 0.01f, 7.5f);
             StartCoroutine(Fall());
         }
     }
@@ -57,6 +58,8 @@ public class TriggeredFallingObject : MonoBehaviour
         if (!impacted)
         {
             ImpactAudioSource?.Play();
+            //add a shake once method for impacts
+            FindObjectOfType<PlayerCamera>()?.ShakePosition(0.1f, new Vector2(0.2f, 0.8f), -0.01f, 0.1f, 20.0f);
             impacted = true;
         }
     }

@@ -31,7 +31,7 @@ public class TriggeredTranslate : MonoBehaviour
         }
     }
 
-    private void translate(bool triggered)
+    private void translate(bool triggered, InteractionTrigger trigger)
     {
         //check if all triggers are met
         if (InteractionTrigger.AnyFalse(Triggers))

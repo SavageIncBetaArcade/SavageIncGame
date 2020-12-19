@@ -5,8 +5,8 @@ using UnityEngine;
 public class BossSystem : MonoBehaviour
 {
     public InteractionTrigger[] freezePads;
+    public InteractionTrigger[] wobblyPlatforms;
     public AIBase Boss;
-    bool bossImmobile = false;
     float immobileTimer = 0.0f;
     bool freezePadsStarted = false;
     float freezeTimer = 0.0f;
@@ -24,18 +24,26 @@ public class BossSystem : MonoBehaviour
         float healthPercentage = Boss.CurrentHealth / Boss.MaxHealth;
         if (healthPercentage < 0.25f)
         {
+            foreach (var floor in wobblyPlatforms)
+            {
+                floor.IsInteractable =  false;
+            }
             GetComponent<AISpawner>().SpawnEnemies = false;
         }
         else if (healthPercentage < 0.6f)
         {
+            foreach(var floor in wobblyPlatforms)
+            {
+                floor.IsInteractable = true;
+            }
             GetComponent<AISpawner>().SpawnEnemies = true;
         }
 
-        if (bossImmobile)
+        if (Boss.BossStopped)
         {
             if (immobileTimer <= 0.0f)
             {
-                bossImmobile = false;
+                Boss.BossStopped = false;
             }
             immobileTimer -= Time.deltaTime;
         }
@@ -58,7 +66,7 @@ public class BossSystem : MonoBehaviour
         }
         if (InteractionTrigger.AllTrue(freezePads))
         {
-            bossImmobile = true;
+            Boss.BossStopped = true;
             immobileTimer = 6.0f;
         }
     }

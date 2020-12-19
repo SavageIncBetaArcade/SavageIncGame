@@ -10,15 +10,22 @@ public class PlayerCamera : MonoBehaviour
     private float xRotation = 0f;
     private CharacterBase playerCharacterBase;
 
+    Vector3 originalPos;
+    private Coroutine continousShakeCoroutine;
+
     void Awake()
     {
         if (PlayerBody != null)
             playerCharacterBase = PlayerBody.GetComponent<CharacterBase>();
+
+        originalPos = transform.localPosition;
     }
 
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
+
+
     }
 
     void Update()
@@ -52,22 +59,31 @@ public class PlayerCamera : MonoBehaviour
         PlayerBody.Rotate(Vector3.up * mouseX);
     }
 
-    public IEnumerator ShakePosition(float duration, Vector2 magnitude, float minDeviation, float maxDeviation)
+    public void ShakePosition(float duration, Vector2 magnitude, float minDeviation, float maxDeviation, float roughness = 1.0f)
     {
-        Vector3 originalPos = transform.localPosition;
+        if (continousShakeCoroutine != null)
+        {
+            StopCoroutine(continousShakeCoroutine);
+            transform.localPosition = originalPos;
+        }
 
+        continousShakeCoroutine = StartCoroutine(shakePosition(duration,magnitude,minDeviation,maxDeviation,roughness));
+    }
+
+    private IEnumerator shakePosition(float duration, Vector2 magnitude, float minDeviation, float maxDeviation, float roughness)
+    {
         float elapsed = 0.0f;
 
         while (elapsed < duration)
         {
-            float x = Random.Range(minDeviation, maxDeviation) * (magnitude.x / 100);
-            float y = Random.Range(minDeviation, maxDeviation) * (magnitude.y / 100);
+            float x = Random.Range(minDeviation, maxDeviation) * (magnitude.x);
+            float y = Random.Range(minDeviation, maxDeviation) * (magnitude.y);
 
-            transform.localPosition = new Vector3(x, y, originalPos.z);
+            transform.localPosition = originalPos + Vector3.MoveTowards(Vector3.zero, new Vector3(x, y, originalPos.z), roughness * Time.deltaTime);
 
             elapsed += Time.deltaTime;
 
-            yield return null;
+            yield return new WaitForEndOfFrame();
         }
 
         transform.localPosition = originalPos;

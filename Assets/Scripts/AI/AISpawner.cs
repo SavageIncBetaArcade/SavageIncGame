@@ -62,7 +62,7 @@ public class AISpawner : MonoBehaviour
         }
     }
 
-    void checkSpawnTriggers(bool triggered)
+    void checkSpawnTriggers(bool triggered, InteractionTrigger trigger)
     {
         //check if all triggers are met if so invert spawn enemies
         if (InteractionTrigger.AllTrue(SpawnTriggers))
@@ -71,7 +71,7 @@ public class AISpawner : MonoBehaviour
         }
     }
 
-    void checkStopTriggers(bool triggered)
+    void checkStopTriggers(bool triggered, InteractionTrigger trigger)
     {
         //check if all triggers are met if so invert spawn enemies
         if (InteractionTrigger.AllTrue(StopTriggers))

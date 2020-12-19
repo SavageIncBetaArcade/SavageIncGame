@@ -194,26 +194,26 @@ public class CharacterBase : MonoBehaviour, IDamageTaker
 
     public void TakeDamage(float attackDamage)
     {
-        OnDamage?.Invoke();
         currentHealth = Mathf.Clamp((float)(currentHealth - attackDamage * Math.Pow(0.95, defenseModifier)), 0f, maxHealth);
+        OnDamage?.Invoke();
         if (currentHealth == 0) OnDeath?.Invoke();
     }
 
     public void Heal(float amount)
     {
-        OnHeal?.Invoke();
         currentHealth = Mathf.Clamp(currentHealth + amount, 0f, maxHealth);
+        OnHeal?.Invoke();
     }
 
     public void ReplenishEnergy(float amount)
     {
-        OnReplenishEnergy?.Invoke();
         currentEnergy = Mathf.Clamp(currentEnergy + amount, 0f, maxEnergy);
+        OnReplenishEnergy?.Invoke();
     }
     
     public void LoseEnergy(float amount)
     {
-        OnLoseEnergy?.Invoke();
         currentEnergy = Mathf.Clamp(currentEnergy - amount, 0f, maxEnergy);
+        OnLoseEnergy?.Invoke();
     }
 }

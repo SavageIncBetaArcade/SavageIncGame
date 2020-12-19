@@ -9,6 +9,8 @@ TagManager:
   - InventorySlot
   - PlayerCollider
   - InteractionText
+  - Portal
+  - UICanvas
   layers:
   - Default
   - TransparentFX

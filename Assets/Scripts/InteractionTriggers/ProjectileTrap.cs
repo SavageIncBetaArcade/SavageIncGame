@@ -27,7 +27,7 @@ public class ProjectileTrap : MonoBehaviour
         }
     }
 
-    private void fire(bool triggered)
+    private void fire(bool triggered, InteractionTrigger trigger)
     {
         if(!triggered || !Projectile || !Origin)
             return;
