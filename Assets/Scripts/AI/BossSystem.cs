@@ -18,7 +18,7 @@ public class BossSystem : MonoBehaviour
             trigger.OnTrigger += checkFreezePads;
         }
     }
-
+    
     private void Update()
     {
         float healthPercentage = Boss.CurrentHealth / Boss.MaxHealth;
@@ -57,7 +57,7 @@ public class BossSystem : MonoBehaviour
         }
     }
 
-    void checkFreezePads(bool triggered)
+    private void checkFreezePads(bool triggered, InteractionTrigger trigger)
     {
         if (!freezePadsStarted)
         {
