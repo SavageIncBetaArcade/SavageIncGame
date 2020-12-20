@@ -16,6 +16,7 @@ MonoBehaviour:
   Description: 
   Quote: A'm getting a brainfreeze awready.
   Sprite: {fileID: 21300000, guid: 7119c8c9e666bd545b3eb5a945f80405, type: 3}
+  modifiers: []
   AbilityLevel: 1
   EnergyCost: 5
   Cooldown: 1.5
@@ -31,8 +32,11 @@ MonoBehaviour:
   - Modifier: {fileID: 11400000, guid: 361591a8829e1df49b99565ed0154152, type: 2}
     Stage: 1
     Target: 1
-  HitEffects:
-  - {fileID: 3966173770737333436, guid: ef64ab604ff1bfd4191862dc59f2b9a1, type: 3}
+  CharacterHitEffects:
+  - {fileID: 3966173770737333436, guid: 19f14c029458e0040a6d03f54c48128c, type: 3}
+  ObjectHitEffects:
+  - {fileID: 3966173770737333436, guid: 19f14c029458e0040a6d03f54c48128c, type: 3}
+  UseSound: {fileID: 8300000, guid: 4e219fab5f8cbc8429374c8f316e7934, type: 3}
   ProjectileGameObject: {fileID: 6167524000098639644, guid: 0f3f788ede81c1f4287b597822cce14f,
     type: 3}
   GravityAffected: 0
