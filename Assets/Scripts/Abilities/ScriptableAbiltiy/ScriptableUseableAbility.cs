@@ -29,6 +29,7 @@ public class ScriptableUseableAbility : Item
     public GameObject AbilityPrefab;
     public AbilityModifier[] StartingModifiers;
     public GameObject[] HitEffects;
+    public AudioClip UseSound;
     
     public override string GetInfoDescription()
     {

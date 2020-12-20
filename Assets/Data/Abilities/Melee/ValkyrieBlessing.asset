@@ -16,6 +16,7 @@ MonoBehaviour:
   Description: 
   Quote: Come valkyrie, heal me. Na!!! Dinnae tak'; me awa' yit! Cheers.
   Sprite: {fileID: 21300000, guid: a53c610fdaa67d147a255af63ea100b8, type: 3}
+  modifiers: []
   AbilityLevel: 1
   EnergyCost: 15
   Cooldown: 0
@@ -33,4 +34,5 @@ MonoBehaviour:
     Target: 0
   HitEffects:
   - {fileID: 3966173770737333436, guid: ef64ab604ff1bfd4191862dc59f2b9a1, type: 3}
+  UseSound: {fileID: 8300000, guid: 6ba39bac8f594f14ba5ab5fd9eba9c18, type: 3}
   Damage: 5

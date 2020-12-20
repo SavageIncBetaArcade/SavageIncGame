@@ -17,6 +17,7 @@ MonoBehaviour:
   Quote: A' mah enemies' blood mak's a crakin' protection jaiket. Whit a bunch o'
     crakin' guys!
   Sprite: {fileID: 0}
+  modifiers: []
   AbilityLevel: 1
   EnergyCost: 10
   Cooldown: 15
@@ -34,4 +35,5 @@ MonoBehaviour:
     Target: 0
   HitEffects:
   - {fileID: 3966173770737333436, guid: ef64ab604ff1bfd4191862dc59f2b9a1, type: 3}
+  UseSound: {fileID: 8300000, guid: 6ba39bac8f594f14ba5ab5fd9eba9c18, type: 3}
   Damage: 5
