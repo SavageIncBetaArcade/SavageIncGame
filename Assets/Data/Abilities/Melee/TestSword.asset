@@ -29,7 +29,7 @@ MonoBehaviour:
   AbilityPrefab: {fileID: 6413331160640061430, guid: d8a2c8b5db33a0c458d11973247bd455,
     type: 3}
   StartingModifiers: []
-  HitEffects:
+  CharacterHitEffects:
   - {fileID: 3966173770737333436, guid: ef64ab604ff1bfd4191862dc59f2b9a1, type: 3}
   UseSound: {fileID: 8300000, guid: 6ba39bac8f594f14ba5ab5fd9eba9c18, type: 3}
   Damage: 5

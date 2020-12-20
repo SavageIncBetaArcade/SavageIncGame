@@ -43,13 +43,17 @@ public abstract class AttackAbility : BaseAbility
         if (!hitCharacter)
         {
             Debug.Log($"Character:{OwnerCharacter.name} hit with:{Ability.Name} dealing:{damageDealt} to non character object");
+            foreach (var hitEffect in Ability.ObjectHitEffects)
+            {
+                useableAbility.InstantiateObject(hitEffect, hitPoint, Quaternion.identity);
+            }
         }
         else if (hitCharacter != OwnerCharacter)
         {
             hitCharacter.TakeDamage(damageDealt);
             Debug.Log($"Character:{OwnerCharacter.name} hit character:{hitCharacter.name} with:{Ability.Name} dealing:{damageDealt}, target def:{hitCharacter.DefenseModifier}");
 
-            foreach (var hitEffect in Ability.HitEffects)
+            foreach (var hitEffect in Ability.CharacterHitEffects)
             {
                 useableAbility.InstantiateObject(hitEffect, hitPoint, Quaternion.identity);
             }
