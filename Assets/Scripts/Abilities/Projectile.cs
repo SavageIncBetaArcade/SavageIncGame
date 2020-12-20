@@ -17,6 +17,11 @@ public class Projectile : MonoBehaviour
     [SerializeField]
     private float RangeCutoff = 100.0f;
 
+    [SerializeField]
+    private AudioClip ImpactSound;
+    [SerializeField]
+    private AudioSource ImpactAudioSource;
+
     private Vector3 startPosition;
     private Rigidbody projectileRigidbody;
     private PortalableObject portalableObject;
@@ -71,8 +76,33 @@ public class Projectile : MonoBehaviour
             castersProjectileAbility.Hit(hitGameObject, projectileAbility != null ? projectileAbility.Damage : 0.0f,
                 hitPoint, transform.forward, hitNormal);
         }
+        else
+        {
+            CharacterBase hitCharacter = AttackAbility.GetParentCharacterBase(hitGameObject.transform);
+            if (hitCharacter)
+            {
+                hitCharacter.TakeDamage(damage);
+            }
 
-        Destroy(gameObject);
+            if (ImpactSound && ImpactAudioSource)
+            {
+                ImpactAudioSource.PlayOneShot(ImpactSound);
+            }
+        }
+
+        if (ImpactSound)
+        {
+            transform.GetComponent<MeshRenderer>().enabled = false;
+            transform.GetComponent<SphereCollider>().enabled = false;
+            this.enabled = false;
+            for (int i = 0; i < transform.childCount-1; i++)
+            {
+                transform.GetChild(i).gameObject.SetActive(false);
+            }
+            Destroy(gameObject, ImpactSound.length);
+        }
+        else
+            Destroy(gameObject);
     }
 
     public void SetCastersProjectileAbilty(ProjectileAbility projectileAbility)

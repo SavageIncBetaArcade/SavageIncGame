@@ -62,7 +62,7 @@ public abstract class AttackAbility : BaseAbility
         OnEndAttack?.Invoke(hitCharacter);
     }
 
-    private CharacterBase GetParentCharacterBase(Transform currentTransform)
+    public static CharacterBase GetParentCharacterBase(Transform currentTransform)
     {
         CharacterBase characterBase = currentTransform.GetComponent<CharacterBase>();
         if (characterBase)
