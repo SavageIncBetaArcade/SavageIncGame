@@ -120,7 +120,8 @@ public abstract class UseableAbility : MonoBehaviour
         if (!IsValid())
             return;
 
-        UseAudioSource?.PlayOneShot(ScriptableAbility.UseSound);
+        if(UseAudioSource && ScriptableAbility.UseSound)
+            UseAudioSource.PlayOneShot(ScriptableAbility.UseSound);
 
         if (useCoroutine != null)
             StopCoroutine(useCoroutine);
