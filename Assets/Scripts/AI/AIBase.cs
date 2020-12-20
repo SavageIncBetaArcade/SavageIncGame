@@ -82,7 +82,7 @@ public class AIBase : CharacterBase
         }
 
         //audio queue
-        if (CharacterAudio) return;
+        if (!CharacterAudio) return;
 
         var AiStateAudio = Audio.FirstOrDefault(x => x.StateName == stackOfStates.GetCurrentState().StateName);
         if (AiStateAudio.Clips != null && AiStateAudio.Clips.Length > 0)
