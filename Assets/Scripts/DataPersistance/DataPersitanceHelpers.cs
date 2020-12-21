@@ -37,9 +37,34 @@ public class DataPersitanceHelpers
             if (dictionary == null || !dictionary.ContainsKey(key))
                 return default(T);
 
+            switch(Type.GetTypeCode(typeof(T)))
+            {
+                case TypeCode.Boolean:
+                    return (T)Convert.ChangeType(bool.Parse(dictionary[key].ToString()), typeof(T));
+                case TypeCode.Int16:
+                    return (T)Convert.ChangeType(short.Parse(dictionary[key].ToString()), typeof(T));
+                case TypeCode.Int32:
+                    return (T)Convert.ChangeType(int.Parse(dictionary[key].ToString()), typeof(T));
+                case TypeCode.Int64:
+                    return (T)Convert.ChangeType(long.Parse(dictionary[key].ToString()), typeof(T));
+                case TypeCode.UInt16:
+                    return (T)Convert.ChangeType(ushort.Parse(dictionary[key].ToString()), typeof(T));
+                case TypeCode.UInt32:
+                    return (T)Convert.ChangeType(uint.Parse(dictionary[key].ToString()), typeof(T));
+                case TypeCode.UInt64:
+                    return (T)Convert.ChangeType(ulong.Parse(dictionary[key].ToString()), typeof(T));
+                case TypeCode.Single:
+                    return (T)Convert.ChangeType(float.Parse(dictionary[key].ToString()), typeof(T));
+                case TypeCode.Double:
+                    return (T)Convert.ChangeType(double.Parse(dictionary[key].ToString()), typeof(T));
+            }
+
             var jObject = dictionary[key] as JObject;
 
-            return jObject.ToObject<T>();
+            if (jObject != null)
+                return jObject.ToObject<T>();
+
+            return default(T);
         }
         catch (Exception ex)
         {
@@ -101,7 +126,7 @@ public class DataPersitanceHelpers
         SaveValueToDictionary(ref dictionary, key, transformInfo);
     }
 
-    public static void LoadTransform(ref Dictionary<string, object> dictionary, ref Transform transform, string key = "transform")
+    public static void LoadTransform(ref Dictionary<string, object> dictionary, Transform transform, string key = "transform")
     {
         TransformInfo transformInfo = GetValueFromDictionary<TransformInfo>(ref dictionary, key);
 

@@ -5,6 +5,7 @@ using UnityEngine;
 public class DataPersistanceTests : MonoBehaviour
 {
     public Transform transform;
+    public CharacterBase characterBase;
 
     // Start is called before the first frame update
     void Start()
@@ -21,6 +22,8 @@ public class DataPersistanceTests : MonoBehaviour
 
             DataPersitanceHelpers.SaveTransform(ref dataDictionary, transform);
             DataPersitanceHelpers.SaveDictionary(ref dataDictionary, "TestSave");
+
+            characterBase.Save();
         }
 
         if (Input.GetKeyUp(KeyCode.F6))
@@ -28,7 +31,9 @@ public class DataPersistanceTests : MonoBehaviour
             Dictionary<string, object> dataDictionary = new Dictionary<string, object>();
 
             DataPersitanceHelpers.LoadDictionary(ref dataDictionary, "TestSave");
-            DataPersitanceHelpers.LoadTransform(ref dataDictionary, ref transform);
+            DataPersitanceHelpers.LoadTransform(ref dataDictionary, transform);
+
+            characterBase.Load();
         }
     }
 }
