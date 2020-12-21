@@ -2,7 +2,7 @@
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class ButtonHighlighter : MonoBehaviour
+public class ButtonHighlighter : MonoBehaviour, IPointerEnterHandler
 {
     public Sprite normalImage;
     public Sprite highlightImage;
@@ -20,11 +20,6 @@ public class ButtonHighlighter : MonoBehaviour
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        ChangeButtonImage(highlightImage);
-    }
-
-    public void OnPointerExit(PointerEventData eventData)
-    {
-        ChangeButtonImage(normalImage);
+        EventSystem.current.SetSelectedGameObject(gameObject);
     }
 }

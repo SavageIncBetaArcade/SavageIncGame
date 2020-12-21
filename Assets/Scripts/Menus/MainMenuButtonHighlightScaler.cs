@@ -1,8 +1,12 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class MainMenuButtonHighlightScaler : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class MainMenuButtonHighlightScaler : MonoBehaviour, IPointerEnterHandler
 {
+    public List<GameObject> panels;
+    
     private void Update()
     {
         ChangeButtonScale(EventSystem.current.currentSelectedGameObject == gameObject ? 0.9f : 1.0f);
@@ -15,11 +19,7 @@ public class MainMenuButtonHighlightScaler : MonoBehaviour, IPointerEnterHandler
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        ChangeButtonScale(0.9f);
-    }
-
-    public void OnPointerExit(PointerEventData eventData)
-    {
-        ChangeButtonScale(1.0f);
+        if (panels.Any(panel => panel.activeSelf)) return;
+        EventSystem.current.SetSelectedGameObject(gameObject);
     }
 }
