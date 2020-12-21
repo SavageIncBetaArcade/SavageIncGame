@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class MainMenuButtonMouseHandler : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class MainMenuButtonHighlightScaler : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     private void Update()
     {

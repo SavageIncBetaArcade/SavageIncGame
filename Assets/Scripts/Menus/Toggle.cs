@@ -1,18 +1,17 @@
 ﻿using UnityEngine;
-using UnityEngine.EventSystems;
 
-public class Toggle : MonoBehaviour, IPointerClickHandler
+public class Toggle : MonoBehaviour
 {
     public GameObject yesImage;
     public GameObject noImage;
-    private bool enabled = true;
+    private new bool enabled = true;
 
     private void Start()
     {
         SetActiveImage();
     }
 
-    public void OnPointerClick(PointerEventData eventData)
+    public void ToggleIsOn()
     {
         enabled = !enabled;
         SetActiveImage();
