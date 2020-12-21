@@ -1,6 +1,7 @@
-﻿using UnityEngine.EventSystems;
+﻿using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class InventorySlotMouseHandler : InfoPopupHandler, IPointerClickHandler
+public class InventorySlotSelector : InfoPopupHandler, IPointerClickHandler
 {
     public InventorySectionHandler inventorySectionHandler;
     private Inventory Inventory => inventorySectionHandler.currentInventory;
@@ -18,5 +19,14 @@ public class InventorySlotMouseHandler : InfoPopupHandler, IPointerClickHandler
                 Inventory.RightClickItem(position);
                 break;
         }
+    }
+
+    private void Update()
+    {
+        if (EventSystem.current.currentSelectedGameObject != gameObject) return;
+        if(Input.GetKeyDown("joystick button 0"))
+            Inventory.LeftClickItem(position);
+        else if(Input.GetKeyDown("joystick button 2"))
+            Inventory.RightClickItem(position);
     }
 }
