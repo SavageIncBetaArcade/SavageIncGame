@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class DataPersistanceTests : MonoBehaviour
@@ -19,22 +20,30 @@ public class DataPersistanceTests : MonoBehaviour
     {
         if (Input.GetKeyUp(KeyCode.F6))
         {
-            Dictionary<string, object> dataDictionary = new Dictionary<string, object>();
-
-            DataPersitanceHelpers.SaveTransform(ref dataDictionary, transform);
-            DataPersitanceHelpers.SaveDictionary(ref dataDictionary, "TestSave");
-
-            characterBase.Save();
+            SaveAll();
         }
 
         if (Input.GetKeyUp(KeyCode.F7))
         {
-            Dictionary<string, object> dataDictionary = new Dictionary<string, object>();
+            LoadAll();
+        }
+    }
 
-            DataPersitanceHelpers.LoadDictionary(ref dataDictionary, "TestSave");
-            DataPersitanceHelpers.LoadTransform(ref dataDictionary, transform);
+    void SaveAll()
+    {
+        var SavableObjects = FindObjectsOfType<MonoBehaviour>().OfType<IDataPersistance>();
+        foreach (var obj in SavableObjects)
+        {
+            obj.Save();
+        }
+    }
 
-            characterBase.Load();
+    void LoadAll()
+    {
+        var SavableObjects = FindObjectsOfType<MonoBehaviour>().OfType<IDataPersistance>();
+        foreach (var obj in SavableObjects)
+        {
+            obj.Load();
         }
     }
 }

@@ -154,13 +154,6 @@ public class PlayerBase : CharacterBase
     {
         var dataDictionary = base.Load();
 
-        var UUID = GetComponent<UUID>()?.ID;
-        if (string.IsNullOrWhiteSpace(UUID))
-        {
-            Debug.LogError("CharacterBase doesn't have an UUID (Can't load data from json)");
-            return dataDictionary;
-        }
-
         playerVelocity = DataPersitanceHelpers.GetValueFromDictionary<Vector3>(ref dataDictionary, "velocity");
         onGround = DataPersitanceHelpers.GetValueFromDictionary<bool>(ref dataDictionary, "onGround");
         isCrouching = DataPersitanceHelpers.GetValueFromDictionary<bool>(ref dataDictionary, "isCrouching");
