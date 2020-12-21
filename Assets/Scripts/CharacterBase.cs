@@ -14,8 +14,9 @@ public enum StatType
 }
 
 [RequireComponent(typeof(PortalableObject))]
-public class CharacterBase : MonoBehaviour, IDamageTaker
+public class CharacterBase : MonoBehaviour, IDamageTaker, IDataPersistance
 {
+    #region members
     [SerializeField] 
     private float attackModifier, defenseModifier, maxHealth, maxEnergy;
     [SerializeField]
@@ -44,6 +45,7 @@ public class CharacterBase : MonoBehaviour, IDamageTaker
 
     private HashSet<Modifier> appliedModifiers;
     private PortalableObject portalableObject;
+    #endregion
 
     #region Properties
     public float Gravity { get; } = -9.81f;
@@ -110,6 +112,7 @@ public class CharacterBase : MonoBehaviour, IDamageTaker
 
     #endregion
 
+    #region methods
     protected virtual void Awake()
     {
         appliedModifiers = new HashSet<Modifier>();
@@ -216,4 +219,22 @@ public class CharacterBase : MonoBehaviour, IDamageTaker
         currentEnergy = Mathf.Clamp(currentEnergy - amount, 0f, maxEnergy);
         OnLoseEnergy?.Invoke();
     }
+    #endregion
+
+    #region IDataPersistance
+    public void Save()
+    {
+        throw new NotImplementedException();
+    }
+
+    public void Load()
+    {
+        throw new NotImplementedException();
+    }
+
+    void Serialize()
+    {
+
+    }
+    #endregion
 }
