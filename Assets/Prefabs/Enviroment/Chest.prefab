@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 438702028}
   - component: {fileID: 438702029}
   - component: {fileID: 829098457}
+  - component: {fileID: 3252208843990908592}
   m_Layer: 0
   m_Name: Chest_top_LP
-  m_TagString: Untagged
+  m_TagString: Chest
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 1
@@ -66,7 +67,8 @@ MonoBehaviour:
   TriggerAnimator: {fileID: 852877135}
   OnTriggerAnimation: Triggered
   PopupText: Press F to use chest
-  InventorySection: {fileID: 0}
+  InventorySection: {fileID: 452996607319901770, guid: d0f96971a3205e641a9ea778eba0df36,
+    type: 3}
   RequiredItems: []
   Range: 3
 --- !u!82 &829098457
@@ -166,6 +168,23 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &3252208843990908592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1283258480938314987}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86516ee6e3606584d8b3170126109e2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Items:
+  - {fileID: 11400000, guid: 8573e2e531a8bc649b5bad5d1b378bb1, type: 2}
+  - {fileID: 11400000, guid: 693020afcc8249546a1cd6d729d92a2a, type: 2}
+  - {fileID: 11400000, guid: 8d4a9106ecaaf2641b02fefc36989b57, type: 2}
+  - {fileID: 11400000, guid: 7852f5a50f918d5459b02454623b7b5e, type: 2}
 --- !u!1 &4383545120249466822
 GameObject:
   m_ObjectHideFlags: 0
@@ -636,7 +655,7 @@ GameObject:
   - component: {fileID: 6376518419443008307}
   m_Layer: 0
   m_Name: Chest
-  m_TagString: Untagged
+  m_TagString: Chest
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 1
