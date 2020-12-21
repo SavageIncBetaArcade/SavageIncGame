@@ -8467,6 +8467,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac2b4676bc9d863439d04ff50b3e81b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  panels:
+  - {fileID: 1521240666}
+  - {fileID: 119583140}
+  - {fileID: 2090837447}
 --- !u!1001 &270946209
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8701,6 +8705,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac2b4676bc9d863439d04ff50b3e81b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  panels:
+  - {fileID: 1521240666}
+  - {fileID: 119583140}
+  - {fileID: 2090837447}
 --- !u!1 &276540573
 GameObject:
   m_ObjectHideFlags: 0
@@ -17748,6 +17756,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac2b4676bc9d863439d04ff50b3e81b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  panels:
+  - {fileID: 1521240666}
+  - {fileID: 119583140}
+  - {fileID: 2090837447}
 --- !u!43 &499175880
 Mesh:
   m_ObjectHideFlags: 0
@@ -30299,6 +30311,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac2b4676bc9d863439d04ff50b3e81b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  panels:
+  - {fileID: 1521240666}
+  - {fileID: 119583140}
+  - {fileID: 2090837447}
 --- !u!1001 &837768053
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -75360,6 +75376,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac2b4676bc9d863439d04ff50b3e81b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  panels:
+  - {fileID: 1521240666}
+  - {fileID: 119583140}
+  - {fileID: 2090837447}
 --- !u!1001 &1854403345
 PrefabInstance:
   m_ObjectHideFlags: 0
