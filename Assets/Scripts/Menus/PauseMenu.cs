@@ -1,12 +1,17 @@
 ﻿using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class PauseMenu : MonoBehaviour
 {
     public GameObject optionsPanel;
+    public GameObject optionsFirstObject;
     
     public void ClosePauseMenu()
     {
-        //return to game
+        if (!optionsPanel.activeSelf)
+        {
+            //return to game
+        }
     }
 
     public void ReturnToMainMenu()
@@ -22,5 +27,6 @@ public class PauseMenu : MonoBehaviour
     public void OpenOptions()
     {
         optionsPanel.SetActive(true);
+        EventSystem.current.SetSelectedGameObject(optionsFirstObject);
     }
 }
