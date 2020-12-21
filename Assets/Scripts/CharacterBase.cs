@@ -223,7 +223,7 @@ public class CharacterBase : MonoBehaviour, IDamageTaker, IDataPersistance
     #endregion
 
     #region IDataPersistance
-    public void Save()
+    public virtual Dictionary<string, object> Save()
     {
         //create new dictionary to contain data for characterbase
         Dictionary<string, object> dataDictionary = new Dictionary<string, object>();
@@ -236,7 +236,7 @@ public class CharacterBase : MonoBehaviour, IDamageTaker, IDataPersistance
         if (string.IsNullOrWhiteSpace(UUID))
         {
             Debug.LogError("CharacterBase doesn't have an UUID (Can't load data from json)");
-            return;
+            return dataDictionary;
         }
 
         //save member vars
@@ -254,9 +254,11 @@ public class CharacterBase : MonoBehaviour, IDamageTaker, IDataPersistance
         //todo save applied modifiers
 
         DataPersitanceHelpers.SaveDictionary(ref dataDictionary, UUID);
+
+        return dataDictionary;
     }
 
-    public void Load()
+    public virtual Dictionary<string, object> Load()
     {
         //create new dictionary to contain data for characterbase
         Dictionary<string, object> dataDictionary = new Dictionary<string, object>();
@@ -265,7 +267,7 @@ public class CharacterBase : MonoBehaviour, IDamageTaker, IDataPersistance
         if (string.IsNullOrWhiteSpace(UUID))
         {
             Debug.LogError("CharacterBase doesn't have an UUID (Can't load data from json)");
-            return;
+            return dataDictionary;
         }
 
         //load dictionary
@@ -282,6 +284,8 @@ public class CharacterBase : MonoBehaviour, IDamageTaker, IDataPersistance
         currentHealth = DataPersitanceHelpers.GetValueFromDictionary<float>(ref dataDictionary, "currentHealth");
         currentEnergy = DataPersitanceHelpers.GetValueFromDictionary<float>(ref dataDictionary, "currentEnergy");
         currentStunTime = DataPersitanceHelpers.GetValueFromDictionary<float>(ref dataDictionary, "currentStunTime");
+
+        return dataDictionary;
     }
 
     #endregion

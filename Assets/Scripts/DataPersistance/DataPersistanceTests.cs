@@ -7,6 +7,7 @@ public class DataPersistanceTests : MonoBehaviour
     public Transform transform;
     public CharacterBase characterBase;
 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -16,7 +17,7 @@ public class DataPersistanceTests : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyUp(KeyCode.F5))
+        if (Input.GetKeyUp(KeyCode.F6))
         {
             Dictionary<string, object> dataDictionary = new Dictionary<string, object>();
 
@@ -26,7 +27,7 @@ public class DataPersistanceTests : MonoBehaviour
             characterBase.Save();
         }
 
-        if (Input.GetKeyUp(KeyCode.F6))
+        if (Input.GetKeyUp(KeyCode.F7))
         {
             Dictionary<string, object> dataDictionary = new Dictionary<string, object>();
 

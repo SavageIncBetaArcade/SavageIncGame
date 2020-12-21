@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(CharacterController))]
@@ -127,5 +128,44 @@ public class PlayerBase : CharacterBase
         base.PortalableObjectOnHasTeleported(startPortal, endPortal, newposition, newrotation);
 
         lastPosition = newposition;
+    }
+
+    public override Dictionary<string, object> Save()
+    {
+        var dataDictionary = base.Save();
+
+        var UUID = GetComponent<UUID>()?.ID;
+        if (string.IsNullOrWhiteSpace(UUID))
+        {
+            Debug.LogError("CharacterBase doesn't have an UUID (Can't load data from json)");
+            return dataDictionary;
+        }
+
+        DataPersitanceHelpers.SaveValueToDictionary(ref dataDictionary, "velocity", playerVelocity);
+        DataPersitanceHelpers.SaveValueToDictionary(ref dataDictionary, "onGround", onGround);
+        DataPersitanceHelpers.SaveValueToDictionary(ref dataDictionary, "isCrouching", isCrouching);
+        DataPersitanceHelpers.SaveValueToDictionary(ref dataDictionary, "lastPosition", lastPosition);
+
+        DataPersitanceHelpers.SaveDictionary(ref dataDictionary, UUID);
+        return dataDictionary;
+    }
+
+    public override Dictionary<string, object> Load()
+    {
+        var dataDictionary = base.Load();
+
+        var UUID = GetComponent<UUID>()?.ID;
+        if (string.IsNullOrWhiteSpace(UUID))
+        {
+            Debug.LogError("CharacterBase doesn't have an UUID (Can't load data from json)");
+            return dataDictionary;
+        }
+
+        playerVelocity = DataPersitanceHelpers.GetValueFromDictionary<Vector3>(ref dataDictionary, "velocity");
+        onGround = DataPersitanceHelpers.GetValueFromDictionary<bool>(ref dataDictionary, "onGround");
+        isCrouching = DataPersitanceHelpers.GetValueFromDictionary<bool>(ref dataDictionary, "isCrouching");
+        lastPosition = DataPersitanceHelpers.GetValueFromDictionary<Vector3>(ref dataDictionary, "lastPosition");
+
+        return dataDictionary;
     }
 }

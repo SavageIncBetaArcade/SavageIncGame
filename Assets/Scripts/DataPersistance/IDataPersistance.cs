@@ -4,6 +4,6 @@ using UnityEngine;
 
 public interface IDataPersistance
 {
-    void Save();
-    void Load();
+    Dictionary<string, object> Save();
+    Dictionary<string, object> Load();
 }
