@@ -27,16 +27,6 @@ public abstract class InfoPopupHandler : MonoBehaviour
             Destroy(popup.gameObject);
     }
 
-    // public void OnPointerEnter(PointerEventData data)
-    // {
-    //     if(Item) ShowItemInfo();
-    // }
-    //
-    // public void OnPointerExit(PointerEventData data)
-    // {
-    //     if(popup) Destroy(popup.gameObject);
-    // }
-
     void OnDisable()
     {
         if (popup) Destroy(popup.gameObject);
@@ -57,9 +47,6 @@ public abstract class InfoPopupHandler : MonoBehaviour
         var positionInRelationToCanvas = transform.position - canvas.transform.position;
         if (positionInRelationToCanvas.x > 0) return transform.position.x - 400;
         return transform.position.x;
-        // return CanvasContainsPopupWidth(popupWidth)
-        //     ? transform.position.x
-        //     : transform.position.x - popupWidth - slotWidth / 1.85f;
     }
     
     private bool CanvasContainsPopupWidth(float popupWidth)
