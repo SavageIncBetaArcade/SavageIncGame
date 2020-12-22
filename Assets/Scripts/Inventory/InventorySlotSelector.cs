@@ -21,8 +21,9 @@ public class InventorySlotSelector : InfoPopupHandler, IPointerClickHandler
         }
     }
 
-    private void Update()
+    protected override void Update()
     {
+        base.Update();
         if (EventSystem.current.currentSelectedGameObject != gameObject) return;
         if(Input.GetKeyDown("joystick button 0"))
             Inventory.LeftClickItem(position);

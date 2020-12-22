@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
 
-public abstract class InfoPopupHandler : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public abstract class InfoPopupHandler : MonoBehaviour
 {
     protected virtual Item Item => null;
     public GameObject itemInfoPrefab;
@@ -18,16 +18,24 @@ public abstract class InfoPopupHandler : MonoBehaviour, IPointerEnterHandler, IP
     {
         canvasRect = canvas.GetComponent<RectTransform>().rect;
     }
-    
-    public void OnPointerEnter(PointerEventData data)
+
+    protected virtual void Update()
     {
-        if(Item) ShowItemInfo();
+        if(Item && !popup && EventSystem.current.currentSelectedGameObject == gameObject) 
+            ShowItemInfo();
+        else if(popup && EventSystem.current.currentSelectedGameObject != gameObject) 
+            Destroy(popup.gameObject);
     }
 
-    public void OnPointerExit(PointerEventData data)
-    {
-        if(popup) Destroy(popup.gameObject);
-    }
+    // public void OnPointerEnter(PointerEventData data)
+    // {
+    //     if(Item) ShowItemInfo();
+    // }
+    //
+    // public void OnPointerExit(PointerEventData data)
+    // {
+    //     if(popup) Destroy(popup.gameObject);
+    // }
 
     void OnDisable()
     {
@@ -46,7 +54,6 @@ public abstract class InfoPopupHandler : MonoBehaviour, IPointerEnterHandler, IP
 
     private float PopupXPosition()
     {
-        
         var positionInRelationToCanvas = transform.position - canvas.transform.position;
         if (positionInRelationToCanvas.x > 0) return transform.position.x - 400;
         return transform.position.x;
