@@ -3,12 +3,16 @@ using System.Linq;
 using TMPro;
 using UnityEngine;
 
+[RequireComponent(typeof(UUID))]
 [RequireComponent(typeof(AudioSource))]
-public class InteractionTrigger : MonoBehaviour, IInteractable
+public class InteractionTrigger : MonoBehaviour, IInteractable, IDataPersistance
 {
+    #region events
     public delegate void TriggerDelegate(bool triggered, InteractionTrigger trigger);
     public event TriggerDelegate OnTrigger;
+    #endregion
 
+    #region members
     public bool IsInteractable = false;
     public bool Toggle = false;
     public Animator TriggerAnimator;
@@ -18,17 +22,22 @@ public class InteractionTrigger : MonoBehaviour, IInteractable
     public Item[] RequiredItems;
 
     private TextMeshProUGUI textMesh;
+    [SerializeField]
     private bool triggered = false;
     public bool Triggered => triggered;
 
     private AudioSource triggerSound;
+    private UUID uuid;
 
     private static Dictionary<InteractionTrigger, bool> popupDisplayed = new Dictionary<InteractionTrigger, bool>();
+    #endregion
 
+    #region methods
     protected virtual void Awake()
     {
         textMesh = GameObject.FindGameObjectWithTag("InteractionText")?.GetComponent<TextMeshProUGUI>();
         triggerSound = GetComponent<AudioSource>();
+        uuid = GetComponent<UUID>();
     }
 
     void LateUpdate()
@@ -121,4 +130,51 @@ public class InteractionTrigger : MonoBehaviour, IInteractable
     {
         return triggers.Any(trigger => !trigger.Triggered);
     }
+    #endregion
+
+    #region IDataPersistance
+    public Dictionary<string, object> Save()
+    {
+        //create new dictionary to contain data for characterbase
+        Dictionary<string, object> dataDictionary = new Dictionary<string, object>();
+        if (!uuid)
+            return dataDictionary;
+
+        //Load currently saved values
+        DataPersitanceHelpers.LoadDictionary(ref dataDictionary, uuid.ID);
+
+        DataPersitanceHelpers.SaveValueToDictionary(ref dataDictionary, "IsInteractable", IsInteractable);
+        DataPersitanceHelpers.SaveValueToDictionary(ref dataDictionary, "Toggle", Toggle);
+        DataPersitanceHelpers.SaveValueToDictionary(ref dataDictionary, "triggered", triggered);
+
+        //save json to file
+        DataPersitanceHelpers.SaveDictionary(ref dataDictionary, uuid.ID);
+
+        return dataDictionary;
+    }
+
+    public Dictionary<string, object> Load(bool destroyUnloaded = false)
+    {
+        //create new dictionary to contain data for characterbase
+        Dictionary<string, object> dataDictionary = new Dictionary<string, object>();
+
+        if (!uuid)
+            return dataDictionary;
+
+        //load dictionary
+        DataPersitanceHelpers.LoadDictionary(ref dataDictionary, uuid.ID);
+
+        IsInteractable = DataPersitanceHelpers.GetValueFromDictionary<bool>(ref dataDictionary, "IsInteractable");
+        Toggle = DataPersitanceHelpers.GetValueFromDictionary<bool>(ref dataDictionary, "Toggle");
+        triggered = DataPersitanceHelpers.GetValueFromDictionary<bool>(ref dataDictionary, "triggered");
+
+        if (TriggerAnimator != null)
+        {
+            TriggerAnimator.SetBool(OnTriggerAnimation, triggered);
+
+        }
+
+        return dataDictionary;
+    }
+    #endregion
 }

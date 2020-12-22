@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class TriggeredDoorLock : MonoBehaviour
+[RequireComponent(typeof(UUID))]
+public class TriggeredDoorLock : MonoBehaviour, IDataPersistance
 {
     public InteractionTrigger[] InteractTriggers;
     public InteractionTrigger[] LockTriggers;
@@ -16,6 +17,8 @@ public class TriggeredDoorLock : MonoBehaviour
     public string OnTriggerAnimation;
 
     public bool IsLocked = false;
+
+    private UUID uuid;
 
     // Start is called before the first frame update
     void Awake()
@@ -34,6 +37,8 @@ public class TriggeredDoorLock : MonoBehaviour
         {
             trigger.OnTrigger += unlockTrigger;
         }
+
+        uuid = GetComponent<UUID>();
     }
 
     void onTrigger(bool triggered, InteractionTrigger trigger)
@@ -74,5 +79,45 @@ public class TriggeredDoorLock : MonoBehaviour
             IsLocked = false;
             UnlockSound?.Play();
         }
+    }
+
+    public Dictionary<string, object> Save()
+    {
+        //create new dictionary to contain data for characterbase
+        Dictionary<string, object> dataDictionary = new Dictionary<string, object>();
+        if (!uuid)
+            return dataDictionary;
+
+        //Load currently saved values
+        DataPersitanceHelpers.LoadDictionary(ref dataDictionary, uuid.ID);
+
+        DataPersitanceHelpers.SaveValueToDictionary(ref dataDictionary, "IsLocked", IsLocked);
+
+        //save json to file
+        DataPersitanceHelpers.SaveDictionary(ref dataDictionary, uuid.ID);
+
+        return dataDictionary;
+    }
+
+    public Dictionary<string, object> Load(bool destroyUnloaded = false)
+    {
+        //create new dictionary to contain data for characterbase
+        Dictionary<string, object> dataDictionary = new Dictionary<string, object>();
+
+        if (!uuid)
+            return dataDictionary;
+
+        //load dictionary
+        DataPersitanceHelpers.LoadDictionary(ref dataDictionary, uuid.ID);
+
+        IsLocked = DataPersitanceHelpers.GetValueFromDictionary<bool>(ref dataDictionary, "IsLocked");
+
+        if (Animator != null)
+        {
+            Animator.SetBool(OnTriggerAnimation, InteractionTrigger.AnyTrue(InteractTriggers));
+
+        }
+
+        return dataDictionary;
     }
 }

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 438702028}
   - component: {fileID: 438702029}
   - component: {fileID: 829098457}
+  - component: {fileID: 5253050880883613971}
   m_Layer: 0
   m_Name: Chest_top_LP
   m_TagString: Untagged
@@ -68,6 +69,7 @@ MonoBehaviour:
   PopupText: Press F to use chest
   InventorySection: {fileID: 0}
   RequiredItems: []
+  triggered: 0
   Range: 3
 --- !u!82 &829098457
 AudioSource:
@@ -166,6 +168,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &5253050880883613971
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1283258480938314987}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3db2adb8f5d80a4abfb945da411ea2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_UUID: c2a19591-cde4-46b0-b183-44032981692d
 --- !u!1 &4383545120249466822
 GameObject:
   m_ObjectHideFlags: 0

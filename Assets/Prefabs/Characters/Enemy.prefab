@@ -360,20 +360,20 @@ MonoBehaviour:
   defenseModifier: 0
   maxHealth: 0
   maxEnergy: 0
-  speed: 6
-  jumpHeight: 1
+  speed: 0
+  jumpHeight: 0
   currentHealth: 0
   currentEnergy: 0
   currentStunTime: 0
-  SenseRange: 60
-  AngleOfVision: 45
-  WalkDistance: 25
-  AttackDistance: 2
+  SenseRange: 0
+  AngleOfVision: 0
+  WalkDistance: 0
+  AttackDistance: 0
   PatrolPoints:
   - {fileID: 0}
   - {fileID: 0}
   CurrentPatrolPoint: 0
-  NextPatrolPoint: 1
+  NextPatrolPoint: 0
   PotentialStates:
   - {fileID: 11400000, guid: 848f97773e962304a865562377e82769, type: 2}
   - {fileID: 11400000, guid: 281664a7cb7e76e4f8a900fb10c767cd, type: 2}
@@ -452,7 +452,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3db2adb8f5d80a4abfb945da411ea2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UUID: 9eedd81f-86d1-4eeb-b2e1-ddcadacc5853
+  m_UUID: 8290ff96-a35c-48f4-b7a7-91999047c4a3
 --- !u!1 &5227494471289806261
 GameObject:
   m_ObjectHideFlags: 0

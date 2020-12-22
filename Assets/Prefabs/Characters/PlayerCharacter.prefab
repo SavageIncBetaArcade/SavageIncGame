@@ -871,12 +871,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5ca00a9fdc186b4f847d6f0dabd5955, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackModifier: 10
-  defenseModifier: 1
-  maxHealth: 100
-  maxEnergy: 100
-  speed: 6
-  jumpHeight: 1
+  attackModifier: 0
+  defenseModifier: 0
+  maxHealth: 0
+  maxEnergy: 0
+  speed: 0
+  jumpHeight: 0
   currentHealth: 0
   currentEnergy: 0
   currentStunTime: 0
@@ -921,7 +921,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3db2adb8f5d80a4abfb945da411ea2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UUID: 3df15101-94aa-4b81-aa00-659da08a575d
+  m_UUID: 8e1fd524-2faf-4379-8407-8edccbd64dbb
 --- !u!1 &3287459474762197051
 GameObject:
   m_ObjectHideFlags: 0

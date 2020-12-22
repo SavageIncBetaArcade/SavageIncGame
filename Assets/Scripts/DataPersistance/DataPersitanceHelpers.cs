@@ -114,10 +114,13 @@ public class DataPersitanceHelpers
         try
         {
             string path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "SavageInc", "Save");
-            string json = File.ReadAllText($"{path}\\{fileName}.json");
-
-            dictionary = JsonConvert.DeserializeObject<Dictionary<string, object>>(json);
-            RecurseDeserialize(dictionary);
+            
+            if (Directory.Exists(path) && File.Exists($"{path}\\{fileName}.json"))
+            {
+                string json = File.ReadAllText($"{path}\\{fileName}.json");
+                dictionary = JsonConvert.DeserializeObject<Dictionary<string, object>>(json);
+                RecurseDeserialize(dictionary);
+            }
         }
         catch (Exception e)
         {

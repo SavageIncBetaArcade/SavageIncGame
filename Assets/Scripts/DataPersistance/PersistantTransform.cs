@@ -32,7 +32,7 @@ public class PersistantTransform : MonoBehaviour, IDataPersistance
         //    gameObject.SetActive(false);
 
         //load transform
-        DataPersitanceHelpers.LoadTransform(ref dataDictionary, transform);
+        DataPersitanceHelpers.LoadTransform(ref dataDictionary, transform, "persistantTransform");
 
         return dataDictionary;
     }
@@ -41,12 +41,14 @@ public class PersistantTransform : MonoBehaviour, IDataPersistance
     {
         //create new dictionary to contain data for characterbase
         Dictionary<string, object> dataDictionary = new Dictionary<string, object>();
-
         if (!uuid)
             return dataDictionary;
 
+        //Load currently saved values
+        DataPersitanceHelpers.LoadDictionary(ref dataDictionary, uuid.ID);
+
         //save transform
-        DataPersitanceHelpers.SaveTransform(ref dataDictionary, transform);
+        DataPersitanceHelpers.SaveTransform(ref dataDictionary, transform , "persistantTransform");
 
         //save json to file
         DataPersitanceHelpers.SaveDictionary(ref dataDictionary, uuid.ID);

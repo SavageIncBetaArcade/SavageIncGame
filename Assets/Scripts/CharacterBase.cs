@@ -228,9 +228,6 @@ public class CharacterBase : MonoBehaviour, IDamageTaker, IDataPersistance
         //create new dictionary to contain data for characterbase
         Dictionary<string, object> dataDictionary = new Dictionary<string, object>();
 
-        //save transform
-        DataPersitanceHelpers.SaveTransform(ref dataDictionary, transform);
-
         //save json to file
         var UUID = GetComponent<UUID>()?.ID;
         if (string.IsNullOrWhiteSpace(UUID))
@@ -238,6 +235,12 @@ public class CharacterBase : MonoBehaviour, IDamageTaker, IDataPersistance
             Debug.LogError("CharacterBase doesn't have an UUID (Can't load data from json)");
             return dataDictionary;
         }
+
+        //Load currently saved values
+        DataPersitanceHelpers.LoadDictionary(ref dataDictionary, UUID);
+
+        //save transform
+        DataPersitanceHelpers.SaveTransform(ref dataDictionary, transform, "characterTransform");
 
         //save member vars
         DataPersitanceHelpers.SaveValueToDictionary(ref dataDictionary, "attackModifier", attackModifier);
@@ -278,7 +281,7 @@ public class CharacterBase : MonoBehaviour, IDamageTaker, IDataPersistance
         //    gameObject.SetActive(false);
 
         //load transform
-        DataPersitanceHelpers.LoadTransform(ref dataDictionary, transform);
+        DataPersitanceHelpers.LoadTransform(ref dataDictionary, transform, "characterTransform");
         //load member vars
         attackModifier = DataPersitanceHelpers.GetValueFromDictionary<float>(ref dataDictionary, "attackModifier");
         defenseModifier = DataPersitanceHelpers.GetValueFromDictionary<float>(ref dataDictionary, "defenseModifier");

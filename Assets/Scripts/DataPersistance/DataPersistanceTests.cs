@@ -44,7 +44,16 @@ public class DataPersistanceTests : MonoBehaviour
     void LoadAll()
     {
         var SavableObjects = Resources.FindObjectsOfTypeAll<MonoBehaviour>().OfType<IDataPersistance>();
-        foreach (var obj in SavableObjects)
+        var interactionTriggers = SavableObjects.OfType<InteractionTrigger>();
+
+        //load all triggers first
+        foreach (var obj in interactionTriggers)
+        {
+            obj.Load(true);
+        }
+
+        //load everything else
+        foreach (var obj in SavableObjects.Where(x => !interactionTriggers.Contains(x)))
         {
             obj.Load(true);
         }
