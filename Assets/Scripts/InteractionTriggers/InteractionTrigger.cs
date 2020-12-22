@@ -174,6 +174,8 @@ public class InteractionTrigger : MonoBehaviour, IInteractable, IDataPersistance
 
         }
 
+        //OnTrigger?.Invoke(triggered, this);
+
         return dataDictionary;
     }
     #endregion
