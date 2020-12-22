@@ -9,7 +9,7 @@ public class PlayerUseableAblity : UseableAbility
     protected virtual void Update()
     {
         //TODO check if the current CharacterBase is the player, only attack on left click if player
-        if (ScriptableAbility != null && !OnCooldown() && Input.GetButtonDown(UseButton))
+        if (ScriptableAbility != null && !OnCooldown() && (Input.GetButtonDown(UseButton) || Input.GetAxisRaw(UseButton) > 0))
         {
             ExecuteUse();
         }
