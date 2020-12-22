@@ -5,8 +5,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Portal : MonoBehaviour
+[RequireComponent(typeof(UUID))]
+public class Portal : MonoBehaviour, IDataPersistance
 {
+    #region members
     public int TargetPortalIndex;
 
     public Portal[] TargetPortal;
@@ -39,13 +41,16 @@ public class Portal : MonoBehaviour
     public int OffMeshLinkArea;
     private readonly List<PortalOffMeshLink> offMeshLinks = new List<PortalOffMeshLink>();
     private int previousTargetPortal = 0; //previous target portal before the trigger was set
-    
 
     private struct PortalOffMeshLink
     {
         public Transform RefTransform;
     }
 
+    private UUID uuid;
+    #endregion
+
+    #region members
     private void Awake()
     {
         // Generate OffMeshLinks
@@ -71,6 +76,8 @@ public class Portal : MonoBehaviour
         {
             trigger.OnTrigger += checkTriggers;
         }
+
+        uuid = GetComponent<UUID>();
     }
 
     private readonly HashSet<PortalableObject> objectsInPortal = new HashSet<PortalableObject>();
@@ -478,4 +485,43 @@ public class Portal : MonoBehaviour
             TargetPortalIndex = previousTargetPortal;
         }
     }
+    #endregion
+
+    #region
+    public Dictionary<string, object> Save()
+    {
+        //create new dictionary to contain data for characterbase
+        Dictionary<string, object> dataDictionary = new Dictionary<string, object>();
+        if (!uuid)
+            return dataDictionary;
+
+        //Load currently saved values
+        DataPersitanceHelpers.LoadDictionary(ref dataDictionary, uuid.ID);
+
+        DataPersitanceHelpers.SaveValueToDictionary(ref dataDictionary, "TargetPortalIndex", TargetPortalIndex);
+        DataPersitanceHelpers.SaveValueToDictionary(ref dataDictionary, "previousTargetPortal", previousTargetPortal);
+
+        //save json to file
+        DataPersitanceHelpers.SaveDictionary(ref dataDictionary, uuid.ID);
+
+        return dataDictionary;
+    }
+
+    public Dictionary<string, object> Load(bool destroyUnloaded = false)
+    {
+        //create new dictionary to contain data for characterbase
+        Dictionary<string, object> dataDictionary = new Dictionary<string, object>();
+
+        if (!uuid)
+            return dataDictionary;
+
+        //load dictionary
+        DataPersitanceHelpers.LoadDictionary(ref dataDictionary, uuid.ID);
+
+        TargetPortalIndex = DataPersitanceHelpers.GetValueFromDictionary<int>(ref dataDictionary, "TargetPortalIndex");
+        previousTargetPortal = DataPersitanceHelpers.GetValueFromDictionary<int>(ref dataDictionary, "previousTargetPortal");
+
+        return dataDictionary;
+    }
+    #endregion
 }

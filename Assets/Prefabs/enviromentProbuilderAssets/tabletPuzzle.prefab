@@ -362,6 +362,7 @@ GameObject:
   - component: {fileID: 697965899784622848}
   - component: {fileID: 1997557869}
   - component: {fileID: 1997557868}
+  - component: {fileID: 540270050042628971}
   m_Layer: 0
   m_Name: Cylinder
   m_TagString: Untagged
@@ -1425,6 +1426,7 @@ MonoBehaviour:
   PopupText: 
   InventorySection: {fileID: 0}
   RequiredItems: []
+  triggered: 0
   RotationAxis: {x: 0, y: 1, z: 0}
   ExpectedRotation: {x: 0, y: 0, z: 0}
   NumberOfFaces: 4
@@ -1433,6 +1435,19 @@ MonoBehaviour:
   - {fileID: 919692282501391533}
   - {fileID: 6630383127787821931}
   - {fileID: 2292016871564629147}
+--- !u!114 &540270050042628971
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 697965899784622878}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3db2adb8f5d80a4abfb945da411ea2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_UUID: c018b92b-91b6-4136-840f-536460056a56
 --- !u!1 &697965899987166739
 GameObject:
   m_ObjectHideFlags: 0
@@ -1751,6 +1766,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 697965899039544689}
     m_Modifications:
+    - target: {fileID: 251026315703834555, guid: cca081613d0e8a34e90c26f6f1d260f8,
+        type: 3}
+      propertyPath: m_UUID
+      value: bd17eb38-92e2-4287-99ea-cd32fb525db0
+      objectReference: {fileID: 0}
     - target: {fileID: 885839919389916807, guid: cca081613d0e8a34e90c26f6f1d260f8,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1853,6 +1873,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 697965899039544689}
     m_Modifications:
+    - target: {fileID: 251026315703834555, guid: cca081613d0e8a34e90c26f6f1d260f8,
+        type: 3}
+      propertyPath: m_UUID
+      value: 0c80311f-d5dd-4b05-9b90-f4c4c3ec4af4
+      objectReference: {fileID: 0}
     - target: {fileID: 885839919389916807, guid: cca081613d0e8a34e90c26f6f1d260f8,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1955,6 +1980,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 697965899039544689}
     m_Modifications:
+    - target: {fileID: 251026315703834555, guid: cca081613d0e8a34e90c26f6f1d260f8,
+        type: 3}
+      propertyPath: m_UUID
+      value: df92110e-4c27-46ef-8fbb-da3c756f0b95
+      objectReference: {fileID: 0}
     - target: {fileID: 885839919389916807, guid: cca081613d0e8a34e90c26f6f1d260f8,
         type: 3}
       propertyPath: m_LocalPosition.x
