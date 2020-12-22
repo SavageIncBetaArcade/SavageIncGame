@@ -61,7 +61,16 @@ public class TriggeredFallingObject : MonoBehaviour
             //add a shake once method for impacts
             FindObjectOfType<PlayerCamera>()?.ShakePosition(0.1f, new Vector2(0.2f, 0.8f), -0.01f, 0.1f, 20.0f);
             impacted = true;
+
+            StartCoroutine(disableAfterSound());
         }
+    }
+
+    IEnumerator disableAfterSound()
+    {
+        if(ImpactAudioSource && ImpactAudioSource.clip)
+            yield return new WaitForSeconds(ImpactAudioSource.clip.length);
+        gameObject.SetActive(false);
     }
 
 }
