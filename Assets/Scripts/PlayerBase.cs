@@ -150,9 +150,9 @@ public class PlayerBase : CharacterBase
         return dataDictionary;
     }
 
-    public override Dictionary<string, object> Load()
+    public override Dictionary<string, object> Load(bool disableUnloaded = false)
     {
-        var dataDictionary = base.Load();
+        var dataDictionary = base.Load(disableUnloaded);
 
         playerVelocity = DataPersitanceHelpers.GetValueFromDictionary<Vector3>(ref dataDictionary, "velocity");
         onGround = DataPersitanceHelpers.GetValueFromDictionary<bool>(ref dataDictionary, "onGround");

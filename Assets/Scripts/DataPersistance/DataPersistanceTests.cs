@@ -31,7 +31,10 @@ public class DataPersistanceTests : MonoBehaviour
 
     void SaveAll()
     {
-        var SavableObjects = FindObjectsOfType<MonoBehaviour>().OfType<IDataPersistance>();
+        //TODO clear all saves before, then we can check if an object doesn't have a UUID in the save directory it no longer exists (E.G deleted)
+        DataPersitanceHelpers.ClearSaves();
+
+        var SavableObjects = Resources.FindObjectsOfTypeAll<MonoBehaviour>().OfType<IDataPersistance>();
         foreach (var obj in SavableObjects)
         {
             obj.Save();
@@ -40,10 +43,13 @@ public class DataPersistanceTests : MonoBehaviour
 
     void LoadAll()
     {
-        var SavableObjects = FindObjectsOfType<MonoBehaviour>().OfType<IDataPersistance>();
+        var SavableObjects = Resources.FindObjectsOfTypeAll<MonoBehaviour>().OfType<IDataPersistance>();
         foreach (var obj in SavableObjects)
         {
-            obj.Load();
+            obj.Load(true);
         }
+
+        //check for all UUID that don't have a saved against them
+
     }
 }

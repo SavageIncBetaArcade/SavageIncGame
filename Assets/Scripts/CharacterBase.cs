@@ -258,7 +258,7 @@ public class CharacterBase : MonoBehaviour, IDamageTaker, IDataPersistance
         return dataDictionary;
     }
 
-    public virtual Dictionary<string, object> Load()
+    public virtual Dictionary<string, object> Load(bool destroyUnloaded = false)
     {
         //create new dictionary to contain data for characterbase
         Dictionary<string, object> dataDictionary = new Dictionary<string, object>();
@@ -272,6 +272,11 @@ public class CharacterBase : MonoBehaviour, IDamageTaker, IDataPersistance
 
         //load dictionary
         DataPersitanceHelpers.LoadDictionary(ref dataDictionary, UUID);
+
+        ////if dictionary is empty then we assume no saved data for the object, so destroy it
+        //if (destroyUnloaded && (dataDictionary == null || dataDictionary.Count == 0))
+        //    gameObject.SetActive(false);
+
         //load transform
         DataPersitanceHelpers.LoadTransform(ref dataDictionary, transform);
         //load member vars

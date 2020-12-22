@@ -5,5 +5,5 @@ using UnityEngine;
 public interface IDataPersistance
 {
     Dictionary<string, object> Save();
-    Dictionary<string, object> Load();
+    Dictionary<string, object> Load(bool destroyUnloaded = false);
 }

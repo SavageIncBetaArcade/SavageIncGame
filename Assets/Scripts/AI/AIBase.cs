@@ -140,7 +140,8 @@ public class AIBase : CharacterBase
 
     private void onDeath()
     {
-        Destroy(gameObject);
+        gameObject.SetActive(false);
+        //Destroy(gameObject);
     }
 
     protected override void OnDestroy()
@@ -175,9 +176,9 @@ public class AIBase : CharacterBase
         return dataDictionary;
     }
 
-    public override Dictionary<string, object> Load()
+    public override Dictionary<string, object> Load(bool destroyUnloaded = false)
     {
-        var dataDictionary = base.Load();
+        var dataDictionary = base.Load(destroyUnloaded);
 
         SenseRange = DataPersitanceHelpers.GetValueFromDictionary<float>(ref dataDictionary, "SenseRange");
         AngleOfVision = DataPersitanceHelpers.GetValueFromDictionary<float>(ref dataDictionary, "AngleOfVision");
@@ -188,15 +189,18 @@ public class AIBase : CharacterBase
         currentDestination = DataPersitanceHelpers.GetValueFromDictionary<Vector3?>(ref dataDictionary, "currentDestination");
 
         //reset states (should really save the state stack instead)
-        stackOfStates.Clear();
-        if (PotentialStates.Length > 0)
+        if (stackOfStates)
         {
-            State patrol = PotentialStates.FirstOrDefault(x => x.StateName == StateNames.PatrolState);
-            State idle = PotentialStates.FirstOrDefault(x => x.StateName == StateNames.IdleState);
-            if (patrol)
-                stackOfStates.PushState(patrol);
-            else if (idle)
-                stackOfStates.PushState(idle);
+            stackOfStates.Clear();
+            if (PotentialStates.Length > 0)
+            {
+                State patrol = PotentialStates.FirstOrDefault(x => x.StateName == StateNames.PatrolState);
+                State idle = PotentialStates.FirstOrDefault(x => x.StateName == StateNames.IdleState);
+                if (patrol)
+                    stackOfStates.PushState(patrol);
+                else if (idle)
+                    stackOfStates.PushState(idle);
+            }
         }
 
         return dataDictionary;

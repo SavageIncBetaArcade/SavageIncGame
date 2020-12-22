@@ -19,6 +19,20 @@ public class TransformInfo
 
 public class DataPersitanceHelpers 
 {
+    public static void ClearSaves()
+    {
+        try
+        {
+            string path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "SavageInc", "Save");
+            Directory.Delete(path, true);
+
+        }
+        catch(Exception ex)
+        {
+
+        }
+    }
+
     public static void SaveValueToDictionary(ref Dictionary<string,object> dictionary, string key, object data)
     {
         if (dictionary == null)
@@ -69,7 +83,7 @@ public class DataPersitanceHelpers
         catch (Exception ex)
         {
             Debug.LogError($"Failed get value with key:{key} from dictionary. Exception:{ex}");
-            throw;
+            return default(T);
         }
     }
 
@@ -91,7 +105,6 @@ public class DataPersitanceHelpers
         catch (Exception e)
         {
             Debug.LogError($"Failed to save dictionary to json file {e}");
-            throw;
         }
         
     }
@@ -108,8 +121,7 @@ public class DataPersitanceHelpers
         }
         catch (Exception e)
         {
-            Debug.LogError($"Failed to load dictionary from json file {e}");
-            throw;
+            Debug.LogWarning($"Failed to load dictionary from json file {e}");
         }
     }
 
@@ -120,7 +132,7 @@ public class DataPersitanceHelpers
             pos = transform.position,
             rot = transform.rotation,
             scale = transform.localScale,
-            enabled = transform.gameObject.activeSelf
+            enabled = transform.gameObject.activeInHierarchy
         };
 
         SaveValueToDictionary(ref dictionary, key, transformInfo);
@@ -135,6 +147,8 @@ public class DataPersitanceHelpers
             transform.position = transformInfo.pos;
             transform.rotation = transformInfo.rot;
             transform.localScale = transformInfo.scale;
+            if (!transformInfo.enabled)
+                Debug.Log("Test");
             transform.gameObject.SetActive(transformInfo.enabled);
         }
     }
