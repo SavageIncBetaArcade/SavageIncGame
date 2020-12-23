@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class LootPool : MonoBehaviour
@@ -9,7 +10,7 @@ public class LootPool : MonoBehaviour
     public bool OnlyLootOnce = true;
     public bool DisableObjectOnLoot = false;
 
-    public ScriptableUseableAbility[] Items;
+    public Item[] Items;
 
     //TODO save looted var
     private bool looted = false;
@@ -24,7 +25,7 @@ public class LootPool : MonoBehaviour
         Trigger.OnTrigger -= trigger;
     }
 
-    public ScriptableUseableAbility GetRandomItem()
+    public Item GetRandomItem()
     {
         if(Items.Length > 0)
         {
@@ -36,14 +37,25 @@ public class LootPool : MonoBehaviour
 
     void trigger(bool triggered, InteractionTrigger trigger)
     {
-        if (OnlyLootOnce && looted)
+        if (!InventorySection || (OnlyLootOnce && looted))
             return;
 
-        ScriptableUseableAbility item = gameObject.GetComponent<LootPool>().GetRandomItem();
+        Item item = GetRandomItem();
 
         if (item)
         {
-            InventorySection.abilityInventory.AddItem(item);
+            switch (item)
+            {
+                case EquippableItem _:
+                    InventorySection.itemInventory.AddItem(item);
+                    break;
+                case ConsumableItem _:
+                    InventorySection.itemInventory.AddItem(item);
+                    break;
+                case ScriptableUseableAbility _:
+                    InventorySection.abilityInventory.AddItem(item);
+                    break;
+            }
             looted = true;
 
             if (DisableObjectOnLoot)

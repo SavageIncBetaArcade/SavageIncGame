@@ -676,10 +676,8 @@ MonoBehaviour:
   OnlyLootOnce: 1
   DisableObjectOnLoot: 0
   Items:
-  - {fileID: 11400000, guid: 8573e2e531a8bc649b5bad5d1b378bb1, type: 2}
-  - {fileID: 11400000, guid: 693020afcc8249546a1cd6d729d92a2a, type: 2}
-  - {fileID: 11400000, guid: 8d4a9106ecaaf2641b02fefc36989b57, type: 2}
-  - {fileID: 11400000, guid: 7852f5a50f918d5459b02454623b7b5e, type: 2}
+  - {fileID: 11400000, guid: 8f09fe58eb3203947a2363e21770e658, type: 2}
+  - {fileID: 11400000, guid: 1662343ef64d5474f906478e732ae204, type: 2}
 --- !u!1 &7970492207073071294
 GameObject:
   m_ObjectHideFlags: 0
