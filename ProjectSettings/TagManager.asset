@@ -11,6 +11,8 @@ TagManager:
   - InteractionText
   - Portal
   - UICanvas
+  - Ability
+  - Chest
   layers:
   - Default
   - TransparentFX

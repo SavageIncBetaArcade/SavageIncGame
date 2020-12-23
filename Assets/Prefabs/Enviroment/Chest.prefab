@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 829098457}
   m_Layer: 0
   m_Name: Chest_top_LP
-  m_TagString: Untagged
+  m_TagString: Chest
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 1
@@ -66,7 +66,8 @@ MonoBehaviour:
   TriggerAnimator: {fileID: 852877135}
   OnTriggerAnimation: Triggered
   PopupText: Press F to use chest
-  InventorySection: {fileID: 0}
+  InventorySection: {fileID: 452996607319901770, guid: d0f96971a3205e641a9ea778eba0df36,
+    type: 3}
   RequiredItems: []
   Range: 3
 --- !u!82 &829098457
@@ -634,9 +635,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6376518419443008307}
+  - component: {fileID: 70151543366705386}
   m_Layer: 0
   m_Name: Chest
-  m_TagString: Untagged
+  m_TagString: Chest
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 1
@@ -657,6 +659,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &70151543366705386
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7937216588807418144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86516ee6e3606584d8b3170126109e2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Trigger: {fileID: 438702029}
+  InventorySection: {fileID: 0}
+  OnlyLootOnce: 1
+  DisableObjectOnLoot: 0
+  Items:
+  - {fileID: 11400000, guid: 8f09fe58eb3203947a2363e21770e658, type: 2}
+  - {fileID: 11400000, guid: 1662343ef64d5474f906478e732ae204, type: 2}
 --- !u!1 &7970492207073071294
 GameObject:
   m_ObjectHideFlags: 0

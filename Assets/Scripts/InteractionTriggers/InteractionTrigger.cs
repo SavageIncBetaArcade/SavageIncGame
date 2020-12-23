@@ -88,6 +88,11 @@ public class InteractionTrigger : MonoBehaviour, IInteractable
 
         popupDisplayed[this] = active;
 
+        if(Input.GetJoystickNames().Length > 0)
+        {
+            PopupText = PopupText.Replace("F", "X");
+        }
+
         if (active && !string.IsNullOrWhiteSpace(PopupText) && textMesh && HasRequiredItems())
         {
             textMesh.text = PopupText;
