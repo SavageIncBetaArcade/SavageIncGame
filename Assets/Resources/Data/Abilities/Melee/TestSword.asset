@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2c41d50b9b078445abdbe87d1826f5a, type: 3}
+  m_Name: TestSword
+  m_EditorClassIdentifier: 
+  Name: 
+  Description: 
+  Quote: 
+  Sprite: {fileID: 0}
+  modifiers: []
+  AssetPath: Resources/Data/Abilities/Melee/TestSword.asset
+  AbilityLevel: 1
+  EnergyCost: 0
+  Cooldown: 0.1
+  ActivePeriod: 0
+  UseFrequency: 0
+  AddOwnerBaseAttack: 1
+  OwnerBaseAttackScalar: 1
+  HitModifierApplyPercentage: 1
+  UseAnimationCooldown: 0
+  AbilityPrefab: {fileID: 6413331160640061430, guid: d8a2c8b5db33a0c458d11973247bd455,
+    type: 3}
+  StartingModifiers: []
+  HitEffects:
+  - {fileID: 3966173770737333436, guid: ef64ab604ff1bfd4191862dc59f2b9a1, type: 3}
+  Damage: 5

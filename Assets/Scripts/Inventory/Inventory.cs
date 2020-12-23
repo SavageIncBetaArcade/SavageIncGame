@@ -1,6 +1,8 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
-public abstract class Inventory : MonoBehaviour
+[RequireComponent(typeof(UUID))]
+public abstract class Inventory : MonoBehaviour, IDataPersistance
 {
     [SerializeField]
     public InventorySlot[] items = new InventorySlot[ItemSlotsAmount];
@@ -12,12 +14,15 @@ public abstract class Inventory : MonoBehaviour
     public abstract void EquipRightHand(InventoryItem itemToEquip);
     public abstract void EquipCenter(InventoryItem itemToEquip);
 
+    protected UUID uuid;
+
     void Awake()
     {
         character = FindObjectOfType<PlayerBase>();
+        uuid = GetComponent<UUID>();
     }
 
-    public void AddItem(Item itemToAdd)
+    public InventoryItem AddItem(Item itemToAdd)
     {
         var emptySlotPosition = -1;
         for (var i = ItemSlotsAmount - 1; i >= 0; i--)
@@ -25,9 +30,9 @@ public abstract class Inventory : MonoBehaviour
             if (InventorySlotIsEmpty(i)) emptySlotPosition = i;
             if (!InventorySlotIs(i, itemToAdd)) continue;
             IncreaseItemQuantity(i);
-            return;
+            return items[i].InventoryItem;
         }
-        AssignItemSlot(emptySlotPosition, itemToAdd);
+        return AssignItemSlot(emptySlotPosition, itemToAdd);
     }
     
     private bool InventorySlotIsEmpty(int position) { return items[position].InventoryItem == null; }
@@ -42,7 +47,7 @@ public abstract class Inventory : MonoBehaviour
 
     private void UpdateQuantityUiAt(int position) { items[position].Quantity.text = items[position].InventoryItem.Quantity.ToString(); }
 
-    private void AssignItemSlot(int position, Item itemToAdd)
+    private InventoryItem AssignItemSlot(int position, Item itemToAdd)
     {
         items[position].InventoryItem = InventoryItemFactory.CreateInventoryItem(itemToAdd);
         items[position].InventoryItem.Item = itemToAdd;
@@ -50,6 +55,8 @@ public abstract class Inventory : MonoBehaviour
         items[position].Image.enabled = true;
         UpdateQuantityUiAt(position);
         items[position].Quantity.enabled = true;
+
+        return items[position].InventoryItem;
     }
 
     public int FindItemIndex(Item item)
@@ -106,4 +113,74 @@ public abstract class Inventory : MonoBehaviour
     public Item getItemAt(int position) { return items[position].InventoryItem?.Item; }
 
     public bool hasItemAt(int position) { return items[position].InventoryItem != null; }
+
+    private void RemoveAll()
+    {
+        for (int i = 0; i < items.Length; i++)
+        {
+            items[i].InventoryItem = null;
+            items[i].Image.enabled = false;
+            items[i].Quantity.text = "";
+        }
+    }
+
+    #region IDataPersistance
+    public virtual Dictionary<string, object> Save()
+    {
+        //create new dictionary to contain data for characterbase
+        Dictionary<string, object> dataDictionary = new Dictionary<string, object>();
+        if (!uuid)
+            return dataDictionary;
+
+        //Load currently saved values
+        DataPersitanceHelpers.LoadDictionary(ref dataDictionary, uuid.ID);
+
+        //TODO save path of items
+        Dictionary<string,int> itemPaths = new Dictionary<string, int>();
+        foreach (var inventoryItem in items)
+        {
+            var item = inventoryItem.InventoryItem?.Item;
+            if (item)
+                itemPaths.Add(item.AssetPath.Replace("Resources/","").Replace(".asset", ""), inventoryItem.InventoryItem.Quantity);
+        }
+        DataPersitanceHelpers.SaveValueToDictionary(ref dataDictionary, "items", itemPaths);
+
+        //save json to file
+        DataPersitanceHelpers.SaveDictionary(ref dataDictionary, uuid.ID);
+
+        return dataDictionary;
+    }
+
+    public virtual Dictionary<string, object> Load(bool destroyUnloaded = false)
+    {
+        //create new dictionary to contain data for characterbase
+        Dictionary<string, object> dataDictionary = new Dictionary<string, object>();
+
+        if (!uuid)
+            return dataDictionary;
+
+        //load dictionary
+        DataPersitanceHelpers.LoadDictionary(ref dataDictionary, uuid.ID);
+
+        Dictionary<string, int> itemPaths;
+        itemPaths = DataPersitanceHelpers.GetValueFromDictionary<Dictionary<string, int>>(ref dataDictionary, "items");
+
+        //Remove all items;
+        RemoveAll();
+
+        //add loaded items
+        foreach (var itemPath in itemPaths)
+        {
+            //load asset
+            var item = Resources.Load<Item>(itemPath.Key);
+
+            for (int i = 0; i < itemPath.Value; i++)
+            {
+                AddItem(item as Item);
+            }
+        }
+
+        return dataDictionary;
+    }
+    #endregion
 }

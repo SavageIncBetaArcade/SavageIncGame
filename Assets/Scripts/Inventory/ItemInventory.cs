@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class ItemInventory : Inventory
 {
@@ -33,4 +34,67 @@ public class ItemInventory : Inventory
         RemoveItem(itemToEquip.Item);
         armourSlot.EquipItem(itemToEquip);
     }
+
+    #region IDataPersistance
+
+    public override Dictionary<string, object> Save()
+    {
+        Dictionary<string, object> dataDictionary = base.Save();
+
+        //Save armour/weapons slots
+        if(armourSlot.equippedSlot.InventoryItem != null && armourSlot.equippedSlot.InventoryItem.Item)
+        {
+            string path = armourSlot.equippedSlot.InventoryItem.Item
+                .AssetPath.Replace("Resources/", "").Replace(".asset", "");
+            DataPersitanceHelpers.SaveValueToDictionary(ref dataDictionary, "armourSlot", path);
+        }
+        if (leftWeaponSlot.equippedSlot.InventoryItem != null && leftWeaponSlot.equippedSlot.InventoryItem.Item)
+        {
+            string path = leftWeaponSlot.equippedSlot.InventoryItem.Item
+                .AssetPath.Replace("Resources/", "").Replace(".asset", "");
+            DataPersitanceHelpers.SaveValueToDictionary(ref dataDictionary, "leftWeapon", path);
+        }
+        if (rightWeaponSlot.equippedSlot.InventoryItem != null && rightWeaponSlot.equippedSlot.InventoryItem.Item)
+        {
+            string path = rightWeaponSlot.equippedSlot.InventoryItem.Item
+                .AssetPath.Replace("Resources/", "").Replace(".asset", "");
+            DataPersitanceHelpers.SaveValueToDictionary(ref dataDictionary, "rightWeapon", path);
+        }
+
+        DataPersitanceHelpers.SaveDictionary(ref dataDictionary, uuid.ID);
+        return dataDictionary;
+    }
+
+    public override Dictionary<string, object> Load(bool destroyUnloaded = false)
+    {
+        Dictionary<string, object> dataDictionary = base.Load(destroyUnloaded);
+
+        armourSlot.equippedSlot.Clear();
+        leftWeaponSlot.equippedSlot.Clear();
+        rightWeaponSlot.equippedSlot.Clear();
+
+        var armourPath = DataPersitanceHelpers.GetValueFromDictionary<string>(ref dataDictionary, "armourSlot");
+        var leftWeaponPath = DataPersitanceHelpers.GetValueFromDictionary<string>(ref dataDictionary, "leftWeapon");
+        var rightWeaponPath = DataPersitanceHelpers.GetValueFromDictionary<string>(ref dataDictionary, "rightWeapon");
+
+        if(!string.IsNullOrWhiteSpace(armourPath))
+        {
+            var item = Resources.Load<Item>(armourPath);
+            if (item) AddItem(item).LeftClick(this, character);
+        }
+        if (!string.IsNullOrWhiteSpace(leftWeaponPath))
+        {
+            var item = Resources.Load<Item>(leftWeaponPath);
+            if (item) AddItem(item).LeftClick(this, character);
+        }
+        if (!string.IsNullOrWhiteSpace(rightWeaponPath))
+        {
+            var item = Resources.Load<Item>(rightWeaponPath);
+            if (item) AddItem(item).RightClick(this, character);
+        }
+
+        return dataDictionary;
+    }
+
+    #endregion
 }

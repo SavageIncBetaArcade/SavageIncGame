@@ -6,6 +6,7 @@ using System;
 using System.IO;
 using System.Linq;
 using Newtonsoft.Json.Linq;
+using UnityEngine.SceneManagement;
 
 [System.Serializable]
 public class TransformInfo
@@ -71,6 +72,8 @@ public class DataPersitanceHelpers
                     return (T)Convert.ChangeType(float.Parse(dictionary[key].ToString()), typeof(T));
                 case TypeCode.Double:
                     return (T)Convert.ChangeType(double.Parse(dictionary[key].ToString()), typeof(T));
+                case TypeCode.String:
+                    return (T)Convert.ChangeType(dictionary[key].ToString(), typeof(T));
             }
 
             var jObject = dictionary[key] as JObject;
@@ -181,6 +184,55 @@ public class DataPersitanceHelpers
                     RecurseDeserialize(dictionary);
                 }
             }
+        }
+    }
+
+    public static List<T> FindAllGameObjects<T>()
+    {
+        // get root objects in scene
+        List<GameObject> rootObjects = new List<GameObject>();
+        Scene scene = SceneManager.GetActiveScene();
+        scene.GetRootGameObjects(rootObjects);
+
+        List<T> gameObjects = new List<T>();
+        foreach (GameObject go in rootObjects)
+        {
+            var component = go.GetComponents<T>();
+            if (component != null)
+                gameObjects.AddRange(component);
+        }
+
+        // iterate root objects and do something
+        for (int i = 0; i < rootObjects.Count; ++i)
+        {
+            foreach (Transform child in rootObjects[i].transform)
+            {
+                if (null == child)
+                    continue;
+                //child.gameobject contains the current child you can do whatever you want like add it to an array
+                GetChildRecursive<T>(child.gameObject, ref gameObjects);
+            }
+        }
+
+        return gameObjects.ToList();
+    }
+
+    private static void GetChildRecursive<T>(GameObject obj, ref List<T> gameObjects)
+    {
+        if (null == obj)
+            return;
+
+        foreach (Transform child in obj.transform)
+        {
+            if (null == child)
+                continue;
+            //child.gameobject contains the current child you can do whatever you want like add it to an array
+
+            var component = child.GetComponents<T>();
+            if(component != null)
+                gameObjects.AddRange(component);
+
+            GetChildRecursive(child.gameObject, ref gameObjects);
         }
     }
 }

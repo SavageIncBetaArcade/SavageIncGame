@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a87e9127438067c439470e2d5b99d130, type: 3}
+  m_Name: ElectroBuzz1
+  m_EditorClassIdentifier: 
+  Name: Electro Buzz
+  Description: 
+  Quote: Aff tae catch ye a'
+  Sprite: {fileID: 21300000, guid: 1f4e3bd05701bd141ac91120ccea43d2, type: 3}
+  modifiers: []
+  AssetPath: Resources/Data/Abilities/Raycast/ElectroBuzz1.asset
+  AbilityLevel: 1
+  EnergyCost: 25
+  Cooldown: 0
+  ActivePeriod: 0
+  UseFrequency: 0
+  AddOwnerBaseAttack: 0
+  OwnerBaseAttackScalar: 1
+  HitModifierApplyPercentage: 1
+  UseAnimationCooldown: 0
+  AbilityPrefab: {fileID: 6413331160640061430, guid: 3b4ac081e3ee33f4197fd33032e62454,
+    type: 3}
+  StartingModifiers:
+  - Modifier: {fileID: 11400000, guid: f7abba2ab53110e469fdcf5ac00bd6e6, type: 2}
+    Stage: 1
+    Target: 1
+  HitEffects:
+  - {fileID: 3966173770737333436, guid: ef64ab604ff1bfd4191862dc59f2b9a1, type: 3}
+  Damage: 0
+  Range: 25
+  RaycastBolt: {fileID: 5732481325394797837, guid: adb2ae7871f4e444b9c69df35f447929,
+    type: 3}

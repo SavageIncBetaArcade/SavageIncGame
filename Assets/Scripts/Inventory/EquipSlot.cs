@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 public class EquipSlot : MonoBehaviour
 {
@@ -42,4 +42,5 @@ public class EquipSlot : MonoBehaviour
         equippedSlot.Image.enabled = false;
         equippedSlot.InventoryItem = null;
     }
+
 }
