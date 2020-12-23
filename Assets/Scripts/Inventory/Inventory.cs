@@ -16,7 +16,7 @@ public abstract class Inventory : MonoBehaviour, IDataPersistance
 
     protected UUID uuid;
 
-    void Awake()
+    protected virtual void Awake()
     {
         character = FindObjectOfType<PlayerBase>();
         uuid = GetComponent<UUID>();

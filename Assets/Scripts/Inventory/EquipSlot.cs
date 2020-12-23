@@ -34,7 +34,7 @@ public class EquipSlot : MonoBehaviour
         RemoveItem();
     }
     
-    private void RemoveItem()
+    public void RemoveItem()
     {
         ItemChangedEvent?.Invoke(null, equippedSlot.InventoryItem, this);
 
