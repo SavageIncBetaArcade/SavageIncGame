@@ -11,9 +11,7 @@ public class DialogueManager : MonoBehaviour
 
     private Queue<string> dialogue;
     private float fadeDuration = 0.5f;
-    private bool running = false;
 
-    // Start is called before the first frame update
     void Start()
     {
         dialogue = new Queue<string>();
@@ -22,7 +20,7 @@ public class DialogueManager : MonoBehaviour
         GameObject.Find("ControlBox").GetComponent<CanvasGroup>().alpha = 0f;
     }
 
-    public void DisplayDialogue(string name, string[] sentences, string textType)
+    public void DisplayDialogue(string name, string[] sentences, string textType, DialogueTrigger trigger)
     {
         GameObject.Find("DialogueBox").GetComponent<CanvasGroup>().alpha = 0f;
         GameObject.Find("ControlBox").GetComponent<CanvasGroup>().alpha = 0f;
@@ -36,10 +34,10 @@ public class DialogueManager : MonoBehaviour
             dialogue.Enqueue(sentence);
         }
 
-        StartCoroutine(DisplaySentence(textType));
+        StartCoroutine(DisplaySentence(textType, trigger));
     }
 
-    public void DisplayControls(string name, string[] sentences, string textType)
+    public void DisplayControls(string[] sentences, string textType, DialogueTrigger trigger)
     {
         GameObject.Find("DialogueBox").GetComponent<CanvasGroup>().alpha = 0f;
         GameObject.Find("ControlBox").GetComponent<CanvasGroup>().alpha = 0f;
@@ -51,18 +49,27 @@ public class DialogueManager : MonoBehaviour
             dialogue.Enqueue(sentence);
         }
 
-        StartCoroutine(DisplaySentence(textType));
+        StartCoroutine(DisplaySentence(textType, trigger));
     }
 
-    IEnumerator DisplaySentence(string textType)
+    IEnumerator DisplaySentence(string textType, DialogueTrigger trigger)
     {
-        running = true;
-
         if (dialogue.Count == 0)
         {
-            StartCoroutine(EndDialogue(textType));
-            running = false;
-            yield return null;
+            bool triggerState = trigger.getState();
+
+            if (triggerState == true)
+            {
+                StartCoroutine(DialogueDelay(textType, 1, trigger));
+                yield return null;
+            }
+            else
+            {
+                StartCoroutine(EndDialogue(textType));
+                trigger.setState(false);
+
+                yield return null;
+            }
         }
 
         if (dialogue.Count > 0)
@@ -71,7 +78,7 @@ public class DialogueManager : MonoBehaviour
 
             StartCoroutine(Fade(0f, 1f, fadeDuration, textType));
             StartCoroutine(TypeSentence(sentence, textType));
-            StartCoroutine(DialogueDelay(textType));
+            StartCoroutine(DialogueDelay(textType, 5, trigger));
         }
     }
 
@@ -127,11 +134,11 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    IEnumerator DialogueDelay(string textType)
+    IEnumerator DialogueDelay(string textType, int delayTime, DialogueTrigger trigger)
     {
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(delayTime);
 
-        StartCoroutine(DisplaySentence(textType));
+        StartCoroutine(DisplaySentence(textType, trigger));
     }
 
     IEnumerator EndDialogue(string textType)
