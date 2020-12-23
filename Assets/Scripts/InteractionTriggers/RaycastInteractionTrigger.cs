@@ -46,18 +46,6 @@ public class RaycastInteractionTrigger : InteractionTrigger
             if (Input.GetButtonUp("Interact"))
             {
                 Interact();
-
-                if(hitInfo.collider.gameObject.CompareTag("Chest") && InventorySection)
-                {
-                    GameObject gameObject = hitInfo.collider.gameObject;
-
-                    ScriptableUseableAbility item = gameObject.GetComponent<LootPool>().GetRandomItem();
-
-                    if(item)
-                    {
-                        InventorySection.abilityInventory.AddItem(item);
-                    }
-                }
             }
                 
         }
