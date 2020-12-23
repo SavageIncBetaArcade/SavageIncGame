@@ -10,6 +10,7 @@ public class ProjectileTrap : MonoBehaviour
     public InteractionTrigger InteractionTrigger;
     public Projectile Projectile;
     public Transform Origin;
+    public AudioSource TriggerAudioSource;
 
     private void Awake()
     {
@@ -33,6 +34,8 @@ public class ProjectileTrap : MonoBehaviour
             return;
 
         GameObject projectileObject = Instantiate(Projectile.gameObject, Origin.position, Origin.rotation);
+        if (TriggerAudioSource && TriggerAudioSource.clip)
+            TriggerAudioSource.PlayOneShot(TriggerAudioSource.clip);
     }
 
 

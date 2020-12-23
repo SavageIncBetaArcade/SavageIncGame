@@ -16,6 +16,7 @@ MonoBehaviour:
   Description: 
   Quote: Outch!!! A'm pure burnin' mah hauns!
   Sprite: {fileID: 21300000, guid: 296fa29bb9e4f9a429e44d5976065380, type: 3}
+  modifiers: []
   AbilityLevel: 1
   EnergyCost: 15
   Cooldown: 15
@@ -31,8 +32,11 @@ MonoBehaviour:
   - Modifier: {fileID: 11400000, guid: a05bff7e906563c499844633a7e930c6, type: 2}
     Stage: 1
     Target: 1
-  HitEffects:
-  - {fileID: 3966173770737333436, guid: ef64ab604ff1bfd4191862dc59f2b9a1, type: 3}
+  CharacterHitEffects:
+  - {fileID: 3966173770737333436, guid: d00cec8d1908a4541a8ddfef194206d1, type: 3}
+  ObjectHitEffects:
+  - {fileID: 3966173770737333436, guid: d00cec8d1908a4541a8ddfef194206d1, type: 3}
+  UseSound: {fileID: 8300000, guid: 78c5acd7ca944364c85130a8069c9ed7, type: 3}
   ProjectileGameObject: {fileID: 6167524000098639644, guid: 97eaaf95480123a4eb0b9ad4649d45cd,
     type: 3}
   GravityAffected: 0

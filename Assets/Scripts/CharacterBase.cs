@@ -26,7 +26,22 @@ public class CharacterBase : MonoBehaviour, IDamageTaker
     private float currentHealth, currentEnergy;
     [SerializeField] 
     private float currentStunTime = 0.0f;
-    
+
+    protected bool onGround;
+
+    [SerializeField]
+    private AudioClip[] HitSounds;
+    [SerializeField]
+    private AudioClip[] FootstepSounds;
+
+    [SerializeField]
+    private AudioSource CharacterTravelAudioSource;
+    [SerializeField]
+    private float PlayTravelAudioDistance = 0.75f; //distance needed to travel to play travel sound (footsteps)
+    private Vector3 lastTravelSoundPlayed;
+
+    protected AudioSource CharacterAudio;
+
     public delegate void DeathAction();
     public event DeathAction OnDeath;
     public delegate void DamageAction();
@@ -117,11 +132,22 @@ public class CharacterBase : MonoBehaviour, IDamageTaker
         portalableObject.HasTeleported += PortalableObjectOnHasTeleported;
         currentHealth = maxHealth;
         currentEnergy = maxEnergy;
+
+        CharacterAudio = GetComponent<AudioSource>();
     }
 
     protected virtual void Update()
     {
         CurrentStunTime = Mathf.Max(currentStunTime -= Time.deltaTime, 0);
+
+        //travelSounds
+        if (CharacterTravelAudioSource && FootstepSounds != null && FootstepSounds.Length > 0
+            && onGround
+            && Vector3.Distance(lastTravelSoundPlayed,transform.position) >= PlayTravelAudioDistance)
+        {
+            CharacterTravelAudioSource.PlayOneShot(FootstepSounds[UnityEngine.Random.Range(0,FootstepSounds.Length)]);
+            lastTravelSoundPlayed = transform.position;
+        }
     }
 
     public virtual void PortalableObjectOnHasTeleported(Portal startPortal, Portal endPortal, Vector3 newposition, Quaternion newrotation)
@@ -197,6 +223,14 @@ public class CharacterBase : MonoBehaviour, IDamageTaker
         currentHealth = Mathf.Clamp((float)(currentHealth - attackDamage * Math.Pow(0.95, defenseModifier)), 0f, maxHealth);
         OnDamage?.Invoke();
         if (currentHealth == 0) OnDeath?.Invoke();
+
+        //play hit sound
+        if (CharacterAudio != null && HitSounds != null && HitSounds.Length > 0)
+        {
+            int clipIndex = UnityEngine.Random.Range(0, HitSounds.Length);
+            CharacterAudio.clip = HitSounds[clipIndex];
+            CharacterAudio.Play();
+        }
     }
 
     public void Heal(float amount)

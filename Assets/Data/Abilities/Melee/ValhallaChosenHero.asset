@@ -17,6 +17,7 @@ MonoBehaviour:
   Quote: Ah shall be dining wi' mah pals in valhalla soon enough. Juist nae richt
     noo.
   Sprite: {fileID: 21300000, guid: 0772e16dc57f3df45ad9b465d67ea35e, type: 3}
+  modifiers: []
   AbilityLevel: 1
   EnergyCost: 35
   Cooldown: 40
@@ -32,5 +33,7 @@ MonoBehaviour:
   - Modifier: {fileID: 11400000, guid: 72dadb0c758a9c44390fb2a96a705976, type: 2}
     Stage: 0
     Target: 0
-  HitEffects: []
+  CharacterHitEffects:
+  - {fileID: 3966173770737333436, guid: ef64ab604ff1bfd4191862dc59f2b9a1, type: 3}
+  UseSound: {fileID: 8300000, guid: 6ba39bac8f594f14ba5ab5fd9eba9c18, type: 3}
   Damage: 5

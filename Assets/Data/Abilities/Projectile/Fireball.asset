@@ -16,6 +16,7 @@ MonoBehaviour:
   Description: 
   Quote: Need a light?
   Sprite: {fileID: 21300000, guid: 91c748f5adc774d468b5dcdbcdc5966b, type: 3}
+  modifiers: []
   AbilityLevel: 1
   EnergyCost: 5
   Cooldown: 1.5
@@ -31,7 +32,11 @@ MonoBehaviour:
   - Modifier: {fileID: 11400000, guid: dc559b466641377469de5c9cdba2e7b1, type: 2}
     Stage: 1
     Target: 1
-  HitEffects: []
+  CharacterHitEffects:
+  - {fileID: 3966173770737333436, guid: d00cec8d1908a4541a8ddfef194206d1, type: 3}
+  ObjectHitEffects:
+  - {fileID: 3966173770737333436, guid: d00cec8d1908a4541a8ddfef194206d1, type: 3}
+  UseSound: {fileID: 8300000, guid: 78c5acd7ca944364c85130a8069c9ed7, type: 3}
   ProjectileGameObject: {fileID: 6167524000098639644, guid: 97eaaf95480123a4eb0b9ad4649d45cd,
     type: 3}
   GravityAffected: 0

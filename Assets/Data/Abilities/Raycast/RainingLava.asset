@@ -16,6 +16,7 @@ MonoBehaviour:
   Description: 
   Quote: Och by Odin's fluff is it summer awready?
   Sprite: {fileID: 21300000, guid: 6864d909bd444a64ea5ca430ea37f6f3, type: 3}
+  modifiers: []
   AbilityLevel: 1
   EnergyCost: 35
   Cooldown: 0
@@ -34,8 +35,11 @@ MonoBehaviour:
   - Modifier: {fileID: 11400000, guid: dc559b466641377469de5c9cdba2e7b1, type: 2}
     Stage: 1
     Target: 1
-  HitEffects:
+  CharacterHitEffects:
   - {fileID: 1144160514348560004, guid: d19153c65e6c0b74da6d6be52c80ff48, type: 3}
+  ObjectHitEffects:
+  - {fileID: 1144160514348560004, guid: d19153c65e6c0b74da6d6be52c80ff48, type: 3}
+  UseSound: {fileID: 8300000, guid: 78c5acd7ca944364c85130a8069c9ed7, type: 3}
   Damage: 0
   Range: 25
   RaycastBolt: {fileID: 0}
