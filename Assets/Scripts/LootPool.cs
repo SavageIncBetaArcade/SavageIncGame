@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class LootPool : MonoBehaviour
+[RequireComponent(typeof(UUID))]
+public class LootPool : MonoBehaviour, IDataPersistance
 {
     public InteractionTrigger Trigger;
     public InventorySectionHandler InventorySection;
@@ -14,10 +15,12 @@ public class LootPool : MonoBehaviour
 
     //TODO save looted var
     private bool looted = false;
+    private UUID uuid;
 
     public void Awake()
     {
         Trigger.OnTrigger += trigger;
+        uuid = GetComponent<UUID>();
     }
 
     private void OnDestroy()
@@ -62,4 +65,40 @@ public class LootPool : MonoBehaviour
                 gameObject.SetActive(false);
         }
     }
+
+    #region
+    public Dictionary<string, object> Save()
+    {
+        //create new dictionary to contain data for characterbase
+        Dictionary<string, object> dataDictionary = new Dictionary<string, object>();
+        if (!uuid)
+            return dataDictionary;
+
+        //Load currently saved values
+        DataPersitanceHelpers.LoadDictionary(ref dataDictionary, uuid.ID);
+
+        DataPersitanceHelpers.SaveValueToDictionary(ref dataDictionary, "looted", looted);
+
+        //save json to file
+        DataPersitanceHelpers.SaveDictionary(ref dataDictionary, uuid.ID);
+
+        return dataDictionary;
+    }
+
+    public Dictionary<string, object> Load(bool destroyUnloaded = false)
+    {
+        //create new dictionary to contain data for characterbase
+        Dictionary<string, object> dataDictionary = new Dictionary<string, object>();
+
+        if (!uuid)
+            return dataDictionary;
+
+        //load dictionary
+        DataPersitanceHelpers.LoadDictionary(ref dataDictionary, uuid.ID);
+
+        looted = DataPersitanceHelpers.GetValueFromDictionary<bool>(ref dataDictionary, "looted");
+
+        return dataDictionary;
+    }
+    #endregion
 }
