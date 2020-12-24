@@ -1,0 +1,46 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1946523be425dc64b9fc3b21908dc550, type: 3}
+  m_Name: HotStuff
+  m_EditorClassIdentifier: 
+  Name: Hot Stuff
+  Description: 
+  Quote: Outch!!! A'm pure burnin' mah hauns!
+  Sprite: {fileID: 21300000, guid: 296fa29bb9e4f9a429e44d5976065380, type: 3}
+  modifiers: []
+  AssetPath: Resources/Data/Abilities/Projectile/HotStuff.asset
+  AbilityLevel: 1
+  EnergyCost: 15
+  Cooldown: 15
+  ActivePeriod: 0
+  UseFrequency: 0
+  AddOwnerBaseAttack: 1
+  OwnerBaseAttackScalar: 1.4
+  HitModifierApplyPercentage: 1
+  UseAnimationCooldown: 0
+  AbilityPrefab: {fileID: 6413331160640061430, guid: 3b4ac081e3ee33f4197fd33032e62454,
+    type: 3}
+  StartingModifiers:
+  - Modifier: {fileID: 11400000, guid: a05bff7e906563c499844633a7e930c6, type: 2}
+    Stage: 1
+    Target: 1
+  CharacterHitEffects:
+  - {fileID: 3966173770737333436, guid: d00cec8d1908a4541a8ddfef194206d1, type: 3}
+  ObjectHitEffects:
+  - {fileID: 3966173770737333436, guid: d00cec8d1908a4541a8ddfef194206d1, type: 3}
+  UseSound: {fileID: 8300000, guid: 78c5acd7ca944364c85130a8069c9ed7, type: 3}
+  ProjectileGameObject: {fileID: 6167524000098639644, guid: 97eaaf95480123a4eb0b9ad4649d45cd,
+    type: 3}
+  GravityAffected: 0
+  InitialForce: 20
+  Damage: 0
+  Range: 25

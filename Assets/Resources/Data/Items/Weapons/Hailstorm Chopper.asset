@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09c8a2fa3c2f409b9e1a37ecb6f62dd1, type: 3}
+  m_Name: Hailstorm Chopper
+  m_EditorClassIdentifier: 
+  Name: Hailstorm Chopper
+  Description: 
+  Quote: 
+  Sprite: {fileID: 0}
+  modifiers:
+  - {fileID: 11400000, guid: c23e0031aac6a7344b571c5902c1e1a6, type: 2}
+  AssetPath: Resources/Data/Items/Weapons/Hailstorm Chopper.asset
+  attack: 0
+  defense: 0
+  health: 10
+  energy: 15
+  healthRegen: 1
+  energyRegen: 0

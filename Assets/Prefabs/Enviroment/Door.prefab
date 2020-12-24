@@ -363,6 +363,7 @@ GameObject:
   - component: {fileID: 1497034072}
   - component: {fileID: 566900391}
   - component: {fileID: 5113412488881380180}
+  - component: {fileID: 7628911909684112088}
   m_Layer: 0
   m_Name: Door
   m_TagString: Untagged
@@ -422,6 +423,7 @@ MonoBehaviour:
   PopupText: Press F to use door.
   InventorySection: {fileID: 0}
   RequiredItems: []
+  triggered: 0
   Range: 5
 --- !u!82 &566900391
 AudioSource:
@@ -536,6 +538,19 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 1, z: 0}
   m_TimeToStationary: 0.5
+--- !u!114 &7628911909684112088
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 936178492636057835}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3db2adb8f5d80a4abfb945da411ea2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_UUID: d56154d5-36a1-468a-a3aa-7015bdadb4bf
 --- !u!1 &942072912106560334
 GameObject:
   m_ObjectHideFlags: 0
@@ -849,6 +864,7 @@ GameObject:
   m_Component:
   - component: {fileID: 83253791372317315}
   - component: {fileID: 532623835}
+  - component: {fileID: 3947494183540707688}
   m_Layer: 0
   m_Name: Door
   m_TagString: Untagged
@@ -894,6 +910,19 @@ MonoBehaviour:
   Animator: {fileID: 292116054}
   OnTriggerAnimation: Triggered
   IsLocked: 0
+--- !u!114 &3947494183540707688
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3998245637356609680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3db2adb8f5d80a4abfb945da411ea2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_UUID: 50ea8728-99c1-430b-8749-db509d86524e
 --- !u!1 &4387062836330719943
 GameObject:
   m_ObjectHideFlags: 0

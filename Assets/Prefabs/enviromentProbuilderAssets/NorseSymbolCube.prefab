@@ -692,6 +692,8 @@ GameObject:
   - component: {fileID: 5812883792913400489}
   - component: {fileID: 885411659150425869}
   - component: {fileID: 8293748597898328936}
+  - component: {fileID: 251026315703834555}
+  - component: {fileID: 5084831316395361289}
   m_Layer: 0
   m_Name: NorseSymbolCube
   m_TagString: Untagged
@@ -1119,7 +1121,33 @@ MonoBehaviour:
   PopupText: Press F to rotate
   InventorySection: {fileID: 0}
   RequiredItems: []
+  triggered: 0
   Range: 2
+--- !u!114 &251026315703834555
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5117125355699444537}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3db2adb8f5d80a4abfb945da411ea2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_UUID: ff917970-2a50-4467-8511-c7544d452376
+--- !u!114 &5084831316395361289
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5117125355699444537}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b4e301c3b740cc4aa6a175bfa8e8fe2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5191137077386304285
 GameObject:
   m_ObjectHideFlags: 0

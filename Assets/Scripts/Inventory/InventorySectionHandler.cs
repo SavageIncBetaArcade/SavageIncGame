@@ -26,6 +26,7 @@ public class InventorySectionHandler : MonoBehaviour
     private void Start()
     {
         currentInventory = itemInventory;
+        abilityInventory.gameObject.SetActive(false);
     }
 
     public void SwitchInventories()

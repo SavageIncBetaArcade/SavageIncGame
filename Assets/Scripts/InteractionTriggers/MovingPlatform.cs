@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class MovingPlatform : MonoBehaviour
+[RequireComponent(typeof(UUID))]
+public class MovingPlatform : MonoBehaviour, IDataPersistance
 {
     public Transform StartTransform;
     public Transform EndTransform;
@@ -15,9 +16,9 @@ public class MovingPlatform : MonoBehaviour
     public float StartDelay = 0.0f;
 
 
-    private Vector3 targetPosition;
     private bool isMoving;
     private BoxCollider triggerCollider;
+    private UUID uuid;
 
     public void Awake()
     {
@@ -27,7 +28,6 @@ public class MovingPlatform : MonoBehaviour
         }
 
         transform.position = StartTransform.position;
-        targetPosition = EndTransform.position;
 
         triggerCollider = gameObject.AddComponent<BoxCollider>();
         triggerCollider.isTrigger = true;
@@ -45,7 +45,7 @@ public class MovingPlatform : MonoBehaviour
             triggerCollider.center = Vector3.up * colliderYOffset;
             triggerCollider.size += new Vector3(-1, 1, -1) * colliderYOffset;
         }
-
+        uuid = GetComponent<UUID>();
         StartCoroutine(startDelay());
     }
 
@@ -72,20 +72,6 @@ public class MovingPlatform : MonoBehaviour
         //check if all triggers are met
         isMoving = InverseTriggers ? InteractionTrigger.AllFalse(Triggers) :
             InteractionTrigger.AllTrue(Triggers);
-
-        if (!isMoving)
-        {
-            if (DefaultToStartPositon)
-            {
-                //move platform to start
-                targetPosition = StartTransform.position;
-            }
-            else
-            {
-                //move platform to end
-                targetPosition = EndTransform.position;
-            }
-        }
     }
 
     void Update()
@@ -135,5 +121,39 @@ public class MovingPlatform : MonoBehaviour
             return null;
 
         return GetPlayerTransformFromParent(currentTransform.parent);
+    }
+
+    public Dictionary<string, object> Save()
+    {
+        //create new dictionary to contain data for characterbase
+        Dictionary<string, object> dataDictionary = new Dictionary<string, object>();
+        if (!uuid)
+            return dataDictionary;
+
+        //Load currently saved values
+        DataPersitanceHelpers.LoadDictionary(ref dataDictionary, uuid.ID);
+
+        DataPersitanceHelpers.SaveValueToDictionary(ref dataDictionary, "isMoving", isMoving);
+
+        //save json to file
+        DataPersitanceHelpers.SaveDictionary(ref dataDictionary, uuid.ID);
+
+        return dataDictionary;
+    }
+
+    public Dictionary<string, object> Load(bool destroyUnloaded = false)
+    {
+        //create new dictionary to contain data for characterbase
+        Dictionary<string, object> dataDictionary = new Dictionary<string, object>();
+
+        if (!uuid)
+            return dataDictionary;
+
+        //load dictionary
+        DataPersitanceHelpers.LoadDictionary(ref dataDictionary, uuid.ID);
+
+        isMoving = DataPersitanceHelpers.GetValueFromDictionary<bool>(ref dataDictionary, "isMoving");
+
+        return dataDictionary;
     }
 }

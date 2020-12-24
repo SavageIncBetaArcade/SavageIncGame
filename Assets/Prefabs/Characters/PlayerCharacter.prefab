@@ -805,6 +805,7 @@ GameObject:
   - component: {fileID: 3287459474639506984}
   - component: {fileID: 8370825355644456209}
   - component: {fileID: 1388659877}
+  - component: {fileID: 909108252}
   m_Layer: 0
   m_Name: PlayerCharacter
   m_TagString: Player
@@ -873,8 +874,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5ca00a9fdc186b4f847d6f0dabd5955, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackModifier: 10
-  defenseModifier: 1
+  attackModifier: 5
+  defenseModifier: 10
   maxHealth: 100
   maxEnergy: 100
   speed: 6
@@ -925,6 +926,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 48
   m_CollisionDetection: 0
+--- !u!114 &909108252
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3287459474639506985}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3db2adb8f5d80a4abfb945da411ea2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_UUID: 1273b629-6a7b-4cb1-ba50-fad2cdec12ed
 --- !u!1 &3287459474762197051
 GameObject:
   m_ObjectHideFlags: 0
