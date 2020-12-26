@@ -896,6 +896,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 2bc90e4df7380334ab67577df49d4cb4, type: 3}
   - {fileID: 8300000, guid: 1e6675af99da8c84db88070d45e07e98, type: 3}
   - {fileID: 8300000, guid: bc4bbe046671ce34baf64f8ad7ea0de8, type: 3}
+  Animator: {fileID: 6178797906634356604}
+  SpeedParamaterName: Speed
   CharacterTravelAudioSource: {fileID: 1659802830336685888}
   PlayTravelAudioDistance: 1.25
   Controller: {fileID: 0}
@@ -939,7 +941,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3db2adb8f5d80a4abfb945da411ea2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UUID: 345734d4-d346-45d0-a097-b43b01fa5650
+  m_UUID: 518bd3b8-d6bd-47d0-86f0-09a3022735cb
 --- !u!1 &3287459474762197051
 GameObject:
   m_ObjectHideFlags: 0
@@ -1588,6 +1590,12 @@ PrefabInstance:
 --- !u!4 &8254202116045272951 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6140993589480274353, guid: 01054beaaa257f54eabe2ddb01ba65d9,
+    type: 3}
+  m_PrefabInstance: {fileID: 2861439659115531974}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &6178797906634356604 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 8217556117074868666, guid: 01054beaaa257f54eabe2ddb01ba65d9,
     type: 3}
   m_PrefabInstance: {fileID: 2861439659115531974}
   m_PrefabAsset: {fileID: 0}

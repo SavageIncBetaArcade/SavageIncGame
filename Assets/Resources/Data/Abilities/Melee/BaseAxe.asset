@@ -20,13 +20,13 @@ MonoBehaviour:
   AssetPath: Resources/Data/Abilities/Melee/BaseAxe.asset
   AbilityLevel: 1
   EnergyCost: 0
-  Cooldown: 0
+  Cooldown: 1
   ActivePeriod: 0
   UseFrequency: 0
   AddOwnerBaseAttack: 1
   OwnerBaseAttackScalar: 1
   HitModifierApplyPercentage: 1
-  UseAnimationCooldown: 1
+  UseAnimationCooldown: 0
   AbilityPrefab: {fileID: 6413331160640061430, guid: 58134d6b7489999438bb17f5140de9c1,
     type: 3}
   StartingModifiers: []

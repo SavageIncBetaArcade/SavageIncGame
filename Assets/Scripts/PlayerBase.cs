@@ -52,6 +52,7 @@ public class PlayerBase : CharacterBase
         float z = Input.GetAxis("Vertical");
 
         Vector3 move = transform.right * x + transform.forward * z;
+        Vector3.ClampMagnitude(move, 1.0f);
 
         //Toggle crouching
         if (Input.GetButtonDown("Crouch") && !isCrouching)
@@ -95,18 +96,19 @@ public class PlayerBase : CharacterBase
         Vector3 worldVelocity = velocity + (transform.position - lastPosition);
         Vector3 normlisedVelocity = worldVelocity.normalized;
 
-        //check if the players velocity will result the player from going through a wall
-        RaycastHit hit;
-        Vector3 startRay = transform.position + (normlisedVelocity * Controller.radius);
-        if (Physics.Raycast(startRay, normlisedVelocity, out hit, worldVelocity.magnitude) && hit.collider.tag != "Portal")
-        {
-            worldVelocity = normlisedVelocity * hit.distance;
-            Controller.Move(worldVelocity);
-        }
-        else
-        {
-            Controller.Move(velocity);
-        }
+        ////check if the players velocity will result the player from going through a wall
+        //RaycastHit hit;
+        //Vector3 startRay = transform.position + (normlisedVelocity * Controller.radius);
+        //if (Physics.Raycast(startRay, normlisedVelocity, out hit, worldVelocity.magnitude) && hit.collider.tag != "Portal")
+        //{
+        //    worldVelocity = normlisedVelocity * hit.distance;
+        //    Controller.Move(worldVelocity);
+        //}
+        //else
+        //{
+        //    Controller.Move(velocity);
+        //}
+        Controller.Move(velocity);
     }
 
     private void onDeath()

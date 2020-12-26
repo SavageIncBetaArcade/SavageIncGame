@@ -37,6 +37,12 @@ public class CharacterBase : MonoBehaviour, IDamageTaker, IDataPersistance
     private AudioClip[] FootstepSounds;
 
     [SerializeField]
+    private Animator Animator;
+    [SerializeField]
+    private string SpeedParamaterName;
+    private Vector3 lastPosition;
+
+    [SerializeField]
     private AudioSource CharacterTravelAudioSource;
     [SerializeField]
     private float PlayTravelAudioDistance = 0.75f; //distance needed to travel to play travel sound (footsteps)
@@ -144,6 +150,16 @@ public class CharacterBase : MonoBehaviour, IDamageTaker, IDataPersistance
     {
         CurrentStunTime = Mathf.Max(currentStunTime -= Time.deltaTime, 0);
 
+        //update speed param in animator
+        if (Animator || !string.IsNullOrWhiteSpace(SpeedParamaterName))
+        {
+            var velocity = (transform.position - lastPosition) / Time.deltaTime;
+            float speed = new Vector2(velocity.x, velocity.z).magnitude;
+            var velocityNorm = speed / (Speed * 1.5f);
+            Debug.Log(velocityNorm); //1.5f for sprint
+            Animator.SetFloat(SpeedParamaterName, velocityNorm, 0.1f, Time.deltaTime);
+        }
+
         //travelSounds
         if (CharacterTravelAudioSource && FootstepSounds != null && FootstepSounds.Length > 0
             && onGround
@@ -152,6 +168,8 @@ public class CharacterBase : MonoBehaviour, IDamageTaker, IDataPersistance
             CharacterTravelAudioSource.PlayOneShot(FootstepSounds[UnityEngine.Random.Range(0,FootstepSounds.Length)]);
             lastTravelSoundPlayed = transform.position;
         }
+
+        lastPosition = transform.position;
     }
 
     public virtual void PortalableObjectOnHasTeleported(Portal startPortal, Portal endPortal, Vector3 newposition, Quaternion newrotation)
