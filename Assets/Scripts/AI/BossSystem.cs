@@ -44,6 +44,7 @@ public class BossSystem : MonoBehaviour
             if (immobileTimer <= 0.0f)
             {
                 Boss.BossStopped = false;
+                Boss.NavAgent.isStopped = false;
             }
             immobileTimer -= Time.deltaTime;
         }
@@ -52,6 +53,10 @@ public class BossSystem : MonoBehaviour
             if (freezeTimer <= 0.0f)
             {
                 freezePadsStarted = false;
+                foreach (var trigger in freezePads)
+                {
+                    trigger.Reset();
+                }
             }
             freezeTimer -= Time.deltaTime;
         }
@@ -59,15 +64,19 @@ public class BossSystem : MonoBehaviour
 
     private void checkFreezePads(bool triggered, InteractionTrigger trigger)
     {
-        if (!freezePadsStarted)
+        if (InteractionTrigger.AllTrue(freezePads))
+        {
+            freezePadsStarted = false;
+            Boss.BossStopped = true;
+            Boss.NavAgent.isStopped = true;
+            immobileTimer = 10.0f;
+            Debug.Log("bossFrozen: " + freezeTimer);
+            freezeTimer = 0.0f;
+        }
+        else
         {
             freezePadsStarted = true;
             freezeTimer = 10.0f;
-        }
-        if (InteractionTrigger.AllTrue(freezePads))
-        {
-            Boss.BossStopped = true;
-            immobileTimer = 6.0f;
         }
     }
 }
