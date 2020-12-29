@@ -31,7 +31,7 @@ public abstract class UseableAbility : MonoBehaviour
     public List<AbilityModifier> Modifiers;
 
     private BaseAbility ability;
-    private GameObject worldGameObject;
+    protected GameObject worldGameObject;
 
     private ModifierHandler modifierHandler;
     private Coroutine useCoroutine;
@@ -41,7 +41,7 @@ public abstract class UseableAbility : MonoBehaviour
     public Dictionary<ScriptableUseableAbility, float> LastUseDictionary => lastUseDictionary;
 
 
-    void Initilise()
+    protected virtual void Initilise()
     {
         if (ScriptableAbility)
         {
