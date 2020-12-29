@@ -18,6 +18,7 @@ public abstract class UseableAbility : MonoBehaviour
     public ScriptableUseableAbility ScriptableAbility;
     public string AnimationUseBoolName;
     public Animator UseAnimator;
+    public AudioSource UseAudioSource;
 
     //TODO pass in the attackers character base
     public delegate void UseAction();
@@ -121,7 +122,9 @@ public abstract class UseableAbility : MonoBehaviour
         if (!IsValid())
             return;
 
-        if(useCoroutine != null)
+        UseAudioSource?.PlayOneShot(ScriptableAbility.UseSound);
+
+        if (useCoroutine != null)
             StopCoroutine(useCoroutine);
         useCoroutine = StartCoroutine(UseCoroutine());
 

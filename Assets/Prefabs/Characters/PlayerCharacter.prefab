@@ -733,7 +733,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3db2adb8f5d80a4abfb945da411ea2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UUID: 3036df09-8a45-4040-ba7a-19b4e1490318
+  m_UUID: eb674147-50c5-412c-9365-d3e879baec3b
 --- !u!1 &5204011282444907774
 GameObject:
   m_ObjectHideFlags: 0
@@ -1297,6 +1297,11 @@ PrefabInstance:
       propertyPath: Origin
       value: 
       objectReference: {fileID: 3287459473354534074}
+    - target: {fileID: 836558219243286578, guid: 01054beaaa257f54eabe2ddb01ba65d9,
+        type: 3}
+      propertyPath: UseAudioSource
+      value: 
+      objectReference: {fileID: 6074875503802036838}
     - target: {fileID: 848212185455709534, guid: 01054beaaa257f54eabe2ddb01ba65d9,
         type: 3}
       propertyPath: m_Layer
@@ -1392,6 +1397,11 @@ PrefabInstance:
       propertyPath: Origin
       value: 
       objectReference: {fileID: 3287459473354534074}
+    - target: {fileID: 2744237889269797484, guid: 01054beaaa257f54eabe2ddb01ba65d9,
+        type: 3}
+      propertyPath: UseAudioSource
+      value: 
+      objectReference: {fileID: 6074875503802036838}
     - target: {fileID: 2892887071688589001, guid: 01054beaaa257f54eabe2ddb01ba65d9,
         type: 3}
       propertyPath: m_Layer
