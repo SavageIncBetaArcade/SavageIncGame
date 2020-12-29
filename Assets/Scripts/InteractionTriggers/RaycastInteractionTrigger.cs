@@ -13,6 +13,8 @@ public class RaycastInteractionTrigger : InteractionTrigger
     private Camera playerCamera;
     private BoxCollider boxCollider;
 
+   
+
     protected override void Awake()
     {
         base.Awake();
@@ -42,7 +44,10 @@ public class RaycastInteractionTrigger : InteractionTrigger
 
             ShowPopupText(true);
             if (Input.GetButtonUp("Interact"))
+            {
                 Interact();
+            }
+                
         }
 
     }

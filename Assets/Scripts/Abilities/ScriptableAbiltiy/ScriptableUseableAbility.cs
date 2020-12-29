@@ -28,7 +28,9 @@ public class ScriptableUseableAbility : Item
     public bool UseAnimationCooldown;
     public GameObject AbilityPrefab;
     public AbilityModifier[] StartingModifiers;
-    public GameObject[] HitEffects;
+    public GameObject[] CharacterHitEffects;
+    public GameObject[] ObjectHitEffects;
+    public AudioClip UseSound;
     
     public override string GetInfoDescription()
     {

@@ -60,4 +60,9 @@ public class StackFSM : MonoBehaviour
     {
         return stateStack.Count > 0 ? stateStack[stateStack.Count - 1] : null;
     }
+
+    public void Clear()
+    {
+        stateStack.Clear();
+    }
 }

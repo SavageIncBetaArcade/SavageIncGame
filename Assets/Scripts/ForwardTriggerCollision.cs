@@ -7,12 +7,17 @@ using UnityEngine;
 
 
 public class ForwardTriggerCollision : MonoBehaviour
-{ 
+{
+    public LayerMask CollisionLayers;
+
     public delegate void TriggerEnter(Collider other);
     private TriggerEnter onTrigger;
 
     public delegate void CollisionEnter(Collision other);
     private CollisionEnter onCollision;
+
+    public delegate void TriggerStay(Collider other);
+    private TriggerStay onTriggerStay;
 
 
     public void Initialize(TriggerEnter triggerDelecate)
@@ -25,6 +30,11 @@ public class ForwardTriggerCollision : MonoBehaviour
         onCollision = collisionEnter;
     }
 
+    public void InitializeStay(TriggerStay triggerStay)
+    {
+        onTriggerStay = triggerStay;
+    }
+
     void OnTriggerEnter(Collider other)
     {
         onTrigger?.Invoke(other);
@@ -32,6 +42,17 @@ public class ForwardTriggerCollision : MonoBehaviour
 
     void OnCollisionEnter(Collision other)
     {
-        onCollision?.Invoke(other);
+        if (CollisionLayers == (CollisionLayers | (1 << other.gameObject.layer)))
+        {
+            onCollision?.Invoke(other);
+        }
+    }
+
+    void OnTriggerStay(Collider other)
+    {
+        if (CollisionLayers == (CollisionLayers | (1 << other.gameObject.layer)))
+        {
+            onTriggerStay?.Invoke(other);
+        }
     }
 }

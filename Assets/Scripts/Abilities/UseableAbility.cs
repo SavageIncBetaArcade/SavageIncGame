@@ -18,6 +18,7 @@ public abstract class UseableAbility : MonoBehaviour
     public ScriptableUseableAbility ScriptableAbility;
     public string AnimationUseBoolName;
     public Animator UseAnimator;
+    public AudioSource UseAudioSource;
 
     //TODO pass in the attackers character base
     public delegate void UseAction();
@@ -30,7 +31,7 @@ public abstract class UseableAbility : MonoBehaviour
     public List<AbilityModifier> Modifiers;
 
     private BaseAbility ability;
-    private GameObject worldGameObject;
+    protected GameObject worldGameObject;
 
     private ModifierHandler modifierHandler;
     private Coroutine useCoroutine;
@@ -40,7 +41,7 @@ public abstract class UseableAbility : MonoBehaviour
     public Dictionary<ScriptableUseableAbility, float> LastUseDictionary => lastUseDictionary;
 
 
-    void Initilise()
+    protected virtual void Initilise()
     {
         if (ScriptableAbility)
         {
@@ -119,7 +120,10 @@ public abstract class UseableAbility : MonoBehaviour
         if (!IsValid())
             return;
 
-        if(useCoroutine != null)
+        if(UseAudioSource && ScriptableAbility.UseSound)
+            UseAudioSource.PlayOneShot(ScriptableAbility.UseSound);
+
+        if (useCoroutine != null)
             StopCoroutine(useCoroutine);
         useCoroutine = StartCoroutine(UseCoroutine());
 

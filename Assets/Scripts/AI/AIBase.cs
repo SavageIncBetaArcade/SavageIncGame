@@ -4,6 +4,17 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
 
+[System.Serializable]
+public struct AIAudio
+{
+    public StateNames StateName;
+    public AudioClip[] Clips;
+
+    public float MinQueueTime;
+    public float MaxQueueTime;
+}
+
+[RequireComponent(typeof(AudioSource))]
 public class AIBase : CharacterBase
 {
     #region member varibles
@@ -26,6 +37,10 @@ public class AIBase : CharacterBase
     private StackFSM stackOfStates;
     private GameObject player;
     public Vector3? currentDestination;
+
+    public AIAudio[] Audio;
+    private float audioQueueTimer = 0.0f;
+    private float nextAudioQueueTime;
     #endregion
 
     #region Properties
@@ -66,6 +81,29 @@ public class AIBase : CharacterBase
             State idle = PotentialStates.FirstOrDefault(x => x.StateName == StateNames.IdleState);
             if (idle)
                 stackOfStates.PushState(idle);
+        }
+
+        //audio queue
+        if (!CharacterAudio) return;
+
+        var AiStateAudio = Audio.FirstOrDefault(x => x.StateName == stackOfStates.GetCurrentState().StateName);
+        if (AiStateAudio.Clips != null && AiStateAudio.Clips.Length > 0)
+        {
+            if(nextAudioQueueTime <= 0.0f)
+            {
+                nextAudioQueueTime = Random.Range(AiStateAudio.MinQueueTime, AiStateAudio.MaxQueueTime);
+            }
+
+            if (audioQueueTimer >= nextAudioQueueTime && !CharacterAudio.isPlaying)
+            {
+                //pick random audio clip
+                int audioClipIndex = Random.Range(0, AiStateAudio.Clips.Length);
+                CharacterAudio.clip = AiStateAudio.Clips[audioClipIndex];
+                CharacterAudio.Play();
+                nextAudioQueueTime = 0.0f;
+                audioQueueTimer = 0.0f;
+            }
+            audioQueueTimer += Time.deltaTime;
         }
     }
 
@@ -142,7 +180,8 @@ public class AIBase : CharacterBase
 
     private void onDeath()
     {
-        Destroy(gameObject);
+        gameObject.SetActive(false);
+        //Destroy(gameObject);
     }
 
     protected override void OnDestroy()
@@ -150,5 +189,60 @@ public class AIBase : CharacterBase
         base.OnDestroy();
 
         OnDeath -= onDeath;
+    }
+
+    public override Dictionary<string, object> Save()
+    {
+        var dataDictionary =  base.Save();
+
+        //save json to file
+        var UUID = GetComponent<UUID>()?.ID;
+        if (string.IsNullOrWhiteSpace(UUID))
+        {
+            Debug.LogError("CharacterBase doesn't have an UUID (Can't load data from json)");
+            return dataDictionary;
+        }
+
+        DataPersitanceHelpers.SaveValueToDictionary(ref dataDictionary, "SenseRange", SenseRange);
+        DataPersitanceHelpers.SaveValueToDictionary(ref dataDictionary, "AngleOfVision", AngleOfVision);
+        DataPersitanceHelpers.SaveValueToDictionary(ref dataDictionary, "WalkDistance", WalkDistance);
+        DataPersitanceHelpers.SaveValueToDictionary(ref dataDictionary, "AttackDistance", AttackDistance);
+        DataPersitanceHelpers.SaveValueToDictionary(ref dataDictionary, "CurrentPatrolPoint", CurrentPatrolPoint);
+        DataPersitanceHelpers.SaveValueToDictionary(ref dataDictionary, "NextPatrolPoint", NextPatrolPoint);
+        DataPersitanceHelpers.SaveValueToDictionary(ref dataDictionary, "currentDestination", currentDestination);
+
+        //TODO save transforms and stack of states
+        DataPersitanceHelpers.SaveDictionary(ref dataDictionary, UUID);
+        return dataDictionary;
+    }
+
+    public override Dictionary<string, object> Load(bool destroyUnloaded = false)
+    {
+        var dataDictionary = base.Load(destroyUnloaded);
+
+        SenseRange = DataPersitanceHelpers.GetValueFromDictionary<float>(ref dataDictionary, "SenseRange");
+        AngleOfVision = DataPersitanceHelpers.GetValueFromDictionary<float>(ref dataDictionary, "AngleOfVision");
+        WalkDistance = DataPersitanceHelpers.GetValueFromDictionary<float>(ref dataDictionary, "WalkDistance");
+        AttackDistance = DataPersitanceHelpers.GetValueFromDictionary<float>(ref dataDictionary, "AttackDistance");
+        CurrentPatrolPoint = DataPersitanceHelpers.GetValueFromDictionary<int>(ref dataDictionary, "CurrentPatrolPoint");
+        NextPatrolPoint = DataPersitanceHelpers.GetValueFromDictionary<int>(ref dataDictionary, "NextPatrolPoint");
+        currentDestination = DataPersitanceHelpers.GetValueFromDictionary<Vector3?>(ref dataDictionary, "currentDestination");
+
+        //reset states (should really save the state stack instead)
+        if (stackOfStates)
+        {
+            stackOfStates.Clear();
+            if (PotentialStates.Length > 0)
+            {
+                State patrol = PotentialStates.FirstOrDefault(x => x.StateName == StateNames.PatrolState);
+                State idle = PotentialStates.FirstOrDefault(x => x.StateName == StateNames.IdleState);
+                if (patrol)
+                    stackOfStates.PushState(patrol);
+                else if (idle)
+                    stackOfStates.PushState(idle);
+            }
+        }
+
+        return dataDictionary;
     }
 }

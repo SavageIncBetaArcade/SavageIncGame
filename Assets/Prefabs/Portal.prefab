@@ -43,6 +43,8 @@ GameObject:
   - component: {fileID: 2055994112196873424}
   - component: {fileID: 615613874717672484}
   - component: {fileID: 5669568010683736576}
+  - component: {fileID: 8689154690359789193}
+  - component: {fileID: 117372268138752501}
   m_Layer: 0
   m_Name: Portal
   m_TagString: Portal
@@ -130,6 +132,8 @@ MonoBehaviour:
   TargetPortalIndex: 0
   TargetPortal:
   - {fileID: 0}
+  Triggers: []
+  TargetPortalOnTrigger: 0
   NormalVisible: {fileID: 3126344792764004115}
   NormalInvisible: {fileID: 2751768646696100652}
   ViewthroughRenderer: {fileID: 2055994112196873424}
@@ -154,6 +158,31 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 0.5}
   m_Center: {x: 0, y: 0, z: 0.25}
+--- !u!114 &8689154690359789193
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6732183540145751208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3db2adb8f5d80a4abfb945da411ea2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_UUID: fe7a01d4-1ac1-4315-a3e2-49543c75630e
+--- !u!114 &117372268138752501
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6732183540145751208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b4e301c3b740cc4aa6a175bfa8e8fe2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8071186194031035018
 GameObject:
   m_ObjectHideFlags: 0

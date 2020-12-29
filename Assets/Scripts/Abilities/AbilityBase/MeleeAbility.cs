@@ -13,6 +13,7 @@ public class MeleeAbility : AttackAbility
     {
         this.forwardTrigger = forwardTrigger;
         this.forwardTrigger.Initialize(TriggerEnter);
+        this.forwardTrigger.InitializeStay(TriggerEnter);
         _hasHit = true;
     }
 
@@ -27,7 +28,7 @@ public class MeleeAbility : AttackAbility
         if (!_hasHit)
         {
             ScriptableMeleeAbility meleeAbility = Ability as ScriptableMeleeAbility;
-            if (meleeAbility == null)
+                if (meleeAbility == null)
                 Debug.LogError("MeleeAbility: ScriptableAbility is not of type ScriptableMeleeAbility");
 
             //TODO get hit normal from InteractionTrigger enter
@@ -39,7 +40,10 @@ public class MeleeAbility : AttackAbility
     public override void Initilise()
     {
         if (forwardTrigger != null)
+        {
             forwardTrigger.Initialize(TriggerEnter);
+            forwardTrigger.InitializeStay(TriggerEnter);
+        }
     }
 
     public override void Use()

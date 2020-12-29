@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d51fb4b034bc4d3ba73761b53cb8897b, type: 3}
+  m_Name: GreaterEnergyPotion
+  m_EditorClassIdentifier: 
+  Name: Greater Energy Potion
+  Description: Gain 50 energy points
+  Quote: 
+  Sprite: {fileID: 0}
+  modifiers:
+  - {fileID: 11400000, guid: ca3634649e3e91041bc762d8932da573, type: 2}
+  AssetPath: Resources/Data/Items/Misc/GreaterEnergyPotion.asset

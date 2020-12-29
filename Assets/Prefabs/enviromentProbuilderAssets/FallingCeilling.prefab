@@ -139,6 +139,7 @@ GameObject:
   - component: {fileID: 5939084039437565397}
   - component: {fileID: 5939084039437565398}
   - component: {fileID: 7206862766311892420}
+  - component: {fileID: 5881912583894813179}
   m_Layer: 0
   m_Name: Trigger
   m_TagString: Untagged
@@ -292,6 +293,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &5881912583894813179
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5939084039437565400}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3db2adb8f5d80a4abfb945da411ea2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_UUID: c3c35939-bc05-45ef-84ed-1d79af1a2bb4
 --- !u!1 &5939084040357204903
 GameObject:
   m_ObjectHideFlags: 0
@@ -340,6 +354,8 @@ GameObject:
   - component: {fileID: 5939084040945951148}
   - component: {fileID: 5939084040945951149}
   - component: {fileID: 5939084040945951147}
+  - component: {fileID: 3851895769915173287}
+  - component: {fileID: 4179520829017361779}
   m_Layer: 0
   m_Name: fallingCeiling (4)
   m_TagString: Untagged
@@ -807,3 +823,28 @@ MonoBehaviour:
   DamageAmount: 10
   ContinuousDamage: 0
   Timer: 0
+--- !u!114 &3851895769915173287
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5939084040945951150}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3db2adb8f5d80a4abfb945da411ea2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_UUID: c538fff5-79f8-486d-9f96-6b2be36dfc91
+--- !u!114 &4179520829017361779
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5939084040945951150}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b4e301c3b740cc4aa6a175bfa8e8fe2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

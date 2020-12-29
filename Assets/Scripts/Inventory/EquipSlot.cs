@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 public class EquipSlot : MonoBehaviour
 {
@@ -34,7 +34,7 @@ public class EquipSlot : MonoBehaviour
         RemoveItem();
     }
     
-    private void RemoveItem()
+    public void RemoveItem()
     {
         ItemChangedEvent?.Invoke(null, equippedSlot.InventoryItem, this);
 
@@ -42,4 +42,5 @@ public class EquipSlot : MonoBehaviour
         equippedSlot.Image.enabled = false;
         equippedSlot.InventoryItem = null;
     }
+
 }

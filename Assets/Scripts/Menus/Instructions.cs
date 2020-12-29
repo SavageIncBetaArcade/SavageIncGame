@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class Instructions : MonoBehaviour
@@ -23,8 +24,9 @@ public class Instructions : MonoBehaviour
 
     private void DisableRightButton()
     {
-        if (currentImageNum >= images.Count - 1)
-            rightButton.SetActive(false);
+        if (currentImageNum < images.Count - 1) return;
+        rightButton.SetActive(false);
+        EventSystem.current.SetSelectedGameObject(leftButton);
     }
 
     public void PreviousImage()
@@ -40,8 +42,9 @@ public class Instructions : MonoBehaviour
 
     private void DisableLeftButton()
     {
-        if(currentImageNum <= 0)
-            leftButton.SetActive(false);
+        if (currentImageNum > 0) return;
+        leftButton.SetActive(false);
+        EventSystem.current.SetSelectedGameObject(rightButton);
     }
 
     private void UpdateImage()

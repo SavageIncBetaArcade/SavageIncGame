@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(CharacterController))]
@@ -7,7 +8,6 @@ public class PlayerBase : CharacterBase
     public CharacterController Controller;
 
     private Vector3 playerVelocity;
-    private bool onGround;
     private bool isCrouching;
 
     private Vector3 lastPosition;
@@ -52,6 +52,7 @@ public class PlayerBase : CharacterBase
         float z = Input.GetAxis("Vertical");
 
         Vector3 move = transform.right * x + transform.forward * z;
+        Vector3.ClampMagnitude(move, 1.0f);
 
         //Toggle crouching
         if (Input.GetButtonDown("Crouch") && !isCrouching)
@@ -95,18 +96,19 @@ public class PlayerBase : CharacterBase
         Vector3 worldVelocity = velocity + (transform.position - lastPosition);
         Vector3 normlisedVelocity = worldVelocity.normalized;
 
-        //check if the players velocity will result the player from going through a wall
-        RaycastHit hit;
-        Vector3 startRay = transform.position + (normlisedVelocity * Controller.radius);
-        if (Physics.Raycast(startRay, normlisedVelocity, out hit, worldVelocity.magnitude) && hit.collider.tag != "Portal")
-        {
-            worldVelocity = normlisedVelocity * hit.distance;
-            Controller.Move(worldVelocity);
-        }
-        else
-        {
-            Controller.Move(velocity);
-        }
+        ////check if the players velocity will result the player from going through a wall
+        //RaycastHit hit;
+        //Vector3 startRay = transform.position + (normlisedVelocity * Controller.radius);
+        //if (Physics.Raycast(startRay, normlisedVelocity, out hit, worldVelocity.magnitude) && hit.collider.tag != "Portal")
+        //{
+        //    worldVelocity = normlisedVelocity * hit.distance;
+        //    Controller.Move(worldVelocity);
+        //}
+        //else
+        //{
+        //    Controller.Move(velocity);
+        //}
+        Controller.Move(velocity);
     }
 
     private void onDeath()
@@ -127,5 +129,37 @@ public class PlayerBase : CharacterBase
         base.PortalableObjectOnHasTeleported(startPortal, endPortal, newposition, newrotation);
 
         lastPosition = newposition;
+    }
+
+    public override Dictionary<string, object> Save()
+    {
+        var dataDictionary = base.Save();
+
+        var UUID = GetComponent<UUID>()?.ID;
+        if (string.IsNullOrWhiteSpace(UUID))
+        {
+            Debug.LogError("CharacterBase doesn't have an UUID (Can't load data from json)");
+            return dataDictionary;
+        }
+
+        DataPersitanceHelpers.SaveValueToDictionary(ref dataDictionary, "velocity", playerVelocity);
+        DataPersitanceHelpers.SaveValueToDictionary(ref dataDictionary, "onGround", onGround);
+        DataPersitanceHelpers.SaveValueToDictionary(ref dataDictionary, "isCrouching", isCrouching);
+        DataPersitanceHelpers.SaveValueToDictionary(ref dataDictionary, "lastPosition", lastPosition);
+
+        DataPersitanceHelpers.SaveDictionary(ref dataDictionary, UUID);
+        return dataDictionary;
+    }
+
+    public override Dictionary<string, object> Load(bool disableUnloaded = false)
+    {
+        var dataDictionary = base.Load(disableUnloaded);
+
+        playerVelocity = DataPersitanceHelpers.GetValueFromDictionary<Vector3>(ref dataDictionary, "velocity");
+        onGround = DataPersitanceHelpers.GetValueFromDictionary<bool>(ref dataDictionary, "onGround");
+        isCrouching = DataPersitanceHelpers.GetValueFromDictionary<bool>(ref dataDictionary, "isCrouching");
+        lastPosition = DataPersitanceHelpers.GetValueFromDictionary<Vector3>(ref dataDictionary, "lastPosition");
+
+        return dataDictionary;
     }
 }

@@ -14,8 +14,10 @@ public enum StatType
 }
 
 [RequireComponent(typeof(PortalableObject))]
-public class CharacterBase : MonoBehaviour, IDamageTaker
+[RequireComponent(typeof(UUID))]
+public class CharacterBase : MonoBehaviour, IDamageTaker, IDataPersistance
 {
+    #region members
     [SerializeField] 
     private float attackModifier, defenseModifier, maxHealth, maxEnergy;
     [SerializeField]
@@ -26,7 +28,28 @@ public class CharacterBase : MonoBehaviour, IDamageTaker
     private float currentHealth, currentEnergy;
     [SerializeField] 
     private float currentStunTime = 0.0f;
-    
+
+    protected bool onGround;
+
+    [SerializeField]
+    private AudioClip[] HitSounds;
+    [SerializeField]
+    private AudioClip[] FootstepSounds;
+
+    [SerializeField]
+    private Animator Animator;
+    [SerializeField]
+    private string SpeedParamaterName;
+    private Vector3 lastPosition;
+
+    [SerializeField]
+    private AudioSource CharacterTravelAudioSource;
+    [SerializeField]
+    private float PlayTravelAudioDistance = 0.75f; //distance needed to travel to play travel sound (footsteps)
+    private Vector3 lastTravelSoundPlayed;
+
+    protected AudioSource CharacterAudio;
+
     public delegate void DeathAction();
     public event DeathAction OnDeath;
     public delegate void DamageAction();
@@ -44,6 +67,7 @@ public class CharacterBase : MonoBehaviour, IDamageTaker
 
     private HashSet<Modifier> appliedModifiers;
     private PortalableObject portalableObject;
+    #endregion
 
     #region Properties
     public float Gravity { get; } = -9.81f;
@@ -110,6 +134,7 @@ public class CharacterBase : MonoBehaviour, IDamageTaker
 
     #endregion
 
+    #region methods
     protected virtual void Awake()
     {
         appliedModifiers = new HashSet<Modifier>();
@@ -117,11 +142,34 @@ public class CharacterBase : MonoBehaviour, IDamageTaker
         portalableObject.HasTeleported += PortalableObjectOnHasTeleported;
         currentHealth = maxHealth;
         currentEnergy = maxEnergy;
+
+        CharacterAudio = GetComponent<AudioSource>();
     }
 
     protected virtual void Update()
     {
         CurrentStunTime = Mathf.Max(currentStunTime -= Time.deltaTime, 0);
+
+        //update speed param in animator
+        if (Animator || !string.IsNullOrWhiteSpace(SpeedParamaterName))
+        {
+            var velocity = (transform.position - lastPosition) / Time.deltaTime;
+            float speed = new Vector2(velocity.x, velocity.z).magnitude;
+            var velocityNorm = speed / (Speed * 1.5f);
+            //Debug.Log(velocityNorm); //1.5f for sprint
+            Animator.SetFloat(SpeedParamaterName, velocityNorm, 0.1f, Time.deltaTime);
+        }
+
+        //travelSounds
+        if (CharacterTravelAudioSource && FootstepSounds != null && FootstepSounds.Length > 0
+            && onGround
+            && Vector3.Distance(lastTravelSoundPlayed,transform.position) >= PlayTravelAudioDistance)
+        {
+            CharacterTravelAudioSource.PlayOneShot(FootstepSounds[UnityEngine.Random.Range(0,FootstepSounds.Length)]);
+            lastTravelSoundPlayed = transform.position;
+        }
+
+        lastPosition = transform.position;
     }
 
     public virtual void PortalableObjectOnHasTeleported(Portal startPortal, Portal endPortal, Vector3 newposition, Quaternion newrotation)
@@ -197,6 +245,14 @@ public class CharacterBase : MonoBehaviour, IDamageTaker
         currentHealth = Mathf.Clamp((float)(currentHealth - attackDamage * Math.Pow(0.95, defenseModifier)), 0f, maxHealth);
         OnDamage?.Invoke();
         if (currentHealth == 0) OnDeath?.Invoke();
+
+        //play hit sound
+        if (CharacterAudio != null && HitSounds != null && HitSounds.Length > 0)
+        {
+            int clipIndex = UnityEngine.Random.Range(0, HitSounds.Length);
+            CharacterAudio.clip = HitSounds[clipIndex];
+            CharacterAudio.Play();
+        }
     }
 
     public void Heal(float amount)
@@ -216,4 +272,81 @@ public class CharacterBase : MonoBehaviour, IDamageTaker
         currentEnergy = Mathf.Clamp(currentEnergy - amount, 0f, maxEnergy);
         OnLoseEnergy?.Invoke();
     }
+    #endregion
+
+    #region IDataPersistance
+    public virtual Dictionary<string, object> Save()
+    {
+        //create new dictionary to contain data for characterbase
+        Dictionary<string, object> dataDictionary = new Dictionary<string, object>();
+
+        //save json to file
+        var UUID = GetComponent<UUID>()?.ID;
+        if (string.IsNullOrWhiteSpace(UUID))
+        {
+            Debug.LogError("CharacterBase doesn't have an UUID (Can't load data from json)");
+            return dataDictionary;
+        }
+
+        //Load currently saved values
+        DataPersitanceHelpers.LoadDictionary(ref dataDictionary, UUID);
+
+        //save transform
+        DataPersitanceHelpers.SaveTransform(ref dataDictionary, transform, "characterTransform");
+
+        //save member vars
+        DataPersitanceHelpers.SaveValueToDictionary(ref dataDictionary, "attackModifier", attackModifier);
+        DataPersitanceHelpers.SaveValueToDictionary(ref dataDictionary, "defenseModifier", defenseModifier);
+        DataPersitanceHelpers.SaveValueToDictionary(ref dataDictionary, "maxHealth", maxHealth);
+        DataPersitanceHelpers.SaveValueToDictionary(ref dataDictionary, "maxEnergy", maxEnergy);
+        DataPersitanceHelpers.SaveValueToDictionary(ref dataDictionary, "maxEnergy", maxEnergy);
+        DataPersitanceHelpers.SaveValueToDictionary(ref dataDictionary, "speed", speed);
+        DataPersitanceHelpers.SaveValueToDictionary(ref dataDictionary, "jumpHeight", jumpHeight);
+        DataPersitanceHelpers.SaveValueToDictionary(ref dataDictionary, "currentHealth", currentHealth);
+        DataPersitanceHelpers.SaveValueToDictionary(ref dataDictionary, "currentEnergy", currentEnergy);
+        DataPersitanceHelpers.SaveValueToDictionary(ref dataDictionary, "currentStunTime", currentStunTime);
+
+        //todo save applied modifiers
+
+        DataPersitanceHelpers.SaveDictionary(ref dataDictionary, UUID);
+
+        return dataDictionary;
+    }
+
+    public virtual Dictionary<string, object> Load(bool destroyUnloaded = false)
+    {
+        //create new dictionary to contain data for characterbase
+        Dictionary<string, object> dataDictionary = new Dictionary<string, object>();
+
+        var UUID = GetComponent<UUID>()?.ID;
+        if (string.IsNullOrWhiteSpace(UUID))
+        {
+            Debug.LogError("CharacterBase doesn't have an UUID (Can't load data from json)");
+            return dataDictionary;
+        }
+
+        //load dictionary
+        DataPersitanceHelpers.LoadDictionary(ref dataDictionary, UUID);
+
+        ////if dictionary is empty then we assume no saved data for the object, so destroy it
+        //if (destroyUnloaded && (dataDictionary == null || dataDictionary.Count == 0))
+        //    gameObject.SetActive(false);
+
+        //load transform
+        DataPersitanceHelpers.LoadTransform(ref dataDictionary, transform, "characterTransform");
+        //load member vars
+        attackModifier = DataPersitanceHelpers.GetValueFromDictionary<float>(ref dataDictionary, "attackModifier");
+        defenseModifier = DataPersitanceHelpers.GetValueFromDictionary<float>(ref dataDictionary, "defenseModifier");
+        maxHealth = DataPersitanceHelpers.GetValueFromDictionary<float>(ref dataDictionary, "maxHealth");
+        maxEnergy = DataPersitanceHelpers.GetValueFromDictionary<float>(ref dataDictionary, "maxEnergy");
+        speed = DataPersitanceHelpers.GetValueFromDictionary<float>(ref dataDictionary, "speed");
+        jumpHeight = DataPersitanceHelpers.GetValueFromDictionary<float>(ref dataDictionary, "jumpHeight");
+        currentHealth = DataPersitanceHelpers.GetValueFromDictionary<float>(ref dataDictionary, "currentHealth");
+        currentEnergy = DataPersitanceHelpers.GetValueFromDictionary<float>(ref dataDictionary, "currentEnergy");
+        currentStunTime = DataPersitanceHelpers.GetValueFromDictionary<float>(ref dataDictionary, "currentStunTime");
+
+        return dataDictionary;
+    }
+
+    #endregion
 }

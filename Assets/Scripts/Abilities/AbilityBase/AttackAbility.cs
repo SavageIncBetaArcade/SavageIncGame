@@ -35,26 +35,34 @@ public abstract class AttackAbility : BaseAbility
 
         CharacterBase hitCharacter = GetParentCharacterBase(hitObject.transform);
 
+
+
         OnHit?.Invoke(useableAbility.CharacterBase,hitObject, hitPoint, hitDirection, surfaceNormal);
 
         float damageDealt = Ability.AddOwnerBaseAttack ? damage + (OwnerCharacter.AttackModifier * Ability.OwnerBaseAttackScalar) : damage;
-        Debug.Log($"Character:{OwnerCharacter.name} hit with:{Ability.Name} dealing:{damageDealt}");
-        if (hitCharacter != null)
+        if (!hitCharacter)
+        {
+            Debug.Log($"Character:{OwnerCharacter.name} hit with:{Ability.Name} dealing:{damageDealt} to non character object");
+            foreach (var hitEffect in Ability.ObjectHitEffects)
+            {
+                useableAbility.InstantiateObject(hitEffect, hitPoint, Quaternion.identity);
+            }
+        }
+        else if (hitCharacter != OwnerCharacter)
+        {
+            hitCharacter.TakeDamage(damageDealt);
             Debug.Log($"Character:{OwnerCharacter.name} hit character:{hitCharacter.name} with:{Ability.Name} dealing:{damageDealt}, target def:{hitCharacter.DefenseModifier}");
 
-        hitCharacter?.TakeDamage(damageDealt);
-        
-
-
-        foreach (var hitEffect in Ability.HitEffects)
-        {
-            useableAbility.InstantiateObject(hitEffect, hitPoint, Quaternion.identity);
+            foreach (var hitEffect in Ability.CharacterHitEffects)
+            {
+                useableAbility.InstantiateObject(hitEffect, hitPoint, Quaternion.identity);
+            }
         }
 
         OnEndAttack?.Invoke(hitCharacter);
     }
 
-    private CharacterBase GetParentCharacterBase(Transform currentTransform)
+    public static CharacterBase GetParentCharacterBase(Transform currentTransform)
     {
         CharacterBase characterBase = currentTransform.GetComponent<CharacterBase>();
         if (characterBase)

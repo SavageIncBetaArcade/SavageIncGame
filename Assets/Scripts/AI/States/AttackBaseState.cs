@@ -13,8 +13,8 @@ public class AttackBaseState : State
         float distanceToPlayer = Vector3.Distance(aiBase.transform.position, player.position);
         if (distanceToPlayer <= aiBase.AttackDistance)
         {
-            aiBase.RightAbilitiy.Attack();
-            aiBase.LeftAbility.Attack();
+            aiBase.RightAbilitiy?.Attack();
+            aiBase.LeftAbility?.Attack();
         }
         else
         {
