@@ -156,7 +156,7 @@ public class CharacterBase : MonoBehaviour, IDamageTaker, IDataPersistance
             var velocity = (transform.position - lastPosition) / Time.deltaTime;
             float speed = new Vector2(velocity.x, velocity.z).magnitude;
             var velocityNorm = speed / (Speed * 1.5f);
-            Debug.Log(velocityNorm); //1.5f for sprint
+            //Debug.Log(velocityNorm); //1.5f for sprint
             Animator.SetFloat(SpeedParamaterName, velocityNorm, 0.1f, Time.deltaTime);
         }
 
