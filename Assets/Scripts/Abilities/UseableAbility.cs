@@ -17,6 +17,7 @@ public abstract class UseableAbility : MonoBehaviour
     //Abilities that use mono behavior are all useable I.E (Weapons, Buffs) - Passive abilities work in a different way
     public ScriptableUseableAbility ScriptableAbility;
     public string AnimationUseBoolName;
+    public string AnimationRangeUseBoolName;
     public Animator UseAnimator;
     public AudioSource UseAudioSource;
 
@@ -144,7 +145,21 @@ public abstract class UseableAbility : MonoBehaviour
 
             if (UseAnimator != null)
             {
-                UseAnimator.SetBool(AnimationUseBoolName, true);
+                switch (ability.Ability)
+                {
+                    case ScriptableMeleeAbility scriptableMeleeAbility:
+                        UseAnimator.SetBool(AnimationUseBoolName, true);
+                        break;
+                    case ScriptableProjectileAbility scriptableProjectileAbility:
+                        UseAnimator.SetBool(AnimationRangeUseBoolName, true);
+                        break;
+                    case ScriptableRaycastAbility scriptableRaycastAbility:
+                        UseAnimator.SetBool(AnimationRangeUseBoolName, true);
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
+                
             }
 
             ability.Use();
