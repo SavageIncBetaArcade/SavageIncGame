@@ -19,8 +19,11 @@ public class StackFSM : MonoBehaviour
 
         if(currentState != null)
         {
-            StackFSM stackfsm = gameObject.GetComponent<StackFSM>();
-            currentState.OnUpdate(ref stackfsm);
+            if (!aiBase.BossStopped)
+            {
+                StackFSM stackfsm = gameObject.GetComponent<StackFSM>();
+                currentState.OnUpdate(ref stackfsm);
+            }
         }
     }
 

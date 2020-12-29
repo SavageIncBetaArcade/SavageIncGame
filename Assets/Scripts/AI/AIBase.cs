@@ -22,6 +22,8 @@ public class AIBase : CharacterBase
     public float AngleOfVision = 45.0f;
     public float WalkDistance = 50.0f;
     public float AttackDistance = 2.0f;
+    public bool BossStopped = false;
+
 
     public Transform[] PatrolPoints;
     public int CurrentPatrolPoint = 0;

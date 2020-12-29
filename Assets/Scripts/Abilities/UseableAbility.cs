@@ -47,7 +47,7 @@ public abstract class UseableAbility : MonoBehaviour
             worldGameObject = Instantiate(ScriptableAbility.AbilityPrefab, transform.position, transform.rotation,
                 transform);
 
-            SetLayerRecursively(worldGameObject,gameObject.layer);
+                SetLayerRecursively(worldGameObject,gameObject.layer);
 
             ability = AbilityFactory.Create(this, ScriptableAbility, CharacterBase, worldGameObject, HitAction,
                 AttackEnded);
