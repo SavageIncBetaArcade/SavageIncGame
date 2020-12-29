@@ -7,6 +7,7 @@ using UnityEngine;
 public class TriggeredTranslate : MonoBehaviour, IDataPersistance
 {
     public InteractionTrigger[] Triggers;
+    public TriggerType TriggerType;
     public Vector3 TriggeredPositionOffset;
     public float Speed = 5.0f;
     private Vector3 origin;
@@ -39,14 +40,14 @@ public class TriggeredTranslate : MonoBehaviour, IDataPersistance
     private void translate(bool triggered, InteractionTrigger trigger)
     {
         //check if all triggers are met
-        if (InteractionTrigger.AnyFalse(Triggers))
+        if (InteractionTrigger.CheckTriggers(TriggerType, Triggers))
+        {
+            targetPosition = origin - TriggeredPositionOffset;
+        }
+        else
         {
             targetPosition = origin;
-            return;
-            
         }
-
-        targetPosition = origin - TriggeredPositionOffset;
     }
 
     public void Update()

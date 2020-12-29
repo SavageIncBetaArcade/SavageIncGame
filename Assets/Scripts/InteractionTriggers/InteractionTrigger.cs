@@ -1,7 +1,16 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
+
+public enum TriggerType
+{
+    ALL_TRUE,
+    ALL_FALSE,
+    ANY_TRUE,
+    ANY_FALSE
+}
 
 [RequireComponent(typeof(UUID))]
 [RequireComponent(typeof(AudioSource))]
@@ -134,6 +143,23 @@ public class InteractionTrigger : MonoBehaviour, IInteractable, IDataPersistance
     public static bool AnyFalse(IList<InteractionTrigger> triggers)
     {
         return triggers.Any(trigger => !trigger.Triggered);
+    }
+
+    public static bool CheckTriggers(TriggerType type, IList<InteractionTrigger> triggers)
+    {
+        switch (type)
+        {
+            case TriggerType.ALL_TRUE:
+                return AllTrue(triggers);
+            case TriggerType.ALL_FALSE:
+                return AllFalse(triggers);
+            case TriggerType.ANY_TRUE:
+                return AnyTrue(triggers);
+            case TriggerType.ANY_FALSE:
+                return AnyFalse(triggers);
+            default:
+                return false;
+        }
     }
     #endregion
 

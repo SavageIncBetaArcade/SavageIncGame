@@ -31,9 +31,9 @@ public class PlayerCamera : MonoBehaviour
     void Update()
     {
         //If the player is stunned then stop player from looking around
-        if(playerCharacterBase!= null && playerCharacterBase.IsStunned)
+        if (playerCharacterBase != null && playerCharacterBase.IsStunned)
             return;
-        
+
         float mouseX = Input.GetAxis("Mouse X");
         float mouseY = Input.GetAxis("Mouse Y");
 
@@ -57,6 +57,7 @@ public class PlayerCamera : MonoBehaviour
         transform.localRotation = Quaternion.Euler(xRotation, 0, 0);
 
         PlayerBody.Rotate(Vector3.up * mouseX);
+
     }
 
     public void ShakePosition(float duration, Vector2 magnitude, float minDeviation, float maxDeviation, float roughness = 1.0f)
@@ -95,11 +96,10 @@ public class PlayerCamera : MonoBehaviour
 
         while (elapsed < duration)
         {
-            float x = Random.Range(minDeviation, maxDeviation) * (magnitude.x / 100);
             float y = Random.Range(minDeviation, maxDeviation) * (magnitude.y / 100);
             float z = Random.Range(minDeviation, maxDeviation) * (magnitude.z / 100);
 
-            transform.localRotation = new Quaternion(x, y, z, transform.localRotation.w);
+            transform.localRotation = new Quaternion(transform.localRotation.x, y, z, transform.localRotation.w);
 
             elapsed += Time.deltaTime;
 
