@@ -31,9 +31,9 @@ public class PlayerCamera : MonoBehaviour
     void Update()
     {
         //If the player is stunned then stop player from looking around
-        if(playerCharacterBase!= null && playerCharacterBase.IsStunned)
+        if (playerCharacterBase != null && playerCharacterBase.IsStunned)
             return;
-        
+
         float mouseX = Input.GetAxis("Mouse X");
         float mouseY = Input.GetAxis("Mouse Y");
 
@@ -58,11 +58,6 @@ public class PlayerCamera : MonoBehaviour
 
         PlayerBody.Rotate(Vector3.up * mouseX);
 
-        if (Input.GetMouseButtonDown(0))
-        {
-            StartCoroutine((ShakePosition(0.5f, new Vector2(1.0f, 1.0f), -1.0f, 1.0f)));
-            StartCoroutine((ShakeRotation(1.0f, new Vector3(1.0f, 1.0f, 1.0f), -1.0f, 1.0f)));
-        }
     }
 
     public void ShakePosition(float duration, Vector2 magnitude, float minDeviation, float maxDeviation, float roughness = 1.0f)

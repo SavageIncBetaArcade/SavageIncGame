@@ -151,7 +151,7 @@ public class CharacterBase : MonoBehaviour, IDamageTaker, IDataPersistance
         CurrentStunTime = Mathf.Max(currentStunTime -= Time.deltaTime, 0);
 
         //update speed param in animator
-        if (Animator || !string.IsNullOrWhiteSpace(SpeedParamaterName))
+        if ((Animator || !string.IsNullOrWhiteSpace(SpeedParamaterName)) && Time.deltaTime > 0.0f)
         {
             var velocity = (transform.position - lastPosition) / Time.deltaTime;
             float speed = new Vector2(velocity.x, velocity.z).magnitude;

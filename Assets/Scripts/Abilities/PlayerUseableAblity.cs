@@ -5,6 +5,14 @@ using UnityEngine;
 public class PlayerUseableAblity : UseableAbility
 {
     public string UseButton = "Fire1";
+    public LayerMask HandLayerMask;
+
+    protected override void Initilise()
+    {
+        base.Initilise();
+
+        //SetLayerRecursively(worldGameObject, HandLayerMask.value);
+    }
 
     protected virtual void Update()
     {

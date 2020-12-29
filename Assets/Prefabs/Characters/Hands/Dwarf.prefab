@@ -234,7 +234,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 8748892135801146194, guid: c3e00fc700b05c8478c9b0f2b7d3caeb, type: 3}
+  - {fileID: 2100000, guid: 5988391f252bb6b49b03d7fc8235b06c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -823,7 +823,6 @@ MonoBehaviour:
   ScriptableAbility: {fileID: 0}
   AnimationUseBoolName: LeftMeleeAttack
   UseAnimator: {fileID: 8217556117074868666}
-  UseAudioSource: {fileID: 0}
   CharacterBase: {fileID: 0}
   Origin: {fileID: 0}
   Modifiers: []
@@ -3022,7 +3021,6 @@ MonoBehaviour:
   ScriptableAbility: {fileID: 0}
   AnimationUseBoolName: RightMeleeAttack
   UseAnimator: {fileID: 8217556117074868666}
-  UseAudioSource: {fileID: 0}
   CharacterBase: {fileID: 0}
   Origin: {fileID: 0}
   Modifiers: []

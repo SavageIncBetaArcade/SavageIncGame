@@ -18,7 +18,6 @@ public abstract class UseableAbility : MonoBehaviour
     public ScriptableUseableAbility ScriptableAbility;
     public string AnimationUseBoolName;
     public Animator UseAnimator;
-    public AudioSource UseAudioSource;
 
     //TODO pass in the attackers character base
     public delegate void UseAction();
@@ -47,6 +46,8 @@ public abstract class UseableAbility : MonoBehaviour
         {
             worldGameObject = Instantiate(ScriptableAbility.AbilityPrefab, transform.position, transform.rotation,
                 transform);
+
+            SetLayerRecursively(worldGameObject,gameObject.layer);
 
             ability = AbilityFactory.Create(this, ScriptableAbility, CharacterBase, worldGameObject, HitAction,
                 AttackEnded);
@@ -120,10 +121,7 @@ public abstract class UseableAbility : MonoBehaviour
         if (!IsValid())
             return;
 
-        if(UseAudioSource && ScriptableAbility.UseSound)
-            UseAudioSource.PlayOneShot(ScriptableAbility.UseSound);
-
-        if (useCoroutine != null)
+        if(useCoroutine != null)
             StopCoroutine(useCoroutine);
         useCoroutine = StartCoroutine(UseCoroutine());
 
@@ -176,5 +174,14 @@ public abstract class UseableAbility : MonoBehaviour
     private bool IsValid()
     {
         return ability != null && ScriptableAbility && !CharacterBase.IsStunned && Time.timeScale > 0.0f;
+    }
+
+    private void SetLayerRecursively(GameObject go, int layerNumber)
+    {
+        if (go == null) return;
+        foreach (Transform trans in go.GetComponentsInChildren<Transform>(true))
+        {
+            trans.gameObject.layer = layerNumber;
+        }
     }
 }
