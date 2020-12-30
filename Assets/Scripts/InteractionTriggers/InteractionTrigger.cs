@@ -29,11 +29,13 @@ public class InteractionTrigger : MonoBehaviour, IInteractable, IDataPersistance
     public string PopupText;
     public InventorySectionHandler InventorySection;
     public Item[] RequiredItems;
+    public int InteractionCount = 1;
 
     private TextMeshProUGUI textMesh;
     [SerializeField]
     private bool triggered = false;
     public bool Triggered => triggered;
+    int InteractionCounter = 0;
 
     private AudioSource triggerSound;
     private UUID uuid;
@@ -59,7 +61,7 @@ public class InteractionTrigger : MonoBehaviour, IInteractable, IDataPersistance
 
     public virtual void Interact()
     {
-        if (!IsInteractable || !HasRequiredItems() || (!Toggle && triggered))
+        if (!IsInteractable || !HasRequiredItems() || (!Toggle && triggered) || !InteractionCountTest())
             return;
 
         triggered = !triggered;
@@ -123,6 +125,17 @@ public class InteractionTrigger : MonoBehaviour, IInteractable, IDataPersistance
             return true;
 
         return RequiredItems.All(requiredItem => InventorySection.itemInventory.FindItemIndex(requiredItem) >= 0);
+    }
+
+
+    public bool InteractionCountTest()
+    {
+        if (InteractionCount == 1) return true;
+
+        InteractionCounter++;
+        if (InteractionCounter >= InteractionCount) return true;
+
+        return false;
     }
 
     public static bool AllTrue(IList<InteractionTrigger> triggers)

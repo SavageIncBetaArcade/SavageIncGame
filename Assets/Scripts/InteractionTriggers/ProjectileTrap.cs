@@ -7,24 +7,24 @@ using UnityEngine;
 
 public class ProjectileTrap : MonoBehaviour
 {
-    public InteractionTrigger InteractionTrigger;
+    public InteractionTrigger[] InteractionTrigger;
     public Projectile Projectile;
     public Transform Origin;
     public AudioSource TriggerAudioSource;
 
     private void Awake()
     {
-        if (InteractionTrigger)
+        foreach(var trigger in InteractionTrigger)
         {
-            InteractionTrigger.OnTrigger += fire;
+            trigger.OnTrigger += fire;
         }
     }
 
     private void Destroy()
     {
-        if (InteractionTrigger)
+        foreach (var trigger in InteractionTrigger)
         {
-            InteractionTrigger.OnTrigger -= fire;
+            trigger.OnTrigger -= fire;
         }
     }
 
@@ -37,6 +37,4 @@ public class ProjectileTrap : MonoBehaviour
         if (TriggerAudioSource && TriggerAudioSource.clip)
             TriggerAudioSource.PlayOneShot(TriggerAudioSource.clip);
     }
-
-
 }

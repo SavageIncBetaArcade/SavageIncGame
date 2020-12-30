@@ -53,7 +53,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 30
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -181,7 +181,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 30
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -423,6 +423,7 @@ MonoBehaviour:
   PopupText: Press F to use door.
   InventorySection: {fileID: 0}
   RequiredItems: []
+  InteractionCount: 1
   triggered: 0
   Range: 5
 --- !u!82 &566900391
@@ -447,7 +448,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 30
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -550,7 +551,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3db2adb8f5d80a4abfb945da411ea2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UUID: d56154d5-36a1-468a-a3aa-7015bdadb4bf
+  m_UUID: 3c574ded-be54-43e4-a654-c5715dfcf12d
 --- !u!1 &942072912106560334
 GameObject:
   m_ObjectHideFlags: 0
@@ -922,7 +923,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3db2adb8f5d80a4abfb945da411ea2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UUID: 50ea8728-99c1-430b-8749-db509d86524e
+  m_UUID: 68b9ceb3-bb3e-46c5-9ccc-8b320500be75
 --- !u!1 &4387062836330719943
 GameObject:
   m_ObjectHideFlags: 0

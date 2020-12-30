@@ -444,6 +444,7 @@ MonoBehaviour:
   PopupText: 
   InventorySection: {fileID: 0}
   RequiredItems: []
+  InteractionCount: 1
   triggered: 0
   mask:
     serializedVersion: 2
@@ -460,7 +461,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3db2adb8f5d80a4abfb945da411ea2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UUID: 0d034762-9cd9-4609-8107-f349bde5a5f4
+  m_UUID: 1ca0534e-4d2f-4c80-bf0b-792b2c47218c
 --- !u!82 &4291014064168392562
 AudioSource:
   m_ObjectHideFlags: 0
@@ -483,7 +484,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 30
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0

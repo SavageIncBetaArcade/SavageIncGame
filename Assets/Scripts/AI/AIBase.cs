@@ -38,6 +38,8 @@ public class AIBase : CharacterBase
     private GameObject player;
     public Vector3? currentDestination;
 
+    public Transform abilityTransform;
+
     public AIAudio[] Audio;
     private float audioQueueTimer = 0.0f;
     private float nextAudioQueueTime;

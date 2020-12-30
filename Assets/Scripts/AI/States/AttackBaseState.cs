@@ -13,6 +13,13 @@ public class AttackBaseState : State
         float distanceToPlayer = Vector3.Distance(aiBase.transform.position, player.position);
         if (distanceToPlayer <= aiBase.AttackDistance)
         {
+            if (aiBase.abilityTransform)
+            {
+                aiBase.abilityTransform.LookAt(player.transform);
+            }
+            Vector3 lookRotation = Quaternion.LookRotation(player.position - aiBase.transform.position).eulerAngles;
+            aiBase.transform.rotation = Quaternion.Euler(Vector3.Scale(lookRotation, Vector3.up));
+
             aiBase.RightAbilitiy?.Attack();
             aiBase.LeftAbility?.Attack();
         }
