@@ -1856,11 +1856,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f41ac11a6bf15e945a72223b82519add, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  InteractionTrigger: {fileID: 0}
+  InteractionTrigger:
+  - {fileID: 0}
   Projectile: {fileID: 6167524000098639644, guid: 97eaaf95480123a4eb0b9ad4649d45cd,
     type: 3}
   Origin: {fileID: 1546775631}
   TriggerAudioSource: {fileID: 7129053825149544103}
+  ProjectileLayerMask:
+    serializedVersion: 2
+    m_Bits: 5943
 --- !u!1 &3784127180899656656
 GameObject:
   m_ObjectHideFlags: 0

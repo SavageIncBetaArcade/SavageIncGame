@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CheckPoint : MonoBehaviour
 {
-    InteractionTrigger Trigger;
+    public InteractionTrigger Trigger;
 
     void Awake()
     {

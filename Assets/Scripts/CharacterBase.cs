@@ -144,6 +144,7 @@ public class CharacterBase : MonoBehaviour, IDamageTaker, IDataPersistance
         currentEnergy = maxEnergy;
 
         CharacterAudio = GetComponent<AudioSource>();
+        lastPosition = transform.position;
     }
 
     protected virtual void Update()
@@ -176,6 +177,8 @@ public class CharacterBase : MonoBehaviour, IDamageTaker, IDataPersistance
     {
         // For character controller to update
         Physics.SyncTransforms();
+
+        lastPosition = newposition;
     }
 
     protected virtual void OnDestroy()
@@ -305,7 +308,7 @@ public class CharacterBase : MonoBehaviour, IDamageTaker, IDataPersistance
         DataPersitanceHelpers.SaveValueToDictionary(ref dataDictionary, "currentHealth", currentHealth);
         DataPersitanceHelpers.SaveValueToDictionary(ref dataDictionary, "currentEnergy", currentEnergy);
         DataPersitanceHelpers.SaveValueToDictionary(ref dataDictionary, "currentStunTime", currentStunTime);
-
+        DataPersitanceHelpers.SaveValueToDictionary(ref dataDictionary, "lastPosition", lastPosition);
         //todo save applied modifiers
 
         DataPersitanceHelpers.SaveDictionary(ref dataDictionary, UUID);
@@ -328,10 +331,6 @@ public class CharacterBase : MonoBehaviour, IDamageTaker, IDataPersistance
         //load dictionary
         DataPersitanceHelpers.LoadDictionary(ref dataDictionary, UUID);
 
-        ////if dictionary is empty then we assume no saved data for the object, so destroy it
-        //if (destroyUnloaded && (dataDictionary == null || dataDictionary.Count == 0))
-        //    gameObject.SetActive(false);
-
         //load transform
         DataPersitanceHelpers.LoadTransform(ref dataDictionary, transform, "characterTransform");
         //load member vars
@@ -344,7 +343,7 @@ public class CharacterBase : MonoBehaviour, IDamageTaker, IDataPersistance
         currentHealth = DataPersitanceHelpers.GetValueFromDictionary<float>(ref dataDictionary, "currentHealth");
         currentEnergy = DataPersitanceHelpers.GetValueFromDictionary<float>(ref dataDictionary, "currentEnergy");
         currentStunTime = DataPersitanceHelpers.GetValueFromDictionary<float>(ref dataDictionary, "currentStunTime");
-
+        lastPosition = DataPersitanceHelpers.GetValueFromDictionary<Vector3>(ref dataDictionary, "lastPosition");
         return dataDictionary;
     }
 

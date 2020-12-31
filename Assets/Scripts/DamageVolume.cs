@@ -10,7 +10,6 @@ public class DamageVolume : MonoBehaviour
     public LayerMask DamageLayers;
 
     private float nextDamageTimer;
-    private bool damagedTaken;
 
     void Awake()
     {
@@ -19,18 +18,14 @@ public class DamageVolume : MonoBehaviour
 
     void Damage(GameObject gameObject)
     {
-        if (!damagedTaken && nextDamageTimer >= Timer)
+        if (nextDamageTimer >= Timer)
         {
             CharacterBase character = GetCharacterFromParent(gameObject.transform);
             if (!character)
                 return;
 
             character?.TakeDamage(DamageAmount);
-            damagedTaken = true;
             nextDamageTimer = 0.0f;
-
-            if (ContinuousDamage)
-                StartCoroutine(resetDamage());
         }
     }
 
@@ -52,9 +47,25 @@ public class DamageVolume : MonoBehaviour
         return GetCharacterFromParent(currentTransform.parent);
     }
 
+    void OnCollisionEnter(Collision collision)
+    {
+        if (!ContinuousDamage && (DamageLayers == (DamageLayers | (1 << collision.gameObject.layer))))
+        {
+            Damage(collision.gameObject);
+        }
+    }
+
+    void OnTriggerEnter(Collider collider)
+    {
+        if (!ContinuousDamage && (DamageLayers == (DamageLayers | (1 << collider.gameObject.layer))))
+        {
+            Damage(collider.gameObject);
+        }
+    }
+
     void OnCollisionStay(Collision collision)
     {
-        if (DamageLayers == (DamageLayers | (1 << collision.gameObject.layer)))
+        if (ContinuousDamage && (DamageLayers == (DamageLayers | (1 << collision.gameObject.layer))))
         {
             Damage(collision.gameObject);
         }
@@ -62,15 +73,9 @@ public class DamageVolume : MonoBehaviour
 
     void OnTriggerStay(Collider collider)
     {
-        if (DamageLayers == (DamageLayers | (1 << collider.gameObject.layer)))
+        if (ContinuousDamage && (DamageLayers == (DamageLayers | (1 << collider.gameObject.layer))))
         {
             Damage(collider.gameObject);
         }
-    }
-
-    IEnumerator resetDamage()
-    {
-        yield return new WaitForFixedUpdate();
-        damagedTaken = false;
     }
 }

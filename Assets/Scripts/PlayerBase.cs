@@ -10,13 +10,11 @@ public class PlayerBase : CharacterBase
     private Vector3 playerVelocity;
     private bool isCrouching;
 
-    private Vector3 lastPosition;
     protected override void Awake()
     {
         base.Awake();
         OnDeath += onDeath;
         Controller = GetComponent<CharacterController>();
-        lastPosition = transform.position;
     }
 
     protected override void Update()
@@ -25,8 +23,6 @@ public class PlayerBase : CharacterBase
 
         if (!IsStunned)
             MovePlayer();
-
-        lastPosition = transform.position;
 
         //temp kill player
         if (Input.GetKeyDown(KeyCode.F5))
@@ -93,9 +89,6 @@ public class PlayerBase : CharacterBase
 
     private void Move(Vector3 velocity)
     {
-        Vector3 worldVelocity = velocity + (transform.position - lastPosition);
-        Vector3 normlisedVelocity = worldVelocity.normalized;
-
         ////check if the players velocity will result the player from going through a wall
         //RaycastHit hit;
         //Vector3 startRay = transform.position + (normlisedVelocity * Controller.radius);
@@ -113,22 +106,13 @@ public class PlayerBase : CharacterBase
 
     private void onDeath()
     {
-        //Temp, if the player dies just reload the scene
-        Scene scene = SceneManager.GetActiveScene();
-        SceneManager.LoadScene(scene.name);
+        DataPersitanceHelpers.LoadAll();
     }
 
     protected override void OnDestroy()
     {
         base.OnDestroy();
         OnDeath -= onDeath;
-    }
-
-    public override void PortalableObjectOnHasTeleported(Portal startPortal, Portal endPortal, Vector3 newposition, Quaternion newrotation)
-    {
-        base.PortalableObjectOnHasTeleported(startPortal, endPortal, newposition, newrotation);
-
-        lastPosition = newposition;
     }
 
     public override Dictionary<string, object> Save()
@@ -145,7 +129,6 @@ public class PlayerBase : CharacterBase
         DataPersitanceHelpers.SaveValueToDictionary(ref dataDictionary, "velocity", playerVelocity);
         DataPersitanceHelpers.SaveValueToDictionary(ref dataDictionary, "onGround", onGround);
         DataPersitanceHelpers.SaveValueToDictionary(ref dataDictionary, "isCrouching", isCrouching);
-        DataPersitanceHelpers.SaveValueToDictionary(ref dataDictionary, "lastPosition", lastPosition);
 
         DataPersitanceHelpers.SaveDictionary(ref dataDictionary, UUID);
         return dataDictionary;
@@ -158,7 +141,6 @@ public class PlayerBase : CharacterBase
         playerVelocity = DataPersitanceHelpers.GetValueFromDictionary<Vector3>(ref dataDictionary, "velocity");
         onGround = DataPersitanceHelpers.GetValueFromDictionary<bool>(ref dataDictionary, "onGround");
         isCrouching = DataPersitanceHelpers.GetValueFromDictionary<bool>(ref dataDictionary, "isCrouching");
-        lastPosition = DataPersitanceHelpers.GetValueFromDictionary<Vector3>(ref dataDictionary, "lastPosition");
 
         return dataDictionary;
     }
