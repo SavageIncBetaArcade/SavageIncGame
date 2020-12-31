@@ -2,7 +2,7 @@
 {
     public override void LeftClick(Inventory inventory, CharacterBase character)
     {
-        inventory.EquipCenter(this);
+        inventory.EquipCenter(this, true);
     }
 
     public override void RightClick(Inventory inventory, CharacterBase characterBase)

@@ -4064,7 +4064,8 @@ MonoBehaviour:
   armourSlot: {fileID: 4781400297273169859}
   leftWeaponSlot: {fileID: 7018897646354262788}
   rightWeaponSlot: {fileID: 3301332987860587605}
-  StartingItems: []
+  StartingItems:
+  - {fileID: 11400000, guid: 355f91b6b6cf78844b9b6d92b64ee22a, type: 2}
 --- !u!114 &8119489174379777846
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10520,7 +10521,7 @@ PrefabInstance:
     - target: {fileID: 1144467076812734308, guid: 5b5e40fddbe18b643b04772947f58c37,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 448.27658
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1144467076812734308, guid: 5b5e40fddbe18b643b04772947f58c37,
         type: 3}
@@ -11068,7 +11069,7 @@ PrefabInstance:
     - target: {fileID: 1144467076812734308, guid: 5b5e40fddbe18b643b04772947f58c37,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 718.46094
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1144467076812734308, guid: 5b5e40fddbe18b643b04772947f58c37,
         type: 3}
@@ -11591,7 +11592,7 @@ PrefabInstance:
     - target: {fileID: 1144467076812734308, guid: 5b5e40fddbe18b643b04772947f58c37,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 178.0922
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1144467076812734308, guid: 5b5e40fddbe18b643b04772947f58c37,
         type: 3}
