@@ -18,7 +18,7 @@ public class AbilityInventory : Inventory
 
         foreach (var ability in StartingAbilities)
         {
-            AddItem(ability);
+            AddItem(ability, true);
         }
     }
 

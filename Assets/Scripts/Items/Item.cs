@@ -12,11 +12,13 @@ public abstract class Item : ScriptableObject
     public abstract string GetInfoDescription();
     public string AssetPath;
 
+    #if UNITY_EDITOR
     [ContextMenu("Get Asset Path")]
     private void GetAssetPath()
     {
         AssetPath = AssetDatabase.GetAssetPath(this).Replace("Assets/","");
     }
+    #endif
 }
 
 //custom editor

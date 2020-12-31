@@ -15,6 +15,7 @@ public class ToggleUIObject : MonoBehaviour
     void Start()
     {
         UITransform?.gameObject.SetActive(Visible);
+        Time.timeScale = 1;
     }
 
     // Update is called once per frame

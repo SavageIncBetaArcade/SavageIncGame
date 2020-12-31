@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -16,7 +17,7 @@ public class PauseMenu : MonoBehaviour
 
     public void ReturnToMainMenu()
     {
-        
+        SceneManager.LoadScene(0);
     }
 
     public void ExitGame()
