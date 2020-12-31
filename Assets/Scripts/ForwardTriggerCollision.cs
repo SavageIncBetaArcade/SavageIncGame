@@ -37,7 +37,8 @@ public class ForwardTriggerCollision : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        onTrigger?.Invoke(other);
+        if (CollisionLayers == (CollisionLayers | (1 << other.gameObject.layer)))
+            onTrigger?.Invoke(other);
     }
 
     void OnCollisionEnter(Collision other)

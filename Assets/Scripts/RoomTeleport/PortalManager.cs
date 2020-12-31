@@ -42,7 +42,8 @@ public class PortalManager : MonoBehaviour
         {
             foreach (var portal in room.portals)
             {
-                portal.TargetPortalIndex++;
+                if(portal.AffectedByBossAlert)
+                    portal.TargetPortalIndex++;
             }
         }
 

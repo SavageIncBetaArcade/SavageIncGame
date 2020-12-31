@@ -15,6 +15,8 @@ public class Portal : MonoBehaviour, IDataPersistance
 
     public InteractionTrigger[] Triggers;
 
+    public bool AffectedByBossAlert = true;
+
     public int TargetPortalOnTrigger;
 
     public Transform NormalVisible;
