@@ -148,6 +148,7 @@ public abstract class UseableAbility : MonoBehaviour
             }
 
             ability.Use();
+            CharacterBase.LoseEnergy(ScriptableAbility.EnergyCost);
 
             modifierHandler.ApplyPostActionModifiers(CharacterBase, CharacterBase);
 
@@ -176,7 +177,7 @@ public abstract class UseableAbility : MonoBehaviour
 
     private bool IsValid()
     {
-        return ability != null && ScriptableAbility && !CharacterBase.IsStunned && Time.timeScale > 0.0f;
+        return ability != null && ScriptableAbility && !CharacterBase.IsStunned && Time.timeScale > 0.0f && CharacterBase.CurrentEnergy >= ScriptableAbility.EnergyCost;
     }
 
     private void SetLayerRecursively(GameObject go, int layerNumber)

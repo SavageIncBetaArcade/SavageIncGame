@@ -15,7 +15,7 @@ MonoBehaviour:
   Name: Raging Mincer
   Description: 
   Quote: 
-  Sprite: {fileID: 0}
+  Sprite: {fileID: 21300000, guid: 8cd5bea1c93638a4ab8df45e25402cc1, type: 3}
   modifiers:
   - {fileID: 11400000, guid: 47fabc1f55d937c49ba79dee48c08abc, type: 2}
   AssetPath: Resources/Data/Items/Weapons/Raging Mincer.asset

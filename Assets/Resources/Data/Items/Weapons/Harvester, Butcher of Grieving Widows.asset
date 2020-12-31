@@ -15,7 +15,7 @@ MonoBehaviour:
   Name: Harvester, Butcher of Grieving Widows
   Description: 
   Quote: Axe
-  Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  Sprite: {fileID: 21300000, guid: 127a46a41b005cb4bb616602748c36be, type: 3}
   modifiers:
   - {fileID: 11400000, guid: c23e0031aac6a7344b571c5902c1e1a6, type: 2}
   - {fileID: 11400000, guid: 47fabc1f55d937c49ba79dee48c08abc, type: 2}

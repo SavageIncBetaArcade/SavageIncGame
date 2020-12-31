@@ -18,6 +18,6 @@ MonoBehaviour:
   activePeriod: 0
   applyFrequency: 1
   tickEffectGameObjects: []
-  Amount: 3
+  Amount: 1
   Percentage: 0
   ReplenishOwner: 0

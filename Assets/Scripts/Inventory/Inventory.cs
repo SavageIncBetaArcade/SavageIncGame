@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(UUID))]
@@ -10,9 +11,9 @@ public abstract class Inventory : MonoBehaviour, IDataPersistance
     public CharacterBase character;
     public abstract Sprite TitleImage { get; }
 
-    public abstract void EquipLeftHand(InventoryItem itemToEquip);
-    public abstract void EquipRightHand(InventoryItem itemToEquip);
-    public abstract void EquipCenter(InventoryItem itemToEquip);
+    public abstract void EquipLeftHand(InventoryItem itemToEquip, bool swap);
+    public abstract void EquipRightHand(InventoryItem itemToEquip, bool swap);
+    public abstract void EquipCenter(InventoryItem itemToEquip, bool swap);
 
     protected UUID uuid;
 
@@ -30,11 +31,28 @@ public abstract class Inventory : MonoBehaviour, IDataPersistance
             if (InventorySlotIsEmpty(i)) emptySlotPosition = i;
             if (!InventorySlotIs(i, itemToAdd)) continue;
             IncreaseItemQuantity(i);
+            autoEquipItem(items[i].InventoryItem);
             return items[i].InventoryItem;
         }
         return AssignItemSlot(emptySlotPosition, itemToAdd);
     }
-    
+
+    private void autoEquipItem(InventoryItem item)
+    {
+        switch (item)
+        {
+            case AbilityInventoryItem abilityInventoryItem:
+                EquipRightHand(item, false);
+                break;
+            case ArmourInventoryItem armourInventoryItem:
+                EquipCenter(item, false);
+                break;
+            case WeaponInventoryItem weaponInventoryItem:
+                EquipLeftHand(item, false);
+                break;
+        }
+    }
+
     private bool InventorySlotIsEmpty(int position) { return items[position].InventoryItem == null; }
     
     private bool InventorySlotIs(int position, Item item) { return !InventorySlotIsEmpty(position) && items[position].InventoryItem.Item == item; }
@@ -56,6 +74,7 @@ public abstract class Inventory : MonoBehaviour, IDataPersistance
         UpdateQuantityUiAt(position);
         items[position].Quantity.enabled = true;
 
+        autoEquipItem(items[position].InventoryItem);
         return items[position].InventoryItem;
     }
 

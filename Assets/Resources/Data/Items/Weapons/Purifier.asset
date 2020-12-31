@@ -15,7 +15,7 @@ MonoBehaviour:
   Name: Purifier
   Description: 
   Quote: 
-  Sprite: {fileID: 0}
+  Sprite: {fileID: 21300000, guid: 5b9a9973a05fd71469cb2905e1e21cd6, type: 3}
   modifiers:
   - {fileID: 11400000, guid: a2457df74cdc68143abf203ae3e67a09, type: 2}
   AssetPath: Resources/Data/Items/Weapons/Purifier.asset

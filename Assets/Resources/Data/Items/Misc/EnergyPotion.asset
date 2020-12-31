@@ -15,7 +15,7 @@ MonoBehaviour:
   Name: Energy Potion
   Description: Gain 20 energy points
   Quote: 
-  Sprite: {fileID: 0}
+  Sprite: {fileID: 21300000, guid: b957bc18e01680c4b964adc80e58ae20, type: 3}
   modifiers:
   - {fileID: 11400000, guid: aa55f59336440f741a34929733fe9cc8, type: 2}
   AssetPath: Resources/Data/Items/Misc/EnergyPotion.asset

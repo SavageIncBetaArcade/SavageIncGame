@@ -15,7 +15,7 @@ MonoBehaviour:
   Name: Increased Health
   Description: Gains +4 health for 6 seconds
   Quote: 
-  Sprite: {fileID: 0}
+  Sprite: {fileID: 21300000, guid: 5c916ff636ca1ee4e8e092b4b6b62786, type: 3}
   modifiers:
   - {fileID: 11400000, guid: 8c865ee56db61d54296c8695b7c5724e, type: 2}
   AssetPath: Resources/Data/Items/Misc/IncreasedHealth.asset

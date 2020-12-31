@@ -17,20 +17,35 @@ public class ItemInventory : Inventory
         }
     }
 
-    public override void EquipLeftHand(InventoryItem itemToEquip)
+    public override void EquipLeftHand(InventoryItem itemToEquip, bool swap)
     {
+        if (!swap && leftWeaponSlot.equippedSlot.InventoryItem  != null)
+        {
+            return;
+        }
+
         RemoveItem(itemToEquip.Item);
         leftWeaponSlot.EquipItem(itemToEquip);
     }
 
-    public override void EquipRightHand(InventoryItem itemToEquip)
+    public override void EquipRightHand(InventoryItem itemToEquip, bool swap)
     {
+        if (!swap && rightWeaponSlot.equippedSlot.InventoryItem != null)
+        {
+            return;
+        }
+
         RemoveItem(itemToEquip.Item);
         rightWeaponSlot.EquipItem(itemToEquip);
     }
 
-    public override void EquipCenter(InventoryItem itemToEquip)
+    public override void EquipCenter(InventoryItem itemToEquip, bool swap)
     {
+        if (!swap && armourSlot.equippedSlot.InventoryItem != null)
+        {
+            return;
+        }
+
         RemoveItem(itemToEquip.Item);
         armourSlot.EquipItem(itemToEquip);
     }

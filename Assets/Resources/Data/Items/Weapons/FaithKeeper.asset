@@ -15,7 +15,7 @@ MonoBehaviour:
   Name: FaithKeeper
   Description: 
   Quote: 
-  Sprite: {fileID: 0}
+  Sprite: {fileID: 21300000, guid: dcaed9608bf55b2489eb030e594a1036, type: 3}
   modifiers:
   - {fileID: 11400000, guid: a2457df74cdc68143abf203ae3e67a09, type: 2}
   AssetPath: Resources/Data/Items/Weapons/FaithKeeper.asset

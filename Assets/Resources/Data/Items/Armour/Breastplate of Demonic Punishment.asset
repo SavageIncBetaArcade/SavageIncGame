@@ -15,7 +15,7 @@ MonoBehaviour:
   Name: Breastplate of Demonic Punishment
   Description: 
   Quote: 
-  Sprite: {fileID: 0}
+  Sprite: {fileID: 21300000, guid: 8e1ef413d27b9674fb0ada33066c368e, type: 3}
   modifiers:
   - {fileID: 11400000, guid: c23e0031aac6a7344b571c5902c1e1a6, type: 2}
   - {fileID: 11400000, guid: 750b3d4460fbaa646bd1029fad9b4560, type: 2}

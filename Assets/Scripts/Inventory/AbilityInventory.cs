@@ -22,19 +22,19 @@ public class AbilityInventory : Inventory
         }
     }
 
-    public override void EquipLeftHand(InventoryItem abilityToEquip)
+    public override void EquipLeftHand(InventoryItem abilityToEquip, bool swap)
     {
         if (!leftHand.Any(abilitySlot => EquipAbilityInSlot(abilityToEquip as AbilityInventoryItem, abilitySlot)))
             StartCoroutine(ShowWarningText());
     }
 
-    public override void EquipRightHand(InventoryItem abilityToEquip)
+    public override void EquipRightHand(InventoryItem abilityToEquip, bool swap)
     {
         if (!rightHand.Any(abilitySlot => EquipAbilityInSlot(abilityToEquip as AbilityInventoryItem, abilitySlot)))
             StartCoroutine(ShowWarningText());
     }
 
-    public override void EquipCenter(InventoryItem itemToEquip)
+    public override void EquipCenter(InventoryItem itemToEquip, bool swap)
     {
         throw new System.NotImplementedException();
     }

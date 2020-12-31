@@ -15,7 +15,7 @@ MonoBehaviour:
   Name: Increased Energy
   Description: Gains +4 energy for 6 seconds
   Quote: 
-  Sprite: {fileID: 0}
+  Sprite: {fileID: 21300000, guid: 5c916ff636ca1ee4e8e092b4b6b62786, type: 3}
   modifiers:
   - {fileID: 11400000, guid: afcb4a99fdb010f4e91526f6b93b8f4d, type: 2}
   AssetPath: Resources/Data/Items/Misc/IncreasedEnergy.asset
