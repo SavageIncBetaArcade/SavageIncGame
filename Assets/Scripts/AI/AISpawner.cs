@@ -65,10 +65,10 @@ public class AISpawner : MonoBehaviour
     void checkSpawnTriggers(bool triggered, InteractionTrigger trigger)
     {
         //check if all triggers are met if so invert spawn enemies
-        //if (InteractionTrigger.AllTrue(SpawnTriggers))
-        //{
-        //    SpawnEnemies = true;
-        //}
+        if (InteractionTrigger.AllTrue(SpawnTriggers))
+        {
+            SpawnEnemies = true;
+        }
     }
 
     void checkStopTriggers(bool triggered, InteractionTrigger trigger)

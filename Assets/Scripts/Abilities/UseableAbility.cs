@@ -152,6 +152,9 @@ public abstract class UseableAbility : MonoBehaviour
 
             modifierHandler.ApplyPostActionModifiers(CharacterBase, CharacterBase);
 
+            if(ability.Ability.ActivePeriod <= 0.0f)
+                break;
+
             yield return new WaitForSeconds(ability.Ability.UseFrequency);
             currentActiveTime += ability.Ability.UseFrequency;
         }

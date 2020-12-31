@@ -11,6 +11,7 @@ public class ProjectileTrap : MonoBehaviour
     public Projectile Projectile;
     public Transform Origin;
     public AudioSource TriggerAudioSource;
+    public LayerMask ProjectileLayerMask;
 
     private void Awake()
     {
@@ -34,6 +35,8 @@ public class ProjectileTrap : MonoBehaviour
             return;
 
         GameObject projectileObject = Instantiate(Projectile.gameObject, Origin.position, Origin.rotation);
+        projectileObject.GetComponent<Projectile>().HitLayerMask = ProjectileLayerMask;
+
         if (TriggerAudioSource && TriggerAudioSource.clip)
             TriggerAudioSource.PlayOneShot(TriggerAudioSource.clip);
     }

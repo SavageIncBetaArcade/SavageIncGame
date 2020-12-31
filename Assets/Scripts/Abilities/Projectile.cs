@@ -22,8 +22,7 @@ public class Projectile : MonoBehaviour
     [SerializeField]
     private AudioSource ImpactAudioSource;
 
-    [SerializeField] 
-    private LayerMask HitLayerMask;
+    public LayerMask HitLayerMask;
 
     private Vector3 startPosition;
     private Rigidbody projectileRigidbody;

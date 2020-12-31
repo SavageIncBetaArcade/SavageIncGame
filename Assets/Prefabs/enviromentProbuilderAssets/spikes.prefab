@@ -1393,6 +1393,7 @@ MonoBehaviour:
   InventorySection: {fileID: 0}
   RequiredItems: []
   InteractionCount: 1
+  AlertAmount: 0
   triggered: 0
   mask:
     serializedVersion: 2
@@ -1409,7 +1410,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3db2adb8f5d80a4abfb945da411ea2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UUID: 0a7e4355-6184-4a53-bc56-53d3a703a69a
+  m_UUID: 3ee68c86-b98b-4a2b-936c-637bf1d6864a
 --- !u!82 &2454155823574215190
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1538,6 +1539,9 @@ MonoBehaviour:
   DamageAmount: 10
   ContinuousDamage: 1
   Timer: 3
+  DamageLayers:
+    serializedVersion: 2
+    m_Bits: 1024
 --- !u!1 &5071277118537010769
 GameObject:
   m_ObjectHideFlags: 0

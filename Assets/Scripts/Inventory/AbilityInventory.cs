@@ -116,7 +116,7 @@ public class AbilityInventory : Inventory
                 //To improve this we can equip the ability in the slot it was saved in
                 if (ability)
                 {
-                    var invItem = AddItem(ability);
+                    var invItem = AddItem(ability, false);
                     invItem.LeftClick(this,character);
                 };
             }
@@ -133,7 +133,7 @@ public class AbilityInventory : Inventory
                 //To improve this we can equip the ability in the slot it was saved in
                 if (ability)
                 {
-                    var invItem = AddItem(ability);
+                    var invItem = AddItem(ability, false);
                     invItem.RightClick(this, character);
                 };
             }

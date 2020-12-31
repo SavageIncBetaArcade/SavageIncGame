@@ -95,17 +95,17 @@ public class ItemInventory : Inventory
         if(!string.IsNullOrWhiteSpace(armourPath))
         {
             var item = Resources.Load<Item>(armourPath);
-            if (item) AddItem(item).LeftClick(this, character);
+            if (item) AddItem(item, false).LeftClick(this, character);
         }
         if (!string.IsNullOrWhiteSpace(leftWeaponPath))
         {
             var item = Resources.Load<Item>(leftWeaponPath);
-            if (item) AddItem(item).LeftClick(this, character);
+            if (item) AddItem(item, false).LeftClick(this, character);
         }
         if (!string.IsNullOrWhiteSpace(rightWeaponPath))
         {
             var item = Resources.Load<Item>(rightWeaponPath);
-            if (item) AddItem(item).RightClick(this, character);
+            if (item) AddItem(item, false).RightClick(this, character);
         }
 
         return dataDictionary;

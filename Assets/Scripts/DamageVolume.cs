@@ -7,6 +7,7 @@ public class DamageVolume : MonoBehaviour
     public float DamageAmount;
     public bool ContinuousDamage;
     public float Timer;
+    public LayerMask DamageLayers;
 
     private float nextDamageTimer;
     private bool damagedTaken;
@@ -48,12 +49,18 @@ public class DamageVolume : MonoBehaviour
 
     void OnCollisionStay(Collision collision)
     {
-        Damage(collision.gameObject);
+        if (DamageLayers == (DamageLayers | (1 << collision.gameObject.layer)))
+        {
+            Damage(collision.gameObject);
+        }
     }
 
     void OnTriggerStay(Collider collider)
     {
-        Damage(collider.gameObject);
+        if (DamageLayers == (DamageLayers | (1 << collider.gameObject.layer)))
+        {
+            Damage(collider.gameObject);
+        }
     }
 
     IEnumerator resetDamage()

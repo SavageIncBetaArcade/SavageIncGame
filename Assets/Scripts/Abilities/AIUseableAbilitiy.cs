@@ -6,11 +6,13 @@ public class AIUseableAbilitiy : UseableAbility
 {
     public bool IgnoreCooldown = false;
     public LayerMask Layermask;
+    public float OverrideCooldown = -1.0f;
 
+    private float useTimer = 0.0f;
     protected override void Initilise()
     {
         base.Initilise();
-
+        useTimer = 0.0f;
         if (worldGameObject)
         {
             ForwardTriggerCollision trigger = worldGameObject.GetComponent<ForwardTriggerCollision>();
@@ -21,9 +23,22 @@ public class AIUseableAbilitiy : UseableAbility
 
     public void Attack()
     {
-        if (ScriptableAbility != null && (IgnoreCooldown || !OnCooldown()))
+        if (ScriptableAbility != null)
         {
-            ExecuteUse();
+            if (OverrideCooldown > 0.0f && useTimer > OverrideCooldown)
+            {
+                ExecuteUse();
+                useTimer = 0.0f;
+            }
+            else if(OverrideCooldown <= 0.0f && (IgnoreCooldown || !OnCooldown()))
+            {
+                ExecuteUse();
+            }
         }
     }
+
+    void Update()
+    {
+        useTimer += Time.deltaTime;
+    } 
 }

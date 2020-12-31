@@ -23,7 +23,7 @@ public abstract class Inventory : MonoBehaviour, IDataPersistance
         uuid = GetComponent<UUID>();
     }
 
-    public InventoryItem AddItem(Item itemToAdd)
+    public InventoryItem AddItem(Item itemToAdd, bool autoEquip = true)
     {
         var emptySlotPosition = -1;
         for (var i = ItemSlotsAmount - 1; i >= 0; i--)
@@ -31,10 +31,12 @@ public abstract class Inventory : MonoBehaviour, IDataPersistance
             if (InventorySlotIsEmpty(i)) emptySlotPosition = i;
             if (!InventorySlotIs(i, itemToAdd)) continue;
             IncreaseItemQuantity(i);
-            autoEquipItem(items[i].InventoryItem);
+
+            if(autoEquip)
+                autoEquipItem(items[i].InventoryItem);
             return items[i].InventoryItem;
         }
-        return AssignItemSlot(emptySlotPosition, itemToAdd);
+        return AssignItemSlot(emptySlotPosition, itemToAdd, autoEquip);
     }
 
     private void autoEquipItem(InventoryItem item)
@@ -65,7 +67,7 @@ public abstract class Inventory : MonoBehaviour, IDataPersistance
 
     private void UpdateQuantityUiAt(int position) { items[position].Quantity.text = items[position].InventoryItem.Quantity.ToString(); }
 
-    private InventoryItem AssignItemSlot(int position, Item itemToAdd)
+    private InventoryItem AssignItemSlot(int position, Item itemToAdd, bool autoEquip)
     {
         items[position].InventoryItem = InventoryItemFactory.CreateInventoryItem(itemToAdd);
         items[position].InventoryItem.Item = itemToAdd;
@@ -74,7 +76,8 @@ public abstract class Inventory : MonoBehaviour, IDataPersistance
         UpdateQuantityUiAt(position);
         items[position].Quantity.enabled = true;
 
-        autoEquipItem(items[position].InventoryItem);
+        if(autoEquip)
+            autoEquipItem(items[position].InventoryItem);
         return items[position].InventoryItem;
     }
 
@@ -195,7 +198,7 @@ public abstract class Inventory : MonoBehaviour, IDataPersistance
 
             for (int i = 0; i < itemPath.Value; i++)
             {
-                AddItem(item as Item);
+                AddItem(item as Item, false);
             }
         }
 
