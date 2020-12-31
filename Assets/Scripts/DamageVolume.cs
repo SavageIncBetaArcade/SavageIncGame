@@ -27,10 +27,15 @@ public class DamageVolume : MonoBehaviour
 
             character?.TakeDamage(DamageAmount);
             damagedTaken = true;
-            if(ContinuousDamage)
+            nextDamageTimer = 0.0f;
+
+            if (ContinuousDamage)
                 StartCoroutine(resetDamage());
         }
+    }
 
+    void Update()
+    {
         nextDamageTimer += Time.deltaTime;
     }
 
