@@ -15,7 +15,7 @@ MonoBehaviour:
   Name: Pledge of the Caged Mind
   Description: 
   Quote: 
-  Sprite: {fileID: 0}
+  Sprite: {fileID: 21300000, guid: e27258836e3fe8b47bcc2b40dea98aa9, type: 3}
   modifiers:
   - {fileID: 11400000, guid: aaf9019d12793d84da06dce215f0a960, type: 2}
   AssetPath: Resources/Data/Items/Armour/Pledge of the Caged Mind.asset

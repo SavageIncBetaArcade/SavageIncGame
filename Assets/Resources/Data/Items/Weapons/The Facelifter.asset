@@ -15,7 +15,7 @@ MonoBehaviour:
   Name: The Facelifter
   Description: 
   Quote: 
-  Sprite: {fileID: 0}
+  Sprite: {fileID: 21300000, guid: df0eb7f4977d5ed478e34ebbcf13c1bc, type: 3}
   modifiers: []
   AssetPath: Resources/Data/Items/Weapons/The Facelifter.asset
   attack: 3

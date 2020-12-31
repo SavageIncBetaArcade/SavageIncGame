@@ -15,7 +15,7 @@ MonoBehaviour:
   Name: Vest of the Berserker
   Description: 
   Quote: Armour
-  Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  Sprite: {fileID: 21300000, guid: 3a1e33401286f8346a5005ca5f07f801, type: 3}
   modifiers: []
   AssetPath: Resources/Data/Items/Armour/Vest of the Berserker.asset
   attack: 2

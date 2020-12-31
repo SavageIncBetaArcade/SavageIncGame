@@ -15,7 +15,7 @@ MonoBehaviour:
   Name: Health Potion
   Description: Gain 20 health points
   Quote: 
-  Sprite: {fileID: 0}
+  Sprite: {fileID: 21300000, guid: 3b07fa361b1808343a53cea3b7f9b9e2, type: 3}
   modifiers:
   - {fileID: 11400000, guid: 07eda59bc8b14ef499875b232838e690, type: 2}
   AssetPath: Resources/Data/Items/Misc/Health Potion.asset

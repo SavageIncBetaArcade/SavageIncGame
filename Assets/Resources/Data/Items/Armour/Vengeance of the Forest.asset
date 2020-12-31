@@ -15,7 +15,7 @@ MonoBehaviour:
   Name: Vengeance of the Forest
   Description: 
   Quote: 
-  Sprite: {fileID: 0}
+  Sprite: {fileID: 21300000, guid: 475620ee7f4d8014cb6c2d2fa42e7dbf, type: 3}
   modifiers:
   - {fileID: 11400000, guid: a2457df74cdc68143abf203ae3e67a09, type: 2}
   - {fileID: 11400000, guid: aaf9019d12793d84da06dce215f0a960, type: 2}

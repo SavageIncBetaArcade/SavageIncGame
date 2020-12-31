@@ -15,7 +15,7 @@ MonoBehaviour:
   Name: Greater Energy Potion
   Description: Gain 50 energy points
   Quote: 
-  Sprite: {fileID: 0}
+  Sprite: {fileID: 21300000, guid: b957bc18e01680c4b964adc80e58ae20, type: 3}
   modifiers:
   - {fileID: 11400000, guid: ca3634649e3e91041bc762d8932da573, type: 2}
   AssetPath: Resources/Data/Items/Misc/GreaterEnergyPotion.asset

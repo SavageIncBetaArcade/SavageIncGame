@@ -15,7 +15,7 @@ MonoBehaviour:
   Name: Misery's Edge
   Description: 
   Quote: 
-  Sprite: {fileID: 0}
+  Sprite: {fileID: 21300000, guid: 4287e149889057743a1b00ebfae8bac9, type: 3}
   modifiers:
   - {fileID: 11400000, guid: c23e0031aac6a7344b571c5902c1e1a6, type: 2}
   AssetPath: Resources/Data/Items/Weapons/Misery's Edge.asset

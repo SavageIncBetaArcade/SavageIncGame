@@ -15,7 +15,7 @@ MonoBehaviour:
   Name: Valhalla's Bloodlust
   Description: 
   Quote: 
-  Sprite: {fileID: 0}
+  Sprite: {fileID: 21300000, guid: ce9524ce8170bb34aadd390ce365e54b, type: 3}
   modifiers: []
   AssetPath: Resources/Data/Items/Armour/Valhalla's Bloodlust.asset
   attack: 3

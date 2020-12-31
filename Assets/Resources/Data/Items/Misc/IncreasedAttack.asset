@@ -15,7 +15,7 @@ MonoBehaviour:
   Name: Increased Attack
   Description: Gains +5 attack for 6 seconds
   Quote: 
-  Sprite: {fileID: 0}
+  Sprite: {fileID: 21300000, guid: 5c916ff636ca1ee4e8e092b4b6b62786, type: 3}
   modifiers:
   - {fileID: 11400000, guid: 06dd5d234cc033043b125b215f4dbe68, type: 2}
   AssetPath: Resources/Data/Items/Misc/IncreasedAttack.asset

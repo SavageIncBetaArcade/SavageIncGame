@@ -16,7 +16,7 @@ MonoBehaviour:
   Description: Gains +40% speed for 10 seconds and +7 attack for 10 seconds. After
     10 seconds removes 40 health points.
   Quote: 
-  Sprite: {fileID: 0}
+  Sprite: {fileID: 21300000, guid: 5c916ff636ca1ee4e8e092b4b6b62786, type: 3}
   modifiers:
   - {fileID: 11400000, guid: 126c57ccd7ef3ff4da7e88c97e20ccad, type: 2}
   - {fileID: 11400000, guid: a22a3f1838109c04cbe87d6f776d5b91, type: 2}

@@ -15,6 +15,6 @@ MonoBehaviour:
   Name: Blue Key
   Description: This key opens a door some where
   Quote: 
-  Sprite: {fileID: 21300000, guid: 6d0546d69e029004381e8eea32c04612, type: 3}
+  Sprite: {fileID: 21300000, guid: 15948c817dca4924c9eae0f4cb2f0955, type: 3}
   modifiers: []
   AssetPath: Resources/Data/Items/Keys/BlueKey.asset
