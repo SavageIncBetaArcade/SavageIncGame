@@ -52,6 +52,9 @@ public class LootPool : MonoBehaviour, IDataPersistance
                 case EquippableItem _:
                     InventorySection.itemInventory.AddItem(item);
                     break;
+                case KeyItem _:
+                    InventorySection.itemInventory.AddItem(item);
+                    break;
                 case ConsumableItem _:
                     InventorySection.itemInventory.AddItem(item);
                     break;

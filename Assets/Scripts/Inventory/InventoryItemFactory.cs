@@ -12,6 +12,8 @@ public static class InventoryItemFactory
                 return new WeaponInventoryItem();
             case ConsumableItem _:
                 return new ConsumableInventoryItem();
+            case KeyItem _:
+                return new KeyInventoryItem();
             case ScriptableUseableAbility _:
                 return new AbilityInventoryItem();
         }

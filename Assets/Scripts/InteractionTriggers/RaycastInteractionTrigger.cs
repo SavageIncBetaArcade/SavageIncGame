@@ -24,6 +24,11 @@ public class RaycastInteractionTrigger : InteractionTrigger
         boxCollider.isTrigger = true;
     }
 
+    void OnDisable()
+    {
+        ShowPopupText(false);
+    }
+
     void Update()
     {
         if (!playerCamera)
