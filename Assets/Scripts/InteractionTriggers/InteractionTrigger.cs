@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
@@ -61,8 +62,17 @@ public class InteractionTrigger : MonoBehaviour, IInteractable, IDataPersistance
 
     public virtual void Interact()
     {
-        if (!IsInteractable || !HasRequiredItems() || (!Toggle && triggered) || !InteractionCountTest())
+        bool hasItems = HasRequiredItems();
+        if (!IsInteractable || !hasItems || (!Toggle && triggered) || !InteractionCountTest())
+        {
+            if (IsInteractable && !triggered && !hasItems)
+            {
+                ShowPopupText(true);
+                PopupText = "Requires a certain item!";
+                StartCoroutine(hidePopupText(2));
+            }
             return;
+        }
 
         triggered = !triggered;
 
@@ -127,6 +137,11 @@ public class InteractionTrigger : MonoBehaviour, IInteractable, IDataPersistance
         return RequiredItems.All(requiredItem => InventorySection.itemInventory.FindItemIndex(requiredItem) >= 0);
     }
 
+    private IEnumerator hidePopupText(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        ShowPopupText(false);
+    }
 
     public bool InteractionCountTest()
     {
