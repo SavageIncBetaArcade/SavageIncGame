@@ -70,6 +70,8 @@ MonoBehaviour:
   InventorySection: {fileID: 452996607319901770, guid: d0f96971a3205e641a9ea778eba0df36,
     type: 3}
   RequiredItems: []
+  InteractionCount: 1
+  AlertAmount: 0
   triggered: 0
   Range: 3
 --- !u!82 &829098457
@@ -694,6 +696,33 @@ MonoBehaviour:
   Items:
   - {fileID: 11400000, guid: 8f09fe58eb3203947a2363e21770e658, type: 2}
   - {fileID: 11400000, guid: 1662343ef64d5474f906478e732ae204, type: 2}
+  - {fileID: 11400000, guid: c4b03d435bd36f343859b29f4ae75d99, type: 2}
+  - {fileID: 11400000, guid: 8337c4a49da08a14cba8bbfe61f9119a, type: 2}
+  - {fileID: 11400000, guid: c5a8f3395c02ba743b37d075af215471, type: 2}
+  - {fileID: 11400000, guid: 2ce08d0be5432c049b1d66ad380c11f5, type: 2}
+  - {fileID: 11400000, guid: 8411ab5ef9c2bc14dbdc7241ad1fb668, type: 2}
+  - {fileID: 11400000, guid: 355f91b6b6cf78844b9b6d92b64ee22a, type: 2}
+  - {fileID: 11400000, guid: 8f09fe58eb3203947a2363e21770e658, type: 2}
+  - {fileID: 11400000, guid: 060e79ff732c9e946876266888233ff1, type: 2}
+  - {fileID: 11400000, guid: 4a6b6d0a1768e5f43850eb2d4f931ae5, type: 2}
+  - {fileID: 11400000, guid: bb8ee25cdac81224b9814b9fb562417b, type: 2}
+  - {fileID: 11400000, guid: ce0f814775e1df44f9c560dbc73fbeaa, type: 2}
+  - {fileID: 11400000, guid: bcfaa97f02d257d40af9c5843c35545e, type: 2}
+  - {fileID: 11400000, guid: 1070ec3011776cd4c8ef80417af65aeb, type: 2}
+  - {fileID: 11400000, guid: 160e717029013fc47956b5e37e327150, type: 2}
+  - {fileID: 11400000, guid: 69c6725238c407c4e982696004932b50, type: 2}
+  - {fileID: 11400000, guid: 72e5759b357f8ed45aa26dbd0cb97b8e, type: 2}
+  - {fileID: 11400000, guid: 9a90244775ed51d479db320875002bac, type: 2}
+  - {fileID: 11400000, guid: e55c52a69c202694490d8c3e3b389f21, type: 2}
+  - {fileID: 11400000, guid: 41d59f3065410d446ab2121431ec4af9, type: 2}
+  - {fileID: 11400000, guid: d57829d1cab87b3408c4b1031e7e0210, type: 2}
+  - {fileID: 11400000, guid: ba164802c3956fc4e97b0a4ce425211a, type: 2}
+  - {fileID: 11400000, guid: cfb804084e376a841a69a460b5b9d5a3, type: 2}
+  - {fileID: 11400000, guid: 58b811868598fce428134d2f766204a9, type: 2}
+  - {fileID: 11400000, guid: 6bf79024c6ba1da4ebd0e12ef0d25eda, type: 2}
+  - {fileID: 11400000, guid: 155961573f90b87449a6f2028953e264, type: 2}
+  - {fileID: 11400000, guid: c19fccb1bbda35a46869c561d720bf75, type: 2}
+  - {fileID: 11400000, guid: e155bb7b6ad94f94fab8675c7bdc34a1, type: 2}
 --- !u!114 &5505843777080859061
 MonoBehaviour:
   m_ObjectHideFlags: 0

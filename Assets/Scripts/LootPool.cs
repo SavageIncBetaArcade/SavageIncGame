@@ -21,6 +21,8 @@ public class LootPool : MonoBehaviour, IDataPersistance
     {
         Trigger.OnTrigger += trigger;
         uuid = GetComponent<UUID>();
+        if(!InventorySection)
+            InventorySection = DataPersitanceHelpers.FindAllGameObjects<InventorySectionHandler>().FirstOrDefault();
     }
 
     private void OnDestroy()
