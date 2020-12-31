@@ -20,8 +20,8 @@ public class AttackBaseState : State
             Vector3 lookRotation = Quaternion.LookRotation(player.position - aiBase.transform.position).eulerAngles;
             aiBase.transform.rotation = Quaternion.Euler(Vector3.Scale(lookRotation, Vector3.up));
 
-            aiBase.RightAbilitiy?.Attack();
-            aiBase.LeftAbility?.Attack();
+            if(aiBase.FirstAbility) aiBase.LeftAbility?.Attack();
+            else aiBase.RightAbilitiy?.Attack();
         }
         else
         {

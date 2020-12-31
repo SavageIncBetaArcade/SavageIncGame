@@ -190,8 +190,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackModifier: 5
   defenseModifier: 0
-  maxHealth: 20
-  maxEnergy: 20
+  maxHealth: 200
+  maxEnergy: 2000
   speed: 6
   jumpHeight: 1
   currentHealth: 0
@@ -203,11 +203,12 @@ MonoBehaviour:
   SpeedParamaterName: Speed
   CharacterTravelAudioSource: {fileID: 0}
   PlayTravelAudioDistance: 0.75
-  SenseRange: 200
-  AngleOfVision: 45
+  SenseRange: 150
+  AngleOfVision: 90
   WalkDistance: 50
   AttackDistance: 50
   BossStopped: 0
+  FirstAbility: 1
   PatrolPoints: []
   CurrentPatrolPoint: 0
   NextPatrolPoint: 1
@@ -217,6 +218,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 3a65c85fbdc83b349a7ff1965ea68807, type: 2}
   LeftAbility: {fileID: 5961082157684537755}
   RightAbilitiy: {fileID: 2063424294}
+  abilityTransform: {fileID: 47149311}
   Audio: []
 --- !u!82 &8456397199116207171
 AudioSource:
@@ -338,7 +340,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3db2adb8f5d80a4abfb945da411ea2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UUID: 23fb0cd4-6575-4d00-b443-22087fc76ee6
+  m_UUID: bdefac6e-86b3-4fb4-9452-a23575649908
 --- !u!54 &8456397199116207174
 Rigidbody:
   m_ObjectHideFlags: 0

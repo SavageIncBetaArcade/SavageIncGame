@@ -29,6 +29,7 @@ public class BossSystem : MonoBehaviour
                 floor.IsInteractable =  false;
             }
             GetComponent<AISpawner>().SpawnEnemies = false;
+            Boss.FirstAbility = true;
         }
         else if (healthPercentage < 0.6f)
         {
@@ -37,6 +38,7 @@ public class BossSystem : MonoBehaviour
                 floor.IsInteractable = true;
             }
             GetComponent<AISpawner>().SpawnEnemies = true;
+            Boss.FirstAbility = false;
         }
 
         if (Boss.BossStopped)

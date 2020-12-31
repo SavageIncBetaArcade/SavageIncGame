@@ -23,6 +23,7 @@ public class AIBase : CharacterBase
     public float WalkDistance = 50.0f;
     public float AttackDistance = 2.0f;
     public bool BossStopped = false;
+    public bool FirstAbility = true;
 
 
     public Transform[] PatrolPoints;
