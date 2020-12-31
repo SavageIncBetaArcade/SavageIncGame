@@ -84,6 +84,7 @@ MonoBehaviour:
   Layermask:
     serializedVersion: 2
     m_Bits: 1024
+  OverrideCooldown: -1
 --- !u!95 &2584854102547813975
 Animator:
   serializedVersion: 3
@@ -120,6 +121,7 @@ GameObject:
   - component: {fileID: 8456397199116207169}
   - component: {fileID: 8456397199116207174}
   - component: {fileID: 2996254959549809975}
+  - component: {fileID: 5798957807206463398}
   m_Layer: 11
   m_Name: PigBat
   m_TagString: Untagged
@@ -210,6 +212,7 @@ MonoBehaviour:
   AttackDistance: 50
   BossStopped: 0
   FirstAbility: 1
+  AlertAmount: 5
   PatrolPoints: []
   CurrentPatrolPoint: 0
   NextPatrolPoint: 1
@@ -341,7 +344,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3db2adb8f5d80a4abfb945da411ea2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UUID: 4739c145-8e0c-4a22-8bae-2ecbfa71c8d5
+  m_UUID: ebefc12d-402c-4b82-b09a-48cc8d7b7d9c
 --- !u!54 &8456397199116207174
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -371,6 +374,28 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.75, y: 2.5, z: 1}
   m_Center: {x: 0, y: 1.15, z: 0}
+--- !u!114 &5798957807206463398
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8456397199116207198}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d10708286a05d6b47bfbd2078e18d1f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IsInteractable: 1
+  Toggle: 1
+  TriggerAnimator: {fileID: 0}
+  OnTriggerAnimation: 
+  PopupText: 
+  InventorySection: {fileID: 0}
+  RequiredItems: []
+  InteractionCount: 1
+  AlertAmount: 0
+  triggered: 0
 --- !u!1 &8609368717434630510
 GameObject:
   m_ObjectHideFlags: 0
@@ -425,6 +450,7 @@ MonoBehaviour:
   Layermask:
     serializedVersion: 2
     m_Bits: 1024
+  OverrideCooldown: -1
 --- !u!1001 &5660297040121347850
 PrefabInstance:
   m_ObjectHideFlags: 0
