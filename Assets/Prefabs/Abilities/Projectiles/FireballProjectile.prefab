@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5973070665643816456}
   - component: {fileID: 8017897237392613785}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: ImpactSound
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -174,7 +174,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4859906338144004236}
   - component: {fileID: 4229589715040029981}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Sound
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -339,7 +339,7 @@ GameObject:
   - component: {fileID: 6859205048118751120}
   - component: {fileID: 4584840734705039144}
   - component: {fileID: 1614858837868498812}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Point Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -546,7 +546,7 @@ GameObject:
   - component: {fileID: 6167524000098639647}
   - component: {fileID: 6167524000098639644}
   - component: {fileID: 8994638248093448249}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: FireballProjectile
   m_TagString: Ability
   m_Icon: {fileID: 0}
@@ -660,13 +660,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38518fe9720ea0546abed1ac84829e76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 5
+  damage: 15
   initialForce: 15
   gravityAffected: 0
   lifeSpan: 2.5
   RangeCutoff: 100
   ImpactSound: {fileID: 8300000, guid: 612ae8a4dbffaa343b5c48c687d0669f, type: 3}
   ImpactAudioSource: {fileID: 8017897237392613785}
+  HitLayerMask:
+    serializedVersion: 2
+    m_Bits: 7991
 --- !u!114 &8994638248093448249
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -690,7 +693,7 @@ GameObject:
   - component: {fileID: 2930043333229622524}
   - component: {fileID: 367033612570164635}
   - component: {fileID: 2685704217658214721}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5453,7 +5456,7 @@ GameObject:
   - component: {fileID: 5351851196229612860}
   - component: {fileID: 7353194603442184738}
   - component: {fileID: 584553481439506017}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Particle System (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

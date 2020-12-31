@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5274489246513864013}
   - component: {fileID: 1570929945761843694}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Trail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -152,7 +152,7 @@ GameObject:
   - component: {fileID: 6167524000098639647}
   - component: {fileID: 6167524000098639644}
   - component: {fileID: 8994638248093448249}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: IceballProjectile
   m_TagString: Ability
   m_Icon: {fileID: 0}
@@ -267,6 +267,11 @@ MonoBehaviour:
   gravityAffected: 1
   lifeSpan: 2.5
   RangeCutoff: 100
+  ImpactSound: {fileID: 0}
+  ImpactAudioSource: {fileID: 0}
+  HitLayerMask:
+    serializedVersion: 2
+    m_Bits: 7991
 --- !u!114 &8994638248093448249
 MonoBehaviour:
   m_ObjectHideFlags: 0

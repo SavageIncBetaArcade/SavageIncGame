@@ -22,6 +22,9 @@ public class Projectile : MonoBehaviour
     [SerializeField]
     private AudioSource ImpactAudioSource;
 
+    [SerializeField] 
+    private LayerMask HitLayerMask;
+
     private Vector3 startPosition;
     private Rigidbody projectileRigidbody;
     private PortalableObject portalableObject;
@@ -54,10 +57,10 @@ public class Projectile : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        //First check if it has a health component
-        //TODO add health component and pass into hit
-
-        Impact(collision.gameObject, collision.GetContact(0).point, collision.GetContact(0).normal);
+        if ((HitLayerMask.value & (1 << collision.gameObject.layer)) > 0)
+        {
+            Impact(collision.gameObject, collision.GetContact(0).point, collision.GetContact(0).normal);
+        }
     }
 
     void Impact(GameObject hitGameObject, Vector3 hitPoint, Vector3 hitNormal)
