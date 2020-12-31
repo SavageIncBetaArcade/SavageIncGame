@@ -2,10 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PortalManager : MonoBehaviour
+[RequireComponent(typeof(UUID))]
+public class PortalManager : MonoBehaviour, IDataPersistance
 {
     public int AlertMeter;
     private List<Room> Rooms;
+
+    private UUID uuid;
 
     struct Room
     {
@@ -17,6 +20,11 @@ public class PortalManager : MonoBehaviour
         {
             return volume.IsPlayerInRoom();
         }
+    }
+
+    void Awake()
+    {
+        uuid = GetComponent<UUID>();
     }
 
     // Start is called before the first frame update
@@ -132,6 +140,42 @@ public class PortalManager : MonoBehaviour
             Rooms.Add(room);
         }
     }
+
+    #region IDataPersistance
+    public Dictionary<string, object> Save()
+    {
+        //create new dictionary to contain data for characterbase
+        Dictionary<string, object> dataDictionary = new Dictionary<string, object>();
+        if (!uuid)
+            return dataDictionary;
+
+        //Load currently saved values
+        DataPersitanceHelpers.LoadDictionary(ref dataDictionary, uuid.ID);
+
+        DataPersitanceHelpers.SaveValueToDictionary(ref dataDictionary, "AlertMeter", AlertMeter);
+
+        //save json to file
+        DataPersitanceHelpers.SaveDictionary(ref dataDictionary, uuid.ID);
+
+        return dataDictionary;
+    }
+
+    public Dictionary<string, object> Load(bool destroyUnloaded = false)
+    {
+        //create new dictionary to contain data for characterbase
+        Dictionary<string, object> dataDictionary = new Dictionary<string, object>();
+
+        if (!uuid)
+            return dataDictionary;
+
+        //load dictionary
+        DataPersitanceHelpers.LoadDictionary(ref dataDictionary, uuid.ID);
+
+        AlertMeter = DataPersitanceHelpers.GetValueFromDictionary<int>(ref dataDictionary, "AlertMeter");
+
+        return dataDictionary;
+    }
+    #endregion
 }
 
 
