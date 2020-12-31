@@ -3,7 +3,7 @@
 public class DialogueTrigger : MonoBehaviour
 {
     public TextAsset JsonFile;
-    public string EntityName;
+    public string EntityKey;
 
     private Entities entitiesInJson;
     private bool isTriggered = false;
@@ -46,14 +46,10 @@ public class DialogueTrigger : MonoBehaviour
             foreach (Entity entity in entitiesInJson.entities)
             {
                 StopAllCoroutines();
-
-                if (entity.Name == EntityName && entity.TextType == "dialogue")
+                if (entity.Key == EntityKey)
                 {
                     FindObjectOfType<DialogueManager>().DisplayDialogue(entity.Name, entity.Dialogue, entity.TextType, this);
-                }
-                else if (entity.Name == EntityName && entity.TextType == "control")
-                {
-                    FindObjectOfType<DialogueManager>().DisplayControls(entity.Dialogue, entity.TextType, this);
+                    FindObjectOfType<DialogueManager>().DisplayControls(entity.Control, "control", this);
                 }
             }
 

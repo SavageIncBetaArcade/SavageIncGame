@@ -1,82 +1,97 @@
 {
     "entities": 
     [
-        {
-			"Name": "Gertrude1",
-            "Dialogue": [
-	            "So this be the lich's home? Cannae wait tae git mah hands on his prized ale!"
-			],
-			"TextType": "dialogue"
-		},
-        {
-			"Name": "Gertrude2",
-            "Dialogue": [
-	            "Getting tae old fur this adventuring."
-			],
-			"TextType": "dialogue"
-		},
-        {
-			"Name": "Gertrude3",
-            "Dialogue": [
-	            "Dae you want a piece o' me? Come and git me!"
-			],
-			"TextType": "dialogue"
-		},
-        {
-			"Name": "Gertrude4",
-            "Dialogue": [
-	            "Who's there?!"
-			],
-			"TextType": "dialogue"
-		},
-        {
-			"Name": "Gertrude5",
-            "Dialogue": [
-	            "Woww!!! That didnae feel right!"
-			],
-			"TextType": "dialogue"
-		},
-		{
-			"Name":  "Chest",
-			"Dialogue":  [
-			"Whit's this? Twa chests as soon as ah enter his lair? This is a guid omen surely!"
-			],
-			"TextType": "dialogue"
-        },
-        {
-			"Name": "Key",
-            "Dialogue": [
-	            "Tis pure dark in here... Is that a key? A'm sure nothing bad wull happen if ah juist pick it up."
-			],
-			"TextType": "dialogue"
-        },
-        {
-			"Name":  "Door",
-			"Dialogue":  [
-				"Locked?! Ye cannae lock me oot! Ah wull just burst though!!! Or... Ah kin find a key. "
-			],
-			"TextType": "dialogue"
-		},
-        {
-			"Name":  "Symbols",
-			"Dialogue":  [
-				"This feels important."
-			],
-			"TextType": "dialogue"
-		},
-        {
-			"Name":  "Torch",
-			"Dialogue":  [
-				"Maybe ah kin light that torch up with fireball... Or maybe that's what th' lich wants me tae dae!!! "
-			],
-			"TextType": "dialogue"
-		},
-		{
-			"Name": "Pull Lever",
-			"Dialogue": [
-				"Press 'E' to Pull"
-			],
-			"TextType": "control"
-		}
+      {
+        "Key": "EnterDungeon",
+        "Name": "Aegir",
+        "Dialogue": [
+          "So this be the lich's home? Cannae wait tae git mah hands on his prized ale!"
+        ],
+        "Control": [
+          "WASD to move"
+        ],
+        "TextType": "dialogue"
+      },
+      {
+        "Key": "EdgeOfWater",
+        "Name": "Aegir",
+        "Dialogue": [
+          "Getting tae old fur this adventuring."
+        ],
+        "Control": [
+          "Space bar to jump"
+        ],
+        "TextType": "dialogue"
+      },
+      {
+        "Key": "EnemySighted",
+        "Name": "Aegir",
+        "Dialogue": [
+          "Dae you want a piece o' me? Come and git me!"
+        ],
+        "Control": [
+          "Left and right mouse buttons to attack"
+        ],
+        "TextType": "dialogue"
+      },
+      {
+        "Key": "ObjectsMove",
+        "Name": "Aegir",
+        "Dialogue": [
+          "Who's there?!"
+        ],
+        "TextType": "dialogue"
+      },
+      {
+        "Key": "RoomsMove",
+        "Name": "Aegir",
+        "Dialogue": [
+          "Woww!!! That didnae feel right!"
+        ],
+        "TextType": "dialogue"
+      },
+      {
+        "Key": "ApproachChests",
+        "Name": "Aegir",
+        "Dialogue": [
+          "Whit's this? Twa chests as soon as ah enter his lair? This is a guid omen surely!"
+        ],
+        "Control": [
+          "TAB to open inventory"
+        ],
+        "TextType": "dialogue"
+      },
+      {
+        "Key": "FindKey",
+        "Name": "Aegir",
+        "Dialogue": [
+          "Tis pure dark in here... Is that a key? A'm sure nothing bad wull happen if ah juist pick it up."
+        ],
+        "TextType": "dialogue"
+      },
+      {
+        "Key": "LockedDoor",
+        "Name": "Aegir",
+        "Dialogue": [
+          "Locked?! Ye cannae lock me oot! Ah wull just burst though!!! Or... Ah kin find a key. "
+        ],
+        "TextType": "dialogue"
+      },
+      {
+        "Key": "SeeSymbols",
+        "Name": "Aegir",
+        "Dialogue": [
+          "This feels important."
+        ],
+        "TextType": "dialogue"
+      },
+      {
+        "Key": "BestPuzzle",
+        "Name": "Aegir",
+        "Dialogue": [
+          "Maybe ah kin light that torch up with fireball... Or maybe that's what th' lich wants me tae dae!!! "
+        ],
+        "TextType": "dialogue"
+      }		
 	]
 }

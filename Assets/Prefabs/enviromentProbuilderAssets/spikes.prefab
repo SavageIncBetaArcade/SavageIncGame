@@ -1304,6 +1304,8 @@ GameObject:
   - component: {fileID: 6629322310614433997}
   - component: {fileID: 6152432062014459236}
   - component: {fileID: 2454155823574215190}
+  - component: {fileID: 4765212030496940719}
+  - component: {fileID: 7125444498823126648}
   m_Layer: 0
   m_Name: spikes
   m_TagString: Untagged
@@ -1407,7 +1409,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3db2adb8f5d80a4abfb945da411ea2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UUID: 7f1532fa-87a6-421e-b587-35cca28c4c40
+  m_UUID: 0a7e4355-6184-4a53-bc56-53d3a703a69a
 --- !u!82 &2454155823574215190
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1505,6 +1507,37 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!208 &4765212030496940719
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4497736411686556557}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 1.75, y: 1.5, z: 1.75}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 3.5, z: 0}
+  m_TimeToStationary: 0.5
+--- !u!114 &7125444498823126648
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4497736411686556557}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a738139a6522658459c10dd692bc7142, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DamageAmount: 10
+  ContinuousDamage: 1
+  Timer: 3
 --- !u!1 &5071277118537010769
 GameObject:
   m_ObjectHideFlags: 0

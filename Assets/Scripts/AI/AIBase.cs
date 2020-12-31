@@ -24,7 +24,7 @@ public class AIBase : CharacterBase
     public float AttackDistance = 2.0f;
     public bool BossStopped = false;
     public bool FirstAbility = true;
-
+    public int AlertAmount = 5;
 
     public Transform[] PatrolPoints;
     public int CurrentPatrolPoint = 0;
@@ -183,8 +183,8 @@ public class AIBase : CharacterBase
 
     private void onDeath()
     {
+        FindObjectOfType<PortalManager>().AlertMeter += AlertAmount;
         gameObject.SetActive(false);
-        //Destroy(gameObject);
     }
 
     protected override void OnDestroy()

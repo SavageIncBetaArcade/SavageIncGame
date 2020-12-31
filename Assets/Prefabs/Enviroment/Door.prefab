@@ -272,8 +272,8 @@ GameObject:
   m_Name: Frame_LP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &3539266802179490326
 Transform:
@@ -551,7 +551,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3db2adb8f5d80a4abfb945da411ea2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UUID: 3c574ded-be54-43e4-a654-c5715dfcf12d
+  m_UUID: 9e052bba-d519-4781-bbfd-87681483f753
 --- !u!1 &942072912106560334
 GameObject:
   m_ObjectHideFlags: 0
@@ -567,8 +567,8 @@ GameObject:
   m_Name: Holder_LP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &6815366909402484512
 Transform:
@@ -647,7 +647,7 @@ GameObject:
   m_Name: Bricks_LP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &7261601432405553398
@@ -791,8 +791,8 @@ GameObject:
   m_Name: MetalBar_LP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &8248192341759939745
 Transform:
@@ -923,7 +923,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3db2adb8f5d80a4abfb945da411ea2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UUID: 68b9ceb3-bb3e-46c5-9ccc-8b320500be75
+  m_UUID: c4987fbe-4bab-40e8-a8d6-cd46e654c5e3
 --- !u!1 &4387062836330719943
 GameObject:
   m_ObjectHideFlags: 0
@@ -940,8 +940,8 @@ GameObject:
   m_Name: Wood_LP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &4361556078930567891
 Transform:
@@ -1033,8 +1033,8 @@ GameObject:
   m_Name: Knocker_LP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &3698414928025675424
 Transform:
@@ -1112,8 +1112,8 @@ GameObject:
   m_Name: Brace_LP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &2946427780131686563
 Transform:

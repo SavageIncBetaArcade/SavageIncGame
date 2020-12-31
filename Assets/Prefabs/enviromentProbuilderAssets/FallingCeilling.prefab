@@ -193,6 +193,9 @@ MonoBehaviour:
   PopupText: 
   InventorySection: {fileID: 0}
   RequiredItems: []
+  InteractionCount: 1
+  AlertAmount: 5
+  triggered: 0
   mask:
     serializedVersion: 2
     m_Bits: 1024
@@ -305,7 +308,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3db2adb8f5d80a4abfb945da411ea2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UUID: c3c35939-bc05-45ef-84ed-1d79af1a2bb4
+  m_UUID: 4addcca3-bb01-4d8c-97fb-c8eff3d58135
 --- !u!1 &5939084040357204903
 GameObject:
   m_ObjectHideFlags: 0
@@ -835,7 +838,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3db2adb8f5d80a4abfb945da411ea2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UUID: c538fff5-79f8-486d-9f96-6b2be36dfc91
+  m_UUID: 1993864f-69a0-4aa9-a774-6bb26f48a162
 --- !u!114 &4179520829017361779
 MonoBehaviour:
   m_ObjectHideFlags: 0

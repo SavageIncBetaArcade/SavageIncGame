@@ -9,8 +9,7 @@ public class IdleState : MovingState
 
     public override void OnUpdate(ref StackFSM stackStates)
     {
-        //MG need to make any idle animation play here.
-
+        base.OnUpdate(ref stackStates);
         stateExpireTime -= Time.deltaTime;
         if(stateExpireTime <= 0.0f)
         {

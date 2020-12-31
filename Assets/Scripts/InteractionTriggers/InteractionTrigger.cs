@@ -31,6 +31,7 @@ public class InteractionTrigger : MonoBehaviour, IInteractable, IDataPersistance
     public InventorySectionHandler InventorySection;
     public Item[] RequiredItems;
     public int InteractionCount = 1;
+    public int AlertAmount = 0;
 
     private TextMeshProUGUI textMesh;
     [SerializeField]
@@ -83,6 +84,7 @@ public class InteractionTrigger : MonoBehaviour, IInteractable, IDataPersistance
         }
 
         OnTrigger?.Invoke(triggered, this);
+        FindObjectOfType<PortalManager>().AlertMeter += AlertAmount;
 
         //play sound
         if(triggerSound)
