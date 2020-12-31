@@ -64,7 +64,20 @@ public static class AbilityFactory
                     return meleeAbility;
                 }
                 case ScriptableRaycastAbility _:
-                    RaycastAbilitiy raycastAbility = new RaycastAbilitiy(useableAbility, ownerCharacter);
+                    int layerMask = ~0;
+
+                    switch (ownerCharacter)
+                    {
+                        case AIBase aiBase:
+                            layerMask = layerMask &= ~(1 << LayerMask.NameToLayer("Enemy"));
+                            break;
+                        case PlayerBase playerBase:
+                            layerMask = layerMask &= ~(1 << LayerMask.NameToLayer("Player"));
+                            layerMask = layerMask &= ~(1 << LayerMask.NameToLayer("Hands"));
+                            break;
+                    }
+
+                    RaycastAbilitiy raycastAbility = new RaycastAbilitiy(useableAbility, ownerCharacter, layerMask);
                     if (hitAction != null)
                         raycastAbility.OnHit += hitAction;
                     if (endAttackAction != null)

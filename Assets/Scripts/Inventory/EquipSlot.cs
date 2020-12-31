@@ -29,7 +29,7 @@ public class EquipSlot : MonoBehaviour
     public void UnequipItem()
     {
         if (equippedSlot.InventoryItem == null || equippedSlot.InventoryItem.Item == null) return;
-        inventorySection.AddItem(equippedSlot.InventoryItem.Item);
+        inventorySection.AddItem(equippedSlot.InventoryItem.Item, false);
         if(character != null) equippedSlot.InventoryItem.UnapplyModifiers(character);
         RemoveItem();
     }

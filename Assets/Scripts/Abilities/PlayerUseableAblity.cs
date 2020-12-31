@@ -7,6 +7,7 @@ public class PlayerUseableAblity : UseableAbility
     public string UseButton = "Fire1";
     public LayerMask HandLayerMask;
 
+    private bool used = false;
     protected override void Initilise()
     {
         base.Initilise();
@@ -17,9 +18,15 @@ public class PlayerUseableAblity : UseableAbility
     protected virtual void Update()
     {
         //TODO check if the current CharacterBase is the player, only attack on left click if player
-        if (ScriptableAbility != null && !OnCooldown() && (Input.GetButtonDown(UseButton) || Input.GetAxisRaw(UseButton) > 0))
+
+
+        if (!used && ScriptableAbility != null && !OnCooldown() && (Input.GetButtonDown(UseButton) || Input.GetAxisRaw(UseButton) > 0))
         {
             ExecuteUse();
+            used = true;
         }
+
+        if (Input.GetButtonUp(UseButton) || Input.GetAxisRaw(UseButton) <= float.Epsilon)
+            used = false;
     }
 }

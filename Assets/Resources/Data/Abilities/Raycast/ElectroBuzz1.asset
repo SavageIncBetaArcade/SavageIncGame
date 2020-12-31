@@ -19,7 +19,7 @@ MonoBehaviour:
   modifiers: []
   AssetPath: Resources/Data/Abilities/Raycast/ElectroBuzz1.asset
   AbilityLevel: 1
-  EnergyCost: 25
+  EnergyCost: 7.5
   Cooldown: 0
   ActivePeriod: 0
   UseFrequency: 0

@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 642030473660103706}
   - component: {fileID: 5066357694125839617}
   - component: {fileID: 2591710274661370464}
+  - component: {fileID: 6344258303786521675}
   m_Layer: 0
   m_Name: Flask
   m_TagString: Untagged
@@ -124,7 +125,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3db2adb8f5d80a4abfb945da411ea2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UUID: 963214e1-8e7f-42b0-8940-5271cef96587
+  m_UUID: 114038b2-7ded-497a-8779-9114ff50a7da
 --- !u!82 &642030473660103706
 AudioSource:
   m_ObjectHideFlags: 0
@@ -271,3 +272,15 @@ MonoBehaviour:
   - {fileID: 11400000, guid: bb8ee25cdac81224b9814b9fb562417b, type: 2}
   - {fileID: 11400000, guid: ce0f814775e1df44f9c560dbc73fbeaa, type: 2}
   - {fileID: 11400000, guid: bcfaa97f02d257d40af9c5843c35545e, type: 2}
+--- !u!114 &6344258303786521675
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6366653648910171498}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b4e301c3b740cc4aa6a175bfa8e8fe2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

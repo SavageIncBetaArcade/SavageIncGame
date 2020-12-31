@@ -194,7 +194,8 @@ public class Portal : MonoBehaviour, IDataPersistance
     out RaycastHit hitInfo,
     float range,
     int currentRecursion,
-    GameObject ignoreObject)
+    GameObject ignoreObject,
+    int layerMask)
     {
         //Onjects to ignore when RayCasting 
         var ignoreObjectOriginalLayer = 0;
@@ -208,7 +209,8 @@ public class Portal : MonoBehaviour, IDataPersistance
         position,
         direction,
         out var hit,
-        range); // Clamp to max array length
+        range,
+        layerMask); // Clamp to max array length
 
         // If no objects are hit, the recursion ends here, with no effect
 
@@ -240,7 +242,8 @@ public class Portal : MonoBehaviour, IDataPersistance
                 out hitInfo,
                 range,
                 currentRecursion + 1,
-                portal.TargetPortal[portal.TargetPortalIndex].gameObject);
+                portal.TargetPortal[portal.TargetPortalIndex].gameObject,
+                layerMask);
         }
 
         // If the object hit is not a portal, then congrats! We stop here and report back that we hit something.
@@ -255,7 +258,8 @@ public class Portal : MonoBehaviour, IDataPersistance
     Vector3 direction,
     int maxRecursions,
     out RaycastHit hitInfo,
-    float range)
+    float range,
+    int layerMask = ~0)
     {
         return RaycastRecursiveInternal(position,
             direction,
@@ -263,7 +267,8 @@ public class Portal : MonoBehaviour, IDataPersistance
             out hitInfo,
             range,
             0,
-            null);
+            null,
+            layerMask);
     }
 
 

@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 5241915654434070176}
   - component: {fileID: 3079487719922938387}
   - component: {fileID: 5512866289720447244}
+  - component: {fileID: 2007986252687016712}
   m_Layer: 0
   m_Name: Book_Ability
   m_TagString: Untagged
@@ -110,7 +111,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3db2adb8f5d80a4abfb945da411ea2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UUID: 01201d0e-90ac-4d53-ab62-96a89d013cb0
+  m_UUID: 43e7b160-87ce-405b-beb2-66662ae42e62
 --- !u!82 &5241915654434070176
 AudioSource:
   m_ObjectHideFlags: 0
@@ -254,3 +255,15 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 51e60cd2b3cc5594faa8110d7e64b888, type: 2}
   - {fileID: 11400000, guid: 7852f5a50f918d5459b02454623b7b5e, type: 2}
   - {fileID: 11400000, guid: 0db98502d0765514e8925a1955a14271, type: 2}
+--- !u!114 &2007986252687016712
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6307053983665304496}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b4e301c3b740cc4aa6a175bfa8e8fe2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

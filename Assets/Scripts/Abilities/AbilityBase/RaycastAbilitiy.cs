@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class RaycastAbilitiy : AttackAbility
 {
-    public RaycastAbilitiy(UseableAbility useableAbility, CharacterBase ownerCharacter) : base(useableAbility, ownerCharacter)
+    private int layerMask;
+    public RaycastAbilitiy(UseableAbility useableAbility, CharacterBase ownerCharacter, int layerMask) : base(useableAbility, ownerCharacter)
     {
-
+        this.layerMask = layerMask;
     }
 
     public override void Initilise()
@@ -24,7 +25,7 @@ public class RaycastAbilitiy : AttackAbility
         }
 
         RaycastHit hitInfo;
-        if (Portal.RaycastRecursive(useableAbility.Origin.position, useableAbility.Origin.forward, 8, out hitInfo, ((ScriptableRaycastAbility)Ability).Range))
+        if (Portal.RaycastRecursive(useableAbility.Origin.position, useableAbility.Origin.forward, 8, out hitInfo, ((ScriptableRaycastAbility)Ability).Range, layerMask))
         {
             shootBolt(raycastAbility, useableAbility.Origin.position, hitInfo.point);
 
