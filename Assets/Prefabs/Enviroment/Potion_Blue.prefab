@@ -12,6 +12,11 @@ GameObject:
   - component: {fileID: 2595725808719738563}
   - component: {fileID: 8590994201364548154}
   - component: {fileID: 8313014993127271430}
+  - component: {fileID: 4506795873869348506}
+  - component: {fileID: 3295913678152328918}
+  - component: {fileID: 8693674781971815367}
+  - component: {fileID: 8271115862921644247}
+  - component: {fileID: 5799985250125278129}
   m_Layer: 0
   m_Name: Potion_Blue
   m_TagString: Untagged
@@ -26,13 +31,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7999942945506885350}
-  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
+  m_LocalRotation: {x: -0.7069834, y: 0, z: 0, w: 0.7072302}
   m_LocalPosition: {x: 123.94391, y: 1, z: -6.307394}
-  m_LocalScale: {x: 150, y: 150, z: 150}
+  m_LocalScale: {x: 150, y: 149.99997, z: 149.99997}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -89.98, y: 0, z: 0}
 --- !u!33 &2595725808719738563
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -95,3 +100,175 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 7601493551111660949, guid: 95cab7cc094307746b69d9c48d87e08d, type: 3}
+--- !u!114 &4506795873869348506
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7999942945506885350}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3db2adb8f5d80a4abfb945da411ea2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_UUID: 46413529-0a2a-4227-b6c4-c2f5ca418815
+--- !u!114 &3295913678152328918
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7999942945506885350}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86516ee6e3606584d8b3170126109e2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Trigger: {fileID: 5799985250125278129}
+  InventorySection: {fileID: 0}
+  OnlyLootOnce: 1
+  DisableObjectOnLoot: 1
+  Items:
+  - {fileID: 11400000, guid: 2ce08d0be5432c049b1d66ad380c11f5, type: 2}
+  - {fileID: 11400000, guid: 1662343ef64d5474f906478e732ae204, type: 2}
+  - {fileID: 11400000, guid: c5a8f3395c02ba743b37d075af215471, type: 2}
+  - {fileID: 11400000, guid: 8f09fe58eb3203947a2363e21770e658, type: 2}
+  - {fileID: 11400000, guid: c4b03d435bd36f343859b29f4ae75d99, type: 2}
+  - {fileID: 11400000, guid: 060e79ff732c9e946876266888233ff1, type: 2}
+  - {fileID: 11400000, guid: 4a6b6d0a1768e5f43850eb2d4f931ae5, type: 2}
+  - {fileID: 11400000, guid: bb8ee25cdac81224b9814b9fb562417b, type: 2}
+  - {fileID: 11400000, guid: ce0f814775e1df44f9c560dbc73fbeaa, type: 2}
+  - {fileID: 11400000, guid: bcfaa97f02d257d40af9c5843c35545e, type: 2}
+--- !u!65 &8693674781971815367
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7999942945506885350}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.0011773225, y: 0.0013594547, z: 0.002475411}
+  m_Center: {x: 0, y: 0, z: 0.0012377078}
+--- !u!82 &8271115862921644247
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7999942945506885350}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &5799985250125278129
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7999942945506885350}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57c7289819028fb439d5072daa52110e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IsInteractable: 1
+  Toggle: 0
+  TriggerAnimator: {fileID: 0}
+  OnTriggerAnimation: 
+  PopupText: Press F to pickup potion
+  InventorySection: {fileID: 0}
+  RequiredItems: []
+  InteractionCount: 1
+  AlertAmount: 0
+  triggered: 0
+  Range: 2
