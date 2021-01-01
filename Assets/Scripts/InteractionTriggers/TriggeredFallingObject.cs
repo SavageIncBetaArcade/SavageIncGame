@@ -70,6 +70,7 @@ public class TriggeredFallingObject : MonoBehaviour
     {
         if(ImpactAudioSource && ImpactAudioSource.clip)
             yield return new WaitForSeconds(ImpactAudioSource.clip.length);
+        rigidbody.isKinematic = true;
         gameObject.SetActive(false);
     }
 

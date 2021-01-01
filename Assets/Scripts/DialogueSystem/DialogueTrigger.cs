@@ -45,7 +45,7 @@ public class DialogueTrigger : MonoBehaviour
         {
             foreach (Entity entity in entitiesInJson.entities)
             {
-                StopAllCoroutines();
+                //StopAllCoroutines();
                 if (entity.Key == EntityKey)
                 {
                     FindObjectOfType<DialogueManager>().DisplayDialogue(entity.Name, entity.Dialogue, entity.TextType, this);

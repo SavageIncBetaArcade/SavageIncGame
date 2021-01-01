@@ -66,7 +66,7 @@ public class DialogueManager : MonoBehaviour
             else
             {
                 StartCoroutine(EndDialogue(textType));
-                trigger.setState(false);
+                //  trigger.setState(false);
 
                 yield return null;
             }

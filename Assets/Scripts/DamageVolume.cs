@@ -9,6 +9,8 @@ public class DamageVolume : MonoBehaviour
     public float Timer;
     public LayerMask DamageLayers;
 
+    private bool takenDamage = false;
+
     private float nextDamageTimer;
 
     void Awake()
@@ -51,7 +53,11 @@ public class DamageVolume : MonoBehaviour
     {
         if (!ContinuousDamage && (DamageLayers == (DamageLayers | (1 << collision.gameObject.layer))))
         {
-            Damage(collision.gameObject);
+            if (!takenDamage)
+            {
+                Damage(collision.gameObject);
+                takenDamage = true;
+            }
         }
     }
 
@@ -59,7 +65,11 @@ public class DamageVolume : MonoBehaviour
     {
         if (!ContinuousDamage && (DamageLayers == (DamageLayers | (1 << collider.gameObject.layer))))
         {
-            Damage(collider.gameObject);
+            if (!takenDamage)
+            {
+                Damage(collider.gameObject);
+                takenDamage = true;
+            }
         }
     }
 

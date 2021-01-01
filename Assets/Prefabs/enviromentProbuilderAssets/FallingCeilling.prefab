@@ -308,7 +308,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3db2adb8f5d80a4abfb945da411ea2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UUID: 9dbaf658-03b3-48dd-9a3d-aaec14bf0070
+  m_UUID: 358a1943-a191-485c-ab16-3417e9ffd88b
 --- !u!1 &5939084040357204903
 GameObject:
   m_ObjectHideFlags: 0
@@ -828,7 +828,7 @@ MonoBehaviour:
   Timer: 0
   DamageLayers:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 3072
 --- !u!114 &3851895769915173287
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -841,7 +841,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3db2adb8f5d80a4abfb945da411ea2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UUID: efe9637b-1822-40db-8ba1-de0a41f24088
+  m_UUID: b33ab399-88e8-4478-83c6-8d91fedd0298
 --- !u!114 &4179520829017361779
 MonoBehaviour:
   m_ObjectHideFlags: 0

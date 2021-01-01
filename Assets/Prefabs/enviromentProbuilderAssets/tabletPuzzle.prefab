@@ -304,7 +304,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 287b6124a2969ef46a081619ebf0e47f, type: 2}
+  - {fileID: 2100000, guid: d215ccb7ec9b94c48a4d20d1d66d8694, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1426,6 +1426,8 @@ MonoBehaviour:
   PopupText: 
   InventorySection: {fileID: 0}
   RequiredItems: []
+  InteractionCount: 1
+  AlertAmount: 0
   triggered: 0
   RotationAxis: {x: 0, y: 1, z: 0}
   ExpectedRotation: {x: 0, y: 0, z: 0}
@@ -1447,7 +1449,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3db2adb8f5d80a4abfb945da411ea2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UUID: c018b92b-91b6-4136-840f-536460056a56
+  m_UUID: 2e11fb39-57ff-461f-a649-4ad8513d2c24
 --- !u!1 &697965899987166739
 GameObject:
   m_ObjectHideFlags: 0
@@ -1716,7 +1718,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 287b6124a2969ef46a081619ebf0e47f, type: 2}
+  - {fileID: 2100000, guid: d215ccb7ec9b94c48a4d20d1d66d8694, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1769,7 +1771,7 @@ PrefabInstance:
     - target: {fileID: 251026315703834555, guid: cca081613d0e8a34e90c26f6f1d260f8,
         type: 3}
       propertyPath: m_UUID
-      value: bd17eb38-92e2-4287-99ea-cd32fb525db0
+      value: 76085e94-9bbf-4a46-9eb3-9d5c7036930d
       objectReference: {fileID: 0}
     - target: {fileID: 885839919389916807, guid: cca081613d0e8a34e90c26f6f1d260f8,
         type: 3}
@@ -1876,7 +1878,7 @@ PrefabInstance:
     - target: {fileID: 251026315703834555, guid: cca081613d0e8a34e90c26f6f1d260f8,
         type: 3}
       propertyPath: m_UUID
-      value: 0c80311f-d5dd-4b05-9b90-f4c4c3ec4af4
+      value: b1c1d570-0967-4612-a589-44929a2d19db
       objectReference: {fileID: 0}
     - target: {fileID: 885839919389916807, guid: cca081613d0e8a34e90c26f6f1d260f8,
         type: 3}
@@ -1983,7 +1985,7 @@ PrefabInstance:
     - target: {fileID: 251026315703834555, guid: cca081613d0e8a34e90c26f6f1d260f8,
         type: 3}
       propertyPath: m_UUID
-      value: df92110e-4c27-46ef-8fbb-da3c756f0b95
+      value: 5d3fc435-ff77-4949-9385-c394c178519d
       objectReference: {fileID: 0}
     - target: {fileID: 885839919389916807, guid: cca081613d0e8a34e90c26f6f1d260f8,
         type: 3}

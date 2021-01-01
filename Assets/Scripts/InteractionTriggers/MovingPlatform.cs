@@ -78,7 +78,7 @@ public class MovingPlatform : MonoBehaviour, IDataPersistance
     {
         if (isMoving)
         {
-            float t = Mathf.Clamp(0.5f * (1 + Mathf.Sin(Time.time * Speed)), 0.01f, 0.99f);
+            float t = Mathf.Clamp(0.5f * (1 + Mathf.Sin((Time.time * Speed) + StartDelay)), 0.01f, 0.99f);
             transform.position = Vector3.Lerp(StartTransform.position, EndTransform.position, t);
         }
         else

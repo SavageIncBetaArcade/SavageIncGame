@@ -14,6 +14,7 @@ public class PlayerBase : CharacterBase
     {
         base.Awake();
         OnDeath += onDeath;
+        OnDamage += onDamage;
         Controller = GetComponent<CharacterController>();
     }
 
@@ -104,6 +105,11 @@ public class PlayerBase : CharacterBase
         Controller.Move(velocity);
     }
 
+    private void onDamage()
+    {
+        FindObjectOfType<PlayerCamera>()?.ShakePosition(0.1f, new Vector2(0.2f, 0.8f), -0.01f, 0.1f, 20.0f);
+    }
+
     private void onDeath()
     {
         DataPersitanceHelpers.LoadAll();
@@ -113,6 +119,7 @@ public class PlayerBase : CharacterBase
     {
         base.OnDestroy();
         OnDeath -= onDeath;
+        OnDamage -= onDamage;
     }
 
     public override Dictionary<string, object> Save()

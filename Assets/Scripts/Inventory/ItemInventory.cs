@@ -84,6 +84,10 @@ public class ItemInventory : Inventory
     {
         Dictionary<string, object> dataDictionary = base.Load(destroyUnloaded);
 
+        armourSlot.equippedSlot.InventoryItem?.UnapplyModifiers(character);
+        leftWeaponSlot.equippedSlot.InventoryItem?.UnapplyModifiers(character);
+        rightWeaponSlot.equippedSlot.InventoryItem?.UnapplyModifiers(character);
+
         armourSlot.equippedSlot.Clear();
         leftWeaponSlot.equippedSlot.Clear();
         rightWeaponSlot.equippedSlot.Clear();

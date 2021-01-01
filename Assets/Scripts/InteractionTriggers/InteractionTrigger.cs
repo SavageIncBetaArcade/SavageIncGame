@@ -69,7 +69,6 @@ public class InteractionTrigger : MonoBehaviour, IInteractable, IDataPersistance
             if (IsInteractable && !triggered && !hasItems)
             {
                 ShowPopupText(true);
-                PopupText = "Requires a certain item!";
                 StartCoroutine(hidePopupText(2));
             }
             return;
@@ -125,9 +124,12 @@ public class InteractionTrigger : MonoBehaviour, IInteractable, IDataPersistance
             PopupText = PopupText.Replace("F", "X");
         }
 
-        if (active && !string.IsNullOrWhiteSpace(PopupText) && textMesh && HasRequiredItems())
+        if (active && !string.IsNullOrWhiteSpace(PopupText) && textMesh)
         {
-            textMesh.text = PopupText;
+            if (!HasRequiredItems())
+                textMesh.text = "Requires a certain item!";
+            else
+                textMesh.text = PopupText;
         }
     }
 
