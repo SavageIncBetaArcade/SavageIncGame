@@ -6,6 +6,7 @@
 * Doesn't matter, I'm not going to sue over it :)
 */
 
+#if UNITY_EDITOR
 using UnityEngine;
 using UnityEditor;
 using System.IO;
@@ -360,3 +361,4 @@ public class MaskMaker : EditorWindow
         return readableText;
     }
 }
+#endif
