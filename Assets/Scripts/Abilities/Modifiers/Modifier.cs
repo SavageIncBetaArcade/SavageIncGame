@@ -20,6 +20,8 @@ public class Modifier
 
     private List<CharacterBase> affectedCharacters;
 
+    private float timeSinceTakenDamage = 0.0f;
+
     #region properties
 
     public ScriptableModifier ScriptableModifier => scriptableModifier;
@@ -54,6 +56,9 @@ public class Modifier
 
     public void Apply(CharacterBase targetCharacter)
     {
+        if (ownerCharacter)
+            ownerCharacter.OnDamage += onOwnerTakenDamage
+                ;
         if (affectedCharacters == null)
             affectedCharacters = new List<CharacterBase>();
 
@@ -93,6 +98,9 @@ public class Modifier
 
     public void Remove(CharacterBase targetCharacter, bool forceRemove = false)
     {
+        if (ownerCharacter)
+            ownerCharacter.OnDamage -= onOwnerTakenDamage;
+
         scriptableModifier.OnRemove(ownerCharacter, targetCharacter, ref affectedCharacters);
         if (forceRemove || !isPassive)
             targetCharacter.AppliedModifiers.Remove(this);
@@ -126,7 +134,13 @@ public class Modifier
         {
             while (isPassive || (currentActiveTime <= scriptableModifier.ActivePeriod))
             {
-                scriptableModifier.OnTick(ownerCharacter, targetCharacter, ref affectedCharacters);
+                if (scriptableModifier is ScriptableEnergyModifier || scriptableModifier is ScriptableHealModifier)
+                {
+                    if(timeSinceTakenDamage + 5.0f < Time.time)
+                        scriptableModifier.OnTick(ownerCharacter, targetCharacter, ref affectedCharacters);
+                }
+                else 
+                    scriptableModifier.OnTick(ownerCharacter, targetCharacter, ref affectedCharacters);
 
                 //Only update current active time if the ability is not passive as passive abilites will continuously tick
                 if(!isPassive)
@@ -143,5 +157,10 @@ public class Modifier
 
         if (!isPassive)
             Remove(targetCharacter);
+    }
+
+    void onOwnerTakenDamage()
+    {
+        timeSinceTakenDamage = Time.time;
     }
 }
