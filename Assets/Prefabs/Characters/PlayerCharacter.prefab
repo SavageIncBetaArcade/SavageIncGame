@@ -64,7 +64,7 @@ Camera:
   m_Depth: -100
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 3895
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -140,7 +140,7 @@ MonoBehaviour:
   clearDepth: 1
   volumeLayerMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 3895
   volumeAnchorOverride: {fileID: 0}
   antialiasing: 0
   SMAAQuality: 2
@@ -162,7 +162,7 @@ MonoBehaviour:
   invertFaceCulling: 0
   probeLayerMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 3895
   hasPersistentHistory: 0
   m_RenderingPathCustomFrameSettings:
     bitDatas:
@@ -284,8 +284,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3287459473837139062}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.77, z: -0.455}
+  m_LocalRotation: {x: 0.063178495, y: 0, z: 0, w: 0.99800223}
+  m_LocalPosition: {x: 0.017, y: 0.763, z: 0.007}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6750148791065897655}
@@ -324,7 +324,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 3895
+    m_Bits: 4294967295
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -408,7 +408,7 @@ MonoBehaviour:
   clearDepth: 1
   volumeLayerMask:
     serializedVersion: 2
-    m_Bits: 3895
+    m_Bits: 4294967295
   volumeAnchorOverride: {fileID: 0}
   antialiasing: 0
   SMAAQuality: 2
@@ -530,7 +530,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3287459474613896796}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -958,7 +958,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5864599238955252530}
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.019, z: -0.14}
   m_LocalScale: {x: 4.980374, y: 4, z: 1}
   m_Children:
   - {fileID: 3287459473206400931}
@@ -981,7 +981,7 @@ MonoBehaviour:
   fadeRadius: 0
   customPasses:
   - id: 0
-  injectionPoint: 1
+  injectionPoint: 2
   references:
     version: 1
     00000000:
@@ -992,22 +992,22 @@ MonoBehaviour:
         enabled: 1
         targetColorBuffer: 0
         targetDepthBuffer: 0
-        clearFlags: 0
+        clearFlags: 2
         passFoldout: 0
         m_Version: 0
         filterFoldout: 1
-        rendererFoldout: 0
+        rendererFoldout: 1
         renderQueueType: 2
         passNames:
         - Forward
         layerMask:
           serializedVersion: 2
-          m_Bits: 4096
+          m_Bits: 5120
         sortingCriteria: 59
         overrideMaterial: {fileID: 0}
         overrideMaterialPassIndex: 0
         overrideMaterialPassName: Forward
-        overrideDepthState: 0
+        overrideDepthState: 1
         depthCompareFunction: 4
         depthWrite: 1
         shaderPass: 0
@@ -1250,17 +1250,67 @@ PrefabInstance:
     - target: {fileID: 336389558142937890, guid: 01054beaaa257f54eabe2ddb01ba65d9,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.04
+      value: 1.3
       objectReference: {fileID: 0}
     - target: {fileID: 336389558142937890, guid: 01054beaaa257f54eabe2ddb01ba65d9,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.04
+      value: 1.3
       objectReference: {fileID: 0}
     - target: {fileID: 336389558142937890, guid: 01054beaaa257f54eabe2ddb01ba65d9,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.04
+      value: 1.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 336389558142937890, guid: 01054beaaa257f54eabe2ddb01ba65d9,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.5651076
+      objectReference: {fileID: 0}
+    - target: {fileID: 336389558142937890, guid: 01054beaaa257f54eabe2ddb01ba65d9,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.2900066
+      objectReference: {fileID: 0}
+    - target: {fileID: 336389558142937890, guid: 01054beaaa257f54eabe2ddb01ba65d9,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.41141906
+      objectReference: {fileID: 0}
+    - target: {fileID: 336389558142937890, guid: 01054beaaa257f54eabe2ddb01ba65d9,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.65366966
+      objectReference: {fileID: 0}
+    - target: {fileID: 336389558142937890, guid: 01054beaaa257f54eabe2ddb01ba65d9,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.251
+      objectReference: {fileID: 0}
+    - target: {fileID: 336389558142937890, guid: 01054beaaa257f54eabe2ddb01ba65d9,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.138
+      objectReference: {fileID: 0}
+    - target: {fileID: 336389558142937890, guid: 01054beaaa257f54eabe2ddb01ba65d9,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.022
+      objectReference: {fileID: 0}
+    - target: {fileID: 336389558142937890, guid: 01054beaaa257f54eabe2ddb01ba65d9,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 30.011002
+      objectReference: {fileID: 0}
+    - target: {fileID: 336389558142937890, guid: 01054beaaa257f54eabe2ddb01ba65d9,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 77.115005
+      objectReference: {fileID: 0}
+    - target: {fileID: 336389558142937890, guid: 01054beaaa257f54eabe2ddb01ba65d9,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 88.493004
       objectReference: {fileID: 0}
     - target: {fileID: 358694800228459477, guid: 01054beaaa257f54eabe2ddb01ba65d9,
         type: 3}
@@ -1302,6 +1352,11 @@ PrefabInstance:
       propertyPath: UseAudioSource
       value: 
       objectReference: {fileID: 6074875503802036838}
+    - target: {fileID: 836558219243286578, guid: 01054beaaa257f54eabe2ddb01ba65d9,
+        type: 3}
+      propertyPath: HandLayerMask.m_Bits
+      value: 4096
+      objectReference: {fileID: 0}
     - target: {fileID: 848212185455709534, guid: 01054beaaa257f54eabe2ddb01ba65d9,
         type: 3}
       propertyPath: m_Layer
@@ -1402,6 +1457,11 @@ PrefabInstance:
       propertyPath: UseAudioSource
       value: 
       objectReference: {fileID: 6074875503802036838}
+    - target: {fileID: 2744237889269797484, guid: 01054beaaa257f54eabe2ddb01ba65d9,
+        type: 3}
+      propertyPath: HandLayerMask.m_Bits
+      value: 4096
+      objectReference: {fileID: 0}
     - target: {fileID: 2892887071688589001, guid: 01054beaaa257f54eabe2ddb01ba65d9,
         type: 3}
       propertyPath: m_Layer
@@ -1730,17 +1790,17 @@ PrefabInstance:
     - target: {fileID: 8335047048249391543, guid: 01054beaaa257f54eabe2ddb01ba65d9,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.04
+      value: 1.3
       objectReference: {fileID: 0}
     - target: {fileID: 8335047048249391543, guid: 01054beaaa257f54eabe2ddb01ba65d9,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.04
+      value: 1.3
       objectReference: {fileID: 0}
     - target: {fileID: 8335047048249391543, guid: 01054beaaa257f54eabe2ddb01ba65d9,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.04
+      value: 1.3
       objectReference: {fileID: 0}
     - target: {fileID: 8629411013225598752, guid: 01054beaaa257f54eabe2ddb01ba65d9,
         type: 3}

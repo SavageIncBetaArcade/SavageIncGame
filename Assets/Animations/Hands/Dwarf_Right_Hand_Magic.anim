@@ -1145,7 +1145,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Root/Hips/Back_1/Back_2/Back_3
+    path: Dwarf_Arm/Root/Hips/Back_1/Back_2/Back_3
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -1170,7 +1170,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Root/Hips/Back_1/Back_2/Back_3/LShoulder
+    path: Dwarf_Arm/Root/Hips/Back_1/Back_2/Back_3/LShoulder
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -1213,7 +1213,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Root/Hips/Back_1/Back_2/Back_3/LShoulder/LUpperArm
+    path: Dwarf_Arm/Root/Hips/Back_1/Back_2/Back_3/LShoulder/LUpperArm
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -1265,7 +1265,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Root/Hips/Back_1/Back_2/Back_3/LShoulder/LUpperArm/LLowerArm
+    path: Dwarf_Arm/Root/Hips/Back_1/Back_2/Back_3/LShoulder/LUpperArm/LLowerArm
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -1308,7 +1308,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Root/Hips/Back_1/Back_2/Back_3/LShoulder/LUpperArm/LLowerArm/LHand
+    path: Dwarf_Arm/Root/Hips/Back_1/Back_2/Back_3/LShoulder/LUpperArm/LLowerArm/LHand
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -1333,7 +1333,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Root/Hips/Back_1/Back_2/Back_3/LShoulder/LUpperArm/LLowerArm/LHand/LTHumb_1
+    path: Dwarf_Arm/Root/Hips/Back_1/Back_2/Back_3/LShoulder/LUpperArm/LLowerArm/LHand/LTHumb_1
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -1358,7 +1358,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Root/Hips/Back_1/Back_2/Back_3/LShoulder/LUpperArm/LLowerArm/LHand/LTHumb_1/LThumb_2
+    path: Dwarf_Arm/Root/Hips/Back_1/Back_2/Back_3/LShoulder/LUpperArm/LLowerArm/LHand/LTHumb_1/LThumb_2
       1
   - curve:
       serializedVersion: 2
@@ -1384,7 +1384,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Root/Hips/Back_1/Back_2/Back_3/LShoulder/LUpperArm/LLowerArm/LHand/LTHumb_1/LThumb_2
+    path: Dwarf_Arm/Root/Hips/Back_1/Back_2/Back_3/LShoulder/LUpperArm/LLowerArm/LHand/LTHumb_1/LThumb_2
       1/LThumb_3
   - curve:
       serializedVersion: 2
@@ -1410,7 +1410,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Root/Hips/Back_1/Back_2/Back_3/LShoulder/LUpperArm/LLowerArm/LHand/LIndex_1
+    path: Dwarf_Arm/Root/Hips/Back_1/Back_2/Back_3/LShoulder/LUpperArm/LLowerArm/LHand/LIndex_1
       1
   - curve:
       serializedVersion: 2
@@ -1436,7 +1436,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Root/Hips/Back_1/Back_2/Back_3/LShoulder/LUpperArm/LLowerArm/LHand/LIndex_1
+    path: Dwarf_Arm/Root/Hips/Back_1/Back_2/Back_3/LShoulder/LUpperArm/LLowerArm/LHand/LIndex_1
       1/LIndex_2 1
   - curve:
       serializedVersion: 2
@@ -1462,7 +1462,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Root/Hips/Back_1/Back_2/Back_3/LShoulder/LUpperArm/LLowerArm/LHand/LIndex_1
+    path: Dwarf_Arm/Root/Hips/Back_1/Back_2/Back_3/LShoulder/LUpperArm/LLowerArm/LHand/LIndex_1
       1/LIndex_2 1/LIndex_3
   - curve:
       serializedVersion: 2
@@ -1488,7 +1488,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Root/Hips/Back_1/Back_2/Back_3/LShoulder/LUpperArm/LLowerArm/LHand/LMiddle_1
+    path: Dwarf_Arm/Root/Hips/Back_1/Back_2/Back_3/LShoulder/LUpperArm/LLowerArm/LHand/LMiddle_1
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -1513,7 +1513,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Root/Hips/Back_1/Back_2/Back_3/LShoulder/LUpperArm/LLowerArm/LHand/LMiddle_1/LMiddle_2
+    path: Dwarf_Arm/Root/Hips/Back_1/Back_2/Back_3/LShoulder/LUpperArm/LLowerArm/LHand/LMiddle_1/LMiddle_2
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -1538,7 +1538,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Root/Hips/Back_1/Back_2/Back_3/LShoulder/LUpperArm/LLowerArm/LHand/LMiddle_1/LMiddle_2/LMiddle_3
+    path: Dwarf_Arm/Root/Hips/Back_1/Back_2/Back_3/LShoulder/LUpperArm/LLowerArm/LHand/LMiddle_1/LMiddle_2/LMiddle_3
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -1563,7 +1563,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Root/Hips/Back_1/Back_2/Back_3/LShoulder/LUpperArm/LLowerArm/LHand/LPinky_1
+    path: Dwarf_Arm/Root/Hips/Back_1/Back_2/Back_3/LShoulder/LUpperArm/LLowerArm/LHand/LPinky_1
       1
   - curve:
       serializedVersion: 2
@@ -1589,7 +1589,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Root/Hips/Back_1/Back_2/Back_3/LShoulder/LUpperArm/LLowerArm/LHand/LPinky_1
+    path: Dwarf_Arm/Root/Hips/Back_1/Back_2/Back_3/LShoulder/LUpperArm/LLowerArm/LHand/LPinky_1
       1/LPinky_2 1
   - curve:
       serializedVersion: 2
@@ -1615,7 +1615,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Root/Hips/Back_1/Back_2/Back_3/LShoulder/LUpperArm/LLowerArm/LHand/LPinky_1
+    path: Dwarf_Arm/Root/Hips/Back_1/Back_2/Back_3/LShoulder/LUpperArm/LLowerArm/LHand/LPinky_1
       1/LPinky_2 1/LPinky_3
   - curve:
       serializedVersion: 2
@@ -1641,7 +1641,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Root/Hips/Back_1/Back_2/Back_3/RShoulder
+    path: Dwarf_Arm/Root/Hips/Back_1/Back_2/Back_3/RShoulder
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -1774,7 +1774,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Root/Hips/Back_1/Back_2/Back_3/RShoulder/RUpperArm
+    path: Dwarf_Arm/Root/Hips/Back_1/Back_2/Back_3/RShoulder/RUpperArm
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -1934,7 +1934,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Root/Hips/Back_1/Back_2/Back_3/RShoulder/RUpperArm/RLowerArm
+    path: Dwarf_Arm/Root/Hips/Back_1/Back_2/Back_3/RShoulder/RUpperArm/RLowerArm
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -2112,7 +2112,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Root/Hips/Back_1/Back_2/Back_3/RShoulder/RUpperArm/RLowerArm/RHand
+    path: Dwarf_Arm/Root/Hips/Back_1/Back_2/Back_3/RShoulder/RUpperArm/RLowerArm/RHand
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -2236,7 +2236,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Root/Hips/Back_1/Back_2/Back_3/RShoulder/RUpperArm/RLowerArm/RHand/RThumb_1
+    path: Dwarf_Arm/Root/Hips/Back_1/Back_2/Back_3/RShoulder/RUpperArm/RLowerArm/RHand/RThumb_1
       1
   - curve:
       serializedVersion: 2
@@ -2361,7 +2361,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Root/Hips/Back_1/Back_2/Back_3/RShoulder/RUpperArm/RLowerArm/RHand/RThumb_1
+    path: Dwarf_Arm/Root/Hips/Back_1/Back_2/Back_3/RShoulder/RUpperArm/RLowerArm/RHand/RThumb_1
       1/RThumb_2 1
   - curve:
       serializedVersion: 2
@@ -2387,7 +2387,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Root/Hips/Back_1/Back_2/Back_3/RShoulder/RUpperArm/RLowerArm/RHand/RThumb_1
+    path: Dwarf_Arm/Root/Hips/Back_1/Back_2/Back_3/RShoulder/RUpperArm/RLowerArm/RHand/RThumb_1
       1/RThumb_2 1/RThumb_3
   - curve:
       serializedVersion: 2
@@ -2512,7 +2512,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Root/Hips/Back_1/Back_2/Back_3/RShoulder/RUpperArm/RLowerArm/RHand/RIndex_1
+    path: Dwarf_Arm/Root/Hips/Back_1/Back_2/Back_3/RShoulder/RUpperArm/RLowerArm/RHand/RIndex_1
       1
   - curve:
       serializedVersion: 2
@@ -2646,7 +2646,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Root/Hips/Back_1/Back_2/Back_3/RShoulder/RUpperArm/RLowerArm/RHand/RIndex_1
+    path: Dwarf_Arm/Root/Hips/Back_1/Back_2/Back_3/RShoulder/RUpperArm/RLowerArm/RHand/RIndex_1
       1/RIndex_2 1
   - curve:
       serializedVersion: 2
@@ -2672,7 +2672,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Root/Hips/Back_1/Back_2/Back_3/RShoulder/RUpperArm/RLowerArm/RHand/RIndex_1
+    path: Dwarf_Arm/Root/Hips/Back_1/Back_2/Back_3/RShoulder/RUpperArm/RLowerArm/RHand/RIndex_1
       1/RIndex_2 1/RIndex_3
   - curve:
       serializedVersion: 2
@@ -2806,7 +2806,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Root/Hips/Back_1/Back_2/Back_3/RShoulder/RUpperArm/RLowerArm/RHand/RMiddle_1
+    path: Dwarf_Arm/Root/Hips/Back_1/Back_2/Back_3/RShoulder/RUpperArm/RLowerArm/RHand/RMiddle_1
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -2930,7 +2930,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Root/Hips/Back_1/Back_2/Back_3/RShoulder/RUpperArm/RLowerArm/RHand/RMiddle_1/RMiddle_2
+    path: Dwarf_Arm/Root/Hips/Back_1/Back_2/Back_3/RShoulder/RUpperArm/RLowerArm/RHand/RMiddle_1/RMiddle_2
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -2955,7 +2955,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Root/Hips/Back_1/Back_2/Back_3/RShoulder/RUpperArm/RLowerArm/RHand/RMiddle_1/RMiddle_2/RMiddle_3
+    path: Dwarf_Arm/Root/Hips/Back_1/Back_2/Back_3/RShoulder/RUpperArm/RLowerArm/RHand/RMiddle_1/RMiddle_2/RMiddle_3
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -3088,7 +3088,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Root/Hips/Back_1/Back_2/Back_3/RShoulder/RUpperArm/RLowerArm/RHand/RPinky_1
+    path: Dwarf_Arm/Root/Hips/Back_1/Back_2/Back_3/RShoulder/RUpperArm/RLowerArm/RHand/RPinky_1
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -3221,7 +3221,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Root/Hips/Back_1/Back_2/Back_3/RShoulder/RUpperArm/RLowerArm/RHand/RPinky_1/RPinky_2
+    path: Dwarf_Arm/Root/Hips/Back_1/Back_2/Back_3/RShoulder/RUpperArm/RLowerArm/RHand/RPinky_1/RPinky_2
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -3246,7 +3246,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Root/Hips/Back_1/Back_2/Back_3/RShoulder/RUpperArm/RLowerArm/RHand/RPinky_1/RPinky_2/RPinky_3
+    path: Dwarf_Arm/Root/Hips/Back_1/Back_2/Back_3/RShoulder/RUpperArm/RLowerArm/RHand/RPinky_1/RPinky_2/RPinky_3
   m_CompressedRotationCurves: []
   m_EulerCurves: []
   m_PositionCurves:
@@ -3628,7 +3628,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Root/Hips/Back_1/Back_2/Back_3/LShoulder
+    path: Dwarf_Arm/Root/Hips/Back_1/Back_2/Back_3/LShoulder
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -3671,7 +3671,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Root/Hips/Back_1/Back_2/Back_3/RShoulder/RUpperArm
+    path: Dwarf_Arm/Root/Hips/Back_1/Back_2/Back_3/RShoulder/RUpperArm
   m_ScaleCurves:
   - curve:
       serializedVersion: 2
@@ -3997,7 +3997,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Root/Hips/Back_1/Back_2/Back_3
+    path: Dwarf_Arm/Root/Hips/Back_1/Back_2/Back_3
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -4022,7 +4022,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Root/Hips/Back_1/Back_2/Back_3/LShoulder
+    path: Dwarf_Arm/Root/Hips/Back_1/Back_2/Back_3/LShoulder
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -4047,7 +4047,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Root/Hips/Back_1/Back_2/Back_3/LShoulder/LUpperArm
+    path: Dwarf_Arm/Root/Hips/Back_1/Back_2/Back_3/LShoulder/LUpperArm
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -4072,7 +4072,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Root/Hips/Back_1/Back_2/Back_3/LShoulder/LUpperArm/LLowerArm
+    path: Dwarf_Arm/Root/Hips/Back_1/Back_2/Back_3/LShoulder/LUpperArm/LLowerArm
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -4097,7 +4097,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Root/Hips/Back_1/Back_2/Back_3/LShoulder/LUpperArm/LLowerArm/LHand
+    path: Dwarf_Arm/Root/Hips/Back_1/Back_2/Back_3/LShoulder/LUpperArm/LLowerArm/LHand
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -4122,7 +4122,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Root/Hips/Back_1/Back_2/Back_3/LShoulder/LUpperArm/LLowerArm/LHand/LTHumb_1
+    path: Dwarf_Arm/Root/Hips/Back_1/Back_2/Back_3/LShoulder/LUpperArm/LLowerArm/LHand/LTHumb_1
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -4147,7 +4147,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Root/Hips/Back_1/Back_2/Back_3/LShoulder/LUpperArm/LLowerArm/LHand/LTHumb_1/LThumb_2
+    path: Dwarf_Arm/Root/Hips/Back_1/Back_2/Back_3/LShoulder/LUpperArm/LLowerArm/LHand/LTHumb_1/LThumb_2
       1
   - curve:
       serializedVersion: 2
@@ -4173,7 +4173,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Root/Hips/Back_1/Back_2/Back_3/LShoulder/LUpperArm/LLowerArm/LHand/LTHumb_1/LThumb_2
+    path: Dwarf_Arm/Root/Hips/Back_1/Back_2/Back_3/LShoulder/LUpperArm/LLowerArm/LHand/LTHumb_1/LThumb_2
       1/LThumb_3
   - curve:
       serializedVersion: 2
@@ -4199,7 +4199,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Root/Hips/Back_1/Back_2/Back_3/LShoulder/LUpperArm/LLowerArm/LHand/LIndex_1
+    path: Dwarf_Arm/Root/Hips/Back_1/Back_2/Back_3/LShoulder/LUpperArm/LLowerArm/LHand/LIndex_1
       1
   - curve:
       serializedVersion: 2
@@ -4225,7 +4225,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Root/Hips/Back_1/Back_2/Back_3/LShoulder/LUpperArm/LLowerArm/LHand/LIndex_1
+    path: Dwarf_Arm/Root/Hips/Back_1/Back_2/Back_3/LShoulder/LUpperArm/LLowerArm/LHand/LIndex_1
       1/LIndex_2 1
   - curve:
       serializedVersion: 2
@@ -4251,7 +4251,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Root/Hips/Back_1/Back_2/Back_3/LShoulder/LUpperArm/LLowerArm/LHand/LIndex_1
+    path: Dwarf_Arm/Root/Hips/Back_1/Back_2/Back_3/LShoulder/LUpperArm/LLowerArm/LHand/LIndex_1
       1/LIndex_2 1/LIndex_3
   - curve:
       serializedVersion: 2
@@ -4277,7 +4277,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Root/Hips/Back_1/Back_2/Back_3/LShoulder/LUpperArm/LLowerArm/LHand/LMiddle_1
+    path: Dwarf_Arm/Root/Hips/Back_1/Back_2/Back_3/LShoulder/LUpperArm/LLowerArm/LHand/LMiddle_1
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -4302,7 +4302,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Root/Hips/Back_1/Back_2/Back_3/LShoulder/LUpperArm/LLowerArm/LHand/LMiddle_1/LMiddle_2
+    path: Dwarf_Arm/Root/Hips/Back_1/Back_2/Back_3/LShoulder/LUpperArm/LLowerArm/LHand/LMiddle_1/LMiddle_2
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -4327,7 +4327,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Root/Hips/Back_1/Back_2/Back_3/LShoulder/LUpperArm/LLowerArm/LHand/LMiddle_1/LMiddle_2/LMiddle_3
+    path: Dwarf_Arm/Root/Hips/Back_1/Back_2/Back_3/LShoulder/LUpperArm/LLowerArm/LHand/LMiddle_1/LMiddle_2/LMiddle_3
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -4352,7 +4352,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Root/Hips/Back_1/Back_2/Back_3/LShoulder/LUpperArm/LLowerArm/LHand/LPinky_1
+    path: Dwarf_Arm/Root/Hips/Back_1/Back_2/Back_3/LShoulder/LUpperArm/LLowerArm/LHand/LPinky_1
       1
   - curve:
       serializedVersion: 2
@@ -4378,7 +4378,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Root/Hips/Back_1/Back_2/Back_3/LShoulder/LUpperArm/LLowerArm/LHand/LPinky_1
+    path: Dwarf_Arm/Root/Hips/Back_1/Back_2/Back_3/LShoulder/LUpperArm/LLowerArm/LHand/LPinky_1
       1/LPinky_2 1
   - curve:
       serializedVersion: 2
@@ -4404,7 +4404,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Root/Hips/Back_1/Back_2/Back_3/LShoulder/LUpperArm/LLowerArm/LHand/LPinky_1
+    path: Dwarf_Arm/Root/Hips/Back_1/Back_2/Back_3/LShoulder/LUpperArm/LLowerArm/LHand/LPinky_1
       1/LPinky_2 1/LPinky_3
   - curve:
       serializedVersion: 2
@@ -4430,7 +4430,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Root/Hips/Back_1/Back_2/Back_3/RShoulder
+    path: Dwarf_Arm/Root/Hips/Back_1/Back_2/Back_3/RShoulder
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -4455,7 +4455,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Root/Hips/Back_1/Back_2/Back_3/RShoulder/RUpperArm
+    path: Dwarf_Arm/Root/Hips/Back_1/Back_2/Back_3/RShoulder/RUpperArm
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -4480,7 +4480,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Root/Hips/Back_1/Back_2/Back_3/RShoulder/RUpperArm/RLowerArm
+    path: Dwarf_Arm/Root/Hips/Back_1/Back_2/Back_3/RShoulder/RUpperArm/RLowerArm
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -4505,7 +4505,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Root/Hips/Back_1/Back_2/Back_3/RShoulder/RUpperArm/RLowerArm/RHand
+    path: Dwarf_Arm/Root/Hips/Back_1/Back_2/Back_3/RShoulder/RUpperArm/RLowerArm/RHand
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -4530,7 +4530,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Root/Hips/Back_1/Back_2/Back_3/RShoulder/RUpperArm/RLowerArm/RHand/RThumb_1
+    path: Dwarf_Arm/Root/Hips/Back_1/Back_2/Back_3/RShoulder/RUpperArm/RLowerArm/RHand/RThumb_1
       1
   - curve:
       serializedVersion: 2
@@ -4556,7 +4556,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Root/Hips/Back_1/Back_2/Back_3/RShoulder/RUpperArm/RLowerArm/RHand/RThumb_1
+    path: Dwarf_Arm/Root/Hips/Back_1/Back_2/Back_3/RShoulder/RUpperArm/RLowerArm/RHand/RThumb_1
       1/RThumb_2 1
   - curve:
       serializedVersion: 2
@@ -4582,7 +4582,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Root/Hips/Back_1/Back_2/Back_3/RShoulder/RUpperArm/RLowerArm/RHand/RThumb_1
+    path: Dwarf_Arm/Root/Hips/Back_1/Back_2/Back_3/RShoulder/RUpperArm/RLowerArm/RHand/RThumb_1
       1/RThumb_2 1/RThumb_3
   - curve:
       serializedVersion: 2
@@ -4608,7 +4608,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Root/Hips/Back_1/Back_2/Back_3/RShoulder/RUpperArm/RLowerArm/RHand/RIndex_1
+    path: Dwarf_Arm/Root/Hips/Back_1/Back_2/Back_3/RShoulder/RUpperArm/RLowerArm/RHand/RIndex_1
       1
   - curve:
       serializedVersion: 2
@@ -4634,7 +4634,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Root/Hips/Back_1/Back_2/Back_3/RShoulder/RUpperArm/RLowerArm/RHand/RIndex_1
+    path: Dwarf_Arm/Root/Hips/Back_1/Back_2/Back_3/RShoulder/RUpperArm/RLowerArm/RHand/RIndex_1
       1/RIndex_2 1
   - curve:
       serializedVersion: 2
@@ -4660,7 +4660,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Root/Hips/Back_1/Back_2/Back_3/RShoulder/RUpperArm/RLowerArm/RHand/RIndex_1
+    path: Dwarf_Arm/Root/Hips/Back_1/Back_2/Back_3/RShoulder/RUpperArm/RLowerArm/RHand/RIndex_1
       1/RIndex_2 1/RIndex_3
   - curve:
       serializedVersion: 2
@@ -4686,7 +4686,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Root/Hips/Back_1/Back_2/Back_3/RShoulder/RUpperArm/RLowerArm/RHand/RMiddle_1
+    path: Dwarf_Arm/Root/Hips/Back_1/Back_2/Back_3/RShoulder/RUpperArm/RLowerArm/RHand/RMiddle_1
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -4711,7 +4711,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Root/Hips/Back_1/Back_2/Back_3/RShoulder/RUpperArm/RLowerArm/RHand/RMiddle_1/RMiddle_2
+    path: Dwarf_Arm/Root/Hips/Back_1/Back_2/Back_3/RShoulder/RUpperArm/RLowerArm/RHand/RMiddle_1/RMiddle_2
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -4736,7 +4736,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Root/Hips/Back_1/Back_2/Back_3/RShoulder/RUpperArm/RLowerArm/RHand/RMiddle_1/RMiddle_2/RMiddle_3
+    path: Dwarf_Arm/Root/Hips/Back_1/Back_2/Back_3/RShoulder/RUpperArm/RLowerArm/RHand/RMiddle_1/RMiddle_2/RMiddle_3
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -4761,7 +4761,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Root/Hips/Back_1/Back_2/Back_3/RShoulder/RUpperArm/RLowerArm/RHand/RPinky_1
+    path: Dwarf_Arm/Root/Hips/Back_1/Back_2/Back_3/RShoulder/RUpperArm/RLowerArm/RHand/RPinky_1
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -4786,7 +4786,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Root/Hips/Back_1/Back_2/Back_3/RShoulder/RUpperArm/RLowerArm/RHand/RPinky_1/RPinky_2
+    path: Dwarf_Arm/Root/Hips/Back_1/Back_2/Back_3/RShoulder/RUpperArm/RLowerArm/RHand/RPinky_1/RPinky_2
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -4811,7 +4811,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Root/Hips/Back_1/Back_2/Back_3/RShoulder/RUpperArm/RLowerArm/RHand/RPinky_1/RPinky_2/RPinky_3
+    path: Dwarf_Arm/Root/Hips/Back_1/Back_2/Back_3/RShoulder/RUpperArm/RLowerArm/RHand/RPinky_1/RPinky_2/RPinky_3
   m_FloatCurves: []
   m_PPtrCurves: []
   m_SampleRate: 24
