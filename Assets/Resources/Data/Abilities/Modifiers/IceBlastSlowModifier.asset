@@ -19,5 +19,5 @@ MonoBehaviour:
   applyFrequency: 0
   tickEffectGameObjects: []
   Type: 4
-  Amount: -0.1
+  Amount: -0.25
   Percentage: 1

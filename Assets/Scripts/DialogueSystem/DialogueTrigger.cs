@@ -15,7 +15,7 @@ public class DialogueTrigger : VolumeInteractionTrigger
         base.Awake();
 
         IsInteractable = true;
-        Toggle = false;
+        Toggle = true;
     }
 
     void Start()

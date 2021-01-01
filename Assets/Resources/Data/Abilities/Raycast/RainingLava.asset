@@ -33,13 +33,13 @@ MonoBehaviour:
   - Modifier: {fileID: 11400000, guid: 5e61bdebacb95d64985a57464c671a2d, type: 2}
     Stage: 1
     Target: 1
-  - Modifier: {fileID: 11400000, guid: dc559b466641377469de5c9cdba2e7b1, type: 2}
+  - Modifier: {fileID: 11400000, guid: 36009bae07fc4b947add184ac1732b5e, type: 2}
     Stage: 1
     Target: 1
   CharacterHitEffects:
-  - {fileID: 3966173770737333436, guid: d00cec8d1908a4541a8ddfef194206d1, type: 3}
+  - {fileID: 1144160514348560004, guid: d19153c65e6c0b74da6d6be52c80ff48, type: 3}
   ObjectHitEffects:
-  - {fileID: 3966173770737333436, guid: d00cec8d1908a4541a8ddfef194206d1, type: 3}
+  - {fileID: 1144160514348560004, guid: d19153c65e6c0b74da6d6be52c80ff48, type: 3}
   UseSound: {fileID: 8300000, guid: 78c5acd7ca944364c85130a8069c9ed7, type: 3}
   Damage: 0
   Range: 25
