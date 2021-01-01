@@ -30,6 +30,9 @@ public class RaycastBolt : MonoBehaviour
     {
         time += Time.deltaTime / TimeToTarget;
 
+        if(!startTransform | !endTransform)
+            Destroy(gameObject);
+
         if (startTransform != null && endTransform != null)
         {
             Vector3 end = Vector3.Lerp(startTransform.position, endTransform.position, time);

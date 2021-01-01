@@ -51,7 +51,7 @@ public class PortalManager : MonoBehaviour, IDataPersistance
             foreach (var portal in room.portals)
             {
                 if(portal.AffectedByBossAlert)
-                    portal.TargetPortalIndex++;
+                    portal.TargetPortalIndex = (portal.TargetPortalIndex + 1) % portal.TargetPortal.Length;
             }
         }
 
