@@ -1103,6 +1103,7 @@ GameObject:
   - component: {fileID: 528420983}
   - component: {fileID: 528420982}
   - component: {fileID: 1934010321}
+  - component: {fileID: 7065454711072817589}
   m_Layer: 0
   m_Name: lever
   m_TagString: Untagged
@@ -1158,6 +1159,9 @@ MonoBehaviour:
   PopupText: Press F to pull pull lever
   InventorySection: {fileID: 0}
   RequiredItems: []
+  InteractionCount: 1
+  AlertAmount: 0
+  triggered: 0
   Range: 2
 --- !u!82 &1934010321
 AudioSource:
@@ -1256,6 +1260,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &7065454711072817589
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2047531927302432181}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3db2adb8f5d80a4abfb945da411ea2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_UUID: fab07dd2-78d7-459f-a1fe-246c47054e19
 --- !u!1 &2047531928195923156
 GameObject:
   m_ObjectHideFlags: 0

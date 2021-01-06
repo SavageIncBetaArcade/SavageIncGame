@@ -122,33 +122,24 @@ public class PlayerBase : CharacterBase
         OnDamage -= onDamage;
     }
 
-    public override Dictionary<string, object> Save()
+    public override void Save(DataContext context)
     {
-        var dataDictionary = base.Save();
+        base.Save(context);
 
         var UUID = GetComponent<UUID>()?.ID;
-        if (string.IsNullOrWhiteSpace(UUID))
-        {
-            Debug.LogError("CharacterBase doesn't have an UUID (Can't load data from json)");
-            return dataDictionary;
-        }
 
-        DataPersitanceHelpers.SaveValueToDictionary(ref dataDictionary, "velocity", playerVelocity);
-        DataPersitanceHelpers.SaveValueToDictionary(ref dataDictionary, "onGround", onGround);
-        DataPersitanceHelpers.SaveValueToDictionary(ref dataDictionary, "isCrouching", isCrouching);
-
-        DataPersitanceHelpers.SaveDictionary(ref dataDictionary, UUID);
-        return dataDictionary;
+        context.SaveData(UUID, "velocity", playerVelocity);
+        context.SaveData(UUID, "onGround", onGround);
+        context.SaveData(UUID, "isCrouching", isCrouching);
     }
 
-    public override Dictionary<string, object> Load(bool disableUnloaded = false)
+    public override void Load(DataContext context, bool disableUnloaded = false)
     {
-        var dataDictionary = base.Load(disableUnloaded);
+        base.Load(context, disableUnloaded);
+        var UUID = GetComponent<UUID>()?.ID;
 
-        playerVelocity = DataPersitanceHelpers.GetValueFromDictionary<Vector3>(ref dataDictionary, "velocity");
-        onGround = DataPersitanceHelpers.GetValueFromDictionary<bool>(ref dataDictionary, "onGround");
-        isCrouching = DataPersitanceHelpers.GetValueFromDictionary<bool>(ref dataDictionary, "isCrouching");
-
-        return dataDictionary;
+        playerVelocity = context.GetValue<Vector3>(UUID, "velocity");
+        onGround = context.GetValue<bool>(UUID, "onGround");
+        isCrouching = context.GetValue<bool>(UUID, "isCrouching");
     }
 }

@@ -52,37 +52,34 @@ public class ItemInventory : Inventory
 
     #region IDataPersistance
 
-    public override Dictionary<string, object> Save()
+    public override void Save(DataContext context)
     {
-        Dictionary<string, object> dataDictionary = base.Save();
+        base.Save(context);
 
         //Save armour/weapons slots
         if(armourSlot.equippedSlot.InventoryItem != null && armourSlot.equippedSlot.InventoryItem.Item)
         {
             string path = armourSlot.equippedSlot.InventoryItem.Item
                 .AssetPath.Replace("Resources/", "").Replace(".asset", "");
-            DataPersitanceHelpers.SaveValueToDictionary(ref dataDictionary, "armourSlot", path);
+            context.SaveData(uuid.ID, "armourSlot", path);
         }
         if (leftWeaponSlot.equippedSlot.InventoryItem != null && leftWeaponSlot.equippedSlot.InventoryItem.Item)
         {
             string path = leftWeaponSlot.equippedSlot.InventoryItem.Item
                 .AssetPath.Replace("Resources/", "").Replace(".asset", "");
-            DataPersitanceHelpers.SaveValueToDictionary(ref dataDictionary, "leftWeapon", path);
+            context.SaveData(uuid.ID, "leftWeapon", path);
         }
         if (rightWeaponSlot.equippedSlot.InventoryItem != null && rightWeaponSlot.equippedSlot.InventoryItem.Item)
         {
             string path = rightWeaponSlot.equippedSlot.InventoryItem.Item
                 .AssetPath.Replace("Resources/", "").Replace(".asset", "");
-            DataPersitanceHelpers.SaveValueToDictionary(ref dataDictionary, "rightWeapon", path);
+            context.SaveData(uuid.ID, "rightWeapon", path);
         }
-
-        DataPersitanceHelpers.SaveDictionary(ref dataDictionary, uuid.ID);
-        return dataDictionary;
     }
 
-    public override Dictionary<string, object> Load(bool destroyUnloaded = false)
+    public override void Load(DataContext context, bool destroyUnloaded = false)
     {
-        Dictionary<string, object> dataDictionary = base.Load(destroyUnloaded);
+        base.Load(context, destroyUnloaded);
 
         armourSlot.equippedSlot.InventoryItem?.UnapplyModifiers(character);
         leftWeaponSlot.equippedSlot.InventoryItem?.UnapplyModifiers(character);
@@ -92,9 +89,9 @@ public class ItemInventory : Inventory
         leftWeaponSlot.equippedSlot.Clear();
         rightWeaponSlot.equippedSlot.Clear();
 
-        var armourPath = DataPersitanceHelpers.GetValueFromDictionary<string>(ref dataDictionary, "armourSlot");
-        var leftWeaponPath = DataPersitanceHelpers.GetValueFromDictionary<string>(ref dataDictionary, "leftWeapon");
-        var rightWeaponPath = DataPersitanceHelpers.GetValueFromDictionary<string>(ref dataDictionary, "rightWeapon");
+        var armourPath = context.GetValue<string>(uuid.ID, "armourSlot");
+        var leftWeaponPath = context.GetValue<string>(uuid.ID, "leftWeapon");
+        var rightWeaponPath = context.GetValue<string>(uuid.ID, "rightWeapon");
 
         if(!string.IsNullOrWhiteSpace(armourPath))
         {
@@ -111,8 +108,6 @@ public class ItemInventory : Inventory
             var item = Resources.Load<Item>(rightWeaponPath);
             if (item) AddItem(item, false).RightClick(this, character);
         }
-
-        return dataDictionary;
     }
 
     #endregion

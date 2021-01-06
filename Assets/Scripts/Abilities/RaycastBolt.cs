@@ -30,8 +30,8 @@ public class RaycastBolt : MonoBehaviour
     {
         time += Time.deltaTime / TimeToTarget;
 
-        if(!startTransform | !endTransform)
-            Destroy(gameObject);
+        //if(!startTransform | !endTransform)
+        //    Destroy(gameObject);
 
         if (startTransform != null && endTransform != null)
         {

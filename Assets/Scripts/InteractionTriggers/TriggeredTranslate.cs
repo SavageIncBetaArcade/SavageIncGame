@@ -55,39 +55,23 @@ public class TriggeredTranslate : MonoBehaviour, IDataPersistance
         transform.position = Vector3.MoveTowards(transform.position, targetPosition, Speed * Time.deltaTime);
     }
 
-    public Dictionary<string, object> Save()
+    public void Save(DataContext context)
     {
-        //create new dictionary to contain data for characterbase
-        Dictionary<string, object> dataDictionary = new Dictionary<string, object>();
         if (!uuid)
-            return dataDictionary;
+            return;
 
-        //Load currently saved values
-        DataPersitanceHelpers.LoadDictionary(ref dataDictionary, uuid.ID);
 
-        DataPersitanceHelpers.SaveValueToDictionary(ref dataDictionary, "TriggeredPositionOffset", TriggeredPositionOffset);
-        DataPersitanceHelpers.SaveValueToDictionary(ref dataDictionary, "targetPosition", targetPosition);
-
-        //save json to file
-        DataPersitanceHelpers.SaveDictionary(ref dataDictionary, uuid.ID);
-
-        return dataDictionary;
+        context.SaveData(uuid.ID, "TriggeredPositionOffset", TriggeredPositionOffset);
+        context.SaveData(uuid.ID, "targetPosition", targetPosition);
     }
 
-    public Dictionary<string, object> Load(bool destroyUnloaded = false)
+    public void Load(DataContext context, bool destroyUnloaded = false)
     {
-        //create new dictionary to contain data for characterbase
-        Dictionary<string, object> dataDictionary = new Dictionary<string, object>();
-
         if (!uuid)
-            return dataDictionary;
+            return;
 
-        //load dictionary
-        DataPersitanceHelpers.LoadDictionary(ref dataDictionary, uuid.ID);
 
-        TriggeredPositionOffset = DataPersitanceHelpers.GetValueFromDictionary<Vector3>(ref dataDictionary, "TriggeredPositionOffset");
-        targetPosition = DataPersitanceHelpers.GetValueFromDictionary<Vector3>(ref dataDictionary, "targetPosition");
-
-        return dataDictionary;
+        TriggeredPositionOffset = context.GetValue<Vector3>(uuid.ID, "TriggeredPositionOffset");
+        targetPosition = context.GetValue<Vector3>(uuid.ID, "targetPosition");
     }
 }

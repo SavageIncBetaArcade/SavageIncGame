@@ -123,37 +123,19 @@ public class MovingPlatform : MonoBehaviour, IDataPersistance
         return GetPlayerTransformFromParent(currentTransform.parent);
     }
 
-    public Dictionary<string, object> Save()
+    public void Save(DataContext context)
     {
-        //create new dictionary to contain data for characterbase
-        Dictionary<string, object> dataDictionary = new Dictionary<string, object>();
         if (!uuid)
-            return dataDictionary;
+            return;
 
-        //Load currently saved values
-        DataPersitanceHelpers.LoadDictionary(ref dataDictionary, uuid.ID);
-
-        DataPersitanceHelpers.SaveValueToDictionary(ref dataDictionary, "isMoving", isMoving);
-
-        //save json to file
-        DataPersitanceHelpers.SaveDictionary(ref dataDictionary, uuid.ID);
-
-        return dataDictionary;
+        context.SaveData(uuid.ID, "isMoving", isMoving);
     }
 
-    public Dictionary<string, object> Load(bool destroyUnloaded = false)
+    public void Load(DataContext context, bool destroyUnloaded = false)
     {
-        //create new dictionary to contain data for characterbase
-        Dictionary<string, object> dataDictionary = new Dictionary<string, object>();
-
         if (!uuid)
-            return dataDictionary;
+            return;
 
-        //load dictionary
-        DataPersitanceHelpers.LoadDictionary(ref dataDictionary, uuid.ID);
-
-        isMoving = DataPersitanceHelpers.GetValueFromDictionary<bool>(ref dataDictionary, "isMoving");
-
-        return dataDictionary;
+        isMoving = context.GetValue<bool>(uuid.ID, "isMoving");
     }
 }

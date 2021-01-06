@@ -147,17 +147,11 @@ public abstract class Inventory : MonoBehaviour, IDataPersistance
     }
 
     #region IDataPersistance
-    public virtual Dictionary<string, object> Save()
+    public virtual void Save(DataContext context)
     {
-        //create new dictionary to contain data for characterbase
-        Dictionary<string, object> dataDictionary = new Dictionary<string, object>();
         if (!uuid)
-            return dataDictionary;
+            return;
 
-        //Load currently saved values
-        DataPersitanceHelpers.LoadDictionary(ref dataDictionary, uuid.ID);
-
-        //TODO save path of items
         Dictionary<string,int> itemPaths = new Dictionary<string, int>();
         foreach (var inventoryItem in items)
         {
@@ -165,27 +159,17 @@ public abstract class Inventory : MonoBehaviour, IDataPersistance
             if (item)
                 itemPaths.Add(item.AssetPath.Replace("Resources/","").Replace(".asset", ""), inventoryItem.InventoryItem.Quantity);
         }
-        DataPersitanceHelpers.SaveValueToDictionary(ref dataDictionary, "items", itemPaths);
 
-        //save json to file
-        DataPersitanceHelpers.SaveDictionary(ref dataDictionary, uuid.ID);
-
-        return dataDictionary;
+        context.SaveData(uuid.ID, "items", itemPaths);
     }
 
-    public virtual Dictionary<string, object> Load(bool destroyUnloaded = false)
+    public virtual void Load(DataContext context, bool destroyUnloaded = false)
     {
-        //create new dictionary to contain data for characterbase
-        Dictionary<string, object> dataDictionary = new Dictionary<string, object>();
-
         if (!uuid)
-            return dataDictionary;
-
-        //load dictionary
-        DataPersitanceHelpers.LoadDictionary(ref dataDictionary, uuid.ID);
+            return;
 
         Dictionary<string, int> itemPaths;
-        itemPaths = DataPersitanceHelpers.GetValueFromDictionary<Dictionary<string, int>>(ref dataDictionary, "items");
+        itemPaths =  context.GetValue<Dictionary<string, int>>(uuid.ID, "items");
 
         //Remove all items;
         RemoveAll();
@@ -201,8 +185,6 @@ public abstract class Inventory : MonoBehaviour, IDataPersistance
                 AddItem(item as Item, false);
             }
         }
-
-        return dataDictionary;
     }
     #endregion
 }

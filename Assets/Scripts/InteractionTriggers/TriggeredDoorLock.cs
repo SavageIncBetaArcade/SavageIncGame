@@ -81,43 +81,28 @@ public class TriggeredDoorLock : MonoBehaviour, IDataPersistance
         }
     }
 
-    public Dictionary<string, object> Save()
+    public void Save(DataContext context)
     {
-        //create new dictionary to contain data for characterbase
-        Dictionary<string, object> dataDictionary = new Dictionary<string, object>();
         if (!uuid)
-            return dataDictionary;
+            return;
 
-        //Load currently saved values
-        DataPersitanceHelpers.LoadDictionary(ref dataDictionary, uuid.ID);
-
-        DataPersitanceHelpers.SaveValueToDictionary(ref dataDictionary, "IsLocked", IsLocked);
-
-        //save json to file
-        DataPersitanceHelpers.SaveDictionary(ref dataDictionary, uuid.ID);
-
-        return dataDictionary;
+        context.SaveData(uuid.ID, "IsLocked", IsLocked);
     }
 
-    public Dictionary<string, object> Load(bool destroyUnloaded = false)
+    public void Load(DataContext context, bool destroyUnloaded = false)
     {
         //create new dictionary to contain data for characterbase
         Dictionary<string, object> dataDictionary = new Dictionary<string, object>();
 
         if (!uuid)
-            return dataDictionary;
+            return;
 
-        //load dictionary
-        DataPersitanceHelpers.LoadDictionary(ref dataDictionary, uuid.ID);
-
-        IsLocked = DataPersitanceHelpers.GetValueFromDictionary<bool>(ref dataDictionary, "IsLocked");
+        IsLocked = context.GetValue<bool>(uuid.ID, "IsLocked");
 
         if (Animator != null)
         {
             Animator.SetBool(OnTriggerAnimation, InteractionTrigger.AnyTrue(InteractTriggers));
 
         }
-
-        return dataDictionary;
     }
 }

@@ -278,73 +278,47 @@ public class CharacterBase : MonoBehaviour, IDamageTaker, IDataPersistance
     #endregion
 
     #region IDataPersistance
-    public virtual Dictionary<string, object> Save()
+    public virtual void Save(DataContext context)
     {
-        //create new dictionary to contain data for characterbase
-        Dictionary<string, object> dataDictionary = new Dictionary<string, object>();
-
         //save json to file
         var UUID = GetComponent<UUID>()?.ID;
-        if (string.IsNullOrWhiteSpace(UUID))
-        {
-            Debug.LogError("CharacterBase doesn't have an UUID (Can't load data from json)");
-            return dataDictionary;
-        }
-
-        //Load currently saved values
-        DataPersitanceHelpers.LoadDictionary(ref dataDictionary, UUID);
 
         //save transform
-        DataPersitanceHelpers.SaveTransform(ref dataDictionary, transform, "characterTransform");
+        context.SaveTransform(transform, UUID, "characterTransform");
 
         //save member vars
-        DataPersitanceHelpers.SaveValueToDictionary(ref dataDictionary, "attackModifier", attackModifier);
-        DataPersitanceHelpers.SaveValueToDictionary(ref dataDictionary, "defenseModifier", defenseModifier);
-        DataPersitanceHelpers.SaveValueToDictionary(ref dataDictionary, "maxHealth", maxHealth);
-        DataPersitanceHelpers.SaveValueToDictionary(ref dataDictionary, "maxEnergy", maxEnergy);
-        DataPersitanceHelpers.SaveValueToDictionary(ref dataDictionary, "maxEnergy", maxEnergy);
-        DataPersitanceHelpers.SaveValueToDictionary(ref dataDictionary, "speed", speed);
-        DataPersitanceHelpers.SaveValueToDictionary(ref dataDictionary, "jumpHeight", jumpHeight);
-        DataPersitanceHelpers.SaveValueToDictionary(ref dataDictionary, "currentHealth", currentHealth);
-        DataPersitanceHelpers.SaveValueToDictionary(ref dataDictionary, "currentEnergy", currentEnergy);
-        DataPersitanceHelpers.SaveValueToDictionary(ref dataDictionary, "currentStunTime", currentStunTime);
-        DataPersitanceHelpers.SaveValueToDictionary(ref dataDictionary, "lastPosition", lastPosition);
-        //todo save applied modifiers
-
-        DataPersitanceHelpers.SaveDictionary(ref dataDictionary, UUID);
-
-        return dataDictionary;
+        context.SaveData(UUID, "attackModifier", attackModifier);
+        context.SaveData(UUID, "defenseModifier", defenseModifier);
+        context.SaveData(UUID, "maxHealth", maxHealth);
+        context.SaveData(UUID, "maxEnergy", maxEnergy);
+        context.SaveData(UUID, "maxEnergy", maxEnergy);
+        context.SaveData(UUID, "speed", speed);
+        context.SaveData(UUID, "jumpHeight", jumpHeight);
+        context.SaveData(UUID, "currentHealth", currentHealth);
+        context.SaveData(UUID, "currentEnergy", currentEnergy);
+        context.SaveData(UUID, "currentStunTime", currentStunTime);
+        context.SaveData(UUID, "lastPosition", lastPosition);
     }
 
-    public virtual Dictionary<string, object> Load(bool destroyUnloaded = false)
+    public virtual void Load(DataContext context, bool destroyUnloaded = false)
     {
-        //create new dictionary to contain data for characterbase
-        Dictionary<string, object> dataDictionary = new Dictionary<string, object>();
 
         var UUID = GetComponent<UUID>()?.ID;
-        if (string.IsNullOrWhiteSpace(UUID))
-        {
-            Debug.LogError("CharacterBase doesn't have an UUID (Can't load data from json)");
-            return dataDictionary;
-        }
-
-        //load dictionary
-        DataPersitanceHelpers.LoadDictionary(ref dataDictionary, UUID);
 
         //load transform
-        DataPersitanceHelpers.LoadTransform(ref dataDictionary, transform, "characterTransform");
+        context.LoadTransform(transform,UUID, "characterTransform");
+
         //load member vars
-        attackModifier = DataPersitanceHelpers.GetValueFromDictionary<float>(ref dataDictionary, "attackModifier");
-        defenseModifier = DataPersitanceHelpers.GetValueFromDictionary<float>(ref dataDictionary, "defenseModifier");
-        maxHealth = DataPersitanceHelpers.GetValueFromDictionary<float>(ref dataDictionary, "maxHealth");
-        maxEnergy = DataPersitanceHelpers.GetValueFromDictionary<float>(ref dataDictionary, "maxEnergy");
-        speed = DataPersitanceHelpers.GetValueFromDictionary<float>(ref dataDictionary, "speed");
-        jumpHeight = DataPersitanceHelpers.GetValueFromDictionary<float>(ref dataDictionary, "jumpHeight");
-        currentHealth = DataPersitanceHelpers.GetValueFromDictionary<float>(ref dataDictionary, "currentHealth");
-        currentEnergy = DataPersitanceHelpers.GetValueFromDictionary<float>(ref dataDictionary, "currentEnergy");
-        currentStunTime = DataPersitanceHelpers.GetValueFromDictionary<float>(ref dataDictionary, "currentStunTime");
-        lastPosition = DataPersitanceHelpers.GetValueFromDictionary<Vector3>(ref dataDictionary, "lastPosition");
-        return dataDictionary;
+        attackModifier = context.GetValue<float>(UUID, "attackModifier");
+        defenseModifier = context.GetValue<float>(UUID, "defenseModifier");
+        maxHealth = context.GetValue<float>(UUID, "maxHealth");
+        maxEnergy = context.GetValue<float>(UUID, "maxEnergy");
+        speed = context.GetValue<float>(UUID, "speed");
+        jumpHeight = context.GetValue<float>(UUID, "jumpHeight");
+        currentHealth = context.GetValue<float>(UUID, "currentHealth");
+        currentEnergy = context.GetValue<float>(UUID, "currentEnergy");
+        currentStunTime = context.GetValue<float>(UUID, "currentStunTime");
+        lastPosition = context.GetValue<Vector3>(UUID, "lastPosition");
     }
 
     #endregion

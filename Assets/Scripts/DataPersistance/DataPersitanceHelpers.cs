@@ -5,6 +5,7 @@ using Newtonsoft.Json;
 using System;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using Newtonsoft.Json.Linq;
 using UnityEngine.SceneManagement;
 
@@ -34,63 +35,15 @@ public class DataPersitanceHelpers
         }
     }
 
-    public static void SaveValueToDictionary(ref Dictionary<string,object> dictionary, string key, object data)
+    public static async Task WriteAsync(string path, string data)
     {
-        if (dictionary == null)
-            return;
-
-        if (!dictionary.ContainsKey(key))
-            dictionary.Add(key, data);
-        else
-            dictionary[key] = data;
-    }
-
-    public static T GetValueFromDictionary<T>(ref Dictionary<string, object> dictionary, string key)
-    {
-        try
+        using (var sw = new StreamWriter(path))
         {
-            if (dictionary == null || !dictionary.ContainsKey(key))
-                return default(T);
-
-            switch(Type.GetTypeCode(typeof(T)))
-            {
-                case TypeCode.Boolean:
-                    return (T)Convert.ChangeType(bool.Parse(dictionary[key].ToString()), typeof(T));
-                case TypeCode.Int16:
-                    return (T)Convert.ChangeType(short.Parse(dictionary[key].ToString()), typeof(T));
-                case TypeCode.Int32:
-                    return (T)Convert.ChangeType(int.Parse(dictionary[key].ToString()), typeof(T));
-                case TypeCode.Int64:
-                    return (T)Convert.ChangeType(long.Parse(dictionary[key].ToString()), typeof(T));
-                case TypeCode.UInt16:
-                    return (T)Convert.ChangeType(ushort.Parse(dictionary[key].ToString()), typeof(T));
-                case TypeCode.UInt32:
-                    return (T)Convert.ChangeType(uint.Parse(dictionary[key].ToString()), typeof(T));
-                case TypeCode.UInt64:
-                    return (T)Convert.ChangeType(ulong.Parse(dictionary[key].ToString()), typeof(T));
-                case TypeCode.Single:
-                    return (T)Convert.ChangeType(float.Parse(dictionary[key].ToString()), typeof(T));
-                case TypeCode.Double:
-                    return (T)Convert.ChangeType(double.Parse(dictionary[key].ToString()), typeof(T));
-                case TypeCode.String:
-                    return (T)Convert.ChangeType(dictionary[key].ToString(), typeof(T));
-            }
-
-            var jObject = dictionary[key] as JObject;
-
-            if (jObject != null)
-                return jObject.ToObject<T>();
-
-            return default(T);
-        }
-        catch (Exception ex)
-        {
-            Debug.LogError($"Failed get value with key:{key} from dictionary. Exception:{ex}");
-            return default(T);
+            await sw.WriteAsync(data);
         }
     }
 
-    public static void SaveDictionary(ref Dictionary<string, object> dictionary, string fileName)
+    public static void SaveDictionary(ref Dictionary<string, Dictionary<string, object>> dictionary, string fileName)
     {
         try
         {
@@ -112,7 +65,7 @@ public class DataPersitanceHelpers
         
     }
 
-    public static void LoadDictionary(ref Dictionary<string, object> dictionary, string fileName)
+    public static void LoadDictionary(ref Dictionary<string, Dictionary<string, object>> dictionary, string fileName)
     {
         try
         {
@@ -121,41 +74,13 @@ public class DataPersitanceHelpers
             if (Directory.Exists(path) && File.Exists($"{path}\\{fileName}.json"))
             {
                 string json = File.ReadAllText($"{path}\\{fileName}.json");
-                dictionary = JsonConvert.DeserializeObject<Dictionary<string, object>>(json);
-                RecurseDeserialize(dictionary);
+                dictionary = JsonConvert.DeserializeObject<Dictionary<string, Dictionary<string, object>>>(json);
+                //RecurseDeserialize(dictionary);
             }
         }
         catch (Exception e)
         {
             Debug.LogWarning($"Failed to load dictionary from json file {e}");
-        }
-    }
-
-    public static void SaveTransform(ref Dictionary<string, object> dictionary, Transform transform, string key = "transform")
-    {
-        TransformInfo transformInfo = new TransformInfo
-        {
-            pos = transform.position,
-            rot = transform.rotation,
-            scale = transform.localScale,
-            enabled = transform.gameObject.activeInHierarchy
-        };
-
-        SaveValueToDictionary(ref dictionary, key, transformInfo);
-    }
-
-    public static void LoadTransform(ref Dictionary<string, object> dictionary, Transform transform, string key = "transform")
-    {
-        TransformInfo transformInfo = GetValueFromDictionary<TransformInfo>(ref dictionary, key);
-
-        if (transformInfo != null)
-        {
-            transform.position = transformInfo.pos;
-            transform.rotation = transformInfo.rot;
-            transform.localScale = transformInfo.scale;
-            if (!transformInfo.enabled)
-                Debug.Log("Test");
-            transform.gameObject.SetActive(transformInfo.enabled);
         }
     }
 
@@ -205,33 +130,17 @@ public class DataPersitanceHelpers
         return gameObjects.ToList();
     }
 
-    private static void GetChildRecursive<T>(GameObject obj, ref List<T> gameObjects)
-    {
-        if (null == obj)
-            return;
-
-        foreach (Transform child in obj.transform)
-        {
-            if (null == child)
-                continue;
-            //child.gameobject contains the current child you can do whatever you want like add it to an array
-
-            var component = child.GetComponents<T>();
-            if(component != null)
-                gameObjects.AddRange(component);
-
-            GetChildRecursive(child.gameObject, ref gameObjects);
-        }
-    }
-
     public static void SaveAll()
     {
         ClearSaves();
 
-        var SavableObjects = FindAllGameObjects<MonoBehaviour>().OfType<IDataPersistance>().ToList();
-        foreach (var obj in SavableObjects)
+        using (DataContext context = new DataContext("save"))
         {
-            obj.Save();
+            var SavableObjects = FindAllGameObjects<MonoBehaviour>().OfType<IDataPersistance>().ToList();
+            foreach (var obj in SavableObjects)
+            {
+                obj.Save(context);
+            }
         }
     }
 
@@ -240,16 +149,19 @@ public class DataPersitanceHelpers
         var SavableObjects = FindAllGameObjects<MonoBehaviour>().OfType<IDataPersistance>();
         var interactionTriggers = SavableObjects.OfType<InteractionTrigger>();
 
-        //load all triggers first
-        foreach (var obj in interactionTriggers)
+        using (DataContext context = new DataContext("save"))
         {
-            obj.Load(true);
-        }
+            //load all triggers first
+            foreach (var obj in interactionTriggers)
+            {
+                obj.Load(context, true);
+            }
 
-        //load everything else
-        foreach (var obj in SavableObjects.Where(x => !interactionTriggers.Contains(x)))
-        {
-            obj.Load(true);
+            //load everything else
+            foreach (var obj in SavableObjects.Where(x => !interactionTriggers.Contains(x)))
+            {
+                obj.Load(context, true);
+            }
         }
     }
 }

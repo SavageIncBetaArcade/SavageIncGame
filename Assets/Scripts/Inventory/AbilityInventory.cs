@@ -56,9 +56,9 @@ public class AbilityInventory : Inventory
 
     #region IDataPersistance
 
-    public override Dictionary<string, object> Save()
+    public override void  Save(DataContext context)
     {
-        Dictionary<string, object> dataDictionary = base.Save();
+        base.Save(context);
 
         //save left hand
         Dictionary<int, string> leftHandPaths = new Dictionary<int, string>();
@@ -84,16 +84,14 @@ public class AbilityInventory : Inventory
             }
         }
 
-        DataPersitanceHelpers.SaveValueToDictionary(ref dataDictionary, "leftHand", leftHandPaths);
-        DataPersitanceHelpers.SaveValueToDictionary(ref dataDictionary, "rightHand", rightHandPaths);
 
-        DataPersitanceHelpers.SaveDictionary(ref dataDictionary, uuid.ID);
-        return dataDictionary;
+        context.SaveData(uuid.ID, "leftHand", leftHandPaths);
+        context.SaveData(uuid.ID, "rightHand", rightHandPaths);
     }
 
-    public override Dictionary<string, object> Load(bool destroyUnloaded = false)
+    public override void Load(DataContext context,bool destroyUnloaded = false)
     {
-        Dictionary<string, object> dataDictionary = base.Load(destroyUnloaded);
+        base.Load(context, destroyUnloaded);
 
         //remove current slots
         for (int i = 0; i < leftHand.Length; i++)
@@ -106,8 +104,7 @@ public class AbilityInventory : Inventory
         }
 
         //save left hand
-        Dictionary<int, string> leftHandPaths = DataPersitanceHelpers
-            .GetValueFromDictionary<Dictionary<int, string>>(ref dataDictionary, "leftHand");
+        Dictionary<int, string> leftHandPaths = context.GetValue<Dictionary<int, string>>(uuid.ID, "leftHand");
         for (int i = 0; i < leftHand.Length; i++)
         {
             if(leftHandPaths != null && leftHandPaths.ContainsKey(i))
@@ -123,8 +120,7 @@ public class AbilityInventory : Inventory
         }
 
         //save right hand
-        Dictionary<int, string> rightHandPaths = DataPersitanceHelpers
-            .GetValueFromDictionary<Dictionary<int, string>>(ref dataDictionary, "rightHand");
+        Dictionary<int, string> rightHandPaths = context.GetValue<Dictionary<int, string>>(uuid.ID, "rightHand");
         for (int i = 0; i < rightHand.Length; i++)
         {
             if (rightHandPaths != null && rightHandPaths.ContainsKey(i))
@@ -138,8 +134,6 @@ public class AbilityInventory : Inventory
                 };
             }
         }
-
-        return dataDictionary;
     }
 
     #endregion

@@ -196,40 +196,25 @@ public class InteractionTrigger : MonoBehaviour, IInteractable, IDataPersistance
     #endregion
 
     #region IDataPersistance
-    public Dictionary<string, object> Save()
+    public void Save(DataContext context)
     {
-        //create new dictionary to contain data for characterbase
-        Dictionary<string, object> dataDictionary = new Dictionary<string, object>();
         if (!uuid)
-            return dataDictionary;
+            return;
 
-        //Load currently saved values
-        DataPersitanceHelpers.LoadDictionary(ref dataDictionary, uuid.ID);
-
-        DataPersitanceHelpers.SaveValueToDictionary(ref dataDictionary, "IsInteractable", IsInteractable);
-        DataPersitanceHelpers.SaveValueToDictionary(ref dataDictionary, "Toggle", Toggle);
-        DataPersitanceHelpers.SaveValueToDictionary(ref dataDictionary, "triggered", triggered);
-
-        //save json to file
-        DataPersitanceHelpers.SaveDictionary(ref dataDictionary, uuid.ID);
-
-        return dataDictionary;
+        context.SaveData(uuid.ID, "IsInteractable", IsInteractable);
+        context.SaveData(uuid.ID, "Toggle", Toggle);
+        context.SaveData(uuid.ID, "triggered", triggered);
     }
 
-    public Dictionary<string, object> Load(bool destroyUnloaded = false)
+    public void Load(DataContext context, bool destroyUnloaded = false)
     {
-        //create new dictionary to contain data for characterbase
-        Dictionary<string, object> dataDictionary = new Dictionary<string, object>();
-
         if (!uuid)
-            return dataDictionary;
+            return;
 
-        //load dictionary
-        DataPersitanceHelpers.LoadDictionary(ref dataDictionary, uuid.ID);
 
-        IsInteractable = DataPersitanceHelpers.GetValueFromDictionary<bool>(ref dataDictionary, "IsInteractable");
-        Toggle = DataPersitanceHelpers.GetValueFromDictionary<bool>(ref dataDictionary, "Toggle");
-        triggered = DataPersitanceHelpers.GetValueFromDictionary<bool>(ref dataDictionary, "triggered");
+        IsInteractable = context.GetValue<bool>(uuid.ID, "IsInteractable");
+        Toggle = context.GetValue<bool>(uuid.ID, "Toggle");
+        triggered = context.GetValue<bool>(uuid.ID, "triggered");
 
         if (TriggerAnimator != null)
         {
@@ -238,8 +223,6 @@ public class InteractionTrigger : MonoBehaviour, IInteractable, IDataPersistance
         }
 
         //OnTrigger?.Invoke(triggered, this);
-
-        return dataDictionary;
     }
     #endregion
 }

@@ -16,43 +16,20 @@ public class PersistantTransform : MonoBehaviour, IDataPersistance
         }
     }
 
-    public Dictionary<string, object> Load(bool destroyUnloaded = false)
+    public void Load(DataContext context, bool destroyUnloaded = false)
     {
-        //create new dictionary to contain data for characterbase
-        Dictionary<string, object> dataDictionary = new Dictionary<string, object>();
+        
+        if(!uuid || !context.ContainsKey(uuid.ID, "persistantTransform"))
+            return;
 
-        if (!uuid)
-            return dataDictionary;
-
-        //load dictionary
-        DataPersitanceHelpers.LoadDictionary(ref dataDictionary, uuid.ID);
-
-        ////if dictionary is empty then we assume no saved data for the object, so destroy it
-        //if (destroyUnloaded && (dataDictionary == null || dataDictionary.Count == 0))
-        //    gameObject.SetActive(false);
-
-        //load transform
-        DataPersitanceHelpers.LoadTransform(ref dataDictionary, transform, "persistantTransform");
-
-        return dataDictionary;
+        context.LoadTransform(transform, uuid.ID, "persistantTransform");
     }
 
-    public Dictionary<string, object> Save()
+    public void Save(DataContext context)
     {
-        //create new dictionary to contain data for characterbase
-        Dictionary<string, object> dataDictionary = new Dictionary<string, object>();
         if (!uuid)
-            return dataDictionary;
+            return;
 
-        //Load currently saved values
-        DataPersitanceHelpers.LoadDictionary(ref dataDictionary, uuid.ID);
-
-        //save transform
-        DataPersitanceHelpers.SaveTransform(ref dataDictionary, transform , "persistantTransform");
-
-        //save json to file
-        DataPersitanceHelpers.SaveDictionary(ref dataDictionary, uuid.ID);
-
-        return dataDictionary;
+        context.SaveTransform(transform, uuid.ID, "persistantTransform");
     }
 }

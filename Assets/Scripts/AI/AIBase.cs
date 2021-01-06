@@ -194,42 +194,35 @@ public class AIBase : CharacterBase
         OnDeath -= onDeath;
     }
 
-    public override Dictionary<string, object> Save()
+    public override void Save(DataContext context)
     {
-        var dataDictionary =  base.Save();
+        base.Save(context);
 
         //save json to file
         var UUID = GetComponent<UUID>()?.ID;
-        if (string.IsNullOrWhiteSpace(UUID))
-        {
-            Debug.LogError("CharacterBase doesn't have an UUID (Can't load data from json)");
-            return dataDictionary;
-        }
 
-        DataPersitanceHelpers.SaveValueToDictionary(ref dataDictionary, "SenseRange", SenseRange);
-        DataPersitanceHelpers.SaveValueToDictionary(ref dataDictionary, "AngleOfVision", AngleOfVision);
-        DataPersitanceHelpers.SaveValueToDictionary(ref dataDictionary, "WalkDistance", WalkDistance);
-        DataPersitanceHelpers.SaveValueToDictionary(ref dataDictionary, "AttackDistance", AttackDistance);
-        DataPersitanceHelpers.SaveValueToDictionary(ref dataDictionary, "CurrentPatrolPoint", CurrentPatrolPoint);
-        DataPersitanceHelpers.SaveValueToDictionary(ref dataDictionary, "NextPatrolPoint", NextPatrolPoint);
-        DataPersitanceHelpers.SaveValueToDictionary(ref dataDictionary, "currentDestination", currentDestination);
-
-        //TODO save transforms and stack of states
-        DataPersitanceHelpers.SaveDictionary(ref dataDictionary, UUID);
-        return dataDictionary;
+        context.SaveData( UUID, "SenseRange", SenseRange);
+        context.SaveData(UUID, "AngleOfVision", AngleOfVision);
+        context.SaveData(UUID, "WalkDistance", WalkDistance);
+        context.SaveData(UUID, "AttackDistance", AttackDistance);
+        context.SaveData(UUID, "CurrentPatrolPoint", CurrentPatrolPoint);
+        context.SaveData(UUID, "NextPatrolPoint", NextPatrolPoint);
+        context.SaveData(UUID, "currentDestination", currentDestination);
     }
 
-    public override Dictionary<string, object> Load(bool destroyUnloaded = false)
+    public override void Load(DataContext context, bool destroyUnloaded = false)
     {
-        var dataDictionary = base.Load(destroyUnloaded);
+        base.Load(context, destroyUnloaded);
 
-        SenseRange = DataPersitanceHelpers.GetValueFromDictionary<float>(ref dataDictionary, "SenseRange");
-        AngleOfVision = DataPersitanceHelpers.GetValueFromDictionary<float>(ref dataDictionary, "AngleOfVision");
-        WalkDistance = DataPersitanceHelpers.GetValueFromDictionary<float>(ref dataDictionary, "WalkDistance");
-        AttackDistance = DataPersitanceHelpers.GetValueFromDictionary<float>(ref dataDictionary, "AttackDistance");
-        CurrentPatrolPoint = DataPersitanceHelpers.GetValueFromDictionary<int>(ref dataDictionary, "CurrentPatrolPoint");
-        NextPatrolPoint = DataPersitanceHelpers.GetValueFromDictionary<int>(ref dataDictionary, "NextPatrolPoint");
-        currentDestination = DataPersitanceHelpers.GetValueFromDictionary<Vector3?>(ref dataDictionary, "currentDestination");
+        var UUID = GetComponent<UUID>()?.ID;
+
+        SenseRange = context.GetValue<float>(UUID, "SenseRange");
+        AngleOfVision = context.GetValue<float>(UUID, "AngleOfVision");
+        WalkDistance = context.GetValue<float>(UUID, "WalkDistance");
+        AttackDistance = context.GetValue<float>(UUID, "AttackDistance");
+        CurrentPatrolPoint = context.GetValue<int>(UUID, "CurrentPatrolPoint");
+        NextPatrolPoint = context.GetValue<int>(UUID, "NextPatrolPoint");
+        currentDestination = context.GetValue<Vector3?>(UUID, "currentDestination");
 
         //reset states (should really save the state stack instead)
         if (stackOfStates)
@@ -245,7 +238,5 @@ public class AIBase : CharacterBase
                     stackOfStates.PushState(idle);
             }
         }
-
-        return dataDictionary;
     }
 }

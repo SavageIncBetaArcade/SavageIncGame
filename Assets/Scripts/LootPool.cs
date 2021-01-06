@@ -71,39 +71,21 @@ public class LootPool : MonoBehaviour, IDataPersistance
         }
     }
 
-    #region
-    public Dictionary<string, object> Save()
+    #region IPersitantData
+    public void Save(DataContext context)
     {
-        //create new dictionary to contain data for characterbase
-        Dictionary<string, object> dataDictionary = new Dictionary<string, object>();
         if (!uuid)
-            return dataDictionary;
+            return;
 
-        //Load currently saved values
-        DataPersitanceHelpers.LoadDictionary(ref dataDictionary, uuid.ID);
-
-        DataPersitanceHelpers.SaveValueToDictionary(ref dataDictionary, "looted", looted);
-
-        //save json to file
-        DataPersitanceHelpers.SaveDictionary(ref dataDictionary, uuid.ID);
-
-        return dataDictionary;
+        context.SaveData(uuid.ID, "looted", looted);
     }
 
-    public Dictionary<string, object> Load(bool destroyUnloaded = false)
+    public void Load(DataContext context, bool destroyUnloaded = false)
     {
-        //create new dictionary to contain data for characterbase
-        Dictionary<string, object> dataDictionary = new Dictionary<string, object>();
-
         if (!uuid)
-            return dataDictionary;
+            return;
 
-        //load dictionary
-        DataPersitanceHelpers.LoadDictionary(ref dataDictionary, uuid.ID);
-
-        looted = DataPersitanceHelpers.GetValueFromDictionary<bool>(ref dataDictionary, "looted");
-
-        return dataDictionary;
+        looted = context.GetValue<bool>(uuid.ID, "looted");
     }
     #endregion
 }
